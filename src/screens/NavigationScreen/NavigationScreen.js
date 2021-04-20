@@ -1,12 +1,12 @@
 import React from 'react'
-import { createDrawerNavigation } from '@react-navigation/drawer';
+import { createDrawerNavigator } from '@react-navigation/drawer';
 
-const Drawer = createDrawerNavigation();
+const Drawer = createDrawerNavigator();
 
 export default function NavigationScreen() {
     return(
         <Drawer.Navigator initialRouteName='ServiceScreen'>
-            <Drawer.Screen name ="ServiceScreen" component={ServiceScreenNavigator} />
+            <Drawer.Screen name ="Post A Job" component={ServiceScreenNavigator} />
         </Drawer.Navigator>
     )
 }
@@ -19,7 +19,7 @@ const ServiceScreenStack = createStackNavigator()
 function ServiceScreenNavigator(){
     return(
         <ServiceScreenStack.Navigator>
-            <ServiceScreenStack.Screen name='ServiceScreen' component={ServiceScreen} options={{headerTitle: 'User Service Screen', headerLeft: () => <MenuIcon /> }} />
+            <ServiceScreenStack.Screen name='Post A Job' component={ServiceScreen} options={{headerTitle: 'User Service Screen', headerLeft: () => <MenuIcon /> }} />
         </ServiceScreenStack.Navigator>
     )
 }
