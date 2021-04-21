@@ -21,5 +21,10 @@
 * yarn add firebase
 * npm install @material-ui/core
 * npm install @material-ui/icons
+* npm install axios
+* npm install react-bootstrap bootstrap
+* npm install react-native-dotenv
+* npm install @react-navigation/native @react-navigation/stack
+* expo install react-native-reanimated react-native-gesture-handler react-native-screens react-native-safe-area-context @react-native-community/masked-view
 ---
 ### Building User Interface: Prototypes Images
