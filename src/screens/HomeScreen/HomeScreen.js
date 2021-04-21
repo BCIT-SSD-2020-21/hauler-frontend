@@ -19,10 +19,9 @@ import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 const HomeScreen = ({navigation}) => {
     const theme = useTheme();
 
-
 return (
     <View style={styles.cardsWrapper}>
-            <button>Post A Job`</button>
+            <button>POST A JOB</button>
 
             <Text
             style={{
