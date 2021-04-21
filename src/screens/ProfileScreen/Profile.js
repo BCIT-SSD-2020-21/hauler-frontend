@@ -3,7 +3,7 @@ import { Text, TouchableOpacity, View, Image } from 'react-native'
 import { Context } from '../../context/ContextProvider'
 import { StyleSheet } from 'react-native';
 
-export default function Profile() {
+export default function Profile({ navigation }) {
     const { signout, currentUser } = useContext(Context)
     const [error, setError] = useState('')
     const [loading, setLoading] = useState('')
@@ -13,6 +13,7 @@ export default function Profile() {
             setError("")
             setLoading(true)
             await signout()
+            navigation.navigate('Home')
         } catch {
             setError("Failed to Log out")
         }

@@ -3,7 +3,7 @@ import { Text, TextInput, TouchableOpacity, View, Image, ScrollView } from 'reac
 import { Context } from '../../context/ContextProvider'
 import { StyleSheet } from 'react-native';
 
-export default function Signup() {
+export default function Signup({ navigation }) {
     const { signup, currentUser } = useContext(Context)
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
@@ -17,18 +17,16 @@ export default function Signup() {
     const { expiryDate, setExpiryDate } = useState('')
     const { cvv, setCvv } = useState('')
 
-
-
     const onSignUpClicked = async () => {
         if (password !== confirmPassword) {
             setError("Password does not match")
             return
         }
-
         try {
             setError("")
             setLoading(true)
             await signup(email, password)
+            navigation.navigate('Home')
         } catch {
             setError("Failed to create an account")
         }
@@ -124,7 +122,8 @@ export default function Signup() {
                 <View style={styles.option}>
                     <Text style={styles.optionText}>
                         Already have an account?
-                        <Text style={styles.optionLink}>
+                        <Text style={styles.optionLink}
+                        onPress={() => navigation.navigate('Signin')}>
                             Log in</Text>
                     </Text>
                     <Text style={styles.email}>

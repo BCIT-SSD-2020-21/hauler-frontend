@@ -3,7 +3,7 @@ import { Text, TextInput, TouchableOpacity, View, Image } from 'react-native'
 import { Context } from '../../context/ContextProvider';
 import { StyleSheet } from 'react-native';
 
-export default function Signin() {
+export default function Signin({ navigation }) {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [error, setError] = useState('')
@@ -16,6 +16,7 @@ export default function Signin() {
             setError("")
             setLoading(true)
             await signin(email, password)
+            navigation.navigate('Home')
         } catch {
             setError("Failed to Login")
         }
@@ -53,7 +54,8 @@ export default function Signin() {
                 <View style={styles.option}>
                     <Text style={styles.optionText}>
                         Create an account?
-                        <Text style={styles.optionLink}>
+                        <Text style={styles.optionLink}
+                        onPress={() => navigation.navigate('Signup')}>
                             Register</Text>
                     </Text>
                     <Text style={styles.email}>
