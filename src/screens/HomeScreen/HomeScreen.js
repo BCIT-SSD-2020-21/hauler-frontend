@@ -17,6 +17,8 @@ import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 
 
 <View style={styles.cardsWrapper}>
+        <button>Post A Job`</button>
+        
         <Text
           style={{
             alignSelf: 'center',
