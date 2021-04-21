@@ -1,27 +1,46 @@
-import React, { useState } from 'react'
-import { Text, TextInput, TouchableOpacity, View, Image } from 'react-native'
+import React, { useState, useContext } from 'react'
+import {  Text, TextInput, TouchableOpacity, View, Image } from 'react-native'
+import { Context } from '../context/ContextProvider'
 import { StyleSheet } from 'react-native';
 
 export default function Signup() {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [confirmPassword, setConfirmPassword] = useState('')
+    const [error, setError] = useState('')
+    const [loading, setLoading] = useState('')
+    const { signup, currentUser } = useContext(Context)
 
-    const onSignUpClicked = async () => {
-      console.log("login clicked")
+    
+
+    const onSignUpClicked = async() => {
+        if (password !== confirmPassword) {
+            setError("Password does not match")
+            return 
+        }
+
+        try{
+            setError("")
+            setLoading(true)
+        await signup(email,password )
+        } catch {
+            setError("Failed to create an account")
+        }
+        setLoading(false)
     }
 
     return (
         <View style={styles.container}>
             <View
                 style={{ flex: 1, width: '100%' }}>
-                <Image source={require('../../assets/haulerLogo.png')} style={styles.logo} />
-
+                    <Image source= {require('../../assets/haulerLogo.png')} style={styles.logo} />
+                    <Text > {error && alert(error)}</Text>
+                
                 <TextInput
                     style={styles.input}
                     placeholder='Email'
                     placeholderTextColor="#C0C0C0"
-                    onChangeText={(email) => setEmail(email) }
+                    onChangeText={(email) => {setError("");setEmail(email)}}
                     value={email}
                 />
                 <TextInput
@@ -29,7 +48,7 @@ export default function Signup() {
                     placeholder='Password'
                     placeholderTextColor="#C0C0C0"
                     secureTextEntry
-                    onChangeText={(password) => setPassword(password) }
+                    onChangeText={(password) => {setError("");setPassword(password)}}
                     value={password}
                 />
                 <TextInput
@@ -37,20 +56,24 @@ export default function Signup() {
                     placeholder='Confirm Password'
                     placeholderTextColor="#C0C0C0"
                     secureTextEntry
-                    onChangeText={(password) => setConfirmPassword(password) }
+                    onChangeText={(password) => {setError("");setConfirmPassword(password)}}
                     value={confirmPassword}
                 />
                 <TouchableOpacity
                     style={styles.button}
+                    disabled={loading}
                     onPress={() => onSignUpClicked()}>
                     <Text style={styles.buttonTitle}>Create account</Text>
                 </TouchableOpacity>
                 <View style={styles.option}>
                     <Text style={styles.optionText}>
-                        Already have an account?
+                        Already have an account? 
                         <Text style={styles.optionLink}>
                             Log in</Text>
-                    </Text>
+                            </Text>
+                    <Text style={styles.email}>
+                        Current user : {currentUser && currentUser.email }
+                        </Text>
                 </View>
             </View>
         </View>
@@ -65,9 +88,9 @@ const styles = StyleSheet.create({
     logo: {
         width: 200,
         height: 100,
-        alignSelf: 'center',
+        alignSelf:'center',
         marginTop: 100,
-    },
+      },
     input: {
         height: 48,
         borderRadius: 5,
@@ -79,8 +102,8 @@ const styles = StyleSheet.create({
         marginRight: 30,
         paddingLeft: 16
     },
-    email: {
-        color: '#73AB84',
+    email:{
+        color:'#73AB84',
         textAlign: 'center'
     },
     button: {
