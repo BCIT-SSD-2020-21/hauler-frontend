@@ -1,18 +1,25 @@
+import 'react-native-gesture-handler';
 import React from 'react';
-import { View } from 'react-native';
-import {AuthProvider } from './src/context/ContextProvider';
-import  Signup  from './src/screens/Signup';
-import  Signin  from './src/screens/Signin';
-import  Profile  from './src/screens/Profile';
+import { StyleSheet, Text, View } from 'react-native';
+import { 
+  ServiceScreen,
+  NavigationScreen
+} from './src/screens'
+import { NavigationContainer, StackActions } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
+
+const Stack = createStackNavigator();
 
 export default function App() {
   return (
-    <View>
-      <AuthProvider>
-      <Profile />
-      {/* <Signin /> */}
-      {/* <Signup /> */}
-      </AuthProvider>
-    </View>
+      <SafeAreaProvider>
+        <NavigationContainer>
+          <Stack.Navigator>
+            <Stack.Screen name = 'Root' component = {NavigationScreen} options={{headerShown: false}} />
+            <Stack.Screen name = 'Service Screen' component={ServiceScreen} /> 
+          </Stack.Navigator>
+        </NavigationContainer>
+      </SafeAreaProvider>
   );
 }
