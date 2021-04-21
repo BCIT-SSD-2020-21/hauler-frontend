@@ -1,13 +1,25 @@
 import React, { useState, useContext } from 'react'
 import { Text, TextInput, TouchableOpacity, View, Image } from 'react-native'
+import { Context } from '../context/ContextProvider'
 import { StyleSheet } from 'react-native';
 
 export default function Signin() {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
+    const [error, setError] = useState('')
+    const [loading, setLoading] = useState('')
+    const { signin, currentUser } = useContext(Context)
 
     const onSigninClicked = async () => {
-        console.log("login clicked")
+
+        try {
+            setError("")
+            setLoading(true)
+            await signin(email, password)
+        } catch {
+            setError("Failed to Login")
+        }
+        setLoading(false)
     }
 
     return (
@@ -15,6 +27,8 @@ export default function Signin() {
             <View
                 style={{ flex: 1, width: '100%' }}>
                 <Image source={require('../../assets/haulerLogo.png')} style={styles.logo} />
+                <Text > {error && alert(error)}</Text>
+
                 <TextInput
                     style={styles.input}
                     placeholder='Email'
@@ -41,6 +55,9 @@ export default function Signin() {
                         Create an account?
                         <Text style={styles.optionLink}>
                             Register</Text>
+                    </Text>
+                    <Text style={styles.email}>
+                        Current user : {currentUser && currentUser.email}
                     </Text>
                 </View>
             </View>
