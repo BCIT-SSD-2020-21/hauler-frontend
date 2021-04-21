@@ -1,6 +1,6 @@
 import React, { useState, useContext } from 'react'
 import { Text, TouchableOpacity, View, Image } from 'react-native'
-import { Context } from '../context/ContextProvider'
+import { Context } from '../../context/ContextProvider'
 import { StyleSheet } from 'react-native';
 
 export default function Profile() {
@@ -24,7 +24,7 @@ export default function Profile() {
         <View style={styles.container}>
             <View
                 style={{ flex: 1, width: '100%' }}>
-                <Image source={require('../../assets/haulerLogo.png')} style={styles.logo} />
+                <Image source={require('../../../assets/haulerLogo.png')} style={styles.logo} />
                 <Text > {error && alert(error)}</Text>
                 <Text style={styles.userEmail}>
                     Current user : {currentUser && currentUser.email}

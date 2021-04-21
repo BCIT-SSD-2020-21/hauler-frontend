@@ -1,6 +1,6 @@
 import React, { useState, useContext } from 'react'
 import { Text, TextInput, TouchableOpacity, View, Image, ScrollView } from 'react-native'
-import { Context } from '../context/ContextProvider'
+import { Context } from '../../context/ContextProvider'
 import { StyleSheet } from 'react-native';
 
 export default function Signup() {
@@ -40,7 +40,7 @@ export default function Signup() {
         <View style={styles.container}>
             <View
                 style={{ flex: 1, width: '100%' }}>
-                <Image source={require('../../assets/haulerLogo.png')} style={styles.logo} />
+                <Image source={require('../../../assets/haulerLogo.png')} style={styles.logo} />
                 <Text > {error && alert(error)}</Text>
 
                 <TextInput
