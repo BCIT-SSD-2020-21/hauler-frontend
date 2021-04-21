@@ -1,6 +1,5 @@
 import 'react-native-gesture-handler';
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
 import { 
   ServiceScreen,
   NavigationScreen
@@ -8,27 +7,21 @@ import {
 import { NavigationContainer, StackActions } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
+import {AuthProvider } from './src/context/ContextProvider';
 
 const Stack = createStackNavigator();
 
 export default function App() {
   return (
       <SafeAreaProvider>
+         <AuthProvider>
         <NavigationContainer>
           <Stack.Navigator>
             <Stack.Screen name = 'Root' component = {NavigationScreen} options={{headerShown: false}} />
             <Stack.Screen name = 'Service Screen' component={ServiceScreen} /> 
           </Stack.Navigator>
         </NavigationContainer>
+        </AuthProvider>
       </SafeAreaProvider>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
