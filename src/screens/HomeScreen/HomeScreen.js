@@ -8,6 +8,7 @@ import {
   TouchableOpacity,
   ScrollView,
 } from 'react-native';
+import styles from './styles'
 
 import {useTheme} from '@react-navigation/native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
@@ -35,7 +36,7 @@ return (
         <View style={styles.card}>
             <View style={styles.cardImgWrapper}>
                 <Image
-                source={require('../assets/car1.png')}
+                //source={require('../assets/car1.png')}
                 resizeMode="cover"
                 style={styles.cardImg}
                 />
@@ -44,7 +45,7 @@ return (
 
             <View style={styles.cardImgWrapper}>
                 <Image
-                source={require('../assets/car2.png')}
+                //source={require('../assets/car2.png')}
                 resizeMode="cover"
                 style={styles.cardImg}
                 />
@@ -53,7 +54,7 @@ return (
 
             <View style={styles.cardImgWrapper}>
                 <Image
-                source={require('../assets/car3.png')}
+                //source={require('../assets/car3.png')}
                 resizeMode="cover"
                 style={styles.cardImg}
                 />

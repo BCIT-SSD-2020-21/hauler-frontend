@@ -3,7 +3,8 @@ import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { 
   ServiceScreen,
-  NavigationScreen
+  NavigationScreen,
+  HomeScreen
 } from './src/screens'
 import { NavigationContainer, StackActions } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
@@ -17,6 +18,7 @@ export default function App() {
         <NavigationContainer>
           <Stack.Navigator>
             <Stack.Screen name = 'Root' component = {NavigationScreen} options={{headerShown: false}} />
+            <Stack.Screen name = 'Home Screen' component={HomeScreen} />
             <Stack.Screen name = 'Service Screen' component={ServiceScreen} /> 
           </Stack.Navigator>
         </NavigationContainer>
