@@ -1,18 +1,36 @@
-import React from 'react'
+import React, { useState, useContext } from 'react'
 import { Text, TouchableOpacity, View, Image } from 'react-native'
+import { Context } from '../context/ContextProvider'
 import { StyleSheet } from 'react-native';
 
 export default function Profile() {
+    const { signout, currentUser } = useContext(Context)
+    const [error, setError] = useState('')
+    const [loading, setLoading] = useState('')
+
     const onSignOutClicked = async () => {
-       console.log("logout clicked")
+        try {
+            setError("")
+            setLoading(true)
+            await signout()
+        } catch {
+            setError("Failed to Log out")
+        }
+        setLoading(false)
     }
+
 
     return (
         <View style={styles.container}>
             <View
                 style={{ flex: 1, width: '100%' }}>
                 <Image source={require('../../assets/haulerLogo.png')} style={styles.logo} />
+                <Text > {error && alert(error)}</Text>
+                <Text style={styles.userEmail}>
+                    Current user : {currentUser && currentUser.email}
+                </Text>
                 <TouchableOpacity
+                    disabled={loading}
                     style={styles.button}
                     onPress={() => onSignOutClicked()}>
                     <Text style={styles.buttonTitle}>Log Out</Text>
@@ -33,9 +51,11 @@ const styles = StyleSheet.create({
         alignSelf: 'center',
         marginTop: 100,
     },
-    email: {
-        color: '#73AB84',
-        textAlign: 'center'
+    userEmail: {
+        color: 'black',
+        textAlign: 'center',
+        fontSize: 20,
+        fontWeight: "bold"
     },
     button: {
         backgroundColor: 'black',
