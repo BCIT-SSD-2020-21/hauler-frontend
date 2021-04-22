@@ -20,7 +20,7 @@ export default StyleSheet.create({
         marginTop: 30,
     },
     button: {
-        backgroundColor: 'pink',
+        backgroundColor: 'black',
         borderRadius: 10,
     },
     btnText: {
