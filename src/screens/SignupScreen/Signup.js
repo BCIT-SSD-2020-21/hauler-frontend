@@ -10,12 +10,12 @@ export default function Signup({ navigation }) {
     const [confirmPassword, setConfirmPassword] = useState('')
     const [error, setError] = useState('')
     const [loading, setLoading] = useState('')
-    const { dob, setDob } = useState('')
-    const { address, setAddress } = useState('')
-    const { phoneNumber, setphoneNumber } = useState('')
-    const { creditCardNumber, setCreditCardNumber } = useState('')
-    const { expiryDate, setExpiryDate } = useState('')
-    const { cvv, setCvv } = useState('')
+    const [ dob, setDob ] = useState('')
+    const [ address, setAddress ] = useState('')
+    const [ phoneNumber, setphoneNumber ] = useState('')
+    const [ creditCardNumber, setCreditCardNumber ] = useState('')
+    const [ expiryDate, setExpiryDate ] = useState('')
+    const [ cvv, setCvv ] = useState('')
 
     const onSignUpClicked = async () => {
         if (password !== confirmPassword) {
@@ -68,7 +68,6 @@ export default function Signup({ navigation }) {
                     style={styles.input}
                     placeholder='Date of Birth'
                     placeholderTextColor="#C0C0C0"
-                    secureTextEntry
                     onChangeText={(date) => { setError(""); setDob(date) }}
                     value={dob}
                 />
@@ -76,7 +75,6 @@ export default function Signup({ navigation }) {
                     style={styles.input}
                     placeholder='Address'
                     placeholderTextColor="#C0C0C0"
-                    secureTextEntry
                     onChangeText={(address) => { setError(""); setAddress(address) }}
                     value={address}
                 />
@@ -84,7 +82,6 @@ export default function Signup({ navigation }) {
                     style={styles.input}
                     placeholder='Phone Number'
                     placeholderTextColor="#C0C0C0"
-                    secureTextEntry
                     onChangeText={(number) => { setError(""); setphoneNumber(number) }}
                     value={phoneNumber}
                 />
@@ -92,7 +89,6 @@ export default function Signup({ navigation }) {
                     style={styles.input}
                     placeholder='Credit Card Number'
                     placeholderTextColor="#C0C0C0"
-                    secureTextEntry
                     onChangeText={(number) => { setError(""); setCreditCardNumber(number) }}
                     value={creditCardNumber}
                 />
@@ -100,7 +96,6 @@ export default function Signup({ navigation }) {
                     style={styles.input}
                     placeholder='Expiry Date'
                     placeholderTextColor="#C0C0C0"
-                    secureTextEntry
                     onChangeText={(date) => { setError(""); setExpiryDate(date) }}
                     value={expiryDate}
                 />

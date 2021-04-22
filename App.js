@@ -1,7 +1,6 @@
 import 'react-native-gesture-handler';
 import React from 'react';
 import { 
-  ServiceScreen,
   NavigationScreen
 } from './src/screens'
 import { NavigationContainer, StackActions } from '@react-navigation/native';
@@ -18,7 +17,6 @@ export default function App() {
         <NavigationContainer>
           <Stack.Navigator>
             <Stack.Screen name = 'Root' component = {NavigationScreen} options={{headerShown: false}} />
-            <Stack.Screen name = 'Service Screen' component={ServiceScreen} /> 
           </Stack.Navigator>
         </NavigationContainer>
         </AuthProvider>
