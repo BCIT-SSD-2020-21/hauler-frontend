@@ -31,7 +31,9 @@ export default function AddItemScreen({ navigation }) {
             <Picker.Item label="9"  />
             <Picker.Item label="10"  />
           </Picker>
-          <TouchableOpacity onPress={() => navigation.navigate('AddJunkScreen2')} ><Text>Next</Text></TouchableOpacity>
+          <View style={styles.btnContainer}>
+          <TouchableOpacity onPress={() => navigation.navigate('AddJunkScreen2')} style={styles.button}><Text style={styles.btnText}>Next</Text></TouchableOpacity>
+          </View>
         </View>
     )
 }
@@ -52,5 +54,22 @@ const styles = StyleSheet.create({
         marginLeft: 30,
         marginRight: 30,
         paddingLeft: 16
+    },
+    btnContainer: {
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'space-around',
+        marginTop: 30,
+    },
+    button: {
+        backgroundColor: 'black',
+        borderRadius: 10,
+        display: 'flex',
+    },
+    btnText: {
+        color: 'white',
+        fontSize: 20,
+        paddingVertical: 10,
+        paddingHorizontal: 50,
     }
 })
