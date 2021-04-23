@@ -4,6 +4,7 @@ export default StyleSheet.create({
     root: {
         flex: 1,
         marginHorizontal: '10%',
+        alignItems: 'center',
     },
     centerText: {
         textAlign: 'center',
