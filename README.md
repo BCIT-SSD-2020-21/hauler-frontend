@@ -26,6 +26,7 @@
 * npm install react-native-dotenv
 * npm install @react-navigation/native @react-navigation/stack
 * expo install react-native-reanimated react-native-gesture-handler react-native-screens react-native-safe-area-context @react-native-community/masked-view
+* npm install react-native-dropdown-picker (for dropdown menu)
 ---
 ### Wireframe for User
 Stored in wireframe folder on the root folder.
