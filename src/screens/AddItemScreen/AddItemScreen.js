@@ -31,7 +31,6 @@ export default function AddItemScreen({ navigation }) {
             <Picker.Item label="9"  />
             <Picker.Item label="10"  />
           </Picker>
-          <TextInput style={styles.input} placeholder='Quantity' />
           <TouchableOpacity onPress={() => navigation.navigate('AddJunkScreen2')} ><Text>Next</Text></TouchableOpacity>
         </View>
     )
