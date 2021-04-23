@@ -12,8 +12,8 @@ export default function JunkScreenNavigator() {
             headerShown: true,
             title: 'Hauler',
         }}>
-            <JunkScreenStack.Screen name='AddItemScreen' component={AddItemScreen} options={{ headerTitle: 'User Service Screen', headerRight: () => <MenuIcon /> }} />
-            <JunkScreenStack.Screen name='AddJunkScreen2' component={AddJunkScreen2} options={{ headerTitle: 'User Service Screen', headerRight: () => <MenuIcon /> }} />
+            <JunkScreenStack.Screen name='AddItemScreen' component={AddItemScreen} options={{ headerTitle: 'User Add Item Screen', headerRight: () => <MenuIcon /> }} />
+            <JunkScreenStack.Screen name='AddJunkScreen2' component={AddJunkScreen2} options={{ headerTitle: 'User Add Item Screen', headerRight: () => <MenuIcon /> }} />
             <JunkScreenStack.Screen name='AddJunkScreen3' component={AddJunkScreen3} options={{ headerTitle: 'User Add Item Screen', headerRight: () => <MenuIcon /> }} />
         </JunkScreenStack.Navigator>
     )

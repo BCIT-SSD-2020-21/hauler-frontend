@@ -22,6 +22,7 @@ export default StyleSheet.create({
     button: {
         backgroundColor: 'black',
         borderRadius: 10,
+        display: 'flex',
     },
     btnText: {
         color: 'white',
