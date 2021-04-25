@@ -17,7 +17,7 @@ export default function AddItemScreen({ navigation }) {
               <Image style={styles.image} source={{uri: 'https://www.supplypost.com/Moxie/Files/HEAVY%20HAUL.jpg'}}/>
           </View>
           <View style={styles.btnContainer}>
-          <TouchableOpacity style={styles.button}><Text style={styles.btnText}> Edit </Text></TouchableOpacity>
+          <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('AddItemScreen')}><Text style={styles.btnText}> Edit </Text></TouchableOpacity>
           </View> 
           <TextInput style={styles.inputLine1} placeholder='CAD $$' />
           <View style={styles.btnContainer}>
