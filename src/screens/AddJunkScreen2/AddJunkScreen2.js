@@ -4,7 +4,7 @@ import { StyleSheet } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 //import RangeSlider from 'rn-range-slider';
 
-export default function AddItemScreen({ navigation }) {
+export default function AddJunkScreen2({ navigation }) {
 
     return (
         <ScrollView>

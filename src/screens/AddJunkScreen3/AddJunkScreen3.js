@@ -3,7 +3,7 @@ import { Text, View, TextInput, Image } from 'react-native'
 import { StyleSheet } from 'react-native';
 import { ScrollView, TouchableOpacity } from 'react-native-gesture-handler';
 
-export default function AddItemScreen({ navigation }) {
+export default function AddJunkScreen3({ navigation }) {
     return (
         <ScrollView>
         <View style={styles.container}>
@@ -21,7 +21,7 @@ export default function AddItemScreen({ navigation }) {
           </View> 
           <TextInput style={styles.inputLine1} placeholder='CAD $$' />
           <View style={styles.btnContainer}>
-          <TouchableOpacity style={styles.button}><Text style={styles.btnText}> Post the Job </Text></TouchableOpacity>
+          <TouchableOpacity style={styles.button}><Text style={styles.btnText} onPress={() => navigation.navigate('Confirmation')}> Post the Job </Text></TouchableOpacity>
           </View>
         </View>
         </ScrollView>
@@ -32,7 +32,6 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         alignItems: 'center',
-        backgroundColor: '#696969',
     },
     inputLine1: {
         height: 40,
