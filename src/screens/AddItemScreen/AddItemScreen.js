@@ -39,18 +39,18 @@ export default function AddItemScreen({ navigation }) {
                 <View style={styles.imageColumn}>
                 <Image style={styles.image} source={{uri:'https://www.supplypost.com/Moxie/Files/HEAVY%20HAUL.jpg'}}/></View>
                 <View style={styles.imageColumn}>
-                <Image source={{uri:'https://www.logisticdynamics.com/wp-content/uploads/2017/01/eq12-1.jpeg'}}/></View>
+                <Image style={styles.image} source={{uri:'https://www.logisticdynamics.com/wp-content/uploads/2017/01/eq12-1.jpeg'}}/></View>
                 <View style={styles.imageColumn}>
-                <Image source={{uri:'https://image.shutterstock.com/image-photo/big-rig-long-haul-industrial-260nw-1762531160.jpg'}}/></View>
+                <Image style={styles.image} source={{uri:'https://image.shutterstock.com/image-photo/big-rig-long-haul-industrial-260nw-1762531160.jpg'}}/></View>
                 </View>
 
                 <View style={styles.imageRow}>
                     <View style={styles.imageColumn}>
-                    <Image source={{uri:'https://www.effectuation.org/wp-content/uploads/2016/08/U-Haul-1200x656.jpg'}}/></View>
+                    <Image style={styles.image} source={{uri:'https://www.effectuation.org/wp-content/uploads/2016/08/U-Haul-1200x656.jpg'}}/></View>
                     <View style={styles.imageColumn}>
-                    <Image source={{uri:'https://media-exp1.licdn.com/dms/image/C561BAQGeoODWyXQujA/company-background_10000/0/1576006955491?e=2159024400&v=beta&t=NxUjpgsOeQmnnesMer32t89wdFdNOAWg7qdoCvR9c6U'}}/></View>
+                    <Image style={styles.image} source={{uri:'https://media-exp1.licdn.com/dms/image/C561BAQGeoODWyXQujA/company-background_10000/0/1576006955491?e=2159024400&v=beta&t=NxUjpgsOeQmnnesMer32t89wdFdNOAWg7qdoCvR9c6U'}}/></View>
                     <View style = {styles.imageColumn}>
-                    <Image source={{uri:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT7iNd9M5e6riVgLLME2Bid7-2C0CXeVFjZ42T9bSGM1_IhSkHTjhyiMtkbsHsD3nAOs48&usqp=CAU'}}/>
+                    <Image style={styles.image} source={{uri:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT7iNd9M5e6riVgLLME2Bid7-2C0CXeVFjZ42T9bSGM1_IhSkHTjhyiMtkbsHsD3nAOs48&usqp=CAU'}}/>
                     </View>
                 </View>
                 </View>
