@@ -1,10 +1,12 @@
-import React, { setState } from 'react'
-import { Text, View, ScrollView, TextInput } from 'react-native'
+import React, { useState, setState } from 'react'
+import { Text, View, ScrollView, TextInput, SafeAreaView } from 'react-native'
 import { StyleSheet } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
-//import RangeSlider from 'rn-range-slider';
+import Slider from '@react-native-community/slider';
 
 export default function AddJunkScreen2({ navigation }) {
+
+    const [sliderValue, setSliderValue] = useState(50);
 
     return (
         <ScrollView>
@@ -17,18 +19,27 @@ export default function AddJunkScreen2({ navigation }) {
           <TextInput style={styles.inputLine1} placeholder='Contact Person' />
           <TextInput style={styles.inputLine1} placeholder='Contact Number' />
           <TextInput style={styles.inputLine2} placeholder='Special Instructions' />
-          {/* <RangeSlider 
-            style={{width:160, height: 80}}
-            gravity={'center'}
-            min={50}
-            max={1000}
-            step={20}
-            selectionColor='#3df'
-            blankColor='#f618'
-            onValueChnaged={(low, high, fromUser) => {
-                this.setState({rangeLow: low, rangeHigh: high})
-            }}/> */}
-          <TextInput style={styles.inputLine1} placeholder='CAD $$' />
+          <SafeAreaView style={{flex: 1}}>
+            <View style={styles.containerSlider}>
+                {/*Text to show slider value*/}
+                <Text style={{color: 'black'}}>
+                    Your Price Value : $ {sliderValue}
+                </Text>
+                {/*Slider with max, min, step and initial value*/}
+                <Slider
+                maximumValue={1000}
+                minimumValue={50}
+                minimumTrackTintColor="#307ecc"
+                maximumTrackTintColor="#000000"
+                step={1}
+                value={sliderValue}
+                onValueChange={
+                    (sliderValue) => setSliderValue(sliderValue)
+                }
+                />
+            </View>
+          </SafeAreaView>
+          <TextInput style={styles.inputLine1} placeholder='CAD $$' onValueChange={(sliderValue) => setSliderValue(sliderValue)}/>
           <View style={styles.btnContainer}>
           <TouchableOpacity onPress={() => navigation.navigate('AddJunkScreen3')} style={styles.button} ><Text style={styles.btnText}>Submit</Text></TouchableOpacity>
           </View>
@@ -42,6 +53,12 @@ const styles = StyleSheet.create({
         flex: 1,
         alignItems: 'center'
     },
+    containerSlider: {
+        flex: 1,
+        padding: 20,
+        justifyContent: 'center',
+        backgroundColor: '#ecf0f1',
+      },
     inputLine1: {
         height: 40,
         width: '100%',
