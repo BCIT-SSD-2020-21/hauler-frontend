@@ -11,7 +11,7 @@ export default function AddItemScreen({ navigation }) {
     return (
         <ScrollView>
             <View style={styles.container}>
-            <Text>Add Items </Text>
+            <Text> Junk Removal </Text>
             <TextInput style={styles.inputLine1} placeholder='Post Heading' />
             <TextInput style={styles.inputLine2} placeholder='Item Name / List of Items / Description' />
             <Picker selectedValue={selectedweight} style={{height: 50, width: 380}} onValueChange={(itemValue, itemIndex) => setSelectedWeight(itemValue)}>
@@ -34,6 +34,7 @@ export default function AddItemScreen({ navigation }) {
             <View style={styles.btnContainer}>
                 <TouchableOpacity style={styles.button}><Text style={styles.btnText}>Upload Image</Text></TouchableOpacity>
             </View>
+            <View style={styles.imageContainer}>
             <View style={styles.imageRow}>
                 <View style={styles.imageColumn}>
                 <Image style={styles.image} source={{uri:'https://www.supplypost.com/Moxie/Files/HEAVY%20HAUL.jpg'}}/></View>
@@ -51,6 +52,7 @@ export default function AddItemScreen({ navigation }) {
                     <View style = {styles.imageColumn}>
                     <Image source={{uri:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT7iNd9M5e6riVgLLME2Bid7-2C0CXeVFjZ42T9bSGM1_IhSkHTjhyiMtkbsHsD3nAOs48&usqp=CAU'}}/>
                     </View>
+                </View>
                 </View>
 
             <View style={styles.btnContainer}>
@@ -106,6 +108,11 @@ const styles = StyleSheet.create({
         fontSize: 20,
         paddingVertical: 10,
         paddingHorizontal: 50,
+    },
+    imageContainer:{
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
     },
     image:{
         width: 80,
