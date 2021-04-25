@@ -2,27 +2,14 @@ import React from 'react';
 import {
   View,
   Text,
-  Image,
-  StyleSheet,
-  StatusBar,
-  TouchableOpacity,
-  ScrollView,
+  Image
 } from 'react-native';
 import styles from './styles';
-import { Constants } from 'expo';
 
-import {useTheme} from '@react-navigation/native';
-import Ionicons from 'react-native-vector-icons/Ionicons';
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import Fontisto from 'react-native-vector-icons/Fontisto';
-import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
-
-const Home = ({navigation}) => {
-    const theme = useTheme();
+export default function Home() {
 
 return (
     <View style={styles.cardsWrapper}>
-            <Text>POST A JOB</Text>
 
             <Text
             style={{
@@ -67,5 +54,3 @@ return (
     </View>
     )
 };
-
-export default Home;

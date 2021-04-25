@@ -4,6 +4,7 @@ import AddJunkScreen2 from '../AddJunkScreen2/AddJunkScreen2'
 import AddJunkScreen3 from '../AddJunkScreen3/AddJunkScreen3'
 import MenuIcon from './MenuIcon';
 import AddItemScreen from '../AddItemScreen/AddItemScreen';
+import Confirmation from '../ConfirmationScreen/Confirmation';
 
 const JunkScreenStack = createStackNavigator()
 export default function JunkScreenNavigator() {
@@ -12,9 +13,10 @@ export default function JunkScreenNavigator() {
             headerShown: true,
             title: 'Hauler',
         }}>
-            <JunkScreenStack.Screen name='AddItemScreen' component={AddItemScreen} options={{ headerTitle: 'User Service Screen', headerRight: () => <MenuIcon /> }} />
-            <JunkScreenStack.Screen name='AddJunkScreen2' component={AddJunkScreen2} options={{ headerTitle: 'User Service Screen', headerRight: () => <MenuIcon /> }} />
+            <JunkScreenStack.Screen name='AddItemScreen' component={AddItemScreen} options={{ headerTitle: 'User Add Item Screen', headerRight: () => <MenuIcon /> }} />
+            <JunkScreenStack.Screen name='AddJunkScreen2' component={AddJunkScreen2} options={{ headerTitle: 'User Add Item Screen', headerRight: () => <MenuIcon /> }} />
             <JunkScreenStack.Screen name='AddJunkScreen3' component={AddJunkScreen3} options={{ headerTitle: 'User Add Item Screen', headerRight: () => <MenuIcon /> }} />
+            <JunkScreenStack.Screen name='Confirmation' component={Confirmation} options={{ headerTitle: 'Confirmation Screen', headerRight: () => <MenuIcon /> }} />
         </JunkScreenStack.Navigator>
     )
 }
