@@ -3,9 +3,7 @@ import { Text, View, ScrollView, TextInput, SafeAreaView } from 'react-native'
 import { StyleSheet } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 
-export default function AddJunkScreen2({ navigation }) {
-
-    const [sliderValue, setSliderValue] = useState(50);
+export default function MovingPost2({ navigation }) {
 
     return (
         <ScrollView>

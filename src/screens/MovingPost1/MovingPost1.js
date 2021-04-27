@@ -2,9 +2,8 @@ import React, { useState }from 'react'
 import { Text, View, TextInput, Picker, ScrollView, Image } from 'react-native'
 import { StyleSheet } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
-import DropDown from 'react-native-dropdown-menu';
 
-export default function AddItemScreen({ navigation }) {
+export default function MovingPost1({ navigation }) {
     const[selectedweight, setSelectedWeight] = useState('Select')
     const[selectedquantity, setSelectedQuantity] = useState('Select')
 

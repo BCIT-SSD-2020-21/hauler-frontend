@@ -4,7 +4,7 @@ import { StyleSheet } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import Slider from '@react-native-community/slider';
 
-export default function AddJunkScreen2({ navigation }) {
+export default function MovingPost3({ navigation }) {
 
     const [sliderValue, setSliderValue] = useState(50);
 
