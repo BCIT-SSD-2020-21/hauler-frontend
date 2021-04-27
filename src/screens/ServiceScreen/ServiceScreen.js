@@ -15,7 +15,7 @@ export default function ServiceScreen({ navigation }) {
             <TouchableOpacity onPress={() => navigation.navigate('MovingNavigator')} style={styles.button}>
                 <Text style={styles.btnText}>MOVING</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={styles.button}>
+            <TouchableOpacity onPress={() => navigation.navigate('ErrandNavigator')} style={styles.button}>
                 <Text style={styles.btnText}>ERRAND</Text>
             </TouchableOpacity>
             </View>

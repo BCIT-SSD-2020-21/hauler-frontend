@@ -1,28 +1,25 @@
-import React from 'react'
-import { Text, View, TextInput, Image } from 'react-native'
+import React, { useState, setState } from 'react'
+import { Text, View, ScrollView, TextInput, SafeAreaView } from 'react-native'
 import { StyleSheet } from 'react-native';
-import { ScrollView, TouchableOpacity } from 'react-native-gesture-handler';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 
-export default function MovingSummary({ navigation }) {
+export default function ErrandPost2({ navigation }) {
+
     return (
         <ScrollView>
         <View style={styles.container}>
-          <Text> Moving Summary </Text>
+          <Text> ERRAND </Text>
+          <Text> PICK UP LOCATION </Text>
+          <TextInput style={styles.inputLine1} placeholder='Province' />
+          <TextInput style={styles.inputLine1} placeholder='City' />
+          <TextInput style={styles.inputLine1} placeholder='Street Address' />
+          <TextInput style={styles.inputLine1} placeholder='Zip Code' />
           <TextInput style={styles.inputLine1} placeholder='Contact Person' />
           <TextInput style={styles.inputLine1} placeholder='Contact Number' />
-          <TextInput style={styles.inputLine2} placeholder='PickUp Address' />
-          <TextInput style={styles.inputLine2} placeholder='Drop Off Location' />
-          <TextInput style={styles.inputLine2} placeholder='Post Description' />
-          <TextInput style={styles.inputLine1} placeholder='Number of Items' />
-          <View style={styles.imageContainer}>
-              <Image style={styles.image} source={{uri: 'https://moversdev.com/wp-content/uploads/2019/06/9.7.-ig-e1577379582500.jpg'}}/>
-          </View>
-          <View style={styles.btnContainer}>
-          <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('MovingPost1')}><Text style={styles.btnText}> Edit </Text></TouchableOpacity>
-          </View> 
+          <TextInput style={styles.inputLine2} placeholder='Special Instructions' />
           <TextInput style={styles.inputLine1} placeholder='CAD $$' />
           <View style={styles.btnContainer}>
-          <TouchableOpacity style={styles.button}><Text style={styles.btnText} onPress={() => navigation.navigate('Confirmation')}> Post the Job </Text></TouchableOpacity>
+          <TouchableOpacity onPress={() => navigation.navigate('ErrandPost3')} style={styles.button} ><Text style={styles.btnText}>Next</Text></TouchableOpacity>
           </View>
         </View>
         </ScrollView>
@@ -32,8 +29,14 @@ export default function MovingSummary({ navigation }) {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        alignItems: 'center',
+        alignItems: 'center'
     },
+    containerSlider: {
+        flex: 1,
+        padding: 20,
+        justifyContent: 'center',
+        backgroundColor: '#ecf0f1',
+      },
     inputLine1: {
         height: 40,
         width: '100%',
@@ -57,17 +60,6 @@ const styles = StyleSheet.create({
         marginLeft: 30,
         marginRight: 30,
         paddingLeft: 16
-    },
-    imageContainer:{
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-    image:{
-        width: 80,
-        height: 80,
-        margin: 5,
-        resizeMode: 'contain', 
     },
     btnContainer: {
         display: 'flex',

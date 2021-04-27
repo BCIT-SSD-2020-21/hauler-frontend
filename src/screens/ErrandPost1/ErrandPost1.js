@@ -3,14 +3,14 @@ import { Text, View, TextInput, Picker, ScrollView, Image } from 'react-native'
 import { StyleSheet } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 
-export default function MovingPost1({ navigation }) {
+export default function ErrandPost1({ navigation }) {
     const[selectedweight, setSelectedWeight] = useState('Select')
     const[selectedquantity, setSelectedQuantity] = useState('Select')
 
     return (
         <ScrollView>
             <View style={styles.container}>
-            <Text> MOVING </Text>
+            <Text> ERRAND </Text>
             <TextInput style={styles.inputLine1} placeholder='Post Heading' />
             <TextInput style={styles.inputLine2} placeholder='Item Name / List of Items / Description' />
             <Picker selectedValue={selectedweight} style={{height: 50, width: 380}} onValueChange={(itemValue, itemIndex) => setSelectedWeight(itemValue)}>
@@ -36,26 +36,26 @@ export default function MovingPost1({ navigation }) {
             <View style={styles.imageContainer}>
             <View style={styles.imageRow}>
                 <View style={styles.imageColumn}>
-                <Image style={styles.image} source={{uri:'https://threebestrated.ca/images/SmallMoves-Vancouver-BC.jpeg'}}/></View>
+                <Image style={styles.image} source={{uri:'https://yocoman.com/wp-content/uploads/2019/05/earned-services.jpg'}}/></View>
                 <View style={styles.imageColumn}>
-                <Image style={styles.image} source={{uri:'https://lh3.googleusercontent.com/proxy/LUNa3tFlpG-rKwo7z2IglsU0rgnubN3o9JdO-Sb9jqWd4NCyb5ZW_1AzKiTwdhmpRHyWdNocQler50BcJqzZR18MJQdWBrk5vponPNZofKBVwkebBdSPcBsp7kFveEFtdGgN-Q'}}/></View>
+                <Image style={styles.image} source={{uri:'https://d3re0f381bckq9.cloudfront.net/48933290_img-1595331861005_866x1298.jpg'}}/></View>
                 <View style={styles.imageColumn}>
-                <Image style={styles.image} source={{uri:'https://lh3.googleusercontent.com/proxy/ChtVFBUq1FxzdbuoXK6JYcDivJQ19403u-gIdk-QnJGy3z6-Va30RpAQGvsweNAQQunQRXWbXdPeORpyhdplFohIVaNAzk9o247Ri8vQ14GXGcuOkKa7rJXrebe4Ohc'}}/></View>
+                <Image style={styles.image} source={{uri:'https://sendmegh.com/images/bs.jpg'}}/></View>
                 </View>
 
                 <View style={styles.imageRow}>
                     <View style={styles.imageColumn}>
-                    <Image style={styles.image} source={{uri:'https://threebestrated.ca/images/AcademyMovers-Surrey-BC.jpeg'}}/></View>
+                    <Image style={styles.image} source={{uri:'https://thumbs.dreamstime.com/z/errand-service-young-black-woman-roller-skates-doing-multiple-errands-city-vector-illustration-no-transparencies-eps-58588457.jpg'}}/></View>
                     <View style={styles.imageColumn}>
-                    <Image style={styles.image} source={{uri:'https://5moversquotes.com/wp-content/uploads/2015/09/Local-and-Long-Distance-Movers-offer-a-wide-array-of-moving-services-and-moving-packages.jpg'}}/></View>
+                    <Image style={styles.image} source={{uri:'https://cdn3.vectorstock.com/i/thumb-large/88/37/businessman-in-a-hurry-vector-1268837.jpg'}}/></View>
                     <View style = {styles.imageColumn}>
-                    <Image style={styles.image} source={{uri:'https://moversdev.com/wp-content/uploads/2019/06/9.7.-ig-e1577379582500.jpg'}}/>
+                    <Image style={styles.image} source={{uri:'https://webstockreview.net/images/buy-clipart-errand-17.jpg'}}/>
                     </View>
                 </View>
                 </View>
 
             <View style={styles.btnContainer}>
-                <TouchableOpacity onPress={() => navigation.navigate('MovingPost2')} style={styles.button}><Text style={styles.btnText}>Next</Text></TouchableOpacity>
+                <TouchableOpacity onPress={() => navigation.navigate('ErrandPost2')} style={styles.button}><Text style={styles.btnText}>Next</Text></TouchableOpacity>
             </View>
             </View>
         </ScrollView>

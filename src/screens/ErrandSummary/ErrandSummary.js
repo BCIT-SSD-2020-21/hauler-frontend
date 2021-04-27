@@ -3,11 +3,11 @@ import { Text, View, TextInput, Image } from 'react-native'
 import { StyleSheet } from 'react-native';
 import { ScrollView, TouchableOpacity } from 'react-native-gesture-handler';
 
-export default function MovingSummary({ navigation }) {
+export default function ErrandSummary({ navigation }) {
     return (
         <ScrollView>
         <View style={styles.container}>
-          <Text> Moving Summary </Text>
+          <Text> Errand Summary </Text>
           <TextInput style={styles.inputLine1} placeholder='Contact Person' />
           <TextInput style={styles.inputLine1} placeholder='Contact Number' />
           <TextInput style={styles.inputLine2} placeholder='PickUp Address' />
@@ -15,10 +15,10 @@ export default function MovingSummary({ navigation }) {
           <TextInput style={styles.inputLine2} placeholder='Post Description' />
           <TextInput style={styles.inputLine1} placeholder='Number of Items' />
           <View style={styles.imageContainer}>
-              <Image style={styles.image} source={{uri: 'https://moversdev.com/wp-content/uploads/2019/06/9.7.-ig-e1577379582500.jpg'}}/>
+              <Image style={styles.image} source={{uri: 'https://webstockreview.net/images/buy-clipart-errand-17.jpg'}}/>
           </View>
           <View style={styles.btnContainer}>
-          <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('MovingPost1')}><Text style={styles.btnText}> Edit </Text></TouchableOpacity>
+          <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('ErrandPost1')}><Text style={styles.btnText}> Edit </Text></TouchableOpacity>
           </View> 
           <TextInput style={styles.inputLine1} placeholder='CAD $$' />
           <View style={styles.btnContainer}>
