@@ -15,7 +15,7 @@ export default function MovingSummary({ navigation }) {
           <TextInput style={styles.inputLine2} placeholder='Post Description' />
           <TextInput style={styles.inputLine1} placeholder='Number of Items' />
           <View style={styles.imageContainer}>
-              <Image style={styles.image} source={{uri: 'https://www.supplypost.com/Moxie/Files/HEAVY%20HAUL.jpg'}}/>
+              <Image style={styles.image} source={{uri: 'https://moversdev.com/wp-content/uploads/2019/06/9.7.-ig-e1577379582500.jpg'}}/>
           </View>
           <View style={styles.btnContainer}>
           <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('MovingPost1')}><Text style={styles.btnText}> Edit </Text></TouchableOpacity>
