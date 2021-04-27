@@ -7,7 +7,7 @@ export default function MovingSummary({ navigation }) {
     return (
         <ScrollView>
         <View style={styles.container}>
-          <Text> Summary Junk </Text>
+          <Text> Moving Summary </Text>
           <TextInput style={styles.inputLine1} placeholder='Contact Person' />
           <TextInput style={styles.inputLine1} placeholder='Contact Number' />
           <TextInput style={styles.inputLine2} placeholder='PickUp Address' />
