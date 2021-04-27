@@ -2,14 +2,17 @@ import React, { useState, setState } from 'react'
 import { Text, View, ScrollView, TextInput, SafeAreaView } from 'react-native'
 import { StyleSheet } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
+import Slider from '@react-native-community/slider';
 
-export default function ErrandPost2({ navigation }) {
+export default function ErrandPost3({ navigation }) {
+
+    const [sliderValue, setSliderValue] = useState(50);
 
     return (
         <ScrollView>
         <View style={styles.container}>
           <Text> ERRAND </Text>
-          <Text> PICK UP LOCATION </Text>
+          <Text> DROP OFF LOCATION </Text>
           <TextInput style={styles.inputLine1} placeholder='Province' />
           <TextInput style={styles.inputLine1} placeholder='City' />
           <TextInput style={styles.inputLine1} placeholder='Street Address' />
@@ -17,9 +20,29 @@ export default function ErrandPost2({ navigation }) {
           <TextInput style={styles.inputLine1} placeholder='Contact Person' />
           <TextInput style={styles.inputLine1} placeholder='Contact Number' />
           <TextInput style={styles.inputLine2} placeholder='Special Instructions' />
-          <TextInput style={styles.inputLine1} placeholder='CAD $$' />
+          <SafeAreaView style={{flex: 1}}>
+            <View style={styles.containerSlider}>
+                {/*Text to show slider value*/}
+                <Text style={{color: 'black'}}>
+                    Your Price Value : $ {sliderValue}
+                </Text>
+                {/*Slider with max, min, step and initial value*/}
+                <Slider
+                maximumValue={1000}
+                minimumValue={50}
+                minimumTrackTintColor="#307ecc"
+                maximumTrackTintColor="#000000"
+                step={1}
+                value={sliderValue}
+                onValueChange={
+                    (sliderValue) => setSliderValue(sliderValue)
+                }
+                />
+            </View>
+          </SafeAreaView>
+          <TextInput style={styles.inputLine1} placeholder='CAD $$' onValueChange={(sliderValue) => setSliderValue(sliderValue)}/>
           <View style={styles.btnContainer}>
-          <TouchableOpacity onPress={() => navigation.navigate('ErrandPost3')} style={styles.button} ><Text style={styles.btnText}>Next</Text></TouchableOpacity>
+          <TouchableOpacity onPress={() => navigation.navigate('ErrandSummary')} style={styles.button} ><Text style={styles.btnText}>Submit</Text></TouchableOpacity>
           </View>
         </View>
         </ScrollView>
