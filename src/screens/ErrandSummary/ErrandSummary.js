@@ -15,7 +15,7 @@ export default function ErrandSummary({ navigation }) {
           <TextInput style={styles.inputLine2} placeholder='Post Description' />
           <TextInput style={styles.inputLine1} placeholder='Number of Items' />
           <View style={styles.imageContainer}>
-              <Image style={styles.image} source={{uri: 'https://www.supplypost.com/Moxie/Files/HEAVY%20HAUL.jpg'}}/>
+              <Image style={styles.image} source={{uri: 'https://webstockreview.net/images/buy-clipart-errand-17.jpg'}}/>
           </View>
           <View style={styles.btnContainer}>
           <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('ErrandPost1')}><Text style={styles.btnText}> Edit </Text></TouchableOpacity>
