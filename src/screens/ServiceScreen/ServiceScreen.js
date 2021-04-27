@@ -13,10 +13,10 @@ export default function ServiceScreen({ navigation }) {
                 <Text style={styles.btnText}>JUNK REMOVAL</Text>
             </TouchableOpacity>
             <TouchableOpacity style={styles.button}>
-                <Text style={styles.btnText}>HAULING</Text>
+                <Text style={styles.btnText}>MOVING</Text>
             </TouchableOpacity>
             <TouchableOpacity style={styles.button}>
-                <Text style={styles.btnText}>COURIER</Text>
+                <Text style={styles.btnText}>ERRAND</Text>
             </TouchableOpacity>
             </View>
             </ImageBackground>
