@@ -2,16 +2,15 @@ import React, { useState }from 'react'
 import { Text, View, TextInput, Picker, ScrollView, Image } from 'react-native'
 import { StyleSheet } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
-import DropDown from 'react-native-dropdown-menu';
 
-export default function AddItemScreen({ navigation }) {
+export default function MovingPost1({ navigation }) {
     const[selectedweight, setSelectedWeight] = useState('Select')
     const[selectedquantity, setSelectedQuantity] = useState('Select')
 
     return (
         <ScrollView>
             <View style={styles.container}>
-            <Text> Junk Removal </Text>
+            <Text> MOVING </Text>
             <TextInput style={styles.inputLine1} placeholder='Post Heading' />
             <TextInput style={styles.inputLine2} placeholder='Item Name / List of Items / Description' />
             <Picker selectedValue={selectedweight} style={{height: 50, width: 380}} onValueChange={(itemValue, itemIndex) => setSelectedWeight(itemValue)}>
@@ -20,8 +19,8 @@ export default function AddItemScreen({ navigation }) {
                 <Picker.Item label="Heavy 50Kgs & above" value="heavy" />
             </Picker>
             <Picker selectedValue={selectedquantity} style={{height: 50, width: 380}} onValueChange={(itemValue, itemIndex) => setSelectedQuantity(itemValue)}>
-                <Picker.Item label="1" value="1"/>
-                <Picker.Item label="2" value="2" />
+                <Picker.Item label="1" value="1" />
+                <Picker.Item label="2" value="2"/>
                 <Picker.Item label="3" value="3" />
                 <Picker.Item label="4" value="4" />
                 <Picker.Item label="5" value="5" />
@@ -56,7 +55,7 @@ export default function AddItemScreen({ navigation }) {
                 </View>
 
             <View style={styles.btnContainer}>
-                <TouchableOpacity onPress={() => navigation.navigate('AddJunkScreen2')} style={styles.button}><Text style={styles.btnText}>Next</Text></TouchableOpacity>
+                <TouchableOpacity onPress={() => navigation.navigate('MovingPost2')} style={styles.button}><Text style={styles.btnText}>Next</Text></TouchableOpacity>
             </View>
             </View>
         </ScrollView>
