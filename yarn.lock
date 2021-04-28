@@ -1947,6 +1947,11 @@
   "resolved" "https://registry.npmjs.org/@react-native-community/masked-view/-/masked-view-0.1.10.tgz"
   "version" "0.1.10"
 
+"@react-native-community/slider@^3.0.3":
+  "integrity" "sha512-8IeHfDwJ9/CTUwFs6x90VlobV3BfuPgNLjTgC6dRZovfCWigaZwVNIFFJnHBakK3pW2xErAPwhdvNR4JeNoYbw=="
+  "resolved" "https://registry.npmjs.org/@react-native-community/slider/-/slider-3.0.3.tgz"
+  "version" "3.0.3"
+
 "@react-navigation/core@^5.15.3":
   "integrity" "sha512-3ZdyDInh8qg1kygCNkmh9lFgpDf29lTvPsaMe2mm/qvmxLKSgttWBz07P2fc181aV9jTdgQpzYfWZ5KWT036zw=="
   "resolved" "https://registry.npmjs.org/@react-navigation/core/-/core-5.15.3.tgz"

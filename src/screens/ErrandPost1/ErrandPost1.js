@@ -2,16 +2,15 @@ import React, { useState }from 'react'
 import { Text, View, TextInput, Picker, ScrollView, Image } from 'react-native'
 import { StyleSheet } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
-import DropDown from 'react-native-dropdown-menu';
 
-export default function AddItemScreen({ navigation }) {
+export default function ErrandPost1({ navigation }) {
     const[selectedweight, setSelectedWeight] = useState('Select')
     const[selectedquantity, setSelectedQuantity] = useState('Select')
 
     return (
         <ScrollView>
             <View style={styles.container}>
-            <Text> Junk Removal </Text>
+            <Text> ERRAND </Text>
             <TextInput style={styles.inputLine1} placeholder='Post Heading' />
             <TextInput style={styles.inputLine2} placeholder='Item Name / List of Items / Description' />
             <Picker selectedValue={selectedweight} style={{height: 50, width: 380}} onValueChange={(itemValue, itemIndex) => setSelectedWeight(itemValue)}>
@@ -20,8 +19,8 @@ export default function AddItemScreen({ navigation }) {
                 <Picker.Item label="Heavy 50Kgs & above" value="heavy" />
             </Picker>
             <Picker selectedValue={selectedquantity} style={{height: 50, width: 380}} onValueChange={(itemValue, itemIndex) => setSelectedQuantity(itemValue)}>
-                <Picker.Item label="1" value="1"/>
-                <Picker.Item label="2" value="2" />
+                <Picker.Item label="1" value="1" />
+                <Picker.Item label="2" value="2"/>
                 <Picker.Item label="3" value="3" />
                 <Picker.Item label="4" value="4" />
                 <Picker.Item label="5" value="5" />
@@ -37,26 +36,26 @@ export default function AddItemScreen({ navigation }) {
             <View style={styles.imageContainer}>
             <View style={styles.imageRow}>
                 <View style={styles.imageColumn}>
-                <Image style={styles.image} source={{uri:'https://www.supplypost.com/Moxie/Files/HEAVY%20HAUL.jpg'}}/></View>
+                <Image style={styles.image} source={{uri:'https://yocoman.com/wp-content/uploads/2019/05/earned-services.jpg'}}/></View>
                 <View style={styles.imageColumn}>
-                <Image style={styles.image} source={{uri:'https://www.logisticdynamics.com/wp-content/uploads/2017/01/eq12-1.jpeg'}}/></View>
+                <Image style={styles.image} source={{uri:'https://d3re0f381bckq9.cloudfront.net/48933290_img-1595331861005_866x1298.jpg'}}/></View>
                 <View style={styles.imageColumn}>
-                <Image style={styles.image} source={{uri:'https://image.shutterstock.com/image-photo/big-rig-long-haul-industrial-260nw-1762531160.jpg'}}/></View>
+                <Image style={styles.image} source={{uri:'https://sendmegh.com/images/bs.jpg'}}/></View>
                 </View>
 
                 <View style={styles.imageRow}>
                     <View style={styles.imageColumn}>
-                    <Image style={styles.image} source={{uri:'https://www.effectuation.org/wp-content/uploads/2016/08/U-Haul-1200x656.jpg'}}/></View>
+                    <Image style={styles.image} source={{uri:'https://thumbs.dreamstime.com/z/errand-service-young-black-woman-roller-skates-doing-multiple-errands-city-vector-illustration-no-transparencies-eps-58588457.jpg'}}/></View>
                     <View style={styles.imageColumn}>
-                    <Image style={styles.image} source={{uri:'https://media-exp1.licdn.com/dms/image/C561BAQGeoODWyXQujA/company-background_10000/0/1576006955491?e=2159024400&v=beta&t=NxUjpgsOeQmnnesMer32t89wdFdNOAWg7qdoCvR9c6U'}}/></View>
+                    <Image style={styles.image} source={{uri:'https://cdn3.vectorstock.com/i/thumb-large/88/37/businessman-in-a-hurry-vector-1268837.jpg'}}/></View>
                     <View style = {styles.imageColumn}>
-                    <Image style={styles.image} source={{uri:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT7iNd9M5e6riVgLLME2Bid7-2C0CXeVFjZ42T9bSGM1_IhSkHTjhyiMtkbsHsD3nAOs48&usqp=CAU'}}/>
+                    <Image style={styles.image} source={{uri:'https://webstockreview.net/images/buy-clipart-errand-17.jpg'}}/>
                     </View>
                 </View>
                 </View>
 
             <View style={styles.btnContainer}>
-                <TouchableOpacity onPress={() => navigation.navigate('AddJunkScreen2')} style={styles.button}><Text style={styles.btnText}>Next</Text></TouchableOpacity>
+                <TouchableOpacity onPress={() => navigation.navigate('ErrandPost2')} style={styles.button}><Text style={styles.btnText}>Next</Text></TouchableOpacity>
             </View>
             </View>
         </ScrollView>

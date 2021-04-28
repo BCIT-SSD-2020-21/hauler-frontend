@@ -4,14 +4,15 @@ import { StyleSheet } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import Slider from '@react-native-community/slider';
 
-export default function AddJunkScreen2({ navigation }) {
+export default function MovingPost3({ navigation }) {
 
     const [sliderValue, setSliderValue] = useState(50);
 
     return (
         <ScrollView>
         <View style={styles.container}>
-          <Text>Junk Removal</Text>
+          <Text> MOVING </Text>
+          <Text> DROP OFF LOCATION </Text>
           <TextInput style={styles.inputLine1} placeholder='Province' />
           <TextInput style={styles.inputLine1} placeholder='City' />
           <TextInput style={styles.inputLine1} placeholder='Street Address' />
@@ -41,7 +42,7 @@ export default function AddJunkScreen2({ navigation }) {
           </SafeAreaView>
           <TextInput style={styles.inputLine1} placeholder='CAD $$' onValueChange={(sliderValue) => setSliderValue(sliderValue)}/>
           <View style={styles.btnContainer}>
-          <TouchableOpacity onPress={() => navigation.navigate('AddJunkScreen3')} style={styles.button} ><Text style={styles.btnText}>Submit</Text></TouchableOpacity>
+          <TouchableOpacity onPress={() => navigation.navigate('MovingSummary')} style={styles.button} ><Text style={styles.btnText}>Submit</Text></TouchableOpacity>
           </View>
         </View>
         </ScrollView>

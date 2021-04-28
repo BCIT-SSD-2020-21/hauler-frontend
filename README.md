@@ -27,7 +27,7 @@
 * npm install @react-navigation/native @react-navigation/stack
 * expo install react-native-reanimated react-native-gesture-handler react-native-screens react-native-safe-area-context @react-native-community/masked-view
 * npm install react-native-dropdown-menu --save (for dropdown menu)
-* npm install --save rn-range-slider (for price slider option)
+* npm install @react-native-community/slider --save (for price slider option)
 ---
 ### Wireframe for User
 Stored in wireframe folder on the root folder.
