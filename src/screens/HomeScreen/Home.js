@@ -1,56 +1,67 @@
 import React from 'react';
-import {
-  View,
-  Text,
-  Image
-} from 'react-native';
-import styles from './styles';
+import { View, Text, Image, TouchableOpacity, StyleSheet, ScrollView } from 'react-native';
+import { Card, Button } from 'react-native-elements'
 
 export default function Home({ navigation }) {
 
 return (
-    <View style={styles.cardsWrapper}>
-
-            <Text
-            style={{
-                alignSelf: 'center',
-                fontSize: 18,
-                fontWeight: 'bold',
-                color: '#333',
-            }}>
-            MY POSTED JOBS
-            </Text>
-            
-            <View style={styles.container}>
-                <View style={styles.rectangle}></View>
-                {/* <Image source={require('assets/car1.png')} /> */}
-            </View>
-
-        <View style={styles.card}>
-            <View style={styles.cardImgWrapper}>
-                
-                <Text style={styles.cardTitle}>ADVERT HEADING</Text>
-            </View>
-
-            <View style={styles.cardImgWrapper}>
-                <Image
-                //source={require('../assets/car2.png')}
-                resizeMode="cover"
-                style={styles.cardImg}
-                />
-                <Text style={styles.cardTitle}>ADVERT HEADING</Text>
-            </View>
-
-            <View style={styles.cardImgWrapper}>
-                <Image
-                //source={require('../assets/car3.png')}
-                resizeMode="cover"
-                style={styles.cardImg}
-                />
-                <Text style={styles.cardTitle}>ADVERT HEADING</Text>
-            </View>
-            
+    <ScrollView>
+    <View style={styles.container}>
+        <Text> MY POSTED JOBS </Text>
+        <View style={styles.cardContainer}>
+            <Card>
+                <Image style={styles.cardImage} source={{ uri: 'https://www.supplypost.com/Moxie/Files/HEAVY%20HAUL.jpg'}} />
+                <Card.Divider />
+                <Card.Title style={styles.cardTitle}> Vancouver Haulers </Card.Title>
+                <Card.Divider />
+                <Button buttonStyle={{ borderRadius: 5, backgroundColor: '#16B3D5', marginTop: 10 }} title='Accepted/Pending' />
+                <Button buttonStyle={{ borderRadius: 5, backgroundColor: '#16B3D5', marginTop: 10 }} title='Edit' onPress={() => navigation.navigate('AddJunkScreen3')} />
+            </Card>
+        </View>
+        <View style={styles.cardContainer}>
+            <Card>
+                <Image style={styles.cardImage} source={{ uri: 'https://threebestrated.ca/images/SmallMoves-Vancouver-BC.jpeg'}} />
+                <Card.Divider />
+                <Card.Title style={styles.cardTitle}> Surrey Movers </Card.Title>
+                <Card.Divider />
+                <Button buttonStyle={{ borderRadius: 5, backgroundColor: '#16B3D5', marginTop: 10 }} title='Accepted/Pending' />
+                <Button buttonStyle={{ borderRadius: 5, backgroundColor: '#16B3D5', marginTop: 10 }} title='Edit' />
+            </Card>
+        </View>
+        <View style={styles.cardContainer}>
+            <Card>
+                <Image style={styles.cardImage} source={{ uri: 'https://yocoman.com/wp-content/uploads/2019/05/earned-services.jpg'}} />
+                <Card.Divider />
+                <Card.Title style={styles.cardTitle}> Vancouver Errand </Card.Title>
+                <Card.Divider />
+                <Button buttonStyle={{ borderRadius: 5, backgroundColor: '#16B3D5', marginTop: 10 }} title='Accepted/Pending' />
+                <Button buttonStyle={{ borderRadius: 5, backgroundColor: '#16B3D5', marginTop: 10 }} title='Edit' />
+            </Card>
         </View>
     </View>
+    </ScrollView>
     )
 };
+
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        alignItems: 'center'
+    },
+    cardContainer: {
+        width: '100%'
+    },
+    cardText: {
+        marginTop: 10,
+        width: 300,
+        textAlign: 'center'
+    },
+    cardTitle: {
+        color: '#2EBCAC'
+    },
+    cardImage: {
+        width: 250,
+        height: 150,
+        alignSelf: 'center'
+    },
+})
