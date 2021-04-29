@@ -4,6 +4,10 @@ import { createStackNavigator } from '@react-navigation/stack';
 import Signin from '../SigninScreen/Signin';
 import Home from '../HomeScreen/Home';
 import Signup from '../SignupScreen/Signup';
+import ServiceProviderScreen from '../ServiceProviderScreen/ServiceProviderScreen';
+import JobStatus from '../../screens/JobStatus/JobStatus';
+import AddJunkNavigator from '../NavigationScreen/AddJunkNavigator';
+//import ServiceScreenNavigator from '../NavigationScreen/ServiceScreenNavigator';
 
 const HomeStack = createStackNavigator();
 
@@ -26,10 +30,17 @@ const HomeNavigator = () => {
                 options={{ headerShown: false }}
             />
             <HomeStack.Screen
+                name='ServiceProvider'
+                component={ServiceProviderScreen}
+                options={{ headerShown: false }}
+            />
+            <HomeStack.Screen
                 name='Home'
                 component={Home}
                 options={{ headerRight: () => <MenuIcon /> }}
             />
+            <HomeStack.Screen name='JobStatus' component={JobStatus} options={{ headerRight: () => <MenuIcon /> }} />
+            <HomeStack.Screen name='AddJunkNavigator' component={AddJunkNavigator} options={{ headerRight: () => <MenuIcon /> }} />
 
         </HomeStack.Navigator>
     );

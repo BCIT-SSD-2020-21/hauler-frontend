@@ -3,7 +3,7 @@ import { Text, View , Image, StyleSheet} from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { Card, Button } from 'react-native-elements'
 
-export default function JobStatus() {
+export default function JobStatus( { navigation }) {
     return(
         <View style={styles.container}>
             <Text style={styles.text}> JOB STATUS </Text>
@@ -25,7 +25,7 @@ export default function JobStatus() {
             </View>
             <View>
                 <TouchableOpacity style={styles.button}><Text style={styles.btnText}>Delete Post</Text></TouchableOpacity>
-                <TouchableOpacity style={styles.button}><Text style={styles.btnText}>Return Home</Text></TouchableOpacity>
+                <TouchableOpacity style={styles.button}><Text style={styles.btnText} onPress={() => navigation.navigate('Home')}>Return Home</Text></TouchableOpacity>
             </View>
         </View>
     )
@@ -50,7 +50,7 @@ const styles = StyleSheet.create({
         flexDirection: 'column'
     },
     button: {
-
+        backgroundColor: 'black',
         borderRadius: 10,
         display: 'flex',
         margin: 10,
