@@ -10,12 +10,13 @@ return (
         <Text> MY POSTED JOBS </Text>
         <View style={styles.cardContainer}>
             <Card>
-                <Image style={styles.cardImage} source={{ uri: 'https://www.supplypost.com/Moxie/Files/HEAVY%20HAUL.jpg'}} />
+                <TouchableOpacity onPress={() => navigation.navigate('JobStatus')}>
+                <Image style={styles.cardImage} source={{ uri: 'https://www.supplypost.com/Moxie/Files/HEAVY%20HAUL.jpg'}}  /></TouchableOpacity>
                 <Card.Divider />
                 <Card.Title style={styles.cardTitle}> Vancouver Haulers </Card.Title>
                 <Card.Divider />
                 <Button buttonStyle={{ borderRadius: 5, backgroundColor: '#16B3D5', marginTop: 10 }} title='Accepted/Pending' />
-                <Button buttonStyle={{ borderRadius: 5, backgroundColor: '#16B3D5', marginTop: 10 }} title='Edit' onPress={() => navigation.navigate('AddJunkScreen3')} />
+                <Button buttonStyle={{ borderRadius: 5, backgroundColor: '#16B3D5', marginTop: 10 }} title='Edit' onPress={() => navigation.navigate('AddJunkNavigator')} />
             </Card>
         </View>
         <View style={styles.cardContainer}>

@@ -16,7 +16,7 @@ export default function Signin({ navigation }) {
             setError("")
             setLoading(true)
             await signin(email, password)
-            navigation.navigate('Home')
+            navigation.navigate('ServiceProviderNavigator')
         } catch {
             setError("Failed to Login")
         }
