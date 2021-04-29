@@ -2,7 +2,7 @@ import React from 'react';
 import MenuIcon from './MenuIcon';
 import { createStackNavigator } from '@react-navigation/stack';
 import ServiceProviderScreen from '../ServiceProviderScreen/ServiceProviderScreen';
-import ServiceScreen from '../ServiceScreen/ServiceScreen'
+import ServiceScreenNavigator from './ServiceScreenNavigator'
 
 const ServiceProviderStack = createStackNavigator();
 
@@ -12,8 +12,8 @@ const ServiceProviderNavigator = () => {
             headerShown: true,
             title: '',
         }}>
-            <ServiceProviderStack.Screen name='ServiceProvider' component={ServiceProviderScreen} options={{ headerRight: () => <MenuIcon /> }} />
-            <ServiceProviderStack.Screen name='Post A Job' component={ServiceScreen} options={{ headerRight: () => <MenuIcon /> }} />
+            <ServiceProviderStack.Screen name='ServiceProviderScreen' component={ServiceProviderScreen} options={{ headerRight: () => <MenuIcon /> }} />
+            <ServiceProviderStack.Screen name='Post A Job' component={ServiceScreenNavigator} options={{ headerRight: () => <MenuIcon /> }} />
         </ServiceProviderStack.Navigator>
     );
 };

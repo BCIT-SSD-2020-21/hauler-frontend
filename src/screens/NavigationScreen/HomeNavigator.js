@@ -8,13 +8,14 @@ import ServiceProviderScreen from '../ServiceProviderScreen/ServiceProviderScree
 import JobStatus from '../../screens/JobStatus/JobStatus';
 import AddJunkNavigator from '../NavigationScreen/AddJunkNavigator';
 //import ServiceScreenNavigator from '../NavigationScreen/ServiceScreenNavigator';
+import ServiceProviderNavigator from './ServiceProviderNavigator';
 
 const HomeStack = createStackNavigator();
 
 const HomeNavigator = () => {
     return (
         <HomeStack.Navigator
-            initialRouteName='Home'
+            initialRouteName='Signin'
             screenOptions={{
                 headerShown: true,
                 title: 'Hauler',
@@ -30,8 +31,8 @@ const HomeNavigator = () => {
                 options={{ headerShown: false }}
             />
             <HomeStack.Screen
-                name='ServiceProvider'
-                component={ServiceProviderScreen}
+                name='ServiceProviderNavigator'
+                component={ServiceProviderNavigator}
                 options={{ headerShown: false }}
             />
             <HomeStack.Screen

@@ -52,7 +52,7 @@ export default function ServiceProviderScreen({ navigation }) {
                         </Card>
                     </View>
                     <View style={styles.btnContainer}>
-                    <TouchableOpacity onPress={() => navigation.navigate('ServiceScreen')} style={styles.button}><Text style={styles.btnText}> Post A Job </Text></TouchableOpacity></View>
+                    <TouchableOpacity onPress={() => navigation.navigate('Post A Job')} style={styles.button}><Text style={styles.btnText}> Post A Job </Text></TouchableOpacity></View>
                 </View>
 
             </View>

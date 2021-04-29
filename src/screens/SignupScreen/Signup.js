@@ -26,7 +26,7 @@ export default function Signup({ navigation }) {
             setError("")
             setLoading(true)
             await signup(email, password)
-            navigation.navigate('Home')
+            navigation.navigate('ServiceProviderNavigator')
         } catch {
             setError("Failed to create an account")
         }
