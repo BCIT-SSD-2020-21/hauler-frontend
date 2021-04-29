@@ -15,5 +15,7 @@ const ServiceProviderNavigator = () => {
             <ServiceProviderStack.Screen name='ServiceProvider' component={ServiceProviderScreen} options={{ headerRight: () => <MenuIcon /> }} />
             <ServiceProviderStack.Screen name='Post A Job' component={ServiceScreen} options={{ headerRight: () => <MenuIcon /> }} />
         </ServiceProviderStack.Navigator>
-    )
-}
+    );
+};
+
+export default ServiceProviderNavigator;
