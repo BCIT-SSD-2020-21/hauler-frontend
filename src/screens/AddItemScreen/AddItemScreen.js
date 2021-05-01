@@ -2,9 +2,21 @@ import React, { useState }from 'react'
 import { Text, View, TextInput, Picker, ScrollView, Image } from 'react-native'
 import { StyleSheet } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
-import DropDown from 'react-native-dropdown-menu';
+import * as ImagePicker from 'expo-image-picker';
 
 export default function AddItemScreen({ navigation }) {
+
+    let openImagePickerAsync = async() => {
+        let permissionResult = await ImagePicker.requestMediaLibraryPermissionsAsync();
+
+        if (permissionResult.granted === false) {
+            alert("Permission to access Camera Roll is required");
+            return;
+        }
+        let pickerResult = await ImagePicker.launchImageLibraryAsync();
+        console.log(pickerResult);
+    }
+
     const[selectedweight, setSelectedWeight] = useState('Select')
     const[selectedquantity, setSelectedQuantity] = useState('Select')
 
@@ -32,7 +44,7 @@ export default function AddItemScreen({ navigation }) {
                 <Picker.Item label="10" value="10" />
             </Picker>
             <View style={styles.btnContainer}>
-                <TouchableOpacity style={styles.button}><Text style={styles.btnText}>Upload Image</Text></TouchableOpacity>
+                <TouchableOpacity style={styles.button} onPress={openImagePickerAsync}><Text style={styles.btnText}>Upload Image</Text></TouchableOpacity>
             </View>
             <View style={styles.imageContainer}>
             <View style={styles.imageRow}>
