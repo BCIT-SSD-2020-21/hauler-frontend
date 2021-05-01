@@ -6,6 +6,10 @@ import * as ImagePicker from 'expo-image-picker';
 
 export default function AddItemScreen({ navigation }) {
 
+    const[selectedweight, setSelectedWeight] = useState('Select')
+    const[selectedquantity, setSelectedQuantity] = useState('Select')
+    const [selectedImage, setSelectedImage] = useState(null);
+
     let openImagePickerAsync = async() => {
         let permissionResult = await ImagePicker.requestMediaLibraryPermissionsAsync();
 
@@ -14,11 +18,25 @@ export default function AddItemScreen({ navigation }) {
             return;
         }
         let pickerResult = await ImagePicker.launchImageLibraryAsync();
-        console.log(pickerResult);
-    }
-
-    const[selectedweight, setSelectedWeight] = useState('Select')
-    const[selectedquantity, setSelectedQuantity] = useState('Select')
+        if (pickerResult.cancelled === true){
+            return;
+        }
+        setSelectedImage({ localUri: pickerResult.uri});
+    };
+        if (selectedImage !== null) {
+            return(
+                <ScrollView>
+                    
+                    <View style={styles.imageContainer}>
+                        <View style={styles.imageRow}>
+                            <View style={styles.imageColumn}>
+                                <Image source={{uri: selectedImage.localUri}} style={styles.image} />
+                            </View>
+                        </View>
+                    </View>
+                </ScrollView>
+            )
+        }
 
     return (
         <ScrollView>
@@ -46,7 +64,8 @@ export default function AddItemScreen({ navigation }) {
             <View style={styles.btnContainer}>
                 <TouchableOpacity style={styles.button} onPress={openImagePickerAsync}><Text style={styles.btnText}>Upload Image</Text></TouchableOpacity>
             </View>
-            <View style={styles.imageContainer}>
+
+            {/* <View style={styles.imageContainer}>
             <View style={styles.imageRow}>
                 <View style={styles.imageColumn}>
                 <Image style={styles.image} source={{uri:'https://www.supplypost.com/Moxie/Files/HEAVY%20HAUL.jpg'}}/></View>
@@ -65,7 +84,7 @@ export default function AddItemScreen({ navigation }) {
                     <Image style={styles.image} source={{uri:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT7iNd9M5e6riVgLLME2Bid7-2C0CXeVFjZ42T9bSGM1_IhSkHTjhyiMtkbsHsD3nAOs48&usqp=CAU'}}/>
                     </View>
                 </View>
-                </View>
+                </View> */}
 
             <View style={styles.btnContainer}>
                 <TouchableOpacity onPress={() => navigation.navigate('AddJunkScreen2')} style={styles.button}><Text style={styles.btnText}>Next</Text></TouchableOpacity>
@@ -141,4 +160,9 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         width: '50%',
     },
+    thumbnail: {
+        width: 100,
+        height: 100,
+        resizeMode: "contain"
+      }
 })
