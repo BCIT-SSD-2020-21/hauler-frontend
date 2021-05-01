@@ -34,6 +34,9 @@ export default function AddItemScreen({ navigation }) {
                             </View>
                         </View>
                     </View>
+                    <View style={styles.btnContainer}>
+                <TouchableOpacity onPress={() => navigation.navigate('AddJunkScreen2')} style={styles.button}><Text style={styles.btnText}>Next</Text></TouchableOpacity>
+            </View>
                 </ScrollView>
             )
         }
@@ -86,9 +89,7 @@ export default function AddItemScreen({ navigation }) {
                 </View>
                 </View> */}
 
-            <View style={styles.btnContainer}>
-                <TouchableOpacity onPress={() => navigation.navigate('AddJunkScreen2')} style={styles.button}><Text style={styles.btnText}>Next</Text></TouchableOpacity>
-            </View>
+            
             </View>
         </ScrollView>
     )
