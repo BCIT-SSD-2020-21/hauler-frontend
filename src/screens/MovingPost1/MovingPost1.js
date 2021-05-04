@@ -4,15 +4,25 @@ import { StyleSheet } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 
 export default function MovingPost1({ navigation }) {
+
     const[selectedweight, setSelectedWeight] = useState('Select')
     const[selectedquantity, setSelectedQuantity] = useState('Select')
+    const [postHeading, setPostHeading] = useState('')
+    const [description, setDescription] = useState('')
 
     return (
         <ScrollView>
             <View style={styles.container}>
             <Text> MOVING </Text>
-            <TextInput style={styles.inputLine1} placeholder='Post Heading' />
-            <TextInput style={styles.inputLine2} placeholder='Item Name / List of Items / Description' />
+            <TextInput style={styles.inputLine1} placeholder='Post Heading' 
+                onChangeText={(postHeading) => {setPostHeading(postHeading)}} 
+                value={postHeading}
+            />
+
+            <TextInput style={styles.inputLine2} placeholder='Item Name / List of Items / Description' 
+                onChangeText={(description) => {setDescription(description)}} 
+                value={description}
+            />
             <Picker selectedValue={selectedweight} style={{height: 50, width: 380}} onValueChange={(itemValue, itemIndex) => setSelectedWeight(itemValue)}>
                 <Picker.Item label="Light 0-20kgs" value="light" />
                 <Picker.Item label="Medium 21-50Kgs" value="medium" />
