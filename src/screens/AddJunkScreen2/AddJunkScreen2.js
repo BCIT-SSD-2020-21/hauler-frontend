@@ -8,12 +8,12 @@ export default function AddJunkScreen2({ navigation }) {
 
     const [sliderValue, setSliderValue] = useState(50);
     const [contactPerson, setContactPerson] = useState('')
-    const [phoneNumber, setPhoneNumber] = useState('');
-    const [province, setProvince] = useState('');
-    const [city, setCity] = useState('');
-    const [streetAddress, setStreetAddress] = useState('');
-    const [zipCode, setZipCode] = useState('');
-    const [specialInstructions, setSpecialInstructions] = useState('');
+    const [phoneNumber, setPhoneNumber] = useState('')
+    const [province, setProvince] = useState('')
+    const [city, setCity] = useState('')
+    const [streetAddress, setStreetAddress] = useState('')
+    const [zipCode, setZipCode] = useState('')
+    const [specialInstructions, setSpecialInstructions] = useState('')
 
     return (
         <ScrollView>
@@ -34,17 +34,17 @@ export default function AddJunkScreen2({ navigation }) {
             value={streetAddress}
           />
 
+        <TextInput style={styles.inputLine1} placeholder='City' 
+            onChangeText={(city) => {setCity(city)}}
+            value={city}  
+        />
+
         <Picker selectedValue={province} style={{height: 50, width: 380}} onValueChange={(itemValue, itemIndex) =>      setProvince(itemValue)}>
                 <Picker.Item label="Alberta" value="Alberta" />
                 <Picker.Item label="BC" value="BC" />
                 <Picker.Item label="Ontario" value="Ontario" />
                 <Picker.Item label="Quebec" value="Quebec" />
         </Picker>
-
-          <TextInput style={styles.inputLine1} placeholder='City' 
-            onChangeText={(city) => {setCity(city)}}
-            value={city}  
-          />
 
           <TextInput style={styles.inputLine1} placeholder='Zip Code' 
             onChangeText={(zipCode) => {setZipCode(zipCode)}}
@@ -76,7 +76,7 @@ export default function AddJunkScreen2({ navigation }) {
                 />
             </View>
           </SafeAreaView>
-          
+
           <View style={styles.btnContainer}>
           <TouchableOpacity onPress={() => navigation.navigate('AddJunkScreen3')} style={styles.button} ><Text style={styles.btnText}>Submit</Text></TouchableOpacity>
           </View>

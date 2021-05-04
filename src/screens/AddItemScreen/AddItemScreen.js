@@ -8,9 +8,9 @@ export default function AddItemScreen({ navigation }) {
 
     const[selectedweight, setSelectedWeight] = useState('Select')
     const[selectedquantity, setSelectedQuantity] = useState('Select')
-    const [selectedImage, setSelectedImage] = useState(null);
-    const [postHeading, setPostHeading] = useState('');
-    const [description, setDescription] = useState('');
+    const [selectedImage, setSelectedImage] = useState(null)
+    const [postHeading, setPostHeading] = useState('')
+    const [description, setDescription] = useState('')
 
     let openImagePickerAsync = async() => {
         let permissionResult = await ImagePicker.requestMediaLibraryPermissionsAsync();

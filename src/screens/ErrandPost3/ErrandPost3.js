@@ -7,19 +7,56 @@ import Slider from '@react-native-community/slider';
 export default function ErrandPost3({ navigation }) {
 
     const [sliderValue, setSliderValue] = useState(50);
+    const [contactPerson, setContactPerson] = useState('')
+    const [phoneNumber, setPhoneNumber] = useState('')
+    const [streetAddress, setStreetAddress] = useState('')
+    const [city, setCity] = useState('')
+    const [province, setProvince] = useState('')
+    const [zipCode, setZipCode] = useState('')
+    const [specialInstructions, setSpecialInstructions] = useState('')
 
     return (
         <ScrollView>
         <View style={styles.container}>
           <Text> ERRAND </Text>
           <Text> DROP OFF LOCATION </Text>
-          <TextInput style={styles.inputLine1} placeholder='Province' />
-          <TextInput style={styles.inputLine1} placeholder='City' />
-          <TextInput style={styles.inputLine1} placeholder='Street Address' />
-          <TextInput style={styles.inputLine1} placeholder='Zip Code' />
-          <TextInput style={styles.inputLine1} placeholder='Contact Person' />
-          <TextInput style={styles.inputLine1} placeholder='Contact Number' />
-          <TextInput style={styles.inputLine2} placeholder='Special Instructions' />
+          <TextInput style={styles.inputLine1} placeholder='Contact Person' 
+            onChangeText={(contactPerson) => {setContactPerson(contactPerson)}}
+            value={contactPerson}
+          />
+
+          <TextInput style={styles.inputLine1} placeholder='Phone Number' 
+            onChangeText={(phoneNumber) => {setPhoneNumber(phoneNumber)}}
+            value={phoneNumber}
+          />
+
+          <TextInput style={styles.inputLine1} placeholder='Street Address' 
+            onChangeText={(streetAddress) => {setStreetAddress(streetAddress)}}
+            value={streetAddress}
+          />
+
+          <TextInput style={styles.inputLine1} placeholder='City' 
+            onChangeText={(city) => {setCity(city)}}
+            value={city}
+          />
+
+          <Picker selectedValue={province} style={{height: 50, width: 380}} onValueChange={(itemValue, itemIndex) =>      setProvince(itemValue)}>
+                <Picker.Item label="Alberta" value="Alberta" />
+                <Picker.Item label="BC" value="BC" />
+                <Picker.Item label="Ontario" value="Ontario" />
+                <Picker.Item label="Quebec" value="Quebec" />
+            </Picker>
+
+          <TextInput style={styles.inputLine1} placeholder='Zip Code' 
+            onChangeText={(zipCode) => {setZipCode(zipCode)}}
+            value={zipCode}
+          />
+
+          <TextInput style={styles.inputLine2} placeholder='Special Instructions' 
+            onChangeText={(specialInstructions) => setSpecialInstructions(specialInstructions)}
+            value={specialInstructions}
+          />
+
           <SafeAreaView style={{flex: 1}}>
             <View style={styles.containerSlider}>
                 {/*Text to show slider value*/}
@@ -40,7 +77,7 @@ export default function ErrandPost3({ navigation }) {
                 />
             </View>
           </SafeAreaView>
-          <TextInput style={styles.inputLine1} placeholder='CAD $$' onValueChange={(sliderValue) => setSliderValue(sliderValue)}/>
+
           <View style={styles.btnContainer}>
           <TouchableOpacity onPress={() => navigation.navigate('ErrandSummary')} style={styles.button} ><Text style={styles.btnText}>Submit</Text></TouchableOpacity>
           </View>
