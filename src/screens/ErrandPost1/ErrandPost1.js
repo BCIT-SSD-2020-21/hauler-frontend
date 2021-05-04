@@ -67,7 +67,7 @@ export default function ErrandPost1({ navigation }) {
                 </View>
 
             <View style={styles.btnContainer}>
-                <TouchableOpacity onPress={() => navigation.navigate('ErrandPost2')} style={styles.button}><Text style={styles.btnText}>Next</Text></TouchableOpacity>
+                <TouchableOpacity onPress={() => navigation.navigate('ErrandPost2', {selectedweight: selectedweight, selectedquantity: selectedquantity, postHeading: postHeading, description: description})} style={styles.button}><Text style={styles.btnText}>Next</Text></TouchableOpacity>
             </View>
             </View>
         </ScrollView>

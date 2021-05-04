@@ -21,12 +21,16 @@ export default function MovingSummary({ navigation, route}) {
           <Text style={styles.inputLine2} >Street Address: {streetAddress}</Text>
           <Text style={styles.inputLine1} >City: {city}</Text>
           <Text style={styles.inputLine1} >Province: {province}</Text>
+          <Text style={styles.inputLine1} >Zip Code: {zipCode}</Text>
+          <Text style={styles.inputLine2} >Special Instructions: {specialInstructions}</Text>
           <Text style={{fontSize: 20, fontWeight: 'bold'}} > Drop Off Details: </Text>
           <Text style={styles.inputLine1} >Contact Person: {dropOffContactPerson}</Text>
           <Text style={styles.inputLine1} >Phone Number: {dropOffPhoneNumber}</Text>
           <Text style={styles.inputLine2} >Street Address: {dropOffStreetAddress}</Text>
           <Text style={styles.inputLine1} >City: {dropOffCity}</Text>
           <Text style={styles.inputLine1} >Province: {dropOffProvince}</Text>
+          <Text style={styles.inputLine1} >Zip Code: {dropOffZipCode}</Text>
+          <Text style={styles.inputLine2} >Special Instructions: {dropOffSpecialInstructions}</Text>
           <View style={styles.imageContainer}>
               <Image style={styles.image} source={{uri: 'https://moversdev.com/wp-content/uploads/2019/06/9.7.-ig-e1577379582500.jpg'}}/>
           </View>
