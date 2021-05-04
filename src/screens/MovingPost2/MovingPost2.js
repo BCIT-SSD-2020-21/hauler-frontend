@@ -3,7 +3,7 @@ import { Text, View, ScrollView, TextInput, SafeAreaView, Picker } from 'react-n
 import { StyleSheet } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 
-export default function MovingPost2({ navigation }) {
+export default function MovingPost2({ navigation, route }) {
 
     const [contactPerson, setContactPerson] = useState('')
     const [phoneNumber, setPhoneNumber] = useState('')
@@ -12,6 +12,7 @@ export default function MovingPost2({ navigation }) {
     const [province, setProvince] = useState('')
     const [zipCode, setZipCode] = useState('')
     const [specialInstructions, setSpecialInstructions] = useState('')
+    const {selectedweight,selectedquantity,postHeading,description} = route.params;
 
     return (
         <ScrollView>
@@ -55,7 +56,10 @@ export default function MovingPost2({ navigation }) {
             value={specialInstructions}
           />
           <View style={styles.btnContainer}>
-          <TouchableOpacity onPress={() => navigation.navigate('MovingPost3')} style={styles.button} ><Text style={styles.btnText}>Next</Text></TouchableOpacity>
+          <TouchableOpacity onPress={() => navigation.navigate('MovingPost3', {selectedweight:  selectedweight,selectedquantity: selectedquantity, postHeading: postHeading, description: description, city: city, province: province, zipCode: zipCode, specialInstructions: specialInstructions, contactPerson: contactPerson, phoneNumber: phoneNumber, streetAddress: streetAddress})} 
+          style={styles.button} >
+              <Text style={styles.btnText}>Next</Text>
+            </TouchableOpacity>
           </View>
         </View>
         </ScrollView>

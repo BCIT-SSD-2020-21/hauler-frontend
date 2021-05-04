@@ -24,9 +24,9 @@ export default function MovingPost1({ navigation }) {
                 value={description}
             />
             <Picker selectedValue={selectedweight} style={{height: 50, width: 380}} onValueChange={(itemValue, itemIndex) => setSelectedWeight(itemValue)}>
-                <Picker.Item label="Light 0-20kgs" value="light" />
-                <Picker.Item label="Medium 21-50Kgs" value="medium" />
-                <Picker.Item label="Heavy 50Kgs & above" value="heavy" />
+                <Picker.Item label="Light 0-20kgs" value="Light" />
+                <Picker.Item label="Medium 21-50Kgs" value="Medium" />
+                <Picker.Item label="Heavy 50Kgs & above" value="Heavy" />
             </Picker>
             <Picker selectedValue={selectedquantity} style={{height: 50, width: 380}} onValueChange={(itemValue, itemIndex) => setSelectedQuantity(itemValue)}>
                 <Picker.Item label="1" value="1" />
@@ -65,7 +65,10 @@ export default function MovingPost1({ navigation }) {
                 </View>
 
             <View style={styles.btnContainer}>
-                <TouchableOpacity onPress={() => navigation.navigate('MovingPost2')} style={styles.button}><Text style={styles.btnText}>Next</Text></TouchableOpacity>
+                <TouchableOpacity onPress={() => navigation.navigate('MovingPost2', {selectedweight:  selectedweight,selectedquantity: selectedquantity, postHeading: postHeading, description: description})} 
+                style={styles.button}>
+                    <Text style={styles.btnText}>Next</Text>
+                </TouchableOpacity>
             </View>
             </View>
         </ScrollView>
