@@ -11,7 +11,7 @@ export default function Confirmation({ navigation }) {
                 <Text style={styles.text}>Your Job Has been Posted</Text>
             </View>
             <View style={styles.btnContainer}>
-                <TouchableOpacity onPress={() => navigation.navigate('Home')} style={styles.button}><Text style={styles.btnText}>Return To Home </Text></TouchableOpacity>
+                <TouchableOpacity onPress={() => navigation.navigate('Home')} style={styles.button}><Text style={styles.btnText}>Return To My Job List </Text></TouchableOpacity>
             </View>
         </ScrollView>
     )
@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
         marginTop: 30,
     },
     button: {
-        backgroundColor: 'black',
+        backgroundColor: '#0177FC',
         borderRadius: 10,
         display: 'flex',
     },
