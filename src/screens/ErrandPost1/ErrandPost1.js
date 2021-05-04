@@ -6,8 +6,8 @@ import { TouchableOpacity } from 'react-native-gesture-handler';
 export default function ErrandPost1({ navigation }) {
     const[selectedweight, setSelectedWeight] = useState('Select')
     const[selectedquantity, setSelectedQuantity] = useState('Select')
-    const [postHeading, setPostHeading] = setState('')
-    const [description, setDescription] = setState('')
+    const [postHeading, setPostHeading] = useState('')
+    const [description, setDescription] = useState('')
     
 
     return (
