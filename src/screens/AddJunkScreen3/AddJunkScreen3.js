@@ -1,25 +1,36 @@
 import React from 'react'
-import { Text, View, TextInput, Image } from 'react-native'
+import { Text, View, Image } from 'react-native'
 import { StyleSheet } from 'react-native';
 import { ScrollView, TouchableOpacity } from 'react-native-gesture-handler';
 
-export default function AddJunkScreen3({ navigation }) {
+export default function AddJunkScreen3({ navigation, route }) {
+
+    const {image,selectedweight,selectedquantity, postHeading, description, city, province, zipCode, specialInstructions, contactPerson, phoneNumber, streetAddress, sliderValue} = route.params;
+
     return (
         <ScrollView>
         <View style={styles.container}>
           <Text> Summary Junk </Text>
-          <TextInput style={styles.inputLine1} placeholder='Contact Person' />
-          <TextInput style={styles.inputLine1} placeholder='Contact Number' />
-          <TextInput style={styles.inputLine2} placeholder='PickUp Address' />
-          <TextInput style={styles.inputLine2} placeholder='Post Description' />
-          <TextInput style={styles.inputLine1} placeholder='Number of Items' />
+          <Text style={styles.inputLine1} >Post Heading: {postHeading}</Text>
+          <Text style={styles.inputLine1} >Post Description: {description}</Text>
+          <Text style={styles.inputLine1} >Item Weigth: {selectedweight}</Text>
+          <Text style={styles.inputLine1} >Number of Items: {selectedquantity}</Text>
+          <Text style={{fontSize: 20, fontWeight: 'bold'}} >Pick Up Details: </Text>
+          <Text style={styles.inputLine1} >Contact Person: {contactPerson}</Text>
+          <Text style={styles.inputLine1} >Phone Number: {phoneNumber}</Text>
+          <Text style={styles.inputLine2} >Street Address: {streetAddress}</Text>
+          <Text style={styles.inputLine1} >City: {city}</Text>
+          <Text style={styles.inputLine1} >Province: {province}</Text>
+          <Text style={styles.inputLine1} >Zip Code: {zipCode}</Text>
+          <Text style={styles.inputLine2} >Special Instructions: {specialInstructions}</Text>
           <View style={styles.imageContainer}>
-              <Image style={styles.image} source={{uri: 'https://www.supplypost.com/Moxie/Files/HEAVY%20HAUL.jpg'}}/>
+          {image && <Image source={{ uri: image }} style={styles.image} />}
+              {/* <Image style={styles.image} source={{uri: 'https://moversdev.com/wp-content/uploads/2019/06/9.7.-ig-e1577379582500.jpg'}}/> */}
           </View>
+          <Text style={styles.inputLine1} >Quoted Price: {sliderValue}</Text>
           <View style={styles.btnContainer}>
           <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('AddItemScreen')}><Text style={styles.btnText}> Edit </Text></TouchableOpacity>
           </View> 
-          <TextInput style={styles.inputLine1} placeholder='CAD $$' />
           <View style={styles.btnContainer}>
           <TouchableOpacity style={styles.button}><Text style={styles.btnText} onPress={() => navigation.navigate('Confirmation')}> Post the Job </Text></TouchableOpacity>
           </View>
