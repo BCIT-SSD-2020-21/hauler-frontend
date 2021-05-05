@@ -1,23 +1,60 @@
 import React, { useState, setState } from 'react'
-import { Text, View, ScrollView, TextInput, SafeAreaView } from 'react-native'
+import { Text, View, ScrollView, TextInput, SafeAreaView, Picker} from 'react-native'
 import { StyleSheet } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 
 export default function ErrandPost2({ navigation }) {
+
+    const [contactPerson, setContactPerson] = useState('')
+    const [phoneNumber, setPhoneNumber] = useState('')
+    const [streetAddress, setStreetAddress] = useState('')
+    const [city, setCity] = useState('')
+    const [province, setProvince] = useState('')
+    const [zipCode, setZipCode] = useState('')
+    const [specialInstructions, setSpecialInstructions] = useState('')
 
     return (
         <ScrollView>
         <View style={styles.container}>
           <Text> ERRAND </Text>
           <Text> PICK UP LOCATION </Text>
-          <TextInput style={styles.inputLine1} placeholder='Province' />
-          <TextInput style={styles.inputLine1} placeholder='City' />
-          <TextInput style={styles.inputLine1} placeholder='Street Address' />
-          <TextInput style={styles.inputLine1} placeholder='Zip Code' />
-          <TextInput style={styles.inputLine1} placeholder='Contact Person' />
-          <TextInput style={styles.inputLine1} placeholder='Contact Number' />
-          <TextInput style={styles.inputLine2} placeholder='Special Instructions' />
-          <TextInput style={styles.inputLine1} placeholder='CAD $$' />
+          <TextInput style={styles.inputLine1} placeholder='Contact Person' 
+            onChangeText={(contactPerson) => {setContactPerson(contactPerson)}}
+            value={contactPerson}
+          />
+
+          <TextInput style={styles.inputLine1} placeholder='Phone Number' 
+            onChangeText={(phoneNumber) => {setPhoneNumber(phoneNumber)}}
+            value={phoneNumber}
+          />
+
+          <TextInput style={styles.inputLine1} placeholder='Street Address' 
+            onChangeText={(streetAddress) => {setStreetAddress(streetAddress)}}
+            value={streetAddress}
+          />
+
+          <TextInput style={styles.inputLine1} placeholder='City' 
+            onChangeText={(city) => {setCity(city)}}
+            value={city}
+          />
+
+          <Picker selectedValue={province} style={{height: 50, width: 380}} onValueChange={(itemValue, itemIndex) =>      setProvince(itemValue)}>
+                <Picker.Item label="Alberta" value="Alberta" />
+                <Picker.Item label="BC" value="BC" />
+                <Picker.Item label="Ontario" value="Ontario" />
+                <Picker.Item label="Quebec" value="Quebec" />
+            </Picker>
+
+          <TextInput style={styles.inputLine1} placeholder='Zip Code' 
+            onChangeText={(zipCode) => {setZipCode(zipCode)}}
+            value={zipCode}
+          />
+
+          <TextInput style={styles.inputLine2} placeholder='Special Instructions' 
+            onChangeText={(specialInstructions) => setSpecialInstructions(specialInstructions)}
+            value={specialInstructions}
+          />
+
           <View style={styles.btnContainer}>
           <TouchableOpacity onPress={() => navigation.navigate('ErrandPost3')} style={styles.button} ><Text style={styles.btnText}>Next</Text></TouchableOpacity>
           </View>

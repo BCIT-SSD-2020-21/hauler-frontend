@@ -29,6 +29,7 @@
 * npm install react-native-picker-select (for dropdown menu)
 * npm install @react-native-community/slider --save (for price slider option)
 * npm install react-native-elements 
+* expo install expo-image-picker (for camera and gallery images access from your phone)
 ---
 ### Wireframe for User
 Stored in wireframe folder on the root folder.

@@ -2,18 +2,61 @@ import React, { useState }from 'react'
 import { Text, View, TextInput, Picker, ScrollView, Image } from 'react-native'
 import { StyleSheet } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
-import DropDown from 'react-native-dropdown-menu';
+import * as ImagePicker from 'expo-image-picker';
 
 export default function AddItemScreen({ navigation }) {
+
     const[selectedweight, setSelectedWeight] = useState('Select')
     const[selectedquantity, setSelectedQuantity] = useState('Select')
+    const [selectedImage, setSelectedImage] = useState(null)
+    const [postHeading, setPostHeading] = useState('')
+    const [description, setDescription] = useState('')
+
+    let openImagePickerAsync = async() => {
+        let permissionResult = await ImagePicker.requestMediaLibraryPermissionsAsync();
+
+        if (permissionResult.granted === false) {
+            alert("Permission to access Camera Roll is required");
+            return;
+        }
+        let pickerResult = await ImagePicker.launchImageLibraryAsync();
+        if (pickerResult.cancelled === true){
+            return;
+        }
+        setSelectedImage({ localUri: pickerResult.uri});
+    };
+        if (selectedImage !== null) {
+            return(
+                <ScrollView>
+                    
+                    <View style={styles.imageContainer}>
+                        <View style={styles.imageRow}>
+                            <View style={styles.imageColumn}>
+                                <Image source={{uri: selectedImage.localUri}} style={styles.image} />
+                            </View>
+                        </View>
+                    </View>
+                    <View style={styles.btnContainer}>
+                <TouchableOpacity onPress={() => navigation.navigate('AddJunkScreen2')} style={styles.button}><Text style={styles.btnText}>Next</Text></TouchableOpacity>
+            </View>
+                </ScrollView>
+            )
+        }
 
     return (
         <ScrollView>
             <View style={styles.container}>
             <Text> Junk Removal </Text>
-            <TextInput style={styles.inputLine1} placeholder='Post Heading' />
-            <TextInput style={styles.inputLine2} placeholder='Item Name / List of Items / Description' />
+            <TextInput style={styles.inputLine1} placeholder='Post Heading' 
+            onChangeText={(postHeading) => {setPostHeading(postHeading)}} 
+            value={postHeading}
+            />
+
+            <TextInput style={styles.inputLine2} placeholder='Item Name / List of Items / Description' 
+            onChangeText={(description) => {setDescription(description)}} 
+            value={description}
+            />
+
             <Picker selectedValue={selectedweight} style={{height: 50, width: 380}} onValueChange={(itemValue, itemIndex) => setSelectedWeight(itemValue)}>
                 <Picker.Item label="Light 0-20kgs" value="light" />
                 <Picker.Item label="Medium 21-50Kgs" value="medium" />
@@ -32,9 +75,10 @@ export default function AddItemScreen({ navigation }) {
                 <Picker.Item label="10" value="10" />
             </Picker>
             <View style={styles.btnContainer}>
-                <TouchableOpacity style={styles.button}><Text style={styles.btnText}>Upload Image</Text></TouchableOpacity>
+                <TouchableOpacity style={styles.button} onPress={openImagePickerAsync}><Text style={styles.btnText}>Upload Image</Text></TouchableOpacity>
             </View>
-            <View style={styles.imageContainer}>
+
+            {/* <View style={styles.imageContainer}>
             <View style={styles.imageRow}>
                 <View style={styles.imageColumn}>
                 <Image style={styles.image} source={{uri:'https://www.supplypost.com/Moxie/Files/HEAVY%20HAUL.jpg'}}/></View>
@@ -53,11 +97,9 @@ export default function AddItemScreen({ navigation }) {
                     <Image style={styles.image} source={{uri:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT7iNd9M5e6riVgLLME2Bid7-2C0CXeVFjZ42T9bSGM1_IhSkHTjhyiMtkbsHsD3nAOs48&usqp=CAU'}}/>
                     </View>
                 </View>
-                </View>
+                </View> */}
 
-            <View style={styles.btnContainer}>
-                <TouchableOpacity onPress={() => navigation.navigate('AddJunkScreen2')} style={styles.button}><Text style={styles.btnText}>Next</Text></TouchableOpacity>
-            </View>
+            
             </View>
         </ScrollView>
     )
@@ -129,4 +171,9 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         width: '50%',
     },
+    thumbnail: {
+        width: 100,
+        height: 100,
+        resizeMode: "contain"
+      }
 })

@@ -38,3 +38,13 @@ export async function signUp(
     console.log('user created');
     return res
 }
+
+//======================================To get user's posts ==========================================//
+export async function getAllPosts(uid) {
+    try {
+      const res = await axios.get(`${url}/api/user/${uid}`);
+      return res.data;
+    } catch (err) {
+      console.log(err);
+    }
+  }
