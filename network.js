@@ -49,8 +49,51 @@ export async function getAllPosts(uid) {
     }
   }
 
-//==================================== To post Junk removal details ===================================//
+//==================================== To post Moving service details ===================================//
 
-export async function postItem(){
-    
+export async function postItem(
+  uid,
+  postHeading,
+  description,
+  selectedweight,
+  selectedquantity,
+  contactPerson,
+  phoneNumber,
+  streetAddress,
+  city,
+  province,
+  zipCode,
+  specialInstructions,
+  sliderValue,
+  dropOffContactPerson,
+  dropOffPhoneNumber,
+  dropOffStreetAddress,
+  dropOffCity,
+  dropOffProvince,
+  dropOffZipCode,
+  dropOffSpecialInstructions
+){
+    const res = await axios.post(`${url}/api/user/${uid}`, {
+      postHeading: postHeading,
+      description: description,
+      selectedweight: selectedweight,
+      selectedquantity: selectedquantity,
+      contactPerson: contactPerson,
+      phoneNumber: phoneNumber,
+      streetAddress: streetAddress,
+      city: city,
+      province: province,
+      zipCode: zipCode,
+      specialInstructions: specialInstructions,
+      sliderValue: sliderValue,
+      dropOffContactPerson: dropOffContactPerson,
+      dropOffPhoneNumber: dropOffPhoneNumber,
+      dropOffStreetAddress: dropOffStreetAddress,
+      dropOffCity: dropOffCity,
+      dropOffProvince: dropOffProvince,
+      dropOffZipCode: dropOffZipCode,
+      dropOffSpecialInstructions: dropOffSpecialInstructions
+    });
+    console.log('user post created');
+    return res
 }
