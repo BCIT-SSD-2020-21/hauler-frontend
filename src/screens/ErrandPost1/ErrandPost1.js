@@ -25,9 +25,10 @@ export default function ErrandPost1({ navigation }) {
             />
 
             <Picker selectedValue={selectedweight} style={{height: 50, width: 380}} onValueChange={(itemValue, itemIndex) => setSelectedWeight(itemValue)}>
-                <Picker.Item label="Light 0-20kgs" value="light" />
-                <Picker.Item label="Medium 21-50Kgs" value="medium" />
-                <Picker.Item label="Heavy 50Kgs & above" value="heavy" />
+                <Picker.Item label="No selection" value="None selected" />
+                <Picker.Item label="Light 0-20kgs" value="Light 0-20kgs" />
+                <Picker.Item label="Medium 21-50Kgs" value="Medium 21-50Kgs" />
+                <Picker.Item label="Heavy 50Kgs & above" value="Heavy 50Kgs & above" />
             </Picker>
 
             <Picker selectedValue={selectedquantity} style={{height: 50, width: 380}} onValueChange={(itemValue, itemIndex) => setSelectedQuantity(itemValue)}>
