@@ -53,6 +53,7 @@ export async function getAllPosts(uid) {
 
 export async function postItem(
   uid,
+  service,
   postHeading,
   description,
   selectedweight,
@@ -73,26 +74,29 @@ export async function postItem(
   dropOffZipCode,
   dropOffSpecialInstructions
 ){
-    const res = await axios.post(`${url}/api/user/${uid}`, {
-      postHeading: postHeading,
-      description: description,
-      selectedweight: selectedweight,
-      selectedquantity: selectedquantity,
-      contactPerson: contactPerson,
-      phoneNumber: phoneNumber,
-      streetAddress: streetAddress,
-      city: city,
-      province: province,
-      zipCode: zipCode,
-      specialInstructions: specialInstructions,
-      sliderValue: sliderValue,
-      dropOffContactPerson: dropOffContactPerson,
-      dropOffPhoneNumber: dropOffPhoneNumber,
-      dropOffStreetAddress: dropOffStreetAddress,
-      dropOffCity: dropOffCity,
-      dropOffProvince: dropOffProvince,
-      dropOffZipCode: dropOffZipCode,
-      dropOffSpecialInstructions: dropOffSpecialInstructions
+    const res = await axios.post(`${url}/api/posts`, {
+            userId: uid,
+            service: service,
+            postHeading: postHeading,
+            postDescription: description,
+            loadWeight: selectedweight,
+            numberOfItems: selectedquantity,
+            imageUrl: "https://moversdev.com/wp-content/uploads/2019/06/9.7.-ig-e1577379582500.jpg",
+            price: sliderValue,
+            pickUpProvince: province,
+            pickUpCity: city,
+            pickUpStreetAddress: streetAddress,
+            pickUpZipCode:zipCode,
+            pickUpContactPerson:contactPerson,
+            pickUpContactNumber: phoneNumber,
+            pickUpSpecialInstruction: specialInstructions,
+            dropOffProvince: dropOffProvince,
+            dropOffCity: dropOffCity,
+            dropOffStreetAddress: dropOffStreetAddress,
+            dropOffZipCode: dropOffZipCode,
+            dropOffContactPerson: dropOffContactPerson,
+            dropOffContactNumber: dropOffPhoneNumber,
+            dropOffSpecialInstructions: dropOffSpecialInstructions
     });
     console.log('user post created');
     return res
