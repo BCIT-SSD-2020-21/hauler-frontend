@@ -4,7 +4,7 @@ import { StyleSheet } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import Slider from '@react-native-community/slider';
 
-export default function AddJunkScreen2({ navigation }) {
+export default function AddJunkScreen2({ navigation, route }) {
 
     const [sliderValue, setSliderValue] = useState(50);
     const [contactPerson, setContactPerson] = useState('')
@@ -14,6 +14,7 @@ export default function AddJunkScreen2({ navigation }) {
     const [streetAddress, setStreetAddress] = useState('')
     const [zipCode, setZipCode] = useState('')
     const [specialInstructions, setSpecialInstructions] = useState('')
+    const {image,selectedweight,selectedquantity,postHeading,description} = route.params;
 
     return (
         <ScrollView>
@@ -78,7 +79,21 @@ export default function AddJunkScreen2({ navigation }) {
           </SafeAreaView>
 
           <View style={styles.btnContainer}>
-          <TouchableOpacity onPress={() => navigation.navigate('AddJunkScreen3')} style={styles.button} ><Text style={styles.btnText}>Submit</Text></TouchableOpacity>
+          <TouchableOpacity onPress={() => navigation.navigate('AddJunkScreen3',
+          {image: image,
+          sliderValue: sliderValue,
+          selectedweight:  selectedweight,
+          selectedquantity: selectedquantity,
+          postHeading: postHeading,
+          description: description,
+          city: city,
+          province: province,
+          zipCode: zipCode,
+          specialInstructions: specialInstructions,
+          contactPerson: contactPerson,
+          phoneNumber: phoneNumber,
+          streetAddress: streetAddress})} 
+          style={styles.button} ><Text style={styles.btnText}>Submit</Text></TouchableOpacity>
           </View>
         </View>
         </ScrollView>
