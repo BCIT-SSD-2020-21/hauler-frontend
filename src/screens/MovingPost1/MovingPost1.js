@@ -65,9 +65,14 @@ export default function MovingPost1({ navigation }) {
                 </View>
 
             <View style={styles.btnContainer}>
-                <TouchableOpacity onPress={() => navigation.navigate('MovingPost2', {selectedweight:  selectedweight,selectedquantity: selectedquantity, postHeading: postHeading, description: description})} 
-                style={styles.button}>
-                    <Text style={styles.btnText}>Next</Text>
+                <TouchableOpacity 
+                    onPress={() => navigation.navigate('MovingPost2', 
+                    {selectedweight:  selectedweight,
+                    selectedquantity: selectedquantity, 
+                    postHeading: postHeading, 
+                    description: description})} 
+                    style={styles.button}>
+                <Text style={styles.btnText}>Next</Text>
                 </TouchableOpacity>
             </View>
             </View>
