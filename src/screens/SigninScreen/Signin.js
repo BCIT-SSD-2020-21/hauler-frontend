@@ -49,7 +49,7 @@ export default function Signin({ navigation }) {
                     style={styles.button}
                     disabled={loading}
                     onPress={() => onSigninClicked()}>
-                    <Text style={styles.buttonTitle}>Login</Text>
+                    <Text style={styles.buttonTitle}>Sign In</Text>
                 </TouchableOpacity>
                 <View style={styles.option}>
                     <Text style={styles.optionText}>
@@ -94,7 +94,7 @@ const styles = StyleSheet.create({
         textAlign: 'center'
     },
     button: {
-        backgroundColor: 'black',
+        backgroundColor: '#0177FC',
         marginLeft: 30,
         marginRight: 30,
         marginTop: 20,

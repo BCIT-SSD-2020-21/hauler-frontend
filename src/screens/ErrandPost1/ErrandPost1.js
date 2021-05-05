@@ -6,8 +6,8 @@ import { TouchableOpacity } from 'react-native-gesture-handler';
 export default function ErrandPost1({ navigation }) {
     const[selectedweight, setSelectedWeight] = useState('Select')
     const[selectedquantity, setSelectedQuantity] = useState('Select')
-    const [postHeading, setPostHeading] = setState('')
-    const [description, setDescription] = setState('')
+    const [postHeading, setPostHeading] = useState('')
+    const [description, setDescription] = useState('')
     
 
     return (
@@ -67,7 +67,7 @@ export default function ErrandPost1({ navigation }) {
                 </View>
 
             <View style={styles.btnContainer}>
-                <TouchableOpacity onPress={() => navigation.navigate('ErrandPost2')} style={styles.button}><Text style={styles.btnText}>Next</Text></TouchableOpacity>
+                <TouchableOpacity onPress={() => navigation.navigate('ErrandPost2', {selectedweight: selectedweight, selectedquantity: selectedquantity, postHeading: postHeading, description: description})} style={styles.button}><Text style={styles.btnText}>Next</Text></TouchableOpacity>
             </View>
             </View>
         </ScrollView>
@@ -110,7 +110,7 @@ const styles = StyleSheet.create({
         marginTop: 30,
     },
     button: {
-        backgroundColor: 'black',
+        backgroundColor: '#0177FC',
         borderRadius: 10,
         display: 'flex',
     },

@@ -3,7 +3,7 @@ import { Text, View, ScrollView, TextInput, SafeAreaView, Picker} from 'react-na
 import { StyleSheet } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 
-export default function ErrandPost2({ navigation }) {
+export default function ErrandPost2({ navigation, route }) {
 
     const [contactPerson, setContactPerson] = useState('')
     const [phoneNumber, setPhoneNumber] = useState('')
@@ -12,6 +12,7 @@ export default function ErrandPost2({ navigation }) {
     const [province, setProvince] = useState('')
     const [zipCode, setZipCode] = useState('')
     const [specialInstructions, setSpecialInstructions] = useState('')
+    const {selectedweight, selectedquantity, postHeading, description} = route.params;
 
     return (
         <ScrollView>
@@ -56,7 +57,7 @@ export default function ErrandPost2({ navigation }) {
           />
 
           <View style={styles.btnContainer}>
-          <TouchableOpacity onPress={() => navigation.navigate('ErrandPost3')} style={styles.button} ><Text style={styles.btnText}>Next</Text></TouchableOpacity>
+          <TouchableOpacity onPress={() => navigation.navigate('ErrandPost3', {selectedweight: selectedweight, selectedquantity: selectedquantity, postHeading: postHeading, description: description, contactPerson: contactPerson, phoneNumber: phoneNumber, specialInstructions: specialInstructions, zipCode: zipCode, province: province, city: city, streetAddress: streetAddress})} style={styles.button} ><Text style={styles.btnText}>Next</Text></TouchableOpacity>
           </View>
         </View>
         </ScrollView>
@@ -105,7 +106,7 @@ const styles = StyleSheet.create({
         marginTop: 30,
     },
     button: {
-        backgroundColor: 'black',
+        backgroundColor: '#0177FC',
         borderRadius: 10,
         display: 'flex',
     },
