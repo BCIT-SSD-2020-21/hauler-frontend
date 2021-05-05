@@ -91,7 +91,13 @@ export default function AddItemScreen({ navigation }) {
             {image && <Image source={{ uri: image }} style={{ width: 200, height: 200 }} />}
             </View>
             <View> 
-                <TouchableOpacity onPress={() => navigation.navigate('AddJunkScreen2')} style={styles.button}><Text style={styles.btnText}>Next</Text></TouchableOpacity>
+                <TouchableOpacity onPress={() => navigation.navigate('AddJunkScreen2',
+                {image: image,
+                selectedweight:  selectedweight,
+                selectedquantity: selectedquantity, 
+                postHeading: postHeading, 
+                description: description}
+                )} style={styles.button}><Text style={styles.btnText}>Next</Text></TouchableOpacity>
            </View>
         </View>
         </ScrollView>
