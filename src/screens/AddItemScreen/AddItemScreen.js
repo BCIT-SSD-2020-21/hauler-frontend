@@ -1,5 +1,5 @@
-import React, { useState }from 'react'
-import { Text, View, TextInput, Picker, ScrollView, Image } from 'react-native'
+import React, { useState, useEffect }from 'react'
+import { Text, View, TextInput, Picker, ScrollView, Image,  Platform } from 'react-native'
 import { StyleSheet } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import * as ImagePicker from 'expo-image-picker';
@@ -8,44 +8,54 @@ export default function AddItemScreen({ navigation }) {
 
     const[selectedweight, setSelectedWeight] = useState('Select')
     const[selectedquantity, setSelectedQuantity] = useState('Select')
-    const [selectedImage, setSelectedImage] = useState(null)
+    const[image, setImage] = useState(null);
     const [postHeading, setPostHeading] = useState('')
     const [description, setDescription] = useState('')
 
-    let openImagePickerAsync = async() => {
-        let permissionResult = await ImagePicker.requestMediaLibraryPermissionsAsync();
-
-        if (permissionResult.granted === false) {
-            alert("Permission to access Camera Roll is required");
-            return;
+    useEffect(() => {
+      (async () => {
+        if (Platform.OS !== 'web') {
+          const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
+          if (status !== 'granted') {
+            alert('Sorry, we need camera roll permissions to make this work!');
+          }
         }
-        let pickerResult = await ImagePicker.launchImageLibraryAsync();
-        if (pickerResult.cancelled === true){
-            return;
-        }
-        setSelectedImage({ localUri: pickerResult.uri});
+      })();
+    }, []);
+  
+    const pickImageAlbum = async () => {
+      let result = await ImagePicker.launchImageLibraryAsync({
+        mediaTypes: ImagePicker.MediaTypeOptions.All,
+        allowsEditing: true,
+        aspect: [1, 1],
+        quality: 1,
+      });
+  
+      console.log(result);
+  
+      if (!result.cancelled) {
+        setImage(result.uri);
+      }
     };
-        if (selectedImage !== null) {
-            return(
-                <ScrollView>
-                    
-                    <View style={styles.imageContainer}>
-                        <View style={styles.imageRow}>
-                            <View style={styles.imageColumn}>
-                                <Image source={{uri: selectedImage.localUri}} style={styles.image} />
-                            </View>
-                        </View>
-                    </View>
-                    <View style={styles.btnContainer}>
-                <TouchableOpacity onPress={() => navigation.navigate('AddJunkScreen2')} style={styles.button}><Text style={styles.btnText}>Next</Text></TouchableOpacity>
-            </View>
-                </ScrollView>
-            )
-        }
+  
+    // const pickImageCamera = async () => {
+    //   let result = await ImagePicker.launchCameraAsync({
+    //     mediaTypes: ImagePicker.MediaTypeOptions.All,
+    //     allowsEditing: true,
+    //     aspect: [1, 1],
+    //     quality: 1,
+    //   });
+  
+    //   console.log(result);
+  
+    //   if (!result.cancelled) {
+    //     setImage(result.uri);
+    //   }
+    // };
 
     return (
         <ScrollView>
-            <View style={styles.container}>
+        <View style={styles.container}>
             <Text> Junk Removal </Text>
             <TextInput style={styles.inputLine1} placeholder='Post Heading' 
             onChangeText={(postHeading) => {setPostHeading(postHeading)}} 
@@ -75,32 +85,15 @@ export default function AddItemScreen({ navigation }) {
                 <Picker.Item label="10" value="10" />
             </Picker>
             <View style={styles.btnContainer}>
-                <TouchableOpacity style={styles.button} onPress={openImagePickerAsync}><Text style={styles.btnText}>Upload Image</Text></TouchableOpacity>
+                <TouchableOpacity style={styles.button} onPress={() => pickImageAlbum() }><Text style={styles.btnText}>Upload Image</Text></TouchableOpacity>
             </View>
-
-            {/* <View style={styles.imageContainer}>
-            <View style={styles.imageRow}>
-                <View style={styles.imageColumn}>
-                <Image style={styles.image} source={{uri:'https://www.supplypost.com/Moxie/Files/HEAVY%20HAUL.jpg'}}/></View>
-                <View style={styles.imageColumn}>
-                <Image style={styles.image} source={{uri:'https://www.logisticdynamics.com/wp-content/uploads/2017/01/eq12-1.jpeg'}}/></View>
-                <View style={styles.imageColumn}>
-                <Image style={styles.image} source={{uri:'https://image.shutterstock.com/image-photo/big-rig-long-haul-industrial-260nw-1762531160.jpg'}}/></View>
-                </View>
-
-                <View style={styles.imageRow}>
-                    <View style={styles.imageColumn}>
-                    <Image style={styles.image} source={{uri:'https://www.effectuation.org/wp-content/uploads/2016/08/U-Haul-1200x656.jpg'}}/></View>
-                    <View style={styles.imageColumn}>
-                    <Image style={styles.image} source={{uri:'https://media-exp1.licdn.com/dms/image/C561BAQGeoODWyXQujA/company-background_10000/0/1576006955491?e=2159024400&v=beta&t=NxUjpgsOeQmnnesMer32t89wdFdNOAWg7qdoCvR9c6U'}}/></View>
-                    <View style = {styles.imageColumn}>
-                    <Image style={styles.image} source={{uri:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT7iNd9M5e6riVgLLME2Bid7-2C0CXeVFjZ42T9bSGM1_IhSkHTjhyiMtkbsHsD3nAOs48&usqp=CAU'}}/>
-                    </View>
-                </View>
-                </View> */}
-
-            
+            <View>
+            {image && <Image source={{ uri: image }} style={{ width: 200, height: 200 }} />}
             </View>
+            <View> 
+                <TouchableOpacity onPress={() => navigation.navigate('AddJunkScreen2')} style={styles.button}><Text style={styles.btnText}>Next</Text></TouchableOpacity>
+           </View>
+        </View>
         </ScrollView>
     )
 }
