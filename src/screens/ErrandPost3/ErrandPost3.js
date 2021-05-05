@@ -1,19 +1,20 @@
 import React, { useState, setState } from 'react'
-import { Text, View, ScrollView, TextInput, SafeAreaView } from 'react-native'
+import { Text, View, ScrollView, TextInput, SafeAreaView, Picker } from 'react-native'
 import { StyleSheet } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import Slider from '@react-native-community/slider';
 
-export default function ErrandPost3({ navigation }) {
+export default function ErrandPost3({ navigation, route }) {
 
     const [sliderValue, setSliderValue] = useState(50);
-    const [contactPerson, setContactPerson] = useState('')
-    const [phoneNumber, setPhoneNumber] = useState('')
-    const [streetAddress, setStreetAddress] = useState('')
-    const [city, setCity] = useState('')
-    const [province, setProvince] = useState('')
-    const [zipCode, setZipCode] = useState('')
-    const [specialInstructions, setSpecialInstructions] = useState('')
+    const [dropOffContactPerson, setDropOffContactPerson] = useState('')
+    const [dropOffPhoneNumber, setDropOffPhoneNumber] = useState('')
+    const [dropOffStreetAddress, setDropOffStreetAddress] = useState('')
+    const [dropOffCity, setDropOffCity] = useState('')
+    const [dropOffProvince, setDropOffProvince] = useState('')
+    const [dropOffZipCode, setDropOffZipCode] = useState('')
+    const [dropOffSpecialInstructions, setDropOffSpecialInstructions] = useState('')
+    const { selectedweight, selectedquantity, postHeading, description, contactPerson, phoneNumber, specialInstructions, zipCode, province, city, streetAddress} = route.params;
 
     return (
         <ScrollView>
@@ -21,26 +22,26 @@ export default function ErrandPost3({ navigation }) {
           <Text> ERRAND </Text>
           <Text> DROP OFF LOCATION </Text>
           <TextInput style={styles.inputLine1} placeholder='Contact Person' 
-            onChangeText={(contactPerson) => {setContactPerson(contactPerson)}}
-            value={contactPerson}
+            onChangeText={(contactPerson) => {setDropOffContactPerson(contactPerson)}}
+            value={dropOffContactPerson}
           />
 
           <TextInput style={styles.inputLine1} placeholder='Phone Number' 
-            onChangeText={(phoneNumber) => {setPhoneNumber(phoneNumber)}}
-            value={phoneNumber}
+            onChangeText={(phoneNumber) => {setDropOffPhoneNumber(phoneNumber)}}
+            value={dropOffPhoneNumber}
           />
 
           <TextInput style={styles.inputLine1} placeholder='Street Address' 
-            onChangeText={(streetAddress) => {setStreetAddress(streetAddress)}}
-            value={streetAddress}
+            onChangeText={(streetAddress) => {setDropOffStreetAddress(streetAddress)}}
+            value={dropOffStreetAddress}
           />
 
           <TextInput style={styles.inputLine1} placeholder='City' 
-            onChangeText={(city) => {setCity(city)}}
-            value={city}
+            onChangeText={(city) => {setDropOffCity(city)}}
+            value={dropOffCity}
           />
 
-          <Picker selectedValue={province} style={{height: 50, width: 380}} onValueChange={(itemValue, itemIndex) =>      setProvince(itemValue)}>
+          <Picker selectedValue={dropOffProvince} style={{height: 50, width: 380}} onValueChange={(itemValue, itemIndex) =>      setDropOffProvince(itemValue)}>
                 <Picker.Item label="Alberta" value="Alberta" />
                 <Picker.Item label="BC" value="BC" />
                 <Picker.Item label="Ontario" value="Ontario" />
@@ -48,13 +49,13 @@ export default function ErrandPost3({ navigation }) {
             </Picker>
 
           <TextInput style={styles.inputLine1} placeholder='Zip Code' 
-            onChangeText={(zipCode) => {setZipCode(zipCode)}}
-            value={zipCode}
+            onChangeText={(zipCode) => {setDropOffZipCode(zipCode)}}
+            value={dropOffZipCode}
           />
 
           <TextInput style={styles.inputLine2} placeholder='Special Instructions' 
-            onChangeText={(specialInstructions) => setSpecialInstructions(specialInstructions)}
-            value={specialInstructions}
+            onChangeText={(specialInstructions) => setDropOffSpecialInstructions(specialInstructions)}
+            value={dropOffSpecialInstructions}
           />
 
           <SafeAreaView style={{flex: 1}}>
@@ -79,7 +80,10 @@ export default function ErrandPost3({ navigation }) {
           </SafeAreaView>
 
           <View style={styles.btnContainer}>
-          <TouchableOpacity onPress={() => navigation.navigate('ErrandSummary')} style={styles.button} ><Text style={styles.btnText}>Submit</Text></TouchableOpacity>
+          <TouchableOpacity onPress={() => navigation.navigate('ErrandSummary', {selectedweight: selectedweight, selectedquantity: selectedquantity, postHeading: postHeading, description: description, contactPerson: contactPerson, phoneNumber: phoneNumber, specialInstructions: specialInstructions, zipCode: zipCode, province: province, city: city, streetAddress: streetAddress, sliderValue: sliderValue, dropOffCity: dropOffCity, dropOffContactPerson: dropOffContactPerson, dropOffPhoneNumber: dropOffPhoneNumber, dropOffProvince: dropOffProvince, dropOffSpecialInstructions: dropOffSpecialInstructions, dropOffStreetAddress: dropOffStreetAddress, dropOffZipCode: dropOffZipCode})} 
+          style={styles.button}>
+            <Text style={styles.btnText}>Submit</Text>
+          </TouchableOpacity>
           </View>
         </View>
         </ScrollView>
@@ -128,7 +132,7 @@ const styles = StyleSheet.create({
         marginTop: 30,
     },
     button: {
-        backgroundColor: 'black',
+        backgroundColor: '#0177FC',
         borderRadius: 10,
         display: 'flex',
     },

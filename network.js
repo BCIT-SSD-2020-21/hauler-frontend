@@ -48,3 +48,9 @@ export async function getAllPosts(uid) {
       console.log(err);
     }
   }
+
+//==================================== To post Junk removal details ===================================//
+
+export async function postItem(){
+    
+}

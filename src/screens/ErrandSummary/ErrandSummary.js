@@ -3,24 +3,42 @@ import { Text, View, TextInput, Image } from 'react-native'
 import { StyleSheet } from 'react-native';
 import { ScrollView, TouchableOpacity } from 'react-native-gesture-handler';
 
-export default function ErrandSummary({ navigation }) {
+export default function ErrandSummary({ navigation, route }) {
+
+    const{ selectedweight, selectedquantity, postHeading, description, contactPerson, phoneNumber, specialInstructions, zipCode, province, city, streetAddress, sliderValue, dropOffCity, dropOffContactPerson, dropOffPhoneNumber, dropOffProvince, dropOffSpecialInstructions, dropOffStreetAddress, dropOffZipCode} = route.params;
+
     return (
         <ScrollView>
         <View style={styles.container}>
           <Text> Errand Summary </Text>
-          <TextInput style={styles.inputLine1} placeholder='Contact Person' />
-          <TextInput style={styles.inputLine1} placeholder='Contact Number' />
-          <TextInput style={styles.inputLine2} placeholder='PickUp Address' />
-          <TextInput style={styles.inputLine2} placeholder='Drop Off Location' />
-          <TextInput style={styles.inputLine2} placeholder='Post Description' />
-          <TextInput style={styles.inputLine1} placeholder='Number of Items' />
+          <Text style={styles.inputLine1} >Post Heading: {postHeading}</Text>
+          <Text style={styles.inputLine1} >Post Description: {description}</Text>
+          <Text style={styles.inputLine1} >Item Weigth: {selectedweight}</Text>
+          <Text style={styles.inputLine1} >Number of Items: {selectedquantity}</Text>
+          <Text style={{fontSize: 20, fontWeight: 'bold'}} >Pick Up Details: </Text>
+          <Text style={styles.inputLine1} >Contact Person: {contactPerson}</Text>
+          <Text style={styles.inputLine1} >Phone Number: {phoneNumber}</Text>
+          <Text style={styles.inputLine2} >Street Address: {streetAddress}</Text>
+          <Text style={styles.inputLine1} >City: {city}</Text>
+          <Text style={styles.inputLine1} >Province: {province}</Text>
+          <Text style={styles.inputLine1} >Zip Code: {zipCode}</Text>
+          <Text style={styles.inputLine2} >Special Instructions: {specialInstructions}</Text>
+          <Text style={{fontSize: 20, fontWeight: 'bold'}} > Drop Off Details: </Text>
+          <Text style={styles.inputLine1} >Contact Person: {dropOffContactPerson}</Text>
+          <Text style={styles.inputLine1} >Phone Number: {dropOffPhoneNumber}</Text>
+          <Text style={styles.inputLine2} >Street Address: {dropOffStreetAddress}</Text>
+          <Text style={styles.inputLine1} >City: {dropOffCity}</Text>
+          <Text style={styles.inputLine1} >Province: {dropOffProvince}</Text>
+          <Text style={styles.inputLine1} >Zip Code: {dropOffZipCode}</Text>
+          <Text style={styles.inputLine2} >Special Instructions: {dropOffSpecialInstructions}</Text>
           <View style={styles.imageContainer}>
               <Image style={styles.image} source={{uri: 'https://webstockreview.net/images/buy-clipart-errand-17.jpg'}}/>
           </View>
+          <Text style={styles.inputLine1}>Quoted Price: {sliderValue}</Text>
           <View style={styles.btnContainer}>
           <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('ErrandPost1')}><Text style={styles.btnText}> Edit </Text></TouchableOpacity>
           </View> 
-          <TextInput style={styles.inputLine1} placeholder='CAD $$' />
+
           <View style={styles.btnContainer}>
           <TouchableOpacity style={styles.button}><Text style={styles.btnText} onPress={() => navigation.navigate('Confirmation')}> Post the Job </Text></TouchableOpacity>
           </View>
@@ -76,7 +94,7 @@ const styles = StyleSheet.create({
         marginTop: 30,
     },
     button: {
-        backgroundColor: 'black',
+        backgroundColor: '#0177FC',
         borderRadius: 10,
         display: 'flex',
     },
