@@ -101,3 +101,44 @@ export async function postItem(
     console.log('user post created');
     return res
 }
+
+
+//==================================== To post Junk service details ===================================//
+
+export async function postJunkItem(
+  uid,
+  service,
+  image,
+  selectedweight,
+  selectedquantity,
+  postHeading,
+  description,
+  city,
+  province,
+  zipCode,
+  specialInstructions,
+  contactPerson,
+  phoneNumber,
+  streetAddress,
+  sliderValue
+){
+    const res = await axios.post(`${url}/api/posts`, {
+            userId: uid,
+            service: service,
+            postHeading: postHeading,
+            postDescription: description,
+            loadWeight: selectedweight,
+            numberOfItems: selectedquantity,
+            imageUrl: image,
+            price: sliderValue,
+            pickUpProvince: province,
+            pickUpCity: city,
+            pickUpStreetAddress: streetAddress,
+            pickUpZipCode:zipCode,
+            pickUpContactPerson:contactPerson,
+            pickUpContactNumber: phoneNumber,
+            pickUpSpecialInstruction: specialInstructions
+    });
+    console.log('user post created');
+    return res
+}
