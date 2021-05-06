@@ -1,14 +1,42 @@
-import React, { useState }from 'react'
-import { Text, View, TextInput, Picker, ScrollView, Image } from 'react-native'
+import React, { useState, useEffect }from 'react'
+import { Text, View, TextInput, Picker, ScrollView, Image, Platform } from 'react-native'
 import { StyleSheet } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
+import * as ImagePicker from 'expo-image-picker';
 
 export default function ErrandPost1({ navigation }) {
+
     const[selectedweight, setSelectedWeight] = useState('Select')
     const[selectedquantity, setSelectedQuantity] = useState('Select')
+    const[image, setImage] = useState(null);
     const [postHeading, setPostHeading] = useState('')
     const [description, setDescription] = useState('')
     
+    useEffect(() => {
+        (async () => {
+          if (Platform.OS !== 'web') {
+            const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
+            if (status !== 'granted') {
+              alert('Sorry, we need camera roll permissions to make this work!');
+            }
+          }
+        })();
+      }, []);
+    
+      const pickImageAlbum = async () => {
+        let result = await ImagePicker.launchImageLibraryAsync({
+          mediaTypes: ImagePicker.MediaTypeOptions.All,
+          allowsEditing: true,
+          aspect: [1, 1],
+          quality: 1,
+        });
+    
+        console.log(result);
+    
+        if (!result.cancelled) {
+          setImage(result.uri);
+        }
+      };
 
     return (
         <ScrollView>
@@ -32,6 +60,7 @@ export default function ErrandPost1({ navigation }) {
             </Picker>
 
             <Picker selectedValue={selectedquantity} style={{height: 50, width: 380}} onValueChange={(itemValue, itemIndex) => setSelectedQuantity(itemValue)}>
+                <Picker.Item label="0" value="0" />
                 <Picker.Item label="1" value="1" />
                 <Picker.Item label="2" value="2"/>
                 <Picker.Item label="3" value="3" />
@@ -44,31 +73,16 @@ export default function ErrandPost1({ navigation }) {
                 <Picker.Item label="10" value="10" />
             </Picker>
             <View style={styles.btnContainer}>
-                <TouchableOpacity style={styles.button}><Text style={styles.btnText}>Upload Image</Text></TouchableOpacity>
+                <TouchableOpacity style={styles.button}><Text style={styles.btnText}
+                onPress={() => pickImageAlbum() } >Upload Image</Text>
+                </TouchableOpacity>
             </View>
-            <View style={styles.imageContainer}>
-            <View style={styles.imageRow}>
-                <View style={styles.imageColumn}>
-                <Image style={styles.image} source={{uri:'https://yocoman.com/wp-content/uploads/2019/05/earned-services.jpg'}}/></View>
-                <View style={styles.imageColumn}>
-                <Image style={styles.image} source={{uri:'https://d3re0f381bckq9.cloudfront.net/48933290_img-1595331861005_866x1298.jpg'}}/></View>
-                <View style={styles.imageColumn}>
-                <Image style={styles.image} source={{uri:'https://sendmegh.com/images/bs.jpg'}}/></View>
-                </View>
-
-                <View style={styles.imageRow}>
-                    <View style={styles.imageColumn}>
-                    <Image style={styles.image} source={{uri:'https://thumbs.dreamstime.com/z/errand-service-young-black-woman-roller-skates-doing-multiple-errands-city-vector-illustration-no-transparencies-eps-58588457.jpg'}}/></View>
-                    <View style={styles.imageColumn}>
-                    <Image style={styles.image} source={{uri:'https://cdn3.vectorstock.com/i/thumb-large/88/37/businessman-in-a-hurry-vector-1268837.jpg'}}/></View>
-                    <View style = {styles.imageColumn}>
-                    <Image style={styles.image} source={{uri:'https://webstockreview.net/images/buy-clipart-errand-17.jpg'}}/>
-                    </View>
-                </View>
-                </View>
+            <View>
+            {image && <Image source={{ uri: image }} style={{ width: 200, height: 200 }} />}
+            </View>
 
             <View style={styles.btnContainer}>
-                <TouchableOpacity onPress={() => navigation.navigate('ErrandPost2', {selectedweight: selectedweight, selectedquantity: selectedquantity, postHeading: postHeading, description: description})} style={styles.button}><Text style={styles.btnText}>Next</Text></TouchableOpacity>
+                <TouchableOpacity onPress={() => navigation.navigate('ErrandPost2', {selectedweight: selectedweight, image: image, selectedquantity: selectedquantity, postHeading: postHeading, description: description})} style={styles.button}><Text style={styles.btnText}>Next</Text></TouchableOpacity>
             </View>
             </View>
         </ScrollView>

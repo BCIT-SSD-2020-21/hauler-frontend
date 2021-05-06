@@ -5,7 +5,11 @@ import { ScrollView, TouchableOpacity } from 'react-native-gesture-handler';
 
 export default function ErrandSummary({ navigation, route }) {
 
-    const{ selectedweight, selectedquantity, postHeading, description, contactPerson, phoneNumber, specialInstructions, zipCode, province, city, streetAddress, sliderValue, dropOffCity, dropOffContactPerson, dropOffPhoneNumber, dropOffProvince, dropOffSpecialInstructions, dropOffStreetAddress, dropOffZipCode} = route.params;
+    const{ image, selectedweight, selectedquantity, postHeading, description, contactPerson, phoneNumber, specialInstructions, zipCode, province, city, streetAddress, sliderValue, dropOffCity, dropOffContactPerson, dropOffPhoneNumber, dropOffProvince, dropOffSpecialInstructions, dropOffStreetAddress, dropOffZipCode} = route.params;
+
+    const service = "Errands"
+
+    const { currentUser } = useContext(Context)
 
     return (
         <ScrollView>
@@ -32,7 +36,7 @@ export default function ErrandSummary({ navigation, route }) {
           <Text style={styles.inputLine1} >Zip Code: {dropOffZipCode}</Text>
           <Text style={styles.inputLine2} >Special Instructions: {dropOffSpecialInstructions}</Text>
           <View style={styles.imageContainer}>
-              <Image style={styles.image} source={{uri: 'https://webstockreview.net/images/buy-clipart-errand-17.jpg'}}/>
+              <Image style={styles.image} source={{uri: image}}/>
           </View>
           <Text style={styles.inputLine1}>Quoted Price: {sliderValue}</Text>
           <View style={styles.btnContainer}>
@@ -40,7 +44,29 @@ export default function ErrandSummary({ navigation, route }) {
           </View> 
 
           <View style={styles.btnContainer}>
-          <TouchableOpacity style={styles.button}><Text style={styles.btnText} onPress={() => navigation.navigate('Confirmation')}> Post the Job </Text></TouchableOpacity>
+          <TouchableOpacity style={styles.button}><Text style={styles.btnText} onPress={async () => { await postItem(
+                currentUser.uid,
+                image,
+                service,
+                postHeading,
+                description,
+                selectedweight,
+                selectedquantity,
+                contactPerson,
+                phoneNumber,
+                streetAddress,
+                city,
+                province,
+                zipCode,
+                specialInstructions,
+                sliderValue,
+                dropOffContactPerson,
+                dropOffPhoneNumber,
+                dropOffStreetAddress,
+                dropOffCity,
+                dropOffProvince,
+                dropOffZipCode,
+                dropOffSpecialInstructions);navigation.navigate('Confirmation')}}> Post the Job </Text></TouchableOpacity>
           </View>
         </View>
         </ScrollView>
