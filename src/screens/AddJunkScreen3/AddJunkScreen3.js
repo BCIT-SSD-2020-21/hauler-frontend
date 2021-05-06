@@ -1,11 +1,16 @@
-import React from 'react'
+import React, {useContext} from 'react'
 import { Text, View, Image } from 'react-native'
 import { StyleSheet } from 'react-native';
 import { ScrollView, TouchableOpacity } from 'react-native-gesture-handler';
+import { postJunkItem } from '../../../network';
+import { Context } from '../../context/ContextProvider';
 
 export default function AddJunkScreen3({ navigation, route }) {
 
     const {image,selectedweight,selectedquantity, postHeading, description, city, province, zipCode, specialInstructions, contactPerson, phoneNumber, streetAddress, sliderValue} = route.params;
+
+    const service = "Junk Removal"
+    const { currentUser } = useContext(Context)
 
     return (
         <ScrollView>
@@ -24,15 +29,30 @@ export default function AddJunkScreen3({ navigation, route }) {
           <Text style={styles.inputLine1} >Zip Code: {zipCode}</Text>
           <Text style={styles.inputLine2} >Special Instructions: {specialInstructions}</Text>
           <View style={styles.imageContainer}>
-          {image && <Image source={{ uri: image }} style={styles.image} />}
-              {/* <Image style={styles.image} source={{uri: 'https://moversdev.com/wp-content/uploads/2019/06/9.7.-ig-e1577379582500.jpg'}}/> */}
+            {image && <Image source={{ uri: image }} style={styles.image} />}
           </View>
           <Text style={styles.inputLine1} >Quoted Price: {sliderValue}</Text>
           <View style={styles.btnContainer}>
           <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('AddItemScreen')}><Text style={styles.btnText}> Edit </Text></TouchableOpacity>
           </View> 
           <View style={styles.btnContainer}>
-          <TouchableOpacity style={styles.button}><Text style={styles.btnText} onPress={() => navigation.navigate('Confirmation')}> Post the Job </Text></TouchableOpacity>
+          <TouchableOpacity style={styles.button}><Text style={styles.btnText} 
+          onPress={async () => { await postJunkItem(
+            currentUser.uid,
+            service,
+            image,
+            selectedweight,
+            selectedquantity,
+            postHeading,
+            description,
+            city,
+            province,
+            zipCode,
+            specialInstructions,
+            contactPerson,
+            phoneNumber,
+            streetAddress,
+            sliderValue); navigation.navigate('Confirmation')}}> Post the Job </Text></TouchableOpacity>
           </View>
         </View>
         </ScrollView>

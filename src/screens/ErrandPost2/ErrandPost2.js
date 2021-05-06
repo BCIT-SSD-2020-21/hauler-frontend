@@ -1,4 +1,4 @@
-import React, { useState, setState } from 'react'
+import React, { useState } from 'react'
 import { Text, View, ScrollView, TextInput, SafeAreaView, Picker} from 'react-native'
 import { StyleSheet } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
@@ -12,7 +12,7 @@ export default function ErrandPost2({ navigation, route }) {
     const [province, setProvince] = useState('')
     const [zipCode, setZipCode] = useState('')
     const [specialInstructions, setSpecialInstructions] = useState('')
-    const {selectedweight, selectedquantity, postHeading, description} = route.params;
+    const {image, selectedweight, selectedquantity, postHeading, description} = route.params;
 
     return (
         <ScrollView>
@@ -57,7 +57,7 @@ export default function ErrandPost2({ navigation, route }) {
           />
 
           <View style={styles.btnContainer}>
-          <TouchableOpacity onPress={() => navigation.navigate('ErrandPost3', {selectedweight: selectedweight, selectedquantity: selectedquantity, postHeading: postHeading, description: description, contactPerson: contactPerson, phoneNumber: phoneNumber, specialInstructions: specialInstructions, zipCode: zipCode, province: province, city: city, streetAddress: streetAddress})} style={styles.button} ><Text style={styles.btnText}>Next</Text></TouchableOpacity>
+          <TouchableOpacity onPress={() => navigation.navigate('ErrandPost3', {image:image, selectedweight: selectedweight, selectedquantity: selectedquantity, postHeading: postHeading, description: description, contactPerson: contactPerson, phoneNumber: phoneNumber, specialInstructions: specialInstructions, zipCode: zipCode, province: province, city: city, streetAddress: streetAddress})} style={styles.button} ><Text style={styles.btnText}>Next</Text></TouchableOpacity>
           </View>
         </View>
         </ScrollView>

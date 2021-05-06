@@ -49,10 +49,11 @@ export async function getAllPosts(uid) {
     }
   }
 
-//==================================== To post Moving service details ===================================//
+//==================================== To post Moving and errands service details ===================================//
 
 export async function postItem(
   uid,
+  image,
   service,
   postHeading,
   description,
@@ -81,7 +82,7 @@ export async function postItem(
             postDescription: description,
             loadWeight: selectedweight,
             numberOfItems: selectedquantity,
-            imageUrl: "https://moversdev.com/wp-content/uploads/2019/06/9.7.-ig-e1577379582500.jpg",
+            imageUrl: image,
             price: sliderValue,
             pickUpProvince: province,
             pickUpCity: city,
@@ -97,6 +98,47 @@ export async function postItem(
             dropOffContactPerson: dropOffContactPerson,
             dropOffContactNumber: dropOffPhoneNumber,
             dropOffSpecialInstructions: dropOffSpecialInstructions
+    });
+    console.log('user post created');
+    return res
+}
+
+
+//==================================== To post Junk service details ===================================//
+
+export async function postJunkItem(
+  uid,
+  service,
+  image,
+  selectedweight,
+  selectedquantity,
+  postHeading,
+  description,
+  city,
+  province,
+  zipCode,
+  specialInstructions,
+  contactPerson,
+  phoneNumber,
+  streetAddress,
+  sliderValue
+){
+    const res = await axios.post(`${url}/api/posts`, {
+            userId: uid,
+            service: service,
+            postHeading: postHeading,
+            postDescription: description,
+            loadWeight: selectedweight,
+            numberOfItems: selectedquantity,
+            imageUrl: image,
+            price: sliderValue,
+            pickUpProvince: province,
+            pickUpCity: city,
+            pickUpStreetAddress: streetAddress,
+            pickUpZipCode:zipCode,
+            pickUpContactPerson:contactPerson,
+            pickUpContactNumber: phoneNumber,
+            pickUpSpecialInstruction: specialInstructions
     });
     console.log('user post created');
     return res

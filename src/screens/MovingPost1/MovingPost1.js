@@ -1,15 +1,42 @@
-import React, { useState }from 'react'
-import { Text, View, TextInput, Picker, ScrollView, Image } from 'react-native'
+import React, { useState, useEffect }from 'react'
+import { Text, View, TextInput, Picker, ScrollView, Image, Platform } from 'react-native'
 import { StyleSheet } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
-import { postItem } from '../../../network';
+import * as ImagePicker from 'expo-image-picker';
 
 export default function MovingPost1({ navigation }) {
 
     const[selectedweight, setSelectedWeight] = useState('Select')
     const[selectedquantity, setSelectedQuantity] = useState('Select')
+    const[image, setImage] = useState(null);
     const [postHeading, setPostHeading] = useState('')
     const [description, setDescription] = useState('')
+
+    useEffect(() => {
+        (async () => {
+          if (Platform.OS !== 'web') {
+            const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
+            if (status !== 'granted') {
+              alert('Sorry, we need camera roll permissions to make this work!');
+            }
+          }
+        })();
+      }, []);
+    
+      const pickImageAlbum = async () => {
+        let result = await ImagePicker.launchImageLibraryAsync({
+          mediaTypes: ImagePicker.MediaTypeOptions.All,
+          allowsEditing: true,
+          aspect: [1, 1],
+          quality: 1,
+        });
+    
+        console.log(result);
+    
+        if (!result.cancelled) {
+          setImage(result.uri);
+        }
+      };
 
     return (
         <ScrollView>
@@ -31,6 +58,7 @@ export default function MovingPost1({ navigation }) {
                 <Picker.Item label="Heavy 50Kgs & above" value="Heavy 50Kgs & above" />
             </Picker>
             <Picker selectedValue={selectedquantity} style={{height: 50, width: 380}} onValueChange={(itemValue, itemIndex) => setSelectedQuantity(itemValue)}>
+                <Picker.Item label="0" value="0" />
                 <Picker.Item label="1" value="1" />
                 <Picker.Item label="2" value="2"/>
                 <Picker.Item label="3" value="3" />
@@ -43,33 +71,16 @@ export default function MovingPost1({ navigation }) {
                 <Picker.Item label="10" value="10" />
             </Picker>
             <View style={styles.btnContainer}>
-                <TouchableOpacity style={styles.button}><Text style={styles.btnText}>Upload Image</Text></TouchableOpacity>
+                <TouchableOpacity style={styles.button} onPress={() => pickImageAlbum() }><Text style={styles.btnText}>Upload Image</Text></TouchableOpacity>
             </View>
-            <View style={styles.imageContainer}>
-            <View style={styles.imageRow}>
-                <View style={styles.imageColumn}>
-                <Image style={styles.image} source={{uri:'https://threebestrated.ca/images/SmallMoves-Vancouver-BC.jpeg'}}/></View>
-                <View style={styles.imageColumn}>
-                <Image style={styles.image} source={{uri:'https://lh3.googleusercontent.com/proxy/LUNa3tFlpG-rKwo7z2IglsU0rgnubN3o9JdO-Sb9jqWd4NCyb5ZW_1AzKiTwdhmpRHyWdNocQler50BcJqzZR18MJQdWBrk5vponPNZofKBVwkebBdSPcBsp7kFveEFtdGgN-Q'}}/></View>
-                <View style={styles.imageColumn}>
-                <Image style={styles.image} source={{uri:'https://lh3.googleusercontent.com/proxy/ChtVFBUq1FxzdbuoXK6JYcDivJQ19403u-gIdk-QnJGy3z6-Va30RpAQGvsweNAQQunQRXWbXdPeORpyhdplFohIVaNAzk9o247Ri8vQ14GXGcuOkKa7rJXrebe4Ohc'}}/></View>
-                </View>
-
-                <View style={styles.imageRow}>
-                    <View style={styles.imageColumn}>
-                    <Image style={styles.image} source={{uri:'https://threebestrated.ca/images/AcademyMovers-Surrey-BC.jpeg'}}/></View>
-                    <View style={styles.imageColumn}>
-                    <Image style={styles.image} source={{uri:'https://5moversquotes.com/wp-content/uploads/2015/09/Local-and-Long-Distance-Movers-offer-a-wide-array-of-moving-services-and-moving-packages.jpg'}}/></View>
-                    <View style = {styles.imageColumn}>
-                    <Image style={styles.image} source={{uri:'https://moversdev.com/wp-content/uploads/2019/06/9.7.-ig-e1577379582500.jpg'}}/>
-                    </View>
-                </View>
-                </View>
-
+            <View>
+            {image && <Image source={{ uri: image }} style={{ width: 200, height: 200 }} />}
+            </View>
             <View style={styles.btnContainer}>
                 <TouchableOpacity 
                     onPress={() => navigation.navigate('MovingPost2', 
                     {selectedweight:  selectedweight,
+                    image: image,
                     selectedquantity: selectedquantity, 
                     postHeading: postHeading, 
                     description: description})} 
