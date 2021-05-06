@@ -14,7 +14,7 @@ export default function ErrandPost3({ navigation, route }) {
     const [dropOffProvince, setDropOffProvince] = useState('')
     const [dropOffZipCode, setDropOffZipCode] = useState('')
     const [dropOffSpecialInstructions, setDropOffSpecialInstructions] = useState('')
-    const { selectedweight, selectedquantity, postHeading, description, contactPerson, phoneNumber, specialInstructions, zipCode, province, city, streetAddress} = route.params;
+    const { image, selectedweight, selectedquantity, postHeading, description, contactPerson, phoneNumber, specialInstructions, zipCode, province, city, streetAddress} = route.params;
 
     return (
         <ScrollView>
@@ -80,7 +80,7 @@ export default function ErrandPost3({ navigation, route }) {
           </SafeAreaView>
 
           <View style={styles.btnContainer}>
-          <TouchableOpacity onPress={() => navigation.navigate('ErrandSummary', {selectedweight: selectedweight, selectedquantity: selectedquantity, postHeading: postHeading, description: description, contactPerson: contactPerson, phoneNumber: phoneNumber, specialInstructions: specialInstructions, zipCode: zipCode, province: province, city: city, streetAddress: streetAddress, sliderValue: sliderValue, dropOffCity: dropOffCity, dropOffContactPerson: dropOffContactPerson, dropOffPhoneNumber: dropOffPhoneNumber, dropOffProvince: dropOffProvince, dropOffSpecialInstructions: dropOffSpecialInstructions, dropOffStreetAddress: dropOffStreetAddress, dropOffZipCode: dropOffZipCode})} 
+          <TouchableOpacity onPress={() => navigation.navigate('ErrandSummary', {image: image,selectedweight: selectedweight, selectedquantity: selectedquantity, postHeading: postHeading, description: description, contactPerson: contactPerson, phoneNumber: phoneNumber, specialInstructions: specialInstructions, zipCode: zipCode, province: province, city: city, streetAddress: streetAddress, sliderValue: sliderValue, dropOffCity: dropOffCity, dropOffContactPerson: dropOffContactPerson, dropOffPhoneNumber: dropOffPhoneNumber, dropOffProvince: dropOffProvince, dropOffSpecialInstructions: dropOffSpecialInstructions, dropOffStreetAddress: dropOffStreetAddress, dropOffZipCode: dropOffZipCode})} 
           style={styles.button}>
             <Text style={styles.btnText}>Submit</Text>
           </TouchableOpacity>

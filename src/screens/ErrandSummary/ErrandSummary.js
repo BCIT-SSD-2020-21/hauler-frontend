@@ -1,7 +1,9 @@
-import React from 'react'
+import React, {useContext} from 'react'
 import { Text, View, TextInput, Image } from 'react-native'
 import { StyleSheet } from 'react-native';
 import { ScrollView, TouchableOpacity } from 'react-native-gesture-handler';
+import { Context } from '../../context/ContextProvider';
+import { postItem } from '../../../network';
 
 export default function ErrandSummary({ navigation, route }) {
 
