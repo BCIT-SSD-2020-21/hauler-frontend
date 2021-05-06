@@ -7,7 +7,7 @@ import { Context } from '../../context/ContextProvider';
 
 export default function MovingSummary({ navigation, route}) {
 
-    const {selectedweight,selectedquantity, postHeading, description, city, province, zipCode, specialInstructions, contactPerson, phoneNumber, streetAddress, dropOffCity, dropOffContactPerson, dropOffPhoneNumber, dropOffProvince, dropOffStreetAddress, dropOffZipCode, dropOffSpecialInstructions, sliderValue} = route.params;
+    const {image, selectedweight,selectedquantity, postHeading, description, city, province, zipCode, specialInstructions, contactPerson, phoneNumber, streetAddress, dropOffCity, dropOffContactPerson, dropOffPhoneNumber, dropOffProvince, dropOffStreetAddress, dropOffZipCode, dropOffSpecialInstructions, sliderValue} = route.params;
     const service = "Moving"
 
     const { currentUser } = useContext(Context)
@@ -37,15 +37,17 @@ export default function MovingSummary({ navigation, route}) {
           <Text style={styles.inputLine1} >Zip Code: {dropOffZipCode}</Text>
           <Text style={styles.inputLine2} >Special Instructions: {dropOffSpecialInstructions}</Text>
           <View style={styles.imageContainer}>
-              <Image style={styles.image} source={{uri: 'https://moversdev.com/wp-content/uploads/2019/06/9.7.-ig-e1577379582500.jpg'}}/>
+              <Image style={styles.image} source={{uri:image}}/>
           </View>
           <Text style={styles.inputLine1} >Quoted Price: {sliderValue}</Text>
           <View style={styles.btnContainer}>
           <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('MovingPost1')}><Text style={styles.btnText}> Edit </Text></TouchableOpacity>
           </View> 
           <View style={styles.btnContainer}>
-          <TouchableOpacity style={styles.button}><Text style={styles.btnText} onPress={async () => { await postItem(
+          <TouchableOpacity style={styles.button}><Text style={styles.btnText} 
+          onPress={async () => { await postItem(
                 currentUser.uid,
+                image,
                 service,
                 postHeading,
                 description,

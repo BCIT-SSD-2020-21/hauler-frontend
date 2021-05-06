@@ -14,7 +14,7 @@ export default function MovingPost3({ navigation, route}) {
     const [dropOffProvince, setDropOffProvince] = useState('')
     const [dropOffZipCode, setDropOffZipCode] = useState('')
     const [dropOffSpecialInstructions, setDropOffSpecialInstructions] = useState('')
-    const {selectedweight,selectedquantity,postHeading,description, contactPerson, city, province, zipCode, specialInstructions, phoneNumber, streetAddress} = route.params;
+    const {image,selectedweight,selectedquantity,postHeading,description, contactPerson, city, province, zipCode, specialInstructions, phoneNumber, streetAddress} = route.params;
 
     return (
         <ScrollView>
@@ -79,7 +79,7 @@ export default function MovingPost3({ navigation, route}) {
             </View>
           </SafeAreaView>
           <View style={styles.btnContainer}>
-          <TouchableOpacity onPress={() => navigation.navigate('MovingSummary', {selectedweight:  selectedweight,selectedquantity: selectedquantity, postHeading: postHeading, description: description, city: city, province: province, zipCode: zipCode, specialInstructions: specialInstructions, contactPerson: contactPerson, phoneNumber: phoneNumber, streetAddress: streetAddress, dropOffCity: dropOffCity, dropOffContactPerson: dropOffContactPerson, dropOffPhoneNumber: dropOffPhoneNumber, dropOffProvince: dropOffProvince, dropOffStreetAddress: dropOffStreetAddress, dropOffZipCode: dropOffZipCode, dropOffSpecialInstructions: dropOffSpecialInstructions, sliderValue: sliderValue })} 
+          <TouchableOpacity onPress={() => navigation.navigate('MovingSummary', {image: image, selectedweight:  selectedweight,selectedquantity: selectedquantity, postHeading: postHeading, description: description, city: city, province: province, zipCode: zipCode, specialInstructions: specialInstructions, contactPerson: contactPerson, phoneNumber: phoneNumber, streetAddress: streetAddress, dropOffCity: dropOffCity, dropOffContactPerson: dropOffContactPerson, dropOffPhoneNumber: dropOffPhoneNumber, dropOffProvince: dropOffProvince, dropOffStreetAddress: dropOffStreetAddress, dropOffZipCode: dropOffZipCode, dropOffSpecialInstructions: dropOffSpecialInstructions, sliderValue: sliderValue })} 
           style={styles.button} >
               <Text style={styles.btnText}>Submit</Text>
             </TouchableOpacity>

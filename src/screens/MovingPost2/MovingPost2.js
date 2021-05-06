@@ -12,7 +12,7 @@ export default function MovingPost2({ navigation, route }) {
     const [province, setProvince] = useState('')
     const [zipCode, setZipCode] = useState('')
     const [specialInstructions, setSpecialInstructions] = useState('')
-    const {selectedweight,selectedquantity,postHeading,description} = route.params;
+    const {image,selectedweight,selectedquantity,postHeading,description} = route.params;
 
     return (
         <ScrollView>
@@ -56,7 +56,7 @@ export default function MovingPost2({ navigation, route }) {
             value={specialInstructions}
           />
           <View style={styles.btnContainer}>
-          <TouchableOpacity onPress={() => navigation.navigate('MovingPost3', {selectedweight:  selectedweight,selectedquantity: selectedquantity, postHeading: postHeading, description: description, city: city, province: province, zipCode: zipCode, specialInstructions: specialInstructions, contactPerson: contactPerson, phoneNumber: phoneNumber, streetAddress: streetAddress})} 
+          <TouchableOpacity onPress={() => navigation.navigate('MovingPost3', {image: image, selectedweight:  selectedweight,selectedquantity: selectedquantity, postHeading: postHeading, description: description, city: city, province: province, zipCode: zipCode, specialInstructions: specialInstructions, contactPerson: contactPerson, phoneNumber: phoneNumber, streetAddress: streetAddress})} 
           style={styles.button} >
               <Text style={styles.btnText}>Next</Text>
             </TouchableOpacity>
