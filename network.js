@@ -49,7 +49,7 @@ export async function getAllPosts(uid) {
     }
   }
 
-//==================================== To post Moving service details ===================================//
+//==================================== To post Moving and errands service details ===================================//
 
 export async function postItem(
   uid,
@@ -81,7 +81,7 @@ export async function postItem(
             postDescription: description,
             loadWeight: selectedweight,
             numberOfItems: selectedquantity,
-            imageUrl: "https://moversdev.com/wp-content/uploads/2019/06/9.7.-ig-e1577379582500.jpg",
+            imageUrl: image,
             price: sliderValue,
             pickUpProvince: province,
             pickUpCity: city,
