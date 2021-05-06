@@ -2,6 +2,7 @@ import React, { useState }from 'react'
 import { Text, View, TextInput, Picker, ScrollView, Image } from 'react-native'
 import { StyleSheet } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
+import { postItem } from '../../../network';
 
 export default function MovingPost1({ navigation }) {
 

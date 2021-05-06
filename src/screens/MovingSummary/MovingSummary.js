@@ -1,11 +1,16 @@
-import React from 'react'
+import React, { useContext} from 'react'
 import { Text, View, TextInput, Image } from 'react-native'
 import { StyleSheet } from 'react-native';
 import { ScrollView, TouchableOpacity } from 'react-native-gesture-handler';
+import { postItem } from '../../../network';
+import { Context } from '../../context/ContextProvider';
 
 export default function MovingSummary({ navigation, route}) {
 
     const {selectedweight,selectedquantity, postHeading, description, city, province, zipCode, specialInstructions, contactPerson, phoneNumber, streetAddress, dropOffCity, dropOffContactPerson, dropOffPhoneNumber, dropOffProvince, dropOffStreetAddress, dropOffZipCode, dropOffSpecialInstructions, sliderValue} = route.params;
+    const service = "Moving"
+
+    const { currentUser } = useContext(Context)
 
     return (
         <ScrollView>
@@ -39,7 +44,28 @@ export default function MovingSummary({ navigation, route}) {
           <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('MovingPost1')}><Text style={styles.btnText}> Edit </Text></TouchableOpacity>
           </View> 
           <View style={styles.btnContainer}>
-          <TouchableOpacity style={styles.button}><Text style={styles.btnText} onPress={() => navigation.navigate('Confirmation')}> Post the Job </Text></TouchableOpacity>
+          <TouchableOpacity style={styles.button}><Text style={styles.btnText} onPress={async () => { await postItem(
+                currentUser.uid,
+                service,
+                postHeading,
+                description,
+                selectedweight,
+                selectedquantity,
+                contactPerson,
+                phoneNumber,
+                streetAddress,
+                city,
+                province,
+                zipCode,
+                specialInstructions,
+                sliderValue,
+                dropOffContactPerson,
+                dropOffPhoneNumber,
+                dropOffStreetAddress,
+                dropOffCity,
+                dropOffProvince,
+                dropOffZipCode,
+                dropOffSpecialInstructions); navigation.navigate('Confirmation')}}> Post the Job </Text></TouchableOpacity>
           </View>
         </View>
         </ScrollView>
