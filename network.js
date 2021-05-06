@@ -53,6 +53,7 @@ export async function getAllPosts(uid) {
 
 export async function postItem(
   uid,
+  image,
   service,
   postHeading,
   description,
