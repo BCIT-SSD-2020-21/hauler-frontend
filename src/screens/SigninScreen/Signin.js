@@ -77,9 +77,9 @@ const styles = StyleSheet.create({
     },
     logo: {
         width: 200,
-        height: 100,
+        height: 200,
         alignSelf: 'center',
-        marginTop: 180,
+        marginTop: 150,
     },
     input: {
         height: 25,
