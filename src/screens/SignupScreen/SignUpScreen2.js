@@ -13,7 +13,7 @@ export default function SignUpScreen2({ navigation, route }) {
     const [loading, setLoading] = useState('')
     const [expiryDate, setExpiryDate] = useState('')
     const [cvv, setCvv] = useState('')
-    const { firstName, lastName, email, password, confirmPassword, contactNumber, province, city, streetAddress, unitNumber, dateOfBirth} = route.params;
+    const { image, firstName, lastName, email, password, confirmPassword, contactNumber, province, city, streetAddress, unitNumber, dateOfBirth} = route.params;
 
     const onSignUpClicked = async () => {
         if (password !== confirmPassword) {
@@ -27,6 +27,7 @@ export default function SignUpScreen2({ navigation, route }) {
             const currentUid = response.user.uid
             await signUp(
                 currentUid,
+                image,
                 firstName,
                 lastName,
                 dateOfBirth,

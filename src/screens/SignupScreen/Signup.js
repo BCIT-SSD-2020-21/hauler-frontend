@@ -1,7 +1,8 @@
-import React, { useState } from 'react'
-import { Text, TextInput, TouchableOpacity, View, Image, ScrollView } from 'react-native'
+import React, { useState, useEffect } from 'react'
+import { Text, TextInput, TouchableOpacity, View, Image, ScrollView, Platform } from 'react-native'
 import { StyleSheet } from 'react-native';
 import { Avatar } from 'react-native-elements';
+import * as ImagePicker from 'expo-image-picker';
 
 export default function Signup({ navigation }) {
 
@@ -17,6 +18,31 @@ export default function Signup({ navigation }) {
     const [streetAddress, setStreetAddress] = useState('')
     const [unitNumber, setUnitNumber] = useState('')
     const [contactNumber, setContactNumber] = useState('')
+    const [image, setImage] = useState(null)
+
+    useEffect(() => {
+        (async () => {
+            if(Platform.OS !=='web'){
+                const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
+                if(status !== 'granted'){
+                    alert('Sorry!! We need camera roll permission to make this work.');
+                }
+            }
+        })();
+    }, []);
+
+    const pickImageAlbum = async () => {
+        let result = await ImagePicker.launchImageLibraryAsync({
+            mediaTypes: ImagePicker.MediaTypeOptions.Images,
+            allowsEditing: true,
+            aspect:[1,1],
+            quality: 1,
+        });
+        console.log(result);
+        if(!result.cancelled){
+            setImage(result.uri)
+        }
+    };
     
 
     return (
@@ -25,11 +51,18 @@ export default function Signup({ navigation }) {
                 <View
                     style={{ flex: 1, width: '100%' }}>
                         <View style={styles.avatarView}>
-                            <Avatar
+                            <TouchableOpacity onPress={() => pickImageAlbum()}><Avatar
                                 size={125}
                                 rounded 
-                                source={{uri: 'https://siddharthagarwalclasses.com/wp-content/uploads/2020/05/Human-Face-6.png'}}
-                            />
+                                source={{uri: image}}
+                                backgroundColor='#BFBFBF'
+                                />
+                            {/* {image && <Avatar
+                                size={125}
+                                rounded 
+                                source={{uri: image}}
+                            />} */}
+                            </TouchableOpacity>
                         </View>
                     <Text > {error && alert(error)}</Text>
 
@@ -125,7 +158,7 @@ export default function Signup({ navigation }) {
 
                     <TouchableOpacity
                         style={styles.button}
-                        onPress={() => navigation.navigate('SignUpScreen2', {firstName: firstName, lastName: lastName, email: email, password: password, confirmPassword: confirmPassword, contactNumber: contactNumber, province: province, city: city, streetAddress: streetAddress, unitNumber: unitNumber, dateOfBirth: dateOfBirth})}>
+                        onPress={() => navigation.navigate('SignUpScreen2', {firstName: firstName, lastName: lastName, email: email, password: password,image: image, confirmPassword: confirmPassword, contactNumber: contactNumber, province: province, city: city, streetAddress: streetAddress, unitNumber: unitNumber, dateOfBirth: dateOfBirth})}>
                         <Text style={styles.buttonTitle}> Next Step </Text>
                     </TouchableOpacity>
                 </View>
