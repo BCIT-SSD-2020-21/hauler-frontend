@@ -1,13 +1,15 @@
 import React, { useState, useEffect }from 'react'
-import { Text, View, TextInput, Picker, ScrollView, Image,  Platform } from 'react-native'
+import { Text, View, TextInput, ScrollView, Image,  Platform } from 'react-native'
 import { StyleSheet } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import * as ImagePicker from 'expo-image-picker';
+import RNPickerSelect from 'react-native-picker-select';
+import SelectWeight from '../../components/SelectWeight/SelectWeight';
 
 export default function AddItemScreen({ navigation }) {
 
-    const[selectedweight, setSelectedWeight] = useState('Select')
-    const[selectedquantity, setSelectedQuantity] = useState('Select')
+    const[selectedweight, setSelectedWeight] = useState('')
+    const[selectedquantity, setSelectedQuantity] = useState('')
     const[image, setImage] = useState(null);
     const [postHeading, setPostHeading] = useState('')
     const [description, setDescription] = useState('')
@@ -37,21 +39,6 @@ export default function AddItemScreen({ navigation }) {
         setImage(result.uri);
       }
     };
-  
-    // const pickImageCamera = async () => {
-    //   let result = await ImagePicker.launchCameraAsync({
-    //     mediaTypes: ImagePicker.MediaTypeOptions.All,
-    //     allowsEditing: true,
-    //     aspect: [1, 1],
-    //     quality: 1,
-    //   });
-  
-    //   console.log(result);
-  
-    //   if (!result.cancelled) {
-    //     setImage(result.uri);
-    //   }
-    // };
 
     return (
         <ScrollView>
@@ -70,27 +57,11 @@ export default function AddItemScreen({ navigation }) {
             value={description}
             />
 
-            <Picker selectedValue={selectedweight} style={styles.picker} onValueChange={(itemValue, itemIndex) => setSelectedWeight(itemValue)}>
-                <Picker.Item label="No selection" value="None selected" />
-                <Picker.Item label="Light 0-20kgs" value="Light 0-20kgs" />
-                <Picker.Item label="Medium 21-50Kgs" value="Medium 21-50Kgs" />
-                <Picker.Item label="Heavy 50Kgs & above" value="Heavy 50Kgs & above" />
-            </Picker>
-            <Picker selectedValue={selectedquantity} style={styles.picker} onValueChange={(itemValue, itemIndex) => setSelectedQuantity(itemValue)}>
-                <Picker.Item label="0" value="0"/>
-                <Picker.Item label="1" value="1"/>
-                <Picker.Item label="2" value="2" />
-                <Picker.Item label="3" value="3" />
-                <Picker.Item label="4" value="4" />
-                <Picker.Item label="5" value="5" />
-                <Picker.Item label="6" value="6" />
-                <Picker.Item label="7" value="7" />
-                <Picker.Item label="8" value="8" />
-                <Picker.Item label="9" value="9" />
-                <Picker.Item label="10" value="10" />
-            </Picker>
-            <View style={styles.btnContainer}>
-                <TouchableOpacity style={styles.button} onPress={() => pickImageAlbum() }><Text style={styles.btnText}>Upload Image</Text></TouchableOpacity>
+            <SelectWeight 
+              selectedweight={selectedweight}
+              setSelectedWeight={setSelectedWeight}
+            />
+                <TouchableOpacity style={styles.button} onPress={() => pickImageAlbum() }><Text style={styles.buttonTitle}>Upload Image</Text></TouchableOpacity>
             </View>
             <View>
             {image && <Image source={{ uri: image }} style={styles.imageDisplay} />}
@@ -104,9 +75,8 @@ export default function AddItemScreen({ navigation }) {
                 postHeading: postHeading, 
                 description: description}
                 )} style={styles.button}>
-                <Text style={styles.btnText}>Next</Text></TouchableOpacity>
+                <Text style={styles.buttonTitle}>Next</Text></TouchableOpacity>
            </View>
-        </View>
         </ScrollView>
     )
 }
@@ -120,14 +90,14 @@ const styles = StyleSheet.create({
     screenHeading: {
       fontSize: 40,
       fontWeight: '500',
-      marginLeft: 25
+      marginLeft: 20
     },
     inputLine1: {
       height: 25,
       overflow: 'hidden',
       marginTop: 10,
       marginBottom: 10,
-      marginLeft: 25,
+      marginLeft: 20,
       marginRight: 30,
       paddingLeft: 16,
       width: '90%',
@@ -141,29 +111,27 @@ const styles = StyleSheet.create({
         overflow: 'hidden',
         marginTop: 10,
         marginBottom: 10,
-        marginLeft: 25,
+        marginLeft: 20,
         marginRight: 30,
         paddingLeft: 16,
         borderWidth: 1.0,
         borderColor: '#BFBFBF'
     },
-    btnContainer: {
-        display: 'flex',
-        flexDirection: 'row',
-        justifyContent: 'space-around',
-        marginTop: 30,
-    },
     button: {
-        backgroundColor: '#0177FC',
-        borderRadius: 10,
-        display: 'flex',
-    },
-    btnText: {
-        color: 'white',
-        fontSize: 20,
-        paddingVertical: 10,
-        paddingHorizontal: 50,
-    },
+      backgroundColor: '#0177FC',
+      marginLeft: 30,
+      marginRight: 30,
+      marginTop: 20,
+      height: 48,
+      borderRadius: 20,
+      alignItems: "center",
+      justifyContent: 'center'
+  },
+  buttonTitle: {
+      color: 'white',
+      fontSize: 16,
+      fontWeight: "bold"
+  },
     imageContainer:{
         flex: 1,
         justifyContent: 'center',
@@ -173,7 +141,7 @@ const styles = StyleSheet.create({
         width: 200,
         height: 200,
         marginLeft: 50,
-        marginTop: 20,
+        marginTop: 5,
         resizeMode: 'contain', 
     },
     imageRow: {
@@ -192,12 +160,8 @@ const styles = StyleSheet.create({
       },
       text: {
         color: '#BFBFBF',
-        marginLeft: 30,
+        marginLeft: 25,
         fontWeight: 'bold',
         marginTop: 20
       },
-      picker: {
-        marginLeft: 25,
-        marginRight: 20,
-      }
 })
