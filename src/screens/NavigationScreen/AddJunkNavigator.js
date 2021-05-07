@@ -11,11 +11,11 @@ export default function JunkScreenNavigator() {
     return (
         <JunkScreenStack.Navigator initialRouteName='AddItemScreen' screenOptions={{
             headerShown: true,
-            title: 'Hauler',
+            title: 'Junk Removal',
         }}>
-            <JunkScreenStack.Screen name='AddItemScreen' component={AddItemScreen} options={{ headerTitle: 'User Add Item Screen', headerRight: () => <MenuIcon /> }} />
-            <JunkScreenStack.Screen name='AddJunkScreen2' component={AddJunkScreen2} options={{ headerTitle: 'User Add Item Screen', headerRight: () => <MenuIcon /> }} />
-            <JunkScreenStack.Screen name='AddJunkScreen3' component={AddJunkScreen3} options={{ headerTitle: 'User Add Item Screen', headerRight: () => <MenuIcon /> }} />
+            <JunkScreenStack.Screen name='AddItemScreen' component={AddItemScreen} options={{ headerRight: () => <MenuIcon /> }} />
+            <JunkScreenStack.Screen name='AddJunkScreen2' component={AddJunkScreen2} options={{ headerRight: () => <MenuIcon /> }} />
+            <JunkScreenStack.Screen name='AddJunkScreen3' component={AddJunkScreen3} options={{ headerRight: () => <MenuIcon /> }} />
             <JunkScreenStack.Screen name='Confirmation' component={Confirmation} options={{ headerTitle: 'Confirmation Screen', headerRight: () => <MenuIcon /> }} />
         </JunkScreenStack.Navigator>
     )

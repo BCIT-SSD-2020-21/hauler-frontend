@@ -9,8 +9,8 @@ export default StyleSheet.create({
     },
     centerText: {
         textAlign: 'center',
-        marginTop: 100,
-        fontSize: 30,
+        marginTop: 85,
+        fontSize: 40,
         fontFamily: 'sans-serif-condensed',
     },
     text: {
@@ -23,14 +23,16 @@ export default StyleSheet.create({
         display: 'flex',
         flexDirection: 'row',
         justifyContent: 'space-around',
-        marginTop: 125,
+        marginTop: 225,
+        marginLeft: 25,
         flexDirection: 'column'
     },
     button: {
-
-        borderRadius: 10,
+        backgroundColor: '#1177FC',
+        borderRadius: 20,
         display: 'flex',
         margin: 10,
+        width: '85%'
     },
     btnText: {
         color: 'white',
@@ -39,10 +41,5 @@ export default StyleSheet.create({
         paddingHorizontal: 50,
         textAlign: 'center'
     },
-    image: {
-        flex: 1,
-        resizeMode: "cover",
-        justifyContent: "center"
-    }
 
 });

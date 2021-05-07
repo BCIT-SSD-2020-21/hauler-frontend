@@ -56,24 +56,28 @@ export default function AddItemScreen({ navigation }) {
     return (
         <ScrollView>
         <View style={styles.container}>
-            <Text> Junk Removal </Text>
-            <TextInput style={styles.inputLine1} placeholder='Post Heading' 
+            <Text style={styles.screenHeading}> Add Item </Text>
+
+            <Text style={styles.text}> Post Heading : </Text>
+            <TextInput style={styles.inputLine1} 
             onChangeText={(postHeading) => {setPostHeading(postHeading)}} 
             value={postHeading}
             />
 
-            <TextInput style={styles.inputLine2} placeholder='Item Name / List of Items / Description' 
+            <Text style={styles.text}> Post Description : </Text>
+            <TextInput style={styles.inputLine2} 
             onChangeText={(description) => {setDescription(description)}} 
             value={description}
             />
 
-            <Picker selectedValue={selectedweight} style={{height: 50, width: 380}} onValueChange={(itemValue, itemIndex) => setSelectedWeight(itemValue)}>
+            <Picker selectedValue={selectedweight} style={styles.picker} onValueChange={(itemValue, itemIndex) => setSelectedWeight(itemValue)}>
                 <Picker.Item label="No selection" value="None selected" />
                 <Picker.Item label="Light 0-20kgs" value="Light 0-20kgs" />
                 <Picker.Item label="Medium 21-50Kgs" value="Medium 21-50Kgs" />
                 <Picker.Item label="Heavy 50Kgs & above" value="Heavy 50Kgs & above" />
             </Picker>
-            <Picker selectedValue={selectedquantity} style={{height: 50, width: 380}} onValueChange={(itemValue, itemIndex) => setSelectedQuantity(itemValue)}>
+            <Picker selectedValue={selectedquantity} style={styles.picker} onValueChange={(itemValue, itemIndex) => setSelectedQuantity(itemValue)}>
+                <Picker.Item label="0" value="0"/>
                 <Picker.Item label="1" value="1"/>
                 <Picker.Item label="2" value="2" />
                 <Picker.Item label="3" value="3" />
@@ -89,7 +93,7 @@ export default function AddItemScreen({ navigation }) {
                 <TouchableOpacity style={styles.button} onPress={() => pickImageAlbum() }><Text style={styles.btnText}>Upload Image</Text></TouchableOpacity>
             </View>
             <View>
-            {image && <Image source={{ uri: image }} style={{ width: 200, height: 200 }} />}
+            {image && <Image source={{ uri: image }} style={styles.imageDisplay} />}
             </View>
             <View> 
                 <TouchableOpacity 
@@ -110,31 +114,38 @@ export default function AddItemScreen({ navigation }) {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        alignItems: 'center'
+        //alignItems: 'center',
+        marginVertical: 20
+    },
+    screenHeading: {
+      fontSize: 40,
+      fontWeight: '500',
+      marginLeft: 25
     },
     inputLine1: {
-        height: 40,
-        width: '100%',
-        borderRadius: 5,
-        overflow: 'hidden',
-        backgroundColor: 'white',
-        marginTop: 10,
-        marginBottom: 10,
-        marginLeft: 30,
-        marginRight: 30,
-        paddingLeft: 16
+      height: 25,
+      overflow: 'hidden',
+      marginTop: 10,
+      marginBottom: 10,
+      marginLeft: 25,
+      marginRight: 30,
+      paddingLeft: 16,
+      width: '90%',
+      borderBottomWidth: 1.0,
+      borderColor: '#BFBFBF',
     },
     inputLine2: {
         height: 100,
-        width: '100%',
+        width: '90%',
         borderRadius: 5,
         overflow: 'hidden',
-        backgroundColor: 'white',
         marginTop: 10,
         marginBottom: 10,
-        marginLeft: 30,
+        marginLeft: 25,
         marginRight: 30,
-        paddingLeft: 16
+        paddingLeft: 16,
+        borderWidth: 1.0,
+        borderColor: '#BFBFBF'
     },
     btnContainer: {
         display: 'flex',
@@ -158,10 +169,11 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
     },
-    image:{
-        width: 80,
-        height: 80,
-        margin: 5,
+    imageDisplay:{
+        width: 200,
+        height: 200,
+        marginLeft: 50,
+        marginTop: 20,
         resizeMode: 'contain', 
     },
     imageRow: {
@@ -177,5 +189,15 @@ const styles = StyleSheet.create({
         width: 100,
         height: 100,
         resizeMode: "contain"
+      },
+      text: {
+        color: '#BFBFBF',
+        marginLeft: 30,
+        fontWeight: 'bold',
+        marginTop: 20
+      },
+      picker: {
+        marginLeft: 25,
+        marginRight: 20,
       }
 })

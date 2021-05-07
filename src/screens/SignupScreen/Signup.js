@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Text, TextInput, TouchableOpacity, View, Image, ScrollView, Platform } from 'react-native'
+import { Text, TextInput, TouchableOpacity, View, ScrollView, Platform } from 'react-native'
 import { StyleSheet } from 'react-native';
 import { Avatar } from 'react-native-elements';
 import * as ImagePicker from 'expo-image-picker';
@@ -55,8 +55,9 @@ export default function Signup({ navigation }) {
                                 size={125}
                                 rounded 
                                 source={{uri: image}}
-                                backgroundColor='#BFBFBF'
+                                backgroundColor='lightgrey'
                                 />
+                                
                             {/* {image && <Avatar
                                 size={125}
                                 rounded 
