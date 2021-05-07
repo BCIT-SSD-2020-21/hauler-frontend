@@ -80,7 +80,7 @@ export default function ErrandPost3({ navigation, route }) {
           </SafeAreaView>
 
           <View style={styles.btnContainer}>
-          <TouchableOpacity onPress={() => navigation.navigate('Errand Summary', {image: image,selectedweight: selectedweight, selectedquantity: selectedquantity, postHeading: postHeading, description: description, contactPerson: contactPerson, phoneNumber: phoneNumber, specialInstructions: specialInstructions, zipCode: zipCode, province: province, city: city, streetAddress: streetAddress, sliderValue: sliderValue, dropOffCity: dropOffCity, dropOffContactPerson: dropOffContactPerson, dropOffPhoneNumber: dropOffPhoneNumber, dropOffProvince: dropOffProvince, dropOffSpecialInstructions: dropOffSpecialInstructions, dropOffStreetAddress: dropOffStreetAddress, dropOffZipCode: dropOffZipCode})} 
+          <TouchableOpacity onPress={() => navigation.navigate('ErrandSummary', {image: image, selectedweight: selectedweight, selectedquantity: selectedquantity, postHeading: postHeading, description: description, contactPerson: contactPerson, phoneNumber: phoneNumber, specialInstructions: specialInstructions, zipCode: zipCode, province: province, city: city, streetAddress: streetAddress, sliderValue: sliderValue, dropOffCity: dropOffCity, dropOffContactPerson: dropOffContactPerson, dropOffPhoneNumber: dropOffPhoneNumber, dropOffProvince: dropOffProvince, dropOffSpecialInstructions: dropOffSpecialInstructions, dropOffStreetAddress: dropOffStreetAddress, dropOffZipCode: dropOffZipCode})} 
           style={styles.button}>
             <Text style={styles.btnText}>Submit</Text>
           </TouchableOpacity>
