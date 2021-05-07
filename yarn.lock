@@ -2013,7 +2013,14 @@
     "lodash" "^4.17.20"
     "lodash-es" "^4.17.20"
 
-"@stripe/stripe-js@^1.14.0":
+"@stripe/react-stripe-js@^1.4.0":
+  "integrity" "sha512-Pz5QmG8PgJ3pi8gOWxlngk+ns63p2L1Ds192fn55ykZNRKfGz3G6sfssUVThHn/NAt2Hp1eCEsy/hvlKnXJI6g=="
+  "resolved" "https://registry.npmjs.org/@stripe/react-stripe-js/-/react-stripe-js-1.4.0.tgz"
+  "version" "1.4.0"
+  dependencies:
+    "prop-types" "^15.7.2"
+
+"@stripe/stripe-js@^1.13.0", "@stripe/stripe-js@^1.14.0":
   "integrity" "sha512-Zw4EI+ph8RPxRpIX2uwKKDIbe7WM2OarasPjIPRulU1UCj8lRFqWWW/fTj79lZtnX3FNZkiTRM13UG1UZF7yjQ=="
   "resolved" "https://registry.npmjs.org/@stripe/stripe-js/-/stripe-js-1.14.0.tgz"
   "version" "1.14.0"
@@ -3035,6 +3042,11 @@
   dependencies:
     "loose-envify" "^1.3.1"
     "object-assign" "^4.1.1"
+
+"creditcardutils@^1.0.0":
+  "integrity" "sha1-yUrY5vXvJJsEY+Dl6o16fE6c5CU="
+  "resolved" "https://registry.npmjs.org/creditcardutils/-/creditcardutils-1.0.0.tgz"
+  "version" "1.0.0"
 
 "cross-fetch@^3.0.4":
   "integrity" "sha512-1eAtFWdIubi6T4XPy6ei9iUFoKpUkIF971QLN8lIvvvwueI65+Nw5haMNKUwfJxabqlIIDODJKGrQ66gxC0PbQ=="
@@ -5853,7 +5865,7 @@
     "react-is" "^16.3.2"
     "warning" "^4.0.0"
 
-"prop-types@^15.6.0", "prop-types@^15.6.1", "prop-types@^15.6.2", "prop-types@^15.7.2":
+"prop-types@^15.5.10", "prop-types@^15.6.0", "prop-types@^15.6.1", "prop-types@^15.6.2", "prop-types@^15.7.2":
   "integrity" "sha512-8QQikdH7//R2vurIJSutZ1smHYTcLpRWEOlHnzcWHmBYrOGUysKwSsrC89BCiFj3CbrfJ/nXFdJepOVrY1GCHQ=="
   "resolved" "https://registry.npmjs.org/prop-types/-/prop-types-15.7.2.tgz"
   "version" "15.7.2"
@@ -5946,7 +5958,7 @@
     "shell-quote" "^1.6.1"
     "ws" "^7"
 
-"react-dom@>=16.3.0", "react-dom@>=16.5.1", "react-dom@>=16.6.0", "react-dom@>=16.8.0", "react-dom@16.13.1":
+"react-dom@^16.8.0 || ^17.0.0", "react-dom@>=16.3.0", "react-dom@>=16.5.1", "react-dom@>=16.6.0", "react-dom@>=16.8.0", "react-dom@16.13.1":
   "integrity" "sha512-81PIMmVLnCNLO/fFOQxdQkvEq/+Hfpv24XNJfpyZhTRfO0QcmQIF/PgCa1zCOj2w1hrn12MFLyaJ/G0+Mxtfag=="
   "resolved" "https://registry.npmjs.org/react-dom/-/react-dom-16.13.1.tgz"
   "version" "16.13.1"
@@ -5970,6 +5982,14 @@
   "integrity" "sha512-fBASbA6LnOU9dOU2eW7aQ8xmYBSXUIWr+UmF9b1efZBazGNO+rcXT/icdKnYm2pTwcRylVUYwW7H1PHfLekVzA=="
   "resolved" "https://registry.npmjs.org/react-lifecycles-compat/-/react-lifecycles-compat-3.0.4.tgz"
   "version" "3.0.4"
+
+"react-native-credit-card-display@^0.3.6":
+  "integrity" "sha512-Wd+uWOYd5lH7fmVcY8XxqXeM0SdIUK52T/k3QRMlnNamabeeYMSYUySC9fCzZrRjPTxZAvlHHRbf8Yb3NbxWiA=="
+  "resolved" "https://registry.npmjs.org/react-native-credit-card-display/-/react-native-credit-card-display-0.3.6.tgz"
+  "version" "0.3.6"
+  dependencies:
+    "creditcardutils" "^1.0.0"
+    "react-native-flip-card" "^3.5.6"
 
 "react-native-dotenv@^2.5.5":
   "integrity" "sha512-ODaFNUX52ZYfBLJ8WSEm87nv+HrwxeEoZchuwsPyEWwsC4ARRhklfsKTf1dg09UpPS31zx5IUV431fLvcepCsA=="
@@ -5998,6 +6018,13 @@
     "opencollective-postinstall" "^2.0.3"
     "react-native-ratings" "^7.3.0"
     "react-native-size-matters" "^0.3.1"
+
+"react-native-flip-card@^3.5.6":
+  "integrity" "sha512-lqsjl4vF5DyHD7mjBJpyBoaLKVxalzoKfCosE63QF+TaCF9MKdJrxmGFQj/i64GDiMJqeS/5sNDcICUXtgFsVA=="
+  "resolved" "https://registry.npmjs.org/react-native-flip-card/-/react-native-flip-card-3.5.6.tgz"
+  "version" "3.5.6"
+  dependencies:
+    "prop-types" "^15.5.10"
 
 "react-native-gesture-handler@*", "react-native-gesture-handler@>= 1.0.0", "react-native-gesture-handler@~1.10.2":
   "integrity" "sha512-cBGMi1IEsIVMgoox4RvMx7V2r6bNKw0uR1Mu1o7NbuHS6BRSVLq0dP34l2ecnPlC+jpWd3le6Yg1nrdCjby2Mw=="
