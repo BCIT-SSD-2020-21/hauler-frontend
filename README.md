@@ -30,6 +30,7 @@
 * npm install @react-native-community/slider --save (for price slider option)
 * npm install react-native-elements 
 * expo install expo-image-picker (for camera and gallery images access from your phone)
+* npm install @stripe/stripe-js (for the credit card functionality)
 ---
 ### Wireframe for User
 Stored in wireframe folder on the root folder.
