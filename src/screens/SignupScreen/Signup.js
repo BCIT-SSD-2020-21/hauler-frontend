@@ -139,7 +139,6 @@ const styles = StyleSheet.create({
         flex: 1,
         alignItems: 'center',
         marginVertical: 20,
-        backgroundColor: 'white',
     },
     logo: {
         width: 200,

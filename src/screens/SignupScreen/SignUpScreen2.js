@@ -56,7 +56,9 @@ export default function SignUpScreen2({ navigation, route }) {
                     style={{ flex: 1, width: '100%' }}>
                         
                     <Text > {error && alert(error)}</Text>
+                    <Text style={styles.text1}> Add Your Card Details </Text>
 
+                    <View style={styles.details}>
                     <Text style={styles.text}> Card Number : </Text>
                     <TextInput
                         style={styles.input}
@@ -81,6 +83,7 @@ export default function SignUpScreen2({ navigation, route }) {
                         onChangeText={(cvv) => { setError(""); setCvv(cvv) }}
                         value={cvv}
                     />
+                    </View>
 
                     <TouchableOpacity
                         style={styles.button}
@@ -110,7 +113,6 @@ const styles = StyleSheet.create({
         flex: 1,
         alignItems: 'center',
         marginVertical: 20,
-        backgroundColor: 'white',
     },
     input: {
         height: 25,
@@ -164,6 +166,16 @@ const styles = StyleSheet.create({
     },
     text: {
         color: '#BFBFBF',
-        marginLeft: 35
+        marginLeft: 35,
+    },
+    text1: {
+        color: 'black',
+        fontSize: 30,
+        fontWeight: '100',
+        marginLeft: 20,
+        marginTop: 100 
+    },
+    details: {
+        marginTop: 50
     }
 })
