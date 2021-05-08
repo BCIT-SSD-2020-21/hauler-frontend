@@ -2,52 +2,43 @@ import React, { useState } from 'react'
 import { Text, View, ScrollView, TextInput, SafeAreaView, Picker, Dimensions} from 'react-native'
 import { StyleSheet } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
-import Constants from 'expo-constants';
 import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
+import Constants from 'expo-constants';
 import {GOOGLE_MAP_API} from '@env';
-import MapView from 'react-native-maps';
+// import MapView from 'react-native-maps';
 
 
 export default function ErrandPost2({ navigation, route }) {
 
-    // const [pickUpAddress, setpickUpAddress] = useState('')
-    // const [dropOffAddress, setDropOffAddress] = useState('')
+    const [pickUpAddress, setPickUpAddress] = useState('')
 
     const {image, selectedweight, selectedquantity, postHeading, description} = route.params;
 
-    // const googleAPI = GOOGLE_MAP_API
-
-
    return (
-     <View>
-    <View style={styles.container}>
-      <Text>Pick Up Location</Text>
-    <GooglePlacesAutocomplete
-      placeholder="Search"
-      query={{
-        key: GOOGLE_MAP_API,
-        language: 'en', // language of the results
-      }}
-      onPress={(data, details = null) => console.log(data)}
-      onFail={(error) => console.error(error)}
-    />
-     {/* <Text>Drop off Location</Text>
-    <GooglePlacesAutocomplete
-      placeholder="Search"
-      query={{
-        key: GOOGLE_MAP_API,
-        language: 'en', // language of the results
-      }}
-      onPress={(data, details = null) => console.log(data)}
-      onFail={(error) => console.error(error)}
-    /> */}
-    
-  {/* </View>
-  <View style={styles.containerMap}>
-  <MapView style={styles.map} />
-</View> */}
-</View>
-</View>
+    //  <ScrollView keyboardShouldPersistTaps={'handled'}>
+        <View style={styles.container}>
+          <Text>Enter your pick up location</Text>
+              <GooglePlacesAutocomplete
+                  placeholder="Full Address"
+                  minLength={2}
+                  fetchDetails= {true}
+                  onPress={(pickAddress) => {setPickUpAddress(pickAddress)}}
+                  value={pickUpAddress}
+                  onFail={(error) => console.error(error)}
+                  query={{
+                    key: GOOGLE_MAP_API,
+                    language: 'en', // language of the results
+                  }}
+                />
+
+              <View style={styles.btnContainer}>
+          <TouchableOpacity onPress={() => navigation.navigate('ErrandPost4', {image: image, selectedweight:  selectedweight,selectedquantity: selectedquantity, postHeading: postHeading, description: description, pickUpAddress: pickUpAddress})} 
+          style={styles.button} >
+              <Text style={styles.btnText}>Next</Text>
+            </TouchableOpacity>
+          </View>
+          </View>
+          // </ScrollView>
     )
 }
 
@@ -55,17 +46,38 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 20,
-    // paddingTop: Constants.statusBarHeight + 10,
+    paddingTop: Constants.statusBarHeight + 10,
     backgroundColor: '#ecf0f1',
   },
-  containerMap: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  map: {
-    width: Dimensions.get('window').width,
-    height: Dimensions.get('window').height,
-  },
+
+  inputLine1: {
+    height: 40,
+    width: '100%',
+    borderRadius: 5,
+    overflow: 'hidden',
+    backgroundColor: 'white',
+    marginTop: 10,
+    marginBottom: 10,
+    marginLeft: 30,
+    marginRight: 30,
+    paddingLeft: 16
+},
+btnContainer: {
+  display: 'flex',
+  flexDirection: 'row',
+  justifyContent: 'space-around',
+  marginTop: 30,
+},
+button: {
+  backgroundColor: '#0177FC',
+  borderRadius: 10,
+  display: 'flex',
+},
+btnText: {
+  color: 'white',
+  fontSize: 20,
+  paddingVertical: 10,
+  paddingHorizontal: 50,
+},
+
 })
