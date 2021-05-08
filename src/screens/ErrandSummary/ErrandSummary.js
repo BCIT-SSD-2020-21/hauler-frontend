@@ -10,7 +10,7 @@ import {GOOGLE_MAP_API} from '@env';
 
 export default function ErrandSummary({ navigation, route }) {
 
-    const{ image, selectedweight, selectedquantity, postHeading, description, contactPerson, phoneNumber, specialInstructions, zipCode, province, city, streetAddress, sliderValue, dropOffCity, dropOffContactPerson, dropOffPhoneNumber, dropOffProvince, dropOffSpecialInstructions, dropOffStreetAddress, dropOffZipCode} = route.params;
+    const{image, selectedweight, selectedquantity, postHeading, description,pickUpAddress, dropOffAddress, pickContactPerson, pickUpPhoneNumber, pickUpSpecialInstructions, dropOffContactPerson, dropOffPhoneNumber, dropOffSpecialInstructions, sliderValue} = route.params;
 
     const service = "Errands"
     const { currentUser } = useContext(Context)
@@ -18,9 +18,9 @@ export default function ErrandSummary({ navigation, route }) {
     const googleAPI = GOOGLE_MAP_API
 
 
-    getData(() => {
-        Geocoder.init({googleAPI});
-    })
+    // getData(() => {
+    //     Geocoder.init({googleAPI});
+    // })
 
     return (
         <ScrollView>
@@ -31,20 +31,14 @@ export default function ErrandSummary({ navigation, route }) {
           <Text style={styles.inputLine1} >Item Weigth: {selectedweight}</Text>
           <Text style={styles.inputLine1} >Number of Items: {selectedquantity}</Text>
           <Text style={{fontSize: 20, fontWeight: 'bold'}} >Pick Up Details: </Text>
-          <Text style={styles.inputLine1} >Contact Person: {contactPerson}</Text>
-          <Text style={styles.inputLine1} >Phone Number: {phoneNumber}</Text>
-          <Text style={styles.inputLine2} >Street Address: {streetAddress}</Text>
-          <Text style={styles.inputLine1} >City: {city}</Text>
-          <Text style={styles.inputLine1} >Province: {province}</Text>
-          <Text style={styles.inputLine1} >Zip Code: {zipCode}</Text>
-          <Text style={styles.inputLine2} >Special Instructions: {specialInstructions}</Text>
+          <Text style={styles.inputLine1} >Contact Person: {pickContactPerson}</Text>
+          <Text style={styles.inputLine1} >Phone Number: {pickUpPhoneNumber}</Text>
+          <Text style={styles.inputLine2} >Street Address: {pickUpAddress.description}</Text>
+          <Text style={styles.inputLine2} >Special Instructions: {pickUpSpecialInstructions}</Text>
           <Text style={{fontSize: 20, fontWeight: 'bold'}} > Drop Off Details: </Text>
           <Text style={styles.inputLine1} >Contact Person: {dropOffContactPerson}</Text>
           <Text style={styles.inputLine1} >Phone Number: {dropOffPhoneNumber}</Text>
-          <Text style={styles.inputLine2} >Street Address: {dropOffStreetAddress}</Text>
-          <Text style={styles.inputLine1} >City: {dropOffCity}</Text>
-          <Text style={styles.inputLine1} >Province: {dropOffProvince}</Text>
-          <Text style={styles.inputLine1} >Zip Code: {dropOffZipCode}</Text>
+          <Text style={styles.inputLine2} >Street Address: {dropOffAddress.description}</Text>
           <Text style={styles.inputLine2} >Special Instructions: {dropOffSpecialInstructions}</Text>
           <View style={styles.imageContainer}>
               <Image style={styles.image} source={{uri: image}}/>
@@ -57,27 +51,21 @@ export default function ErrandSummary({ navigation, route }) {
           <View style={styles.btnContainer}>
           <TouchableOpacity style={styles.button}><Text style={styles.btnText} onPress={async () => { await postItem(
                 currentUser.uid,
-                image,
                 service,
-                postHeading,
-                description,
+                image, 
                 selectedweight,
                 selectedquantity,
-                contactPerson,
-                phoneNumber,
-                streetAddress,
-                city,
-                province,
-                zipCode,
-                specialInstructions,
-                sliderValue,
+                postHeading,
+                description,
+                pickUpAddress,
+                dropOffAddress,
+                pickContactPerson,
+                pickUpPhoneNumber,
+                pickUpSpecialInstructions,
                 dropOffContactPerson,
                 dropOffPhoneNumber,
-                dropOffStreetAddress,
-                dropOffCity,
-                dropOffProvince,
-                dropOffZipCode,
-                dropOffSpecialInstructions);navigation.navigate('Confirmation')}}> Post the Job </Text></TouchableOpacity>
+                dropOffSpecialInstructions,
+                sliderValue);navigation.navigate('Confirmation')}}> Post the Job </Text></TouchableOpacity>
           </View>
         </View>
         <View style={styles.containerMap}>
