@@ -51,60 +51,7 @@ export async function getAllPosts(uid) {
 
 //==================================== To post Moving and errands service details ===================================//
 
-export async function postMovingItem(
-  uid,
-  image,
-  service,
-  postHeading,
-  description,
-  selectedweight,
-  selectedquantity,
-  contactPerson,
-  phoneNumber,
-  streetAddress,
-  city,
-  province,
-  zipCode,
-  specialInstructions,
-  sliderValue,
-  dropOffContactPerson,
-  dropOffPhoneNumber,
-  dropOffStreetAddress,
-  dropOffCity,
-  dropOffProvince,
-  dropOffZipCode,
-  dropOffSpecialInstructions
-){
-    const res = await axios.post(`${url}/api/posts`, {
-            userId: uid,
-            service: service,
-            postHeading: postHeading,
-            postDescription: description,
-            loadWeight: selectedweight,
-            numberOfItems: selectedquantity,
-            imageUrl: image,
-            price: sliderValue,
-            pickUpProvince: province,
-            pickUpCity: city,
-            pickUpStreetAddress: streetAddress,
-            pickUpZipCode:zipCode,
-            pickUpContactPerson:contactPerson,
-            pickUpContactNumber: phoneNumber,
-            pickUpSpecialInstruction: specialInstructions,
-            dropOffProvince: dropOffProvince,
-            dropOffCity: dropOffCity,
-            dropOffStreetAddress: dropOffStreetAddress,
-            dropOffZipCode: dropOffZipCode,
-            dropOffContactPerson: dropOffContactPerson,
-            dropOffContactNumber: dropOffPhoneNumber,
-            dropOffSpecialInstructions: dropOffSpecialInstructions
-    });
-    console.log('user post created');
-    return res
-}
-
-//=========================================Errand Service Function=======================================//
-export async function postErrandItem(
+export async function postItem(
   uid,
   image,
   service,
@@ -175,6 +122,21 @@ export async function postJunkItem(
   streetAddress,
   sliderValue
 ){
+  console.log(`uid:${uid},
+  image : ${image},
+  service: ${service},
+  postHeading: ${postHeading},
+  description: ${description},
+  selectedweight: ${selectedweight},
+  selectedquantity: ${selectedquantity},
+  contactPerson: ${contactPerson},
+  phoneNumber: ${phoneNumber},
+  streetAddress: ${streetAddress},
+  city: ${city},
+  province: ${province},
+  zipCode: ${zipCode},
+  specialInstructions: ${specialInstructions},
+  sliderValue: ${sliderValue}`)
     const res = await axios.post(`${url}/api/posts`, {
             userId: uid,
             service: service,

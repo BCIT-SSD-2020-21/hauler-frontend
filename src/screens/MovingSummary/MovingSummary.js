@@ -2,7 +2,7 @@ import React, { useContext} from 'react'
 import { Text, View, TextInput, Image } from 'react-native'
 import { StyleSheet } from 'react-native';
 import { ScrollView, TouchableOpacity } from 'react-native-gesture-handler';
-import { postMovingItem } from '../../../network';
+import { postItem } from '../../../network';
 import { Context } from '../../context/ContextProvider';
 
 export default function MovingSummary({ navigation, route}) {
@@ -46,7 +46,7 @@ export default function MovingSummary({ navigation, route}) {
           </View> 
           <View>
           <TouchableOpacity style={styles.button}><Text style={styles.buttonTitle} 
-          onPress={async () => { await postMovingItem(
+          onPress={async () => { await postItem(
                 currentUser.uid,
                 image,
                 service,

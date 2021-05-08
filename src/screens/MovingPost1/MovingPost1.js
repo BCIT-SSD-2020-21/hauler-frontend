@@ -7,8 +7,8 @@ import SelectWeight from '../../components/SelectWeight/SelectWeight'
 
 export default function MovingPost1({ navigation }) {
 
-    const[selectedweight, setSelectedWeight] = useState('Select')
-    const[selectedquantity, setSelectedQuantity] = useState('Select')
+    const[selectedweight, setSelectedWeight] = useState('')
+    const[selectedquantity, setSelectedQuantity] = useState('')
     const[image, setImage] = useState(null);
     const [postHeading, setPostHeading] = useState('')
     const [description, setDescription] = useState('')

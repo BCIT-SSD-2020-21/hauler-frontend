@@ -46,7 +46,7 @@ export default function ErrandSummary({ navigation, route }) {
           </View> 
 
           <View>
-          <TouchableOpacity style={styles.button}><Text style={styles.buttonTitle} onPress={async () => { await postErrandItem(
+          <TouchableOpacity style={styles.button}><Text style={styles.buttonTitle} onPress={async () => { await postItem(
                 currentUser.uid,
                 image,
                 service,
