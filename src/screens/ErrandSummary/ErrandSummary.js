@@ -1,17 +1,26 @@
 import React, {useContext} from 'react'
-import { Text, View, TextInput, Image } from 'react-native'
+import { Text, View, TextInput, Image, Dimensions } from 'react-native'
 import { StyleSheet } from 'react-native';
 import { ScrollView, TouchableOpacity } from 'react-native-gesture-handler';
 import { Context } from '../../context/ContextProvider';
 import { postItem } from '../../../network';
+import MapView from 'react-native-maps';
+import Geocoder from 'react-native-geocoding';
+import {GOOGLE_MAP_API} from '@env';
 
 export default function ErrandSummary({ navigation, route }) {
 
     const{ image, selectedweight, selectedquantity, postHeading, description, contactPerson, phoneNumber, specialInstructions, zipCode, province, city, streetAddress, sliderValue, dropOffCity, dropOffContactPerson, dropOffPhoneNumber, dropOffProvince, dropOffSpecialInstructions, dropOffStreetAddress, dropOffZipCode} = route.params;
 
     const service = "Errands"
-
     const { currentUser } = useContext(Context)
+
+    const googleAPI = GOOGLE_MAP_API
+
+
+    getData(() => {
+        Geocoder.init({googleAPI});
+    })
 
     return (
         <ScrollView>
@@ -70,6 +79,9 @@ export default function ErrandSummary({ navigation, route }) {
                 dropOffZipCode,
                 dropOffSpecialInstructions);navigation.navigate('Confirmation')}}> Post the Job </Text></TouchableOpacity>
           </View>
+        </View>
+        <View style={styles.containerMap}>
+          <MapView style={styles.map} />
         </View>
         </ScrollView>
     )
@@ -132,4 +144,14 @@ const styles = StyleSheet.create({
         paddingVertical: 10,
         paddingHorizontal: 50,
     },
+    containerMap: {
+        flex: 1,
+        backgroundColor: '#fff',
+        alignItems: 'center',
+        justifyContent: 'center',
+      },
+      map: {
+        width: Dimensions.get('window').width,
+        height: Dimensions.get('window').height,
+      },
 })
