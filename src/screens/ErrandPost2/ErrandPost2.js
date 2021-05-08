@@ -1,119 +1,71 @@
 import React, { useState } from 'react'
-import { Text, View, ScrollView, TextInput, SafeAreaView, Picker} from 'react-native'
+import { Text, View, ScrollView, TextInput, SafeAreaView, Picker, Dimensions} from 'react-native'
 import { StyleSheet } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
+import Constants from 'expo-constants';
+import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
+import {GOOGLE_MAP_API} from '@env';
+import MapView from 'react-native-maps';
+
 
 export default function ErrandPost2({ navigation, route }) {
 
-    const [contactPerson, setContactPerson] = useState('')
-    const [phoneNumber, setPhoneNumber] = useState('')
-    const [streetAddress, setStreetAddress] = useState('')
-    const [city, setCity] = useState('')
-    const [province, setProvince] = useState('')
-    const [zipCode, setZipCode] = useState('')
-    const [specialInstructions, setSpecialInstructions] = useState('')
+    // const [pickUpAddress, setpickUpAddress] = useState('')
+    // const [dropOffAddress, setDropOffAddress] = useState('')
+
     const {image, selectedweight, selectedquantity, postHeading, description} = route.params;
 
-    return (
-        <ScrollView>
-        <View style={styles.container}>
-          <Text> ERRAND </Text>
-          <Text> PICK UP LOCATION </Text>
-          <TextInput style={styles.inputLine1} placeholder='Contact Person' 
-            onChangeText={(contactPerson) => {setContactPerson(contactPerson)}}
-            value={contactPerson}
-          />
+    // const googleAPI = GOOGLE_MAP_API
 
-          <TextInput style={styles.inputLine1} placeholder='Phone Number' 
-            onChangeText={(phoneNumber) => {setPhoneNumber(phoneNumber)}}
-            value={phoneNumber}
-          />
 
-          <TextInput style={styles.inputLine1} placeholder='Street Address' 
-            onChangeText={(streetAddress) => {setStreetAddress(streetAddress)}}
-            value={streetAddress}
-          />
-
-          <TextInput style={styles.inputLine1} placeholder='City' 
-            onChangeText={(city) => {setCity(city)}}
-            value={city}
-          />
-
-          <Picker selectedValue={province} style={{height: 50, width: 380}} onValueChange={(itemValue, itemIndex) =>      setProvince(itemValue)}>
-                <Picker.Item label="Alberta" value="Alberta" />
-                <Picker.Item label="BC" value="BC" />
-                <Picker.Item label="Ontario" value="Ontario" />
-                <Picker.Item label="Quebec" value="Quebec" />
-            </Picker>
-
-          <TextInput style={styles.inputLine1} placeholder='Zip Code' 
-            onChangeText={(zipCode) => {setZipCode(zipCode)}}
-            value={zipCode}
-          />
-
-          <TextInput style={styles.inputLine2} placeholder='Special Instructions' 
-            onChangeText={(specialInstructions) => setSpecialInstructions(specialInstructions)}
-            value={specialInstructions}
-          />
-
-          <View style={styles.btnContainer}>
-          <TouchableOpacity onPress={() => navigation.navigate('ErrandPost3', {image:image, selectedweight: selectedweight, selectedquantity: selectedquantity, postHeading: postHeading, description: description, contactPerson: contactPerson, phoneNumber: phoneNumber, specialInstructions: specialInstructions, zipCode: zipCode, province: province, city: city, streetAddress: streetAddress})} style={styles.button} ><Text style={styles.btnText}>Next</Text></TouchableOpacity>
-          </View>
-        </View>
-        </ScrollView>
+   return (
+     <View>
+    <View style={styles.container}>
+      <Text>Pick Up Location</Text>
+    <GooglePlacesAutocomplete
+      placeholder="Search"
+      query={{
+        key: GOOGLE_MAP_API,
+        language: 'en', // language of the results
+      }}
+      onPress={(data, details = null) => console.log(data)}
+      onFail={(error) => console.error(error)}
+    />
+     {/* <Text>Drop off Location</Text>
+    <GooglePlacesAutocomplete
+      placeholder="Search"
+      query={{
+        key: GOOGLE_MAP_API,
+        language: 'en', // language of the results
+      }}
+      onPress={(data, details = null) => console.log(data)}
+      onFail={(error) => console.error(error)}
+    /> */}
+    
+  {/* </View>
+  <View style={styles.containerMap}>
+  <MapView style={styles.map} />
+</View> */}
+</View>
+</View>
     )
 }
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        alignItems: 'center'
-    },
-    containerSlider: {
-        flex: 1,
-        padding: 20,
-        justifyContent: 'center',
-        backgroundColor: '#ecf0f1',
-      },
-    inputLine1: {
-        height: 40,
-        width: '100%',
-        borderRadius: 5,
-        overflow: 'hidden',
-        backgroundColor: 'white',
-        marginTop: 10,
-        marginBottom: 10,
-        marginLeft: 30,
-        marginRight: 30,
-        paddingLeft: 16
-    },
-    inputLine2: {
-        height: 150,
-        width: '100%',
-        borderRadius: 5,
-        overflow: 'hidden',
-        backgroundColor: 'white',
-        marginTop: 10,
-        marginBottom: 10,
-        marginLeft: 30,
-        marginRight: 30,
-        paddingLeft: 16
-    },
-    btnContainer: {
-        display: 'flex',
-        flexDirection: 'row',
-        justifyContent: 'space-around',
-        marginTop: 30,
-    },
-    button: {
-        backgroundColor: '#0177FC',
-        borderRadius: 10,
-        display: 'flex',
-    },
-    btnText: {
-        color: 'white',
-        fontSize: 20,
-        paddingVertical: 10,
-        paddingHorizontal: 50,
-    },
+  container: {
+    flex: 1,
+    padding: 20,
+    // paddingTop: Constants.statusBarHeight + 10,
+    backgroundColor: '#ecf0f1',
+  },
+  containerMap: {
+    flex: 1,
+    backgroundColor: '#fff',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  map: {
+    width: Dimensions.get('window').width,
+    height: Dimensions.get('window').height,
+  },
 })
