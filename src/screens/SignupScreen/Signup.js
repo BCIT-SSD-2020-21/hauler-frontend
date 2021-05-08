@@ -56,6 +56,7 @@ export default function Signup({ navigation }) {
                                 rounded 
                                 source={{uri: image}}
                                 backgroundColor='lightgrey'
+                            
                                 />
                                 
                             {/* {image && <Avatar

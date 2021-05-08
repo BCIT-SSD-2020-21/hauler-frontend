@@ -2,7 +2,7 @@ import React, { useContext} from 'react'
 import { Text, View, TextInput, Image } from 'react-native'
 import { StyleSheet } from 'react-native';
 import { ScrollView, TouchableOpacity } from 'react-native-gesture-handler';
-import { postItem } from '../../../network';
+import { postMovingItem } from '../../../network';
 import { Context } from '../../context/ContextProvider';
 
 export default function MovingSummary({ navigation, route}) {
@@ -16,7 +16,8 @@ export default function MovingSummary({ navigation, route}) {
         <ScrollView>
         <View style={styles.container}>
         <Text style={styles.screenHeading}> Post Summary </Text>
-          <Text style={styles.text1} >Post Heading: {postHeading}</Text>
+        <View style={styles.view}>
+          <Text style={styles.text1} >Post Heading: </Text><Text style={styles.text1}>{postHeading}</Text></View>
           <Text style={styles.text1} >Post Description: {description}</Text>
           <Text style={styles.text1} >Item Weigth: {selectedweight}</Text>
           <Text style={styles.text1} >Number of Items: {selectedquantity}</Text>
@@ -45,7 +46,7 @@ export default function MovingSummary({ navigation, route}) {
           </View> 
           <View>
           <TouchableOpacity style={styles.button}><Text style={styles.buttonTitle} 
-          onPress={async () => { await postItem(
+          onPress={async () => { await postMovingItem(
                 currentUser.uid,
                 image,
                 service,
@@ -125,4 +126,7 @@ const styles = StyleSheet.create({
         marginTop: 20,
         position: 'relative'
     },
+    view: {
+        flexDirection: 'row'
+    }
 })

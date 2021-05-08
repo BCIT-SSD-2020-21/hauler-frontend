@@ -20,7 +20,7 @@ export default function SelectPickUpProvince({ province, setProvince }) {
                 onValueChange={(value) => setProvince(value)}
                 placeholder={{ label: "Select Province", value: null }}
                 items={[
-                    { label: 'Alberat', value: 'Surrey' },
+                    { label: 'Alberta', value: 'Surrey' },
                     { label: 'British Columbia', value: 'British Columbia' },
                     { label: 'Ontario', value: 'Ontario' },
                     { label: 'Quebec', value: 'Quebec' },
