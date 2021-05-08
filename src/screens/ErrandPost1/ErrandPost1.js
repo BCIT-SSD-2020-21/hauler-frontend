@@ -29,6 +29,7 @@ export default function ErrandPost1({ navigation }) {
           allowsEditing: true,
           aspect: [1, 1],
           quality: 1,
+          base64: true,
           //allowsMultipleSelection: true,
         });
     
