@@ -5,6 +5,7 @@ import Confirmation from '../ConfirmationScreen/Confirmation';
 import ErrandPost1 from '../ErrandPost1/ErrandPost1';
 import ErrandPost2 from '../ErrandPost2/ErrandPost2';
 import ErrandPost3 from '../ErrandPost3/ErrandPost3';
+import ErrandPost4 from '../ErrandPost4/ErrandPost4';
 import ErrandSummary from '../ErrandSummary/ErrandSummary';
 
 const ErrandScreenStack = createStackNavigator()
@@ -17,6 +18,7 @@ export default function ErrandScreenNavigator() {
             <ErrandScreenStack.Screen name='ErrandPost1' component={ErrandPost1} options={{ headerTitle: 'User Moving Screen', headerRight: () => <MenuIcon /> }} />
             <ErrandScreenStack.Screen name='ErrandPost2' component={ErrandPost2} options={{ headerTitle: 'User Moving Item Screen', headerRight: () => <MenuIcon /> }} />
             <ErrandScreenStack.Screen name='ErrandPost3' component={ErrandPost3} options={{ headerTitle: 'User Moving Item Screen', headerRight: () => <MenuIcon /> }} />
+            <ErrandScreenStack.Screen name='ErrandPost4' component={ErrandPost4} options={{ headerTitle: 'User Moving Item Screen', headerRight: () => <MenuIcon /> }} />
             <ErrandScreenStack.Screen name='ErrandSummary' component={ErrandSummary} options={{ headerTitle: 'User Moving Item Screen', headerRight: () => <MenuIcon /> }} />
             <ErrandScreenStack.Screen name='Confirmation' component={Confirmation} options={{ headerTitle: 'Confirmation Screen', headerRight: () => <MenuIcon /> }} />
         </ErrandScreenStack.Navigator>
