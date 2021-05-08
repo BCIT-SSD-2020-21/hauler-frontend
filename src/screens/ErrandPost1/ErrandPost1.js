@@ -1,17 +1,33 @@
 import React, { useState, useEffect }from 'react'
-import { Text, View, TextInput, Picker, ScrollView, Image, Platform } from 'react-native'
+import { Text, View, TextInput, Picker, ScrollView, Image, Platform, TouchableOpacity } from 'react-native'
 import { StyleSheet } from 'react-native';
-import { TouchableOpacity } from 'react-native-gesture-handler';
 import * as ImagePicker from 'expo-image-picker';
 import SelectWeight from '../../components/SelectWeight/SelectWeight'
+import { AntDesign } from '@expo/vector-icons';
 
 export default function ErrandPost1({ navigation }) {
 
     const[selectedweight, setSelectedWeight] = useState('')
-    const[selectedquantity, setSelectedQuantity] = useState('')
+    const[selectedquantity, setSelectedQuantity] = useState(1)
     const[image, setImage] = useState(null);
     const [postHeading, setPostHeading] = useState('')
     const [description, setDescription] = useState('')
+
+    const [disable, setDisable] = useState(false)
+    const onPlusPress = () => {
+      setDisable(false)
+      let newNum = selectedquantity + 1
+      setSelectedQuantity(newNum)
+  }
+  const onMinusPress = () => {
+      if (selectedquantity > 1) {
+      let newNum = selectedquantity - 1 
+      setSelectedQuantity(newNum)
+      }
+      else{
+          setDisable(true)
+      }
+  }
     
     useEffect(() => {
         (async () => {
@@ -61,6 +77,17 @@ export default function ErrandPost1({ navigation }) {
                 selectedweight={selectedweight}
                 setSelectedWeight={setSelectedWeight}
             />
+
+            <View style={styles.view}>
+            <Text style={styles.text}> Number of Items : </Text> 
+              <TouchableOpacity activeOpacity={0.5} disabled={disable}  onPress={() => onMinusPress()} style={styles.TouchableOpacityStyle}>
+                <AntDesign name="minuscircle" size={30} color="black" /></TouchableOpacity>
+                <Text style={styles.numberDisplay}> {selectedquantity} </Text>
+              <TouchableOpacity activeOpacity={0.5}  onPress={() => onPlusPress()} style={styles.TouchableOpacityStyle}>
+                <AntDesign name="pluscircle" size={30} color="black" />
+            </TouchableOpacity>
+            
+            </View>
 
             <View>
                 <TouchableOpacity style={styles.button}><Text style={styles.buttonTitle}
@@ -163,4 +190,23 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         marginTop: 20
       },
+      TouchableOpacityStyle:{
+        width: 50,
+        height: 50,
+        alignItems: 'center',
+        justifyContent: 'center',
+        marginTop: 5,
+        marginLeft: 20
+      },
+      view: {
+        flexDirection: 'row',
+        marginTop: 25
+    },
+    numberDisplay: {
+      color: 'black',
+      fontSize: 27,
+      fontWeight: 'bold',
+      marginTop: 8,
+      marginLeft: 20
+    }
 })

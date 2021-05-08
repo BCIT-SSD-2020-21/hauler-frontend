@@ -15,23 +15,48 @@ export default function AddJunkScreen3({ navigation, route }) {
     return (
         <ScrollView>
         <View style={styles.container}>
-          <Text style={styles.screenHeading}> Post Summary </Text>
-          <Text style={styles.text1} >Post Heading: {postHeading}</Text>
-          <Text style={styles.text1} >Post Description: {description}</Text>
-          <Text style={styles.text1} >Item Weigth: {selectedweight}</Text>
-          <Text style={styles.text1} >Number of Items: {selectedquantity}</Text>
+        <Text style={styles.screenHeading}> Junk Summary </Text>
+        <View style={styles.view}>
+          <Text style={styles.text1} >Post Heading: </Text><Text style={styles.text2}>{postHeading}</Text></View>
+
+          <View style={styles.view}>
+          <Text style={styles.text1} >Post Description: </Text><Text style={styles.text2}>{description}</Text></View>
+
+          <View style={styles.view}>
+          <Text style={styles.text1} >Item Weigth:</Text><Text style={styles.text2}>{selectedweight}</Text></View>
+
+          <View style={styles.view}>
+          <Text style={styles.text1} >Number of Items: </Text><Text style={styles.text2}>{selectedquantity}</Text></View>
+
           <Text style={{fontSize: 20, fontWeight: 'bold', paddingTop: 20, marginLeft: 25}} >Pick Up Details: </Text>
-          <Text style={styles.text1} >Contact Person: {contactPerson}</Text>
-          <Text style={styles.text1} >Phone Number: {phoneNumber}</Text>
-          <Text style={styles.text1} >Street Address: {streetAddress}</Text>
-          <Text style={styles.text1} >City: {city}</Text>
-          <Text style={styles.text1} >Province: {province}</Text>
-          <Text style={styles.text1} >Zip Code: {zipCode}</Text>
-          <Text style={styles.text1} >Special Instructions: {specialInstructions}</Text>
+
+          <View style={styles.view}>
+          <Text style={styles.text1} >Contact Person: </Text><Text style={styles.text2}>{contactPerson}</Text></View>
+
+          <View style={styles.view}>
+          <Text style={styles.text1} >Phone Number: </Text><Text style={styles.text2}>{phoneNumber}</Text></View>
+
+          <View style={styles.view}>
+          <Text style={styles.text1} >Street Address: </Text><Text style={styles.text2}>{streetAddress}</Text></View>
+
+          <View style={styles.view}>
+          <Text style={styles.text1} >City: </Text><Text style={styles.text2}>{city}</Text></View>
+
+          <View style={styles.view}>
+          <Text style={styles.text1} >Province: </Text><Text style={styles.text2}>{province}</Text></View>
+
+          <View style={styles.view}>
+          <Text style={styles.text1} >Zip Code: </Text><Text style={styles.text2}>{zipCode}</Text></View>
+
+          <View style={styles.view}>
+          <Text style={styles.text1} >Special Instructions: </Text><Text style={styles.text2}>{specialInstructions}</Text></View>
+
           <View style={styles.imageContainer}>
             {image && <Image source={{ uri: image }} style={styles.imageDisplay} />}
           </View>
-          <Text style={styles.text1} >Quoted Price: {sliderValue}</Text>
+
+          <View style={styles.view}>
+          <Text style={styles.text1} >Quoted Price: </Text><Text style={styles.text2}>{sliderValue}</Text></View>
           <View>
           <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('AddItemScreen')}><Text style={styles.buttonTitle}> Edit </Text></TouchableOpacity>
           </View> 
@@ -40,7 +65,7 @@ export default function AddJunkScreen3({ navigation, route }) {
           onPress={async () => { await postJunkItem(
             currentUser.uid,
             service,
-            image,
+            Platform.OS === "android" ? image.replace("file:///", "file://") : image.replace("file://", ""),
             selectedweight,
             selectedquantity,
             postHeading,
@@ -103,4 +128,14 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         marginTop: 20
       },
+      text2: {
+        color: 'black',
+        marginLeft: 20,
+        fontWeight: 'bold',
+        marginTop: 20,
+        position: 'relative'
+    },
+    view: {
+        flexDirection: 'row'
+    }
 })
