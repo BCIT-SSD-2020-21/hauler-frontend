@@ -3,7 +3,7 @@ import { Text, View, ScrollView, TextInput, SafeAreaView, Picker } from 'react-n
 import { StyleSheet } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import Slider from '@react-native-community/slider';
-import SelectProvince from '../../components/SelectProvince/SelectProvince';
+import SelectPickUpProvince from '../../components/SelectPickUpProvince/SelectPickUpProvince';
 
 export default function AddJunkScreen2({ navigation, route }) {
 
@@ -46,7 +46,7 @@ export default function AddJunkScreen2({ navigation, route }) {
             value={city}  
         />
 
-        <SelectProvince 
+        <SelectPickUpProvince 
           province={province}
           setProvince={setProvince}
         />

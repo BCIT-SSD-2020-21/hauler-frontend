@@ -2,7 +2,7 @@ import React from 'react';
 import { StyleSheet, View } from 'react-native';
 import RNPickerSelect from 'react-native-picker-select';
 
-export default function SelectProvince({ province, setProvince }) {
+export default function SelectPickUpProvince({ province, setProvince }) {
 
     return (
         <View style={styles.search}>

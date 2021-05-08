@@ -3,7 +3,7 @@ import { Text, View, ScrollView, TextInput, SafeAreaView, Picker } from 'react-n
 import { StyleSheet } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import Slider from '@react-native-community/slider';
-import SelectProvince from '../../components/SelectProvince/SelectProvince';
+import SelectDropOffProvince from '../../components/SelectDropOffProvince/SelectDropOffProvince';
 
 export default function MovingPost3({ navigation, route}) {
 
@@ -46,9 +46,9 @@ export default function MovingPost3({ navigation, route}) {
             value={dropOffCity}
           />
 
-          <SelectProvince
-            province={dropOffProvince}
-            province={setDropOffProvince}
+          <SelectDropOffProvince
+            dropOffProvince={dropOffProvince}
+            setDropOffProvince={setDropOffProvince}
           />
 
           <Text style={styles.text}> Zip Code : </Text>
