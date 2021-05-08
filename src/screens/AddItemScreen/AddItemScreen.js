@@ -3,7 +3,6 @@ import { Text, View, TextInput, ScrollView, Image,  Platform } from 'react-nativ
 import { StyleSheet } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import * as ImagePicker from 'expo-image-picker';
-import RNPickerSelect from 'react-native-picker-select';
 import SelectWeight from '../../components/SelectWeight/SelectWeight';
 
 export default function AddItemScreen({ navigation }) {
