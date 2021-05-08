@@ -3,6 +3,7 @@ import { Text, View, TextInput, Picker, ScrollView, Image, Platform } from 'reac
 import { StyleSheet } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import * as ImagePicker from 'expo-image-picker';
+import SelectWeight from '../../components/SelectWeight/SelectWeight'
 
 export default function ErrandPost1({ navigation }) {
 
@@ -42,28 +43,37 @@ export default function ErrandPost1({ navigation }) {
     return (
         <ScrollView>
             <View style={styles.container}>
-            <Text> ERRAND </Text>
-            <TextInput style={styles.inputLine1} placeholder='Post Heading' 
+            <Text style={styles.screenHeading}> Add Item </Text>
+
+            <Text style={styles.text}> Post Heading : </Text>
+            <TextInput style={styles.inputLine1} 
                 onChangeText={(postHeading) => {setPostHeading(postHeading)}}
                 value={postHeading}
             />
 
-            <TextInput style={styles.inputLine2} placeholder='Item Name / List of Items / Description' 
+            <Text style={styles.text}> Post Description : </Text>
+            <TextInput style={styles.inputLine2} 
                 onChangeText={(description) => {setDescription(description)}}
                 value={description}
             />
 
-            <View style={styles.btnContainer}>
-                <TouchableOpacity style={styles.button}><Text style={styles.btnText}
+            <SelectWeight
+                selectedweight={selectedweight}
+                setSelectedWeight={setSelectedWeight}
+            />
+
+            <View>
+                <TouchableOpacity style={styles.button}><Text style={styles.buttonTitle}
                 onPress={() => pickImageAlbum() } >Upload Image</Text>
                 </TouchableOpacity>
             </View>
+
             <View>
-            {image && <Image source={{ uri: image }} style={{ width: 200, height: 200 }} />}
+            {image && <Image source={{ uri: image }} style={styles.imageDisplay} />}
             </View>
 
-            <View style={styles.btnContainer}>
-                <TouchableOpacity onPress={() => navigation.navigate('ErrandPost2', {selectedweight: selectedweight, image: image, selectedquantity: selectedquantity, postHeading: postHeading, description: description})} style={styles.button}><Text style={styles.btnText}>Next</Text></TouchableOpacity>
+            <View>
+                <TouchableOpacity onPress={() => navigation.navigate('ErrandPost2', {selectedweight: selectedweight, image: image, selectedquantity: selectedquantity, postHeading: postHeading, description: description})} style={styles.button}><Text style={styles.buttonTitle}>Next</Text></TouchableOpacity>
             </View>
             </View>
         </ScrollView>
@@ -73,58 +83,64 @@ export default function ErrandPost1({ navigation }) {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        alignItems: 'center'
+        //alignItems: 'center',
+        marginVertical: 20
     },
-    inputLine1: {
-        height: 40,
-        width: '100%',
-        borderRadius: 5,
+    screenHeading: {
+        fontSize: 40,
+        fontWeight: '500',
+        marginLeft: 20
+      },
+      inputLine1: {
+        height: 25,
         overflow: 'hidden',
-        backgroundColor: 'white',
         marginTop: 10,
         marginBottom: 10,
-        marginLeft: 30,
+        marginLeft: 20,
         marginRight: 30,
-        paddingLeft: 16
-    },
-    inputLine2: {
-        height: 100,
-        width: '100%',
-        borderRadius: 5,
-        overflow: 'hidden',
-        backgroundColor: 'white',
-        marginTop: 10,
-        marginBottom: 10,
-        marginLeft: 30,
-        marginRight: 30,
-        paddingLeft: 16
-    },
-    btnContainer: {
-        display: 'flex',
-        flexDirection: 'row',
-        justifyContent: 'space-around',
-        marginTop: 30,
-    },
-    button: {
+        paddingLeft: 16,
+        width: '90%',
+        borderBottomWidth: 1.0,
+        borderColor: '#BFBFBF',
+      },
+      inputLine2: {
+          height: 100,
+          width: '90%',
+          borderRadius: 5,
+          overflow: 'hidden',
+          marginTop: 10,
+          marginBottom: 10,
+          marginLeft: 20,
+          marginRight: 30,
+          paddingLeft: 16,
+          borderWidth: 1.0,
+          borderColor: '#BFBFBF'
+      },
+      button: {
         backgroundColor: '#0177FC',
-        borderRadius: 10,
-        display: 'flex',
+        marginLeft: 30,
+        marginRight: 30,
+        marginTop: 20,
+        height: 48,
+        borderRadius: 20,
+        alignItems: "center",
+        justifyContent: 'center'
     },
-    btnText: {
+    buttonTitle: {
         color: 'white',
-        fontSize: 20,
-        paddingVertical: 10,
-        paddingHorizontal: 50,
+        fontSize: 16,
+        fontWeight: "bold"
     },
     imageContainer:{
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
     },
-    image:{
-        width: 80,
-        height: 80,
-        margin: 5,
+    imageDisplay:{
+        width: 200,
+        height: 200,
+        marginLeft: 50,
+        marginTop: 5,
         resizeMode: 'contain', 
     },
     imageRow: {
@@ -136,4 +152,15 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         width: '50%',
     },
+    thumbnail: {
+        width: 100,
+        height: 100,
+        resizeMode: "contain"
+      },
+    text: {
+        color: '#BFBFBF',
+        marginLeft: 25,
+        fontWeight: 'bold',
+        marginTop: 20
+      },
 })

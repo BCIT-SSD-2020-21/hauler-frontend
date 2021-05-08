@@ -3,6 +3,7 @@ import { Text, View, ScrollView, TextInput, SafeAreaView, Picker } from 'react-n
 import { StyleSheet } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import Slider from '@react-native-community/slider';
+import SelectDropOffProvince from '../../components/SelectDropOffProvince/SelectDropOffProvince';
 
 export default function ErrandPost3({ navigation, route }) {
 
@@ -19,41 +20,46 @@ export default function ErrandPost3({ navigation, route }) {
     return (
         <ScrollView>
         <View style={styles.container}>
-          <Text> ERRAND </Text>
-          <Text> DROP OFF LOCATION </Text>
-          <TextInput style={styles.inputLine1} placeholder='Contact Person' 
-            onChangeText={(contactPerson) => {setDropOffContactPerson(contactPerson)}}
+          
+          <Text style={styles.screenHeading}> Add Drop Off Details </Text>
+
+          <Text style={styles.text}> Contact Person : </Text>
+          <TextInput style={styles.inputLine1}         
+          onChangeText={(contactPerson) => {setDropOffContactPerson(contactPerson)}}
             value={dropOffContactPerson}
           />
 
-          <TextInput style={styles.inputLine1} placeholder='Phone Number' 
-            onChangeText={(phoneNumber) => {setDropOffPhoneNumber(phoneNumber)}}
+          <Text style={styles.text}> Phone Number : </Text>
+          <TextInput style={styles.inputLine1}       
+          onChangeText={(phoneNumber) => {setDropOffPhoneNumber(phoneNumber)}}
             value={dropOffPhoneNumber}
           />
 
-          <TextInput style={styles.inputLine1} placeholder='Street Address' 
-            onChangeText={(streetAddress) => {setDropOffStreetAddress(streetAddress)}}
+          <Text style={styles.text}> Street Address : </Text>
+          <TextInput style={styles.inputLine1}         
+          onChangeText={(streetAddress) => {setDropOffStreetAddress(streetAddress)}}
             value={dropOffStreetAddress}
           />
 
-          <TextInput style={styles.inputLine1} placeholder='City' 
+          <Text style={styles.text}> City : </Text>
+          <TextInput style={styles.inputLine1} 
             onChangeText={(city) => {setDropOffCity(city)}}
             value={dropOffCity}
           />
 
-          <Picker selectedValue={dropOffProvince} style={{height: 50, width: 380}} onValueChange={(itemValue, itemIndex) =>      setDropOffProvince(itemValue)}>
-                <Picker.Item label="Alberta" value="Alberta" />
-                <Picker.Item label="BC" value="BC" />
-                <Picker.Item label="Ontario" value="Ontario" />
-                <Picker.Item label="Quebec" value="Quebec" />
-            </Picker>
+          <SelectDropOffProvince
+            dropOffProvince={dropOffProvince}
+            setDropOffProvince={setDropOffProvince}
+          />
 
-          <TextInput style={styles.inputLine1} placeholder='Zip Code' 
-            onChangeText={(zipCode) => {setDropOffZipCode(zipCode)}}
+          <Text style={styles.text}> Zip Code : </Text>
+          <TextInput style={styles.inputLine1}   
+          onChangeText={(zipCode) => {setDropOffZipCode(zipCode)}}
             value={dropOffZipCode}
           />
 
-          <TextInput style={styles.inputLine2} placeholder='Special Instructions' 
+          <Text style={styles.text}> Special Instructions : </Text>
+          <TextInput style={styles.inputLine2}  
             onChangeText={(specialInstructions) => setDropOffSpecialInstructions(specialInstructions)}
             value={dropOffSpecialInstructions}
           />
@@ -79,10 +85,10 @@ export default function ErrandPost3({ navigation, route }) {
             </View>
           </SafeAreaView>
 
-          <View style={styles.btnContainer}>
+          <View>
           <TouchableOpacity onPress={() => navigation.navigate('ErrandSummary', {image: image, selectedweight: selectedweight, selectedquantity: selectedquantity, postHeading: postHeading, description: description, contactPerson: contactPerson, phoneNumber: phoneNumber, specialInstructions: specialInstructions, zipCode: zipCode, province: province, city: city, streetAddress: streetAddress, sliderValue: sliderValue, dropOffCity: dropOffCity, dropOffContactPerson: dropOffContactPerson, dropOffPhoneNumber: dropOffPhoneNumber, dropOffProvince: dropOffProvince, dropOffSpecialInstructions: dropOffSpecialInstructions, dropOffStreetAddress: dropOffStreetAddress, dropOffZipCode: dropOffZipCode})} 
           style={styles.button}>
-            <Text style={styles.btnText}>Submit</Text>
+            <Text style={styles.buttonTitle}>Submit</Text>
           </TouchableOpacity>
           </View>
         </View>
@@ -91,55 +97,66 @@ export default function ErrandPost3({ navigation, route }) {
 }
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        alignItems: 'center'
-    },
-    containerSlider: {
-        flex: 1,
-        padding: 20,
-        justifyContent: 'center',
-        backgroundColor: '#ecf0f1',
-      },
-    inputLine1: {
-        height: 40,
-        width: '100%',
-        borderRadius: 5,
-        overflow: 'hidden',
-        backgroundColor: 'white',
-        marginTop: 10,
-        marginBottom: 10,
-        marginLeft: 30,
-        marginRight: 30,
-        paddingLeft: 16
-    },
-    inputLine2: {
-        height: 150,
-        width: '100%',
-        borderRadius: 5,
-        overflow: 'hidden',
-        backgroundColor: 'white',
-        marginTop: 10,
-        marginBottom: 10,
-        marginLeft: 30,
-        marginRight: 30,
-        paddingLeft: 16
-    },
-    btnContainer: {
-        display: 'flex',
-        flexDirection: 'row',
-        justifyContent: 'space-around',
-        marginTop: 30,
-    },
-    button: {
-        backgroundColor: '#0177FC',
-        borderRadius: 10,
-        display: 'flex',
-    },
-    btnText: {
-        color: 'white',
-        fontSize: 20,
-        paddingVertical: 10,
-        paddingHorizontal: 50,
-    },
+  container: {
+    flex: 1,
+    //alignItems: 'center',
+    marginVertical: 20
+  },
+  screenHeading: {
+    fontSize: 30,
+    fontWeight: '500',
+    marginLeft: 20
+  },
+  inputLine1: {
+    height: 25,
+    overflow: 'hidden',
+    marginTop: 10,
+    marginBottom: 10,
+    marginLeft: 20,
+    marginRight: 30,
+    paddingLeft: 16,
+    width: '90%',
+    borderBottomWidth: 1.0,
+    borderColor: '#BFBFBF',
+  },
+  inputLine2: {
+      height: 100,
+      width: '90%',
+      borderRadius: 5,
+      overflow: 'hidden',
+      marginTop: 10,
+      marginBottom: 10,
+      marginLeft: 20,
+      marginRight: 30,
+      paddingLeft: 16,
+      borderWidth: 1.0,
+      borderColor: '#BFBFBF'
+  },
+button: {
+  backgroundColor: '#0177FC',
+  marginLeft: 30,
+  marginRight: 30,
+  marginTop: 20,
+  height: 48,
+  borderRadius: 20,
+  alignItems: "center",
+  justifyContent: 'center'
+},
+buttonTitle: {
+  color: 'white',
+  fontSize: 16,
+  fontWeight: "bold"
+},
+text: {
+  color: '#BFBFBF',
+  marginLeft: 25,
+  fontWeight: 'bold',
+  marginTop: 20
+},
+containerSlider: {
+  flex: 1,
+  padding: 20,
+  justifyContent: 'center',
+  backgroundColor: '#ecf0f1',
+},
 })

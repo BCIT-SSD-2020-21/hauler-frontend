@@ -2,7 +2,7 @@ import React, { useState, setState } from 'react'
 import { Text, View, ScrollView, TextInput, SafeAreaView, Picker } from 'react-native'
 import { StyleSheet } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
-import SelectProvice from '../../components/SelectProvince/SelectProvince';
+import SelectPickUpProvince from '../../components/SelectPickUpProvince/SelectPickUpProvince';
 
 export default function MovingPost2({ navigation, route }) {
 
@@ -44,7 +44,7 @@ export default function MovingPost2({ navigation, route }) {
             value={city}
           />
 
-          <SelectProvice
+          <SelectPickUpProvince
             province={province}
             setProvince={setProvince}
           />
