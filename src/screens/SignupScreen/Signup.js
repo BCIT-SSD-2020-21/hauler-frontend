@@ -3,6 +3,7 @@ import { Text, TextInput, TouchableOpacity, View, ScrollView, Platform } from 'r
 import { StyleSheet } from 'react-native';
 import { Avatar } from 'react-native-elements';
 import * as ImagePicker from 'expo-image-picker';
+import { FontAwesome } from '@expo/vector-icons';
 
 export default function Signup({ navigation }) {
 
@@ -51,14 +52,19 @@ export default function Signup({ navigation }) {
                 <View
                     style={{ flex: 1, width: '100%' }}>
                         <View style={styles.avatarView}>
-                            <TouchableOpacity onPress={() => pickImageAlbum()}><Avatar
+                            <TouchableOpacity onPress={() => pickImageAlbum()}>
+                                <Avatar
                                 size={125}
                                 rounded 
                                 source={{uri: image}}
                                 backgroundColor='lightgrey'
                             
                                 />
-                                
+                                <View style={styles.evilIcon}>
+                                <FontAwesome name="user-circle-o" size={38} color="white" />
+                                <View style={styles.icon1}>
+                                <FontAwesome name="user-circle" size={40} color="#1177FC" /></View>
+                                </View>
                             {/* {image && <Avatar
                                 size={125}
                                 rounded 
@@ -216,10 +222,20 @@ const styles = StyleSheet.create({
     avatarView: {
         marginLeft: 25,
         marginRight: 200,
-        marginTop: 40
+        marginTop: 40,
+        flexDirection: 'row'
     },
     text: {
         color: '#BFBFBF',
         marginLeft: 35
+    },
+    evilIcon: {
+        flexDirection:'row',
+        marginTop: -30,
+        marginLeft: 10
+    },
+    icon1:{
+        marginLeft: -39,
+        marginTop: 0.4
     }
 })
