@@ -18,7 +18,7 @@ export default function SelectWeight({ selectedweight, setSelectedWeight }) {
                     },
                 }}
                 onValueChange={(value) => setSelectedWeight(value)}
-                placeholder={{ label: "Search by location", value: null }}
+                placeholder={{ label: "Search the Weight", value: null }}
                 items={[
                     { label: 'Light 0-20Kgs', value: 'Light 0-20Kgs' },
                     { label: 'Medium 20-50Kgs', value: 'Medium 20-50Kgs' },

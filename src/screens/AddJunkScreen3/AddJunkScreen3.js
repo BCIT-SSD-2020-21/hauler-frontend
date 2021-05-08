@@ -29,14 +29,14 @@ export default function AddJunkScreen3({ navigation, route }) {
           <Text style={styles.text1} >Zip Code: {zipCode}</Text>
           <Text style={styles.text1} >Special Instructions: {specialInstructions}</Text>
           <View style={styles.imageContainer}>
-            {image && <Image source={{ uri: image }} style={styles.image} />}
+            {image && <Image source={{ uri: image }} style={styles.imageDisplay} />}
           </View>
           <Text style={styles.text1} >Quoted Price: {sliderValue}</Text>
-          <View style={styles.btnContainer}>
-          <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('AddItemScreen')}><Text style={styles.btnText}> Edit </Text></TouchableOpacity>
+          <View>
+          <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('AddItemScreen')}><Text style={styles.buttonTitle}> Edit </Text></TouchableOpacity>
           </View> 
-          <View style={styles.btnContainer}>
-          <TouchableOpacity style={styles.button}><Text style={styles.btnText} 
+          <View >
+          <TouchableOpacity style={styles.button}><Text style={styles.buttonTitle} 
           onPress={async () => { await postJunkItem(
             currentUser.uid,
             service,
@@ -76,28 +76,26 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         marginTop: 20
     },
-    image:{
+    imageDisplay:{
         width: 150,
         height: 150,
         margin: 5,
         resizeMode: 'contain', 
     },
-    btnContainer: {
-        display: 'flex',
-        flexDirection: 'row',
-        justifyContent: 'space-around',
-        marginTop: 30,
-    },
     button: {
         backgroundColor: '#0177FC',
-        borderRadius: 10,
-        display: 'flex',
+        marginLeft: 30,
+        marginRight: 30,
+        marginTop: 20,
+        height: 48,
+        borderRadius: 20,
+        alignItems: "center",
+        justifyContent: 'center'
     },
-    btnText: {
+    buttonTitle: {
         color: 'white',
-        fontSize: 20,
-        paddingVertical: 10,
-        paddingHorizontal: 50,
+        fontSize: 16,
+        fontWeight: "bold"
     },
     text1: {
         color: '#BFBFBF',
@@ -105,11 +103,4 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         marginTop: 20
       },
-    text2: {
-        color: 'black',
-        marginLeft: 10,
-        fontWeight: 'bold',
-        marginTop: 20,
-        position: 'relative'
-    },
 })

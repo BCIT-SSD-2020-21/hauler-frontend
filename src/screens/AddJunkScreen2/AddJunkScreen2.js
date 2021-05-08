@@ -22,7 +22,7 @@ export default function AddJunkScreen2({ navigation, route }) {
         <View style={styles.container}>
           <Text style={styles.screenHeading}> Add Pick Up Details </Text>
 
-          <Text style={styles.text}> Post Heading : </Text>
+          <Text style={styles.text}> Contact Person : </Text>
           <TextInput style={styles.inputLine1}  
             onChangeText={(contactPerson) => {setContactPerson(contactPerson)}}
             value={contactPerson}

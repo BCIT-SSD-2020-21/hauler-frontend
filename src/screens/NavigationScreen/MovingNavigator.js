@@ -12,13 +12,13 @@ export default function MovingScreenNavigator() {
     return (
         <MovingScreenStack.Navigator initialRouteName='MovingPost1' screenOptions={{
             headerShown: true,
-            title: 'Hauler',
+            title: 'Moving Service',
         }}>
-            <MovingScreenStack.Screen name='MovingPost1' component={MovingPost1} options={{ headerTitle: 'User Moving Screen', headerRight: () => <MenuIcon /> }} />
-            <MovingScreenStack.Screen name='MovingPost2' component={MovingPost2} options={{ headerTitle: 'User Moving Item Screen', headerRight: () => <MenuIcon /> }} />
-            <MovingScreenStack.Screen name='MovingPost3' component={MovingPost3} options={{ headerTitle: 'User Moving Item Screen', headerRight: () => <MenuIcon /> }} />
-            <MovingScreenStack.Screen name='MovingSummary' component={MovingSummary} options={{ headerTitle: 'User Moving Item Screen', headerRight: () => <MenuIcon /> }} />
-            <MovingScreenStack.Screen name='Confirmation' component={Confirmation} options={{ headerTitle: 'Confirmation Screen', headerRight: () => <MenuIcon /> }} />
+            <MovingScreenStack.Screen name='MovingPost1' component={MovingPost1} options={{ headerRight: () => <MenuIcon /> }} />
+            <MovingScreenStack.Screen name='MovingPost2' component={MovingPost2} options={{ headerRight: () => <MenuIcon /> }} />
+            <MovingScreenStack.Screen name='MovingPost3' component={MovingPost3} options={{ headerRight: () => <MenuIcon /> }} />
+            <MovingScreenStack.Screen name='MovingSummary' component={MovingSummary} options={{ headerRight: () => <MenuIcon /> }} />
+            <MovingScreenStack.Screen name='Confirmation' component={Confirmation} options={{ headerRight: () => <MenuIcon /> }} />
         </MovingScreenStack.Navigator>
     )
 }
