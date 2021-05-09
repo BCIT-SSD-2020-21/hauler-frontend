@@ -7,6 +7,7 @@ import Constants from 'expo-constants';
 import {GOOGLE_MAP_API} from '@env';
 // import MapView from 'react-native-maps';
 
+import SelectPickUpProvince from '../../components/SelectPickUpProvince/SelectPickUpProvince';
 
 export default function ErrandPost2({ navigation, route }) {
 

@@ -35,6 +35,9 @@
 * npm install react-native-google-places-autocomplete
 * yarn add react-native-google-autocomplete
 * npm install --save react-native-geocoding
+* npm install @stripe/stripe-js (for the credit card functionality)
+* npm install @stripe/react-stipe-js
+* npm install react-native-credit-card-display
 ---
 ### Wireframe for User
 Stored in wireframe folder on the root folder.

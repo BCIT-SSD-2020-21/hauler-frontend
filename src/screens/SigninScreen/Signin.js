@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react'
-import { Text, TextInput, TouchableOpacity, View, Image } from 'react-native'
+import { Text, TextInput, TouchableOpacity, View, Image, ScrollView } from 'react-native'
 import { Context } from '../../context/ContextProvider';
 import { StyleSheet } from 'react-native';
 
@@ -24,65 +24,69 @@ export default function Signin({ navigation }) {
     }
 
     return (
-        <View style={styles.container}>
-            <View
-                style={{ flex: 1, width: '100%' }}>
-                <Image source={require('../../../assets/haulerLogo.png')} style={styles.logo} />
-                <Text > {error && alert(error)}</Text>
+        <ScrollView>
+            <View style={styles.container}>
+                    <View
+                        style={{ flex: 1, width: '100%' }}>
+                        <Image source={require('../../../assets/haulerLogo.png')} style={styles.logo} />
+                        <Text > {error && alert(error)}</Text>
 
-                <TextInput
-                    style={styles.input}
-                    placeholder='Email'
-                    placeholderTextColor="#C0C0C0"
-                    onChangeText={(email) => { setError(""); setEmail(email) }}
-                    value={email}
-                />
-                <TextInput
-                    style={styles.input}
-                    placeholder='Password'
-                    placeholderTextColor="#C0C0C0"
-                    secureTextEntry
-                    onChangeText={(password) => { setError(""); setPassword(password) }}
-                    value={password}
-                />
-                <TouchableOpacity
-                    style={styles.button}
-                    disabled={loading}
-                    onPress={() => onSigninClicked()}>
-                    <Text style={styles.buttonTitle}>Sign In</Text>
-                </TouchableOpacity>
-                <View style={styles.option}>
-                    <Text style={styles.optionText}>
-                        Create an account?
-                        <Text style={styles.optionLink}
-                        onPress={() => navigation.navigate('Signup')}>
-                            Register</Text>
-                    </Text>
-                    <Text style={styles.email}>
-                        Current user : {currentUser && currentUser.email}
-                    </Text>
+                        <Text style={styles.text1}> Email : </Text>
+                            <TextInput
+                                style={styles.input}
+                                placeholderTextColor="#C0C0C0"
+                                onChangeText={(email) => { setError(""); setEmail(email) }}
+                                value={email}
+                            />
+
+                        <Text style={styles.text2}> Password : </Text>
+                            <TextInput
+                                style={styles.input}
+                                placeholderTextColor="#C0C0C0"
+                                secureTextEntry
+                                onChangeText={(password) => { setError(""); setPassword(password) }}
+                                value={password}
+                            />
+                        <TouchableOpacity
+                            style={styles.button}
+                            disabled={loading}
+                            onPress={() => onSigninClicked()}>
+                            <Text style={styles.buttonTitle}>Sign In</Text>
+                        </TouchableOpacity>
+                        <View style={styles.option}>
+                            <Text style={styles.optionText}>
+                                Don't have an account?
+                                <Text style={styles.optionLink}
+                                onPress={() => navigation.navigate('Signup')}>
+                                    Register</Text>
+                            </Text>
+                            <Text style={styles.email}>
+                                Current user : {currentUser && currentUser.email}
+                            </Text>
+                        </View>
+                    </View>
                 </View>
-            </View>
-        </View>
+            </ScrollView>
     )
 }
 
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        alignItems: 'center'
+        alignItems: 'center',
     },
     logo: {
         width: 200,
-        height: 100,
+        height: 200,
         alignSelf: 'center',
-        marginTop: 100,
+        marginTop: 150,
     },
     input: {
-        height: 48,
-        borderRadius: 5,
+        height: 25,
+        width: '80%',
+        borderBottomWidth: 1.0,
+        borderColor: '#BFBFBF',
         overflow: 'hidden',
-        backgroundColor: 'white',
         marginTop: 10,
         marginBottom: 10,
         marginLeft: 30,
@@ -90,16 +94,16 @@ const styles = StyleSheet.create({
         paddingLeft: 16
     },
     email: {
-        color: '#73AB84',
+        color: '#BFBFBF',
         textAlign: 'center'
     },
     button: {
         backgroundColor: '#0177FC',
-        marginLeft: 30,
-        marginRight: 30,
+        marginLeft: 38,
+        marginRight: 38,
         marginTop: 20,
         height: 48,
-        borderRadius: 5,
+        borderRadius: 20,
         alignItems: "center",
         justifyContent: 'center'
     },
@@ -115,11 +119,20 @@ const styles = StyleSheet.create({
     },
     optionText: {
         fontSize: 16,
-        color: '#2e2e2d'
+        color: '#BFBFBF'
     },
     optionLink: {
         color: "#BB4430",
         fontWeight: "bold",
         fontSize: 16
+    },
+    text1: {
+        color: '#BFBFBF',
+        marginLeft: 35
+    },
+    text2: {
+        color: '#BFBFBF',
+        marginLeft: 35,
+        marginTop: 20
     }
 })

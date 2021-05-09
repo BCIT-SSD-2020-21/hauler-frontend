@@ -40,7 +40,7 @@ export default function ErrandSummary({ navigation, route }) {
           <Text style={styles.inputLine2} >Street Address: {dropOffAddress.formatted_address}</Text>
           <Text style={styles.inputLine2} >Special Instructions: {dropOffSpecialInstructions}</Text>
           <View style={styles.imageContainer}>
-              <Image style={styles.image} source={{uri: image}}/>
+              <Image style={styles.imageDisplay} source={{uri:image}}/>
           </View>
           <Text style={styles.inputLine1}>Quoted Price: {sliderValue}</Text>
 
@@ -108,59 +108,53 @@ export default function ErrandSummary({ navigation, route }) {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        alignItems: 'center',
+        //alignItems: 'center',
+        marginVertical: 20
     },
-    inputLine1: {
-        height: 40,
-        width: '100%',
-        borderRadius: 5,
-        overflow: 'hidden',
-        backgroundColor: 'white',
-        marginTop: 10,
-        marginBottom: 10,
-        marginLeft: 30,
-        marginRight: 30,
-        paddingLeft: 16
-    },
-    inputLine2: {
-        height: 150,
-        width: '100%',
-        borderRadius: 5,
-        overflow: 'hidden',
-        backgroundColor: 'white',
-        marginTop: 10,
-        marginBottom: 10,
-        marginLeft: 30,
-        marginRight: 30,
-        paddingLeft: 16
-    },
-    imageContainer:{
+    screenHeading: {
+        fontSize: 30,
+        fontWeight: '500',
+        marginLeft: 20
+      },
+      imageContainer:{
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
+        marginTop: 20
     },
-    image:{
-        width: 80,
-        height: 80,
+    imageDisplay:{
+        width: 150,
+        height: 150,
         margin: 5,
         resizeMode: 'contain', 
     },
-    btnContainer: {
-        display: 'flex',
-        flexDirection: 'row',
-        justifyContent: 'space-around',
-        marginTop: 30,
-    },
     button: {
         backgroundColor: '#0177FC',
-        borderRadius: 10,
-        display: 'flex',
+        marginLeft: 30,
+        marginRight: 30,
+        marginTop: 20,
+        height: 48,
+        borderRadius: 20,
+        alignItems: "center",
+        justifyContent: 'center'
     },
-    btnText: {
+    buttonTitle: {
         color: 'white',
-        fontSize: 20,
-        paddingVertical: 10,
-        paddingHorizontal: 50,
+        fontSize: 16,
+        fontWeight: "bold"
+    },
+    text1: {
+        color: '#BFBFBF',
+        marginLeft: 25,
+        fontWeight: 'bold',
+        marginTop: 20
+      },
+    text2: {
+        color: 'black',
+        marginLeft: 20,
+        fontWeight: 'bold',
+        marginTop: 20,
+        position: 'relative'
     },
     containerMap: {
         flex: 1,

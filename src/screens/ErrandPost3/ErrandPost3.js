@@ -3,6 +3,7 @@ import { Text, View, ScrollView, TextInput, SafeAreaView, Picker } from 'react-n
 import { StyleSheet } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import Slider from '@react-native-community/slider';
+import SelectDropOffProvince from '../../components/SelectDropOffProvince/SelectDropOffProvince';
 
 export default function ErrandPost3({ navigation, route }) {
 
@@ -49,7 +50,8 @@ export default function ErrandPost3({ navigation, route }) {
             value={dropOffPhoneNumber}
           />
 
-          <TextInput style={styles.inputLine2} placeholder='Special Instructions' 
+          <Text style={styles.text}> Special Instructions : </Text>
+          <TextInput style={styles.inputLine2}  
             onChangeText={(specialInstructions) => setDropOffSpecialInstructions(specialInstructions)}
             value={dropOffSpecialInstructions}
           />
@@ -78,7 +80,7 @@ export default function ErrandPost3({ navigation, route }) {
          <View style={styles.btnContainer}>
           <TouchableOpacity onPress={() => navigation.navigate('ErrandSummary', {image: image, selectedweight: selectedweight, selectedquantity: selectedquantity, postHeading: postHeading, description: description,pickUpAddress:pickUpAddress, dropOffAddress:dropOffAddress, pickContactPerson: pickContactPerson, pickUpPhoneNumber: pickUpPhoneNumber, pickUpSpecialInstructions: pickUpSpecialInstructions, pickUpSpecialInstructions: pickUpSpecialInstructions, dropOffContactPerson: dropOffContactPerson, dropOffPhoneNumber: dropOffPhoneNumber, dropOffSpecialInstructions: dropOffSpecialInstructions, sliderValue: sliderValue })} 
           style={styles.button}>
-            <Text style={styles.btnText}>Submit</Text>
+            <Text style={styles.buttonTitle}>Submit</Text>
           </TouchableOpacity>
           </View>
         </View>
@@ -87,55 +89,66 @@ export default function ErrandPost3({ navigation, route }) {
 }
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        alignItems: 'center'
-    },
-    containerSlider: {
-        flex: 1,
-        padding: 20,
-        justifyContent: 'center',
-        backgroundColor: '#ecf0f1',
-      },
-    inputLine1: {
-        height: 40,
-        width: '100%',
-        borderRadius: 5,
-        overflow: 'hidden',
-        backgroundColor: 'white',
-        marginTop: 10,
-        marginBottom: 10,
-        marginLeft: 30,
-        marginRight: 30,
-        paddingLeft: 16
-    },
-    inputLine2: {
-        height: 150,
-        width: '100%',
-        borderRadius: 5,
-        overflow: 'hidden',
-        backgroundColor: 'white',
-        marginTop: 10,
-        marginBottom: 10,
-        marginLeft: 30,
-        marginRight: 30,
-        paddingLeft: 16
-    },
-    btnContainer: {
-        display: 'flex',
-        flexDirection: 'row',
-        justifyContent: 'space-around',
-        marginTop: 30,
-    },
-    button: {
-        backgroundColor: '#0177FC',
-        borderRadius: 10,
-        display: 'flex',
-    },
-    btnText: {
-        color: 'white',
-        fontSize: 20,
-        paddingVertical: 10,
-        paddingHorizontal: 50,
-    },
+  container: {
+    flex: 1,
+    //alignItems: 'center',
+    marginVertical: 20
+  },
+  screenHeading: {
+    fontSize: 30,
+    fontWeight: '500',
+    marginLeft: 20
+  },
+  inputLine1: {
+    height: 25,
+    overflow: 'hidden',
+    marginTop: 10,
+    marginBottom: 10,
+    marginLeft: 20,
+    marginRight: 30,
+    paddingLeft: 16,
+    width: '90%',
+    borderBottomWidth: 1.0,
+    borderColor: '#BFBFBF',
+  },
+  inputLine2: {
+      height: 100,
+      width: '90%',
+      borderRadius: 5,
+      overflow: 'hidden',
+      marginTop: 10,
+      marginBottom: 10,
+      marginLeft: 20,
+      marginRight: 30,
+      paddingLeft: 16,
+      borderWidth: 1.0,
+      borderColor: '#BFBFBF'
+  },
+button: {
+  backgroundColor: '#0177FC',
+  marginLeft: 30,
+  marginRight: 30,
+  marginTop: 20,
+  height: 48,
+  borderRadius: 20,
+  alignItems: "center",
+  justifyContent: 'center'
+},
+buttonTitle: {
+  color: 'white',
+  fontSize: 16,
+  fontWeight: "bold"
+},
+text: {
+  color: '#BFBFBF',
+  marginLeft: 25,
+  fontWeight: 'bold',
+  marginTop: 20
+},
+containerSlider: {
+  flex: 1,
+  padding: 20,
+  justifyContent: 'center',
+  backgroundColor: '#ecf0f1',
+},
 })

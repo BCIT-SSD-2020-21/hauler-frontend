@@ -13,7 +13,7 @@ export default function ErrandScreenNavigator() {
     return (
         <ErrandScreenStack.Navigator initialRouteName='ErrandPost1' screenOptions={{
             headerShown: true,
-            title: 'Hauler',
+            title: 'Errand Service',
         }}>
             <ErrandScreenStack.Screen name='ErrandPost1' component={ErrandPost1} options={{ headerTitle: 'User Moving Screen', headerRight: () => <MenuIcon /> }} />
             <ErrandScreenStack.Screen name='ErrandPost2' component={ErrandPost2} options={{ headerTitle: 'User Moving Item Screen', headerRight: () => <MenuIcon /> }} />

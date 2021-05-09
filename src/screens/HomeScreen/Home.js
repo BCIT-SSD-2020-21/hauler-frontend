@@ -1,6 +1,8 @@
 import React from 'react';
 import { View, Text, Image, TouchableOpacity, StyleSheet, ScrollView } from 'react-native';
 import { Card, Button } from 'react-native-elements'
+import SearchByLocation from '../../components/SearchByLocation/SearchByLocation';
+import SearchByService from '../../components/SearchByService/SearchByService'
 
 export default function Home({ navigation }) {
 

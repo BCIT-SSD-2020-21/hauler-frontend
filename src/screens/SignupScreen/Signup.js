@@ -1,196 +1,174 @@
-import React, { useState, useContext } from 'react'
-import { Text, TextInput, TouchableOpacity, View, Image, ScrollView } from 'react-native'
-import { Context } from '../../context/ContextProvider'
+import React, { useState, useEffect } from 'react'
+import { Text, TextInput, TouchableOpacity, View, ScrollView, Platform } from 'react-native'
 import { StyleSheet } from 'react-native';
-import { signUp } from '../../../network';
+import { Avatar } from 'react-native-elements';
+import * as ImagePicker from 'expo-image-picker';
+import { FontAwesome } from '@expo/vector-icons';
 
 export default function Signup({ navigation }) {
-    const { signup, currentUser } = useContext(Context)
+
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [confirmPassword, setConfirmPassword] = useState('')
     const [error, setError] = useState('')
-    const [loading, setLoading] = useState('')
     const [firstName, setFirstName] = useState('')
     const [lastName, setLastName] = useState('')
-    const [profilePicUrl, setProfilePicUrl] = useState('')
     const [dateOfBirth, setDob] = useState('')
     const [province, setProvince] = useState('')
     const [city, setCity] = useState('')
     const [streetAddress, setStreetAddress] = useState('')
     const [unitNumber, setUnitNumber] = useState('')
     const [contactNumber, setContactNumber] = useState('')
-    const [creditCardNumber, setCreditCardNumber] = useState('')
-    const [expiryDate, setExpiryDate] = useState('')
-    const [cvv, setCvv] = useState('')
+    const [image, setImage] = useState(null)
 
-    const onSignUpClicked = async () => {
-        if (password !== confirmPassword) {
-            setError("Password does not match")
-            return
+    useEffect(() => {
+        (async () => {
+            if(Platform.OS !=='web'){
+                const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
+                if(status !== 'granted'){
+                    alert('Sorry!! We need camera roll permission to make this work.');
+                }
+            }
+        })();
+    }, []);
+
+    const pickImageAlbum = async () => {
+        let result = await ImagePicker.launchImageLibraryAsync({
+            mediaTypes: ImagePicker.MediaTypeOptions.Images,
+            allowsEditing: true,
+            aspect:[1,1],
+            quality: 1,
+        });
+        console.log(result);
+        if(!result.cancelled){
+            setImage(result.uri)
         }
-        try {
-            setError("")
-            setLoading(true)
-            const response = await signup(email, password)
-            const currentUid = response.user.uid
-            await signUp(
-                currentUid,
-                firstName,
-                lastName,
-                profilePicUrl,
-                // dateOfBirth,
-                province,
-                city,
-                streetAddress,
-                unitNumber,
-                email,
-                contactNumber,
-                creditCardNumber,
-                // expiryDate,
-                cvv
-            )
-            navigation.navigate('ServiceProviderNavigator')
-        } catch (err) {
-            setError(err.message)
-        }
-        setLoading(false)
-    }
+    };
+    
 
     return (
         <ScrollView>
             <View style={styles.container}>
                 <View
                     style={{ flex: 1, width: '100%' }}>
-                    <Image source={require('../../../assets/haulerLogo.png')} style={styles.logo} />
+                        <View style={styles.avatarView}>
+                            <TouchableOpacity onPress={() => pickImageAlbum()}>
+                                <Avatar
+                                size={125}
+                                rounded 
+                                source={{uri: image}}
+                                backgroundColor='lightgrey'
+                            
+                                />
+                                <View style={styles.evilIcon}>
+                                <FontAwesome name="user-circle-o" size={38} color="white" />
+                                <View style={styles.icon1}>
+                                <FontAwesome name="user-circle" size={40} color="#1177FC" /></View>
+                                </View>
+                            {/* {image && <Avatar
+                                size={125}
+                                rounded 
+                                source={{uri: image}}
+                            />} */}
+                            </TouchableOpacity>
+                        </View>
                     <Text > {error && alert(error)}</Text>
 
+                    <Text style={styles.text}> First Name : </Text>
                     <TextInput
                         style={styles.input}
-                        placeholder='Email'
+                        placeholderTextColor="#C0C0C0"
+                        onChangeText={(firstName) => { setError(""); setFirstName(firstName) }}
+                        value={firstName}
+                    />
+
+                    <Text style={styles.text}> Last Name : </Text>
+                    <TextInput
+                        style={styles.input}
+                        placeholderTextColor="#C0C0C0"
+                        onChangeText={(lastName) => { setError(""); setLastName(lastName) }}
+                        value={lastName}
+                    />
+
+                    <Text style={styles.text}> Email : </Text>
+                    <TextInput
+                        style={styles.input}
                         placeholderTextColor="#C0C0C0"
                         onChangeText={(email) => { setError(""); setEmail(email) }}
                         value={email}
                     />
+
+                    <Text style={styles.text}> Password : </Text>
                     <TextInput
                         style={styles.input}
-                        placeholder='Password'
                         placeholderTextColor="#C0C0C0"
                         secureTextEntry
                         onChangeText={(password) => { setError(""); setPassword(password) }}
                         value={password}
                     />
+
+                    <Text style={styles.text}> Confirm Password : </Text>
                     <TextInput
                         style={styles.input}
-                        placeholder='Confirm Password'
                         placeholderTextColor="#C0C0C0"
                         secureTextEntry
                         onChangeText={(password) => { setError(""); setConfirmPassword(password) }}
                         value={confirmPassword}
                     />
+
+                    <Text style={styles.text}> Date Of Birth : </Text>
                     <TextInput
                         style={styles.input}
-                        placeholder='First Name'
-                        placeholderTextColor="#C0C0C0"
-                        onChangeText={(firstName) => { setError(""); setFirstName(firstName) }}
-                        value={firstName}
-                    />
-                    <TextInput
-                        style={styles.input}
-                        placeholder='Last Name'
-                        placeholderTextColor="#C0C0C0"
-                        onChangeText={(lastName) => { setError(""); setLastName(lastName) }}
-                        value={lastName}
-                    />
-                    <TextInput
-                        style={styles.input}
-                        placeholder='Date of Birth'
                         placeholderTextColor="#C0C0C0"
                         onChangeText={(date) => { setError(""); setDob(date) }}
                         value={dateOfBirth}
                     />
+
+                    <Text style={styles.text}> Unit Number : </Text>
                     <TextInput
                         style={styles.input}
-                        placeholder='profilePicUrl'
-                        placeholderTextColor="#C0C0C0"
-                        onChangeText={(profilePicUrl) => { setError(""); setProfilePicUrl(profilePicUrl) }}
-                        value={profilePicUrl}
-                    />
-                    <TextInput
-                        style={styles.input}
-                        placeholder='Province'
-                        placeholderTextColor="#C0C0C0"
-                        onChangeText={(province) => { setError(""); setProvince(province) }}
-                        value={province}
-                    />
-                    <TextInput
-                        style={styles.input}
-                        placeholder='City'
-                        placeholderTextColor="#C0C0C0"
-                        onChangeText={(city) => { setError(""); setCity(city) }}
-                        value={city}
-                    />
-                    <TextInput
-                        style={styles.input}
-                        placeholder='Unit Number'
                         placeholderTextColor="#C0C0C0"
                         onChangeText={(unitNumber) => { setError(""); setUnitNumber(unitNumber) }}
                         value={unitNumber}
                     />
+
+                    <Text style={styles.text}> Street Address : </Text>
                     <TextInput
                         style={styles.input}
-                        placeholder='Street Address'
                         placeholderTextColor="#C0C0C0"
                         onChangeText={(streetAddress) => { setError(""); setStreetAddress(streetAddress) }}
                         value={streetAddress}
                     />
+
+                    <Text style={styles.text}> City : </Text>
                     <TextInput
                         style={styles.input}
-                        placeholder='Contact Number'
+                        placeholderTextColor="#C0C0C0"
+                        onChangeText={(city) => { setError(""); setCity(city) }}
+                        value={city}
+                    />
+
+                    <Text style={styles.text}> Province : </Text>
+                    <TextInput
+                        style={styles.input}
+                        placeholderTextColor="#C0C0C0"
+                        onChangeText={(province) => { setError(""); setProvince(province) }}
+                        value={province}
+                    />
+                    
+                    <Text style={styles.text}> Phone Number : </Text>                    
+                    <TextInput
+                        style={styles.input}
                         placeholderTextColor="#C0C0C0"
                         onChangeText={(contactNumber) => { setError(""); setContactNumber(contactNumber) }}
                         value={contactNumber}
                     />
-                    <TextInput
-                        style={styles.input}
-                        placeholder='Credit Card Number'
-                        placeholderTextColor="#C0C0C0"
-                        onChangeText={(number) => { setError(""); setCreditCardNumber(number) }}
-                        value={creditCardNumber}
-                    />
-                    <TextInput
-                        style={styles.input}
-                        placeholder='Expiry Date'
-                        placeholderTextColor="#C0C0C0"
-                        onChangeText={(date) => { setError(""); setExpiryDate(date) }}
-                        value={expiryDate}
-                    />
-                    <TextInput
-                        style={styles.input}
-                        placeholder='CVV'
-                        placeholderTextColor="#C0C0C0"
-                        secureTextEntry
-                        onChangeText={(cvv) => { setError(""); setCvv(cvv) }}
-                        value={cvv}
-                    />
 
                     <TouchableOpacity
                         style={styles.button}
-                        disabled={loading}
-                        onPress={() => onSignUpClicked()}>
-                        <Text style={styles.buttonTitle}>Create account</Text>
+                        onPress={() => navigation.navigate('SignUpScreen2', {firstName: firstName, lastName: lastName, email: email, password: password,image: image, confirmPassword: confirmPassword, contactNumber: contactNumber, province: province, city: city, streetAddress: streetAddress, unitNumber: unitNumber, dateOfBirth: dateOfBirth})}>
+                        <Text style={styles.buttonTitle}> Next Step </Text>
                     </TouchableOpacity>
-                    <View style={styles.option}>
-                        <Text style={styles.optionText}>
-                            Already have an account?
-                        <Text style={styles.optionLink}
-                                onPress={() => navigation.navigate('Signin')}>
-                                Log in</Text>
-                        </Text>
-                        <Text style={styles.email}>
-                            Current user : {currentUser && currentUser.email}
-                        </Text>
-                    </View>
                 </View>
             </View>
         </ScrollView>
@@ -201,7 +179,7 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         alignItems: 'center',
-        marginVertical: 20
+        marginVertical: 20,
     },
     logo: {
         width: 200,
@@ -210,27 +188,24 @@ const styles = StyleSheet.create({
         marginTop: 30,
     },
     input: {
-        height: 48,
-        borderRadius: 5,
+        height: 25,
         overflow: 'hidden',
-        backgroundColor: 'white',
         marginTop: 10,
         marginBottom: 10,
         marginLeft: 30,
         marginRight: 30,
-        paddingLeft: 16
-    },
-    email: {
-        color: '#73AB84',
-        textAlign: 'center'
+        paddingLeft: 16,
+        width: '80%',
+        borderBottomWidth: 1.0,
+        borderColor: '#BFBFBF',
     },
     button: {
-        backgroundColor: 'black',
+        backgroundColor: '#0177FC',
         marginLeft: 30,
         marginRight: 30,
         marginTop: 20,
         height: 48,
-        borderRadius: 5,
+        borderRadius: 20,
         alignItems: "center",
         justifyContent: 'center'
     },
@@ -244,13 +219,23 @@ const styles = StyleSheet.create({
         alignItems: "center",
         marginTop: 20
     },
-    optionText: {
-        fontSize: 16,
-        color: '#2e2e2d'
+    avatarView: {
+        marginLeft: 25,
+        marginRight: 200,
+        marginTop: 40,
+        flexDirection: 'row'
     },
-    optionLink: {
-        color: "#BB4430",
-        fontWeight: "bold",
-        fontSize: 16
+    text: {
+        color: '#BFBFBF',
+        marginLeft: 35
+    },
+    evilIcon: {
+        flexDirection:'row',
+        marginTop: -30,
+        marginLeft: 10
+    },
+    icon1:{
+        marginLeft: -39,
+        marginTop: 0.4
     }
 })
