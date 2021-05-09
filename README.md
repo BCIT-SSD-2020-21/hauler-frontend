@@ -38,6 +38,7 @@
 * npm install @stripe/stripe-js (for the credit card functionality)
 * npm install @stripe/react-stipe-js
 * npm install react-native-credit-card-display
+* npm install react-native-maps-directions
 ---
 ### Wireframe for User
 Stored in wireframe folder on the root folder.
