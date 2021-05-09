@@ -40,7 +40,7 @@ export default function AddJunkScreen3({ navigation, route }) {
           onPress={async () => { await postJunkItem(
             currentUser.uid,
             service,
-            image,
+            image.base64,
             selectedweight,
             selectedquantity,
             postHeading,
