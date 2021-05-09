@@ -5,7 +5,6 @@ import { ScrollView, TouchableOpacity } from 'react-native-gesture-handler';
 import { Context } from '../../context/ContextProvider';
 import { postItem } from '../../../network';
 import MapView from 'react-native-maps';
-import Geocoder from 'react-native-geocoding';
 import {GOOGLE_MAP_API} from '@env';
 
 export default function ErrandSummary({ navigation, route }) {
@@ -17,20 +16,10 @@ export default function ErrandSummary({ navigation, route }) {
 
     const googleAPI = GOOGLE_MAP_API
 
-    // this.state = {
-    //     pickUpAddress: [],
-    // }
-
-    getLocationData(() => {
-        Geocoder.setApiKey({googleAPI});
-
-        Geocoder.getFromLocation ({pickUpAddress}).then(
-            JSON => {
-                var location = json.results[0].geometry.location;
-                console.log(location.lat + location.lng)
-            }
-        )
-    })
+    const pickUpAddressLat = pickUpAddress.geometry.location.lat
+    const pickUpAddressLng = pickUpAddress.geometry.location.lng
+    const dropOffAddressLat = dropOffAddress.geometry.location.lat
+    const dropOffAddressLng = dropOffAddress.geometry.location.lng
 
     return (
         <ScrollView>
@@ -43,20 +32,52 @@ export default function ErrandSummary({ navigation, route }) {
           <Text style={{fontSize: 20, fontWeight: 'bold'}} >Pick Up Details: </Text>
           <Text style={styles.inputLine1} >Contact Person: {pickContactPerson}</Text>
           <Text style={styles.inputLine1} >Phone Number: {pickUpPhoneNumber}</Text>
-          <Text style={styles.inputLine2} >Street Address: {pickUpAddress.description}</Text>
+          <Text style={styles.inputLine2} >Street Address: {pickUpAddress.formatted_address}</Text>
           <Text style={styles.inputLine2} >Special Instructions: {pickUpSpecialInstructions}</Text>
           <Text style={{fontSize: 20, fontWeight: 'bold'}} > Drop Off Details: </Text>
           <Text style={styles.inputLine1} >Contact Person: {dropOffContactPerson}</Text>
           <Text style={styles.inputLine1} >Phone Number: {dropOffPhoneNumber}</Text>
-          <Text style={styles.inputLine2} >Street Address: {dropOffAddress.description}</Text>
+          <Text style={styles.inputLine2} >Street Address: {dropOffAddress.formatted_address}</Text>
           <Text style={styles.inputLine2} >Special Instructions: {dropOffSpecialInstructions}</Text>
           <View style={styles.imageContainer}>
               <Image style={styles.image} source={{uri: image}}/>
           </View>
           <Text style={styles.inputLine1}>Quoted Price: {sliderValue}</Text>
+
+
+            <View style={styles.containerMap}>
+                <MapView 
+                style={styles.map}
+                initialRegion={{
+                    latitude: pickUpAddressLat,
+                    longitude: pickUpAddressLng,
+                    latitudeDelta: 0.6,
+                    longitudeDelta: 0.6
+
+                }}>
+                    <MapView.Marker
+                        coordinate = {{
+                            latitude: pickUpAddressLat,
+                            longitude: pickUpAddressLng
+                        }}
+                        title={"Pick Up Location"}
+                    />
+                    <MapView.Marker
+                       coordinate = {{
+                        latitude: dropOffAddressLat,
+                        longitude: dropOffAddressLng
+                    }}
+                    title={"Drop Off Location"}
+                    />
+
+                </MapView>
+            </View>
+
           <View style={styles.btnContainer}>
-          <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('ErrandPost1')}><Text style={styles.btnText}> Edit </Text></TouchableOpacity>
+              <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('ErrandPost1')}><Text style={styles.btnText}> Edit </Text></TouchableOpacity>
           </View> 
+
+         
 
           <View style={styles.btnContainer}>
           <TouchableOpacity style={styles.button}><Text style={styles.btnText} onPress={async () => { await postItem(
@@ -77,13 +98,9 @@ export default function ErrandSummary({ navigation, route }) {
                 dropOffSpecialInstructions,
                 sliderValue);navigation.navigate('Confirmation')}}> Post the Job </Text></TouchableOpacity>
           </View>
-        </View>
-        <View>
-        <TouchableOpacity>Get Location Data</TouchableOpacity>
-        </View>
-        <View style={styles.containerMap}>
-          <MapView style={styles.map} />
-        </View>
+
+         </View>
+   
         </ScrollView>
     )
 }
@@ -153,6 +170,6 @@ const styles = StyleSheet.create({
       },
       map: {
         width: Dimensions.get('window').width,
-        height: Dimensions.get('window').height,
+        height: 400,
       },
 })
