@@ -22,9 +22,12 @@ export default function ErrandPost2({ navigation, route }) {
                   placeholder="Full Address"
                   minLength={2}
                   fetchDetails= {true}
-                  onPress={(pickAddress) => {setPickUpAddress(pickAddress)}}
+                  onPress={(pickAddress) => {setPickUpAddress(pickAddress); console.log(pickAddress)}}
+                  // onPress={(data, details = null) => {
+                  //   // 'details' is provided when fetchDetails = true
+                  //   console.log(data, details); }}
                   value={pickUpAddress}
-                  onFail={(error) => console.error(error)}
+                  onFail={(error) => console.error(error)} 
                   query={{
                     key: GOOGLE_MAP_API,
                     language: 'en', // language of the results
