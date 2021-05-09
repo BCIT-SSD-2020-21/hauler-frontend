@@ -17,10 +17,20 @@ export default function ErrandSummary({ navigation, route }) {
 
     const googleAPI = GOOGLE_MAP_API
 
+    // this.state = {
+    //     pickUpAddress: [],
+    // }
 
-    // getData(() => {
-    //     Geocoder.init({googleAPI});
-    // })
+    getLocationData(() => {
+        Geocoder.setApiKey({googleAPI});
+
+        Geocoder.getFromLocation ({pickUpAddress}).then(
+            JSON => {
+                var location = json.results[0].geometry.location;
+                console.log(location.lat + location.lng)
+            }
+        )
+    })
 
     return (
         <ScrollView>
@@ -67,6 +77,9 @@ export default function ErrandSummary({ navigation, route }) {
                 dropOffSpecialInstructions,
                 sliderValue);navigation.navigate('Confirmation')}}> Post the Job </Text></TouchableOpacity>
           </View>
+        </View>
+        <View>
+        <TouchableOpacity>Get Location Data</TouchableOpacity>
         </View>
         <View style={styles.containerMap}>
           <MapView style={styles.map} />
