@@ -22,7 +22,9 @@ export default function ErrandPost2({ navigation, route }) {
                   placeholder="Full Address"
                   minLength={2}
                   fetchDetails= {true}
-                  onPress={(dropAddress) => {setdropOffAddress(dropAddress)}}
+                  onPress={(data, details = null) => {setdropOffAddress(details),
+                    console.log(details)}
+                     }
                   value={dropOffAddress}
                   onFail={(error) => console.error(error)}
                   query={{
