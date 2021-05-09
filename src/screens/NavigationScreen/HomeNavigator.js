@@ -9,6 +9,7 @@ import JobStatus from '../../screens/JobStatus/JobStatus';
 import AddJunkNavigator from '../NavigationScreen/AddJunkNavigator';
 //import ServiceScreenNavigator from '../NavigationScreen/ServiceScreenNavigator';
 import ServiceProviderNavigator from './ServiceProviderNavigator';
+import SignUpScreen2 from '../SignupScreen/SignUpScreen2'
 
 const HomeStack = createStackNavigator();
 
@@ -28,6 +29,11 @@ const HomeNavigator = () => {
             <HomeStack.Screen
                 name='Signup'
                 component={Signup}
+                options={{ headerShown: false }}
+            />
+            <HomeStack.Screen
+                name='SignUpScreen2'
+                component={SignUpScreen2}
                 options={{ headerShown: false }}
             />
             <HomeStack.Screen

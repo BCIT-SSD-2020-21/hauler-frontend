@@ -26,6 +26,7 @@ export default function ServiceProviderScreen({ navigation }) {
                         <Card>
                             <ListItem> 
                                 <Avatar 
+                                    size='large'
                                     rounded
                                     source={{uri: 'https://siddharthagarwalclasses.com/wp-content/uploads/2020/05/Human-Face-6.png'}}
                                 />
@@ -40,6 +41,7 @@ export default function ServiceProviderScreen({ navigation }) {
                         <Card>
                             <ListItem> 
                                 <Avatar 
+                                    size='large'
                                     rounded
                                     source={{uri: 'https://cdn5.vectorstock.com/i/thumb-large/91/29/friendly-smile-on-face-a-guy-vector-27339129.jpg'}}
                                 />
@@ -83,14 +85,16 @@ const styles = StyleSheet.create({
         marginTop: 30,
     },
     button: {
-        backgroundColor: 'black',
-        borderRadius: 10,
+        backgroundColor: '#0177FC',
+        borderRadius: 20,
         display: 'flex',
+        width: '80%'
     },
     btnText: {
         color: 'white',
         fontSize: 20,
         paddingVertical: 10,
         paddingHorizontal: 50,
+        textAlign: 'center'
     },
 })

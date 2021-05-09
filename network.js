@@ -103,7 +103,6 @@ export async function postItem(
     return res
 }
 
-
 //==================================== To post Junk service details ===================================//
 
 export async function postJunkItem(
@@ -123,6 +122,21 @@ export async function postJunkItem(
   streetAddress,
   sliderValue
 ){
+  console.log(`uid:${uid},
+  image : ${image},
+  service: ${service},
+  postHeading: ${postHeading},
+  description: ${description},
+  selectedweight: ${selectedweight},
+  selectedquantity: ${selectedquantity},
+  contactPerson: ${contactPerson},
+  phoneNumber: ${phoneNumber},
+  streetAddress: ${streetAddress},
+  city: ${city},
+  province: ${province},
+  zipCode: ${zipCode},
+  specialInstructions: ${specialInstructions},
+  sliderValue: ${sliderValue}`)
     const res = await axios.post(`${url}/api/posts`, {
             userId: uid,
             service: service,

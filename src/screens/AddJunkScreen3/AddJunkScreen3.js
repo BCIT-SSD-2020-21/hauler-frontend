@@ -15,32 +15,57 @@ export default function AddJunkScreen3({ navigation, route }) {
     return (
         <ScrollView>
         <View style={styles.container}>
-          <Text> Summary Junk </Text>
-          <Text style={styles.inputLine1} >Post Heading: {postHeading}</Text>
-          <Text style={styles.inputLine1} >Post Description: {description}</Text>
-          <Text style={styles.inputLine1} >Item Weigth: {selectedweight}</Text>
-          <Text style={styles.inputLine1} >Number of Items: {selectedquantity}</Text>
-          <Text style={{fontSize: 20, fontWeight: 'bold'}} >Pick Up Details: </Text>
-          <Text style={styles.inputLine1} >Contact Person: {contactPerson}</Text>
-          <Text style={styles.inputLine1} >Phone Number: {phoneNumber}</Text>
-          <Text style={styles.inputLine2} >Street Address: {streetAddress}</Text>
-          <Text style={styles.inputLine1} >City: {city}</Text>
-          <Text style={styles.inputLine1} >Province: {province}</Text>
-          <Text style={styles.inputLine1} >Zip Code: {zipCode}</Text>
-          <Text style={styles.inputLine2} >Special Instructions: {specialInstructions}</Text>
+        <Text style={styles.screenHeading}> Junk Summary </Text>
+        <View style={styles.view}>
+          <Text style={styles.text1} >Post Heading: </Text><Text style={styles.text2}>{postHeading}</Text></View>
+
+          <View style={styles.view}>
+          <Text style={styles.text1} >Post Description: </Text><Text style={styles.text2}>{description}</Text></View>
+
+          <View style={styles.view}>
+          <Text style={styles.text1} >Item Weigth:</Text><Text style={styles.text2}>{selectedweight}</Text></View>
+
+          <View style={styles.view}>
+          <Text style={styles.text1} >Number of Items: </Text><Text style={styles.text2}>{selectedquantity}</Text></View>
+
+          <Text style={{fontSize: 20, fontWeight: 'bold', paddingTop: 20, marginLeft: 25}} >Pick Up Details: </Text>
+
+          <View style={styles.view}>
+          <Text style={styles.text1} >Contact Person: </Text><Text style={styles.text2}>{contactPerson}</Text></View>
+
+          <View style={styles.view}>
+          <Text style={styles.text1} >Phone Number: </Text><Text style={styles.text2}>{phoneNumber}</Text></View>
+
+          <View style={styles.view}>
+          <Text style={styles.text1} >Street Address: </Text><Text style={styles.text2}>{streetAddress}</Text></View>
+
+          <View style={styles.view}>
+          <Text style={styles.text1} >City: </Text><Text style={styles.text2}>{city}</Text></View>
+
+          <View style={styles.view}>
+          <Text style={styles.text1} >Province: </Text><Text style={styles.text2}>{province}</Text></View>
+
+          <View style={styles.view}>
+          <Text style={styles.text1} >Zip Code: </Text><Text style={styles.text2}>{zipCode}</Text></View>
+
+          <View style={styles.view}>
+          <Text style={styles.text1} >Special Instructions: </Text><Text style={styles.text2}>{specialInstructions}</Text></View>
+
           <View style={styles.imageContainer}>
-            {image && <Image source={{ uri: image }} style={styles.image} />}
+            {image && <Image source={{ uri: image }} style={styles.imageDisplay} />}
           </View>
-          <Text style={styles.inputLine1} >Quoted Price: {sliderValue}</Text>
-          <View style={styles.btnContainer}>
-          <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('AddItemScreen')}><Text style={styles.btnText}> Edit </Text></TouchableOpacity>
+
+          <View style={styles.view}>
+          <Text style={styles.text1} >Quoted Price: </Text><Text style={styles.text2}>{sliderValue}</Text></View>
+          <View>
+          <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('AddItemScreen')}><Text style={styles.buttonTitle}> Edit </Text></TouchableOpacity>
           </View> 
-          <View style={styles.btnContainer}>
-          <TouchableOpacity style={styles.button}><Text style={styles.btnText} 
+          <View >
+          <TouchableOpacity style={styles.button}><Text style={styles.buttonTitle} 
           onPress={async () => { await postJunkItem(
             currentUser.uid,
             service,
-            image,
+            Platform.OS === "android" ? image.replace("file:///", "file://") : image.replace("file://", ""),
             selectedweight,
             selectedquantity,
             postHeading,
@@ -62,58 +87,55 @@ export default function AddJunkScreen3({ navigation, route }) {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        alignItems: 'center',
+        //alignItems: 'center',
+        marginVertical: 20
     },
-    inputLine1: {
-        height: 40,
-        width: '100%',
-        borderRadius: 5,
-        overflow: 'hidden',
-        backgroundColor: 'white',
-        marginTop: 10,
-        marginBottom: 10,
-        marginLeft: 30,
-        marginRight: 30,
-        paddingLeft: 16
-    },
-    inputLine2: {
-        height: 150,
-        width: '100%',
-        borderRadius: 5,
-        overflow: 'hidden',
-        backgroundColor: 'white',
-        marginTop: 10,
-        marginBottom: 10,
-        marginLeft: 30,
-        marginRight: 30,
-        paddingLeft: 16
-    },
+    screenHeading: {
+        fontSize: 30,
+        fontWeight: '500',
+        marginLeft: 20
+      },
     imageContainer:{
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
+        marginTop: 20
     },
-    image:{
-        width: 80,
-        height: 80,
+    imageDisplay:{
+        width: 150,
+        height: 150,
         margin: 5,
         resizeMode: 'contain', 
     },
-    btnContainer: {
-        display: 'flex',
-        flexDirection: 'row',
-        justifyContent: 'space-around',
-        marginTop: 30,
-    },
     button: {
         backgroundColor: '#0177FC',
-        borderRadius: 10,
-        display: 'flex',
+        marginLeft: 30,
+        marginRight: 30,
+        marginTop: 20,
+        height: 48,
+        borderRadius: 20,
+        alignItems: "center",
+        justifyContent: 'center'
     },
-    btnText: {
+    buttonTitle: {
         color: 'white',
-        fontSize: 20,
-        paddingVertical: 10,
-        paddingHorizontal: 50,
+        fontSize: 16,
+        fontWeight: "bold"
     },
+    text1: {
+        color: '#BFBFBF',
+        marginLeft: 25,
+        fontWeight: 'bold',
+        marginTop: 20
+      },
+      text2: {
+        color: 'black',
+        marginLeft: 20,
+        fontWeight: 'bold',
+        marginTop: 20,
+        position: 'relative'
+    },
+    view: {
+        flexDirection: 'row'
+    }
 })
