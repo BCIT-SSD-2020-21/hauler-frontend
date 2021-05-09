@@ -30,6 +30,11 @@
 * npm install @react-native-community/slider --save (for price slider option)
 * npm install react-native-elements 
 * expo install expo-image-picker (for camera and gallery images access from your phone)
+* expo install react-native-maps
+* npm install react-native-maps --save-exact
+* npm install react-native-google-places-autocomplete
+* yarn add react-native-google-autocomplete
+* npm install --save react-native-geocoding
 * npm install @stripe/stripe-js (for the credit card functionality)
 * npm install @stripe/react-stipe-js
 * npm install react-native-credit-card-display
