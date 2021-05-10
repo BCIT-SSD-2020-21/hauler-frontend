@@ -1,7 +1,5 @@
 import React, {useContext} from 'react'
-import { Text, View, Image } from 'react-native'
-import { StyleSheet } from 'react-native';
-import { ScrollView, TouchableOpacity } from 'react-native-gesture-handler';
+import { ScrollView, TouchableOpacity, Text, View, Image,StyleSheet, Platform } from 'react-native'
 import { postJunkItem } from '../../../network';
 import { Context } from '../../context/ContextProvider';
 

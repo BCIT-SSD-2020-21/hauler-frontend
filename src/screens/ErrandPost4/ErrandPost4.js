@@ -2,46 +2,45 @@ import React, { useState } from 'react'
 import { Text, View, ScrollView, TextInput, SafeAreaView, Picker, Dimensions} from 'react-native'
 import { StyleSheet } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
-import { GooglePlacesAutocomplete, GooglePlacesDetailsQuery  } from 'react-native-google-places-autocomplete';
+import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
 import Constants from 'expo-constants';
 import {GOOGLE_MAP_API} from '@env';
+// import MapView from 'react-native-maps';
 
-import SelectPickUpProvince from '../../components/SelectPickUpProvince/SelectPickUpProvince';
 
 export default function ErrandPost2({ navigation, route }) {
 
-    const [pickUpAddress, setPickUpAddress] = useState('')
+    const [dropOffAddress, setdropOffAddress] = useState('')
 
-    const {image, selectedweight, selectedquantity, postHeading, description} = route.params;
+    const {image, selectedweight, selectedquantity, postHeading, description, pickUpAddress} = route.params;
 
    return (
-        // <SafeAreaView forceInset = {{top: 'always'}}>
+    //  <ScrollView keyboardShouldPersistTaps={'handled'}>
         <View style={styles.container}>
-          <Text>Enter your pick up location</Text>
+          <Text>Enter your drop off location</Text>
               <GooglePlacesAutocomplete
                   placeholder="Full Address"
                   minLength={2}
                   fetchDetails= {true}
-                  onPress={(data, details) => {setPickUpAddress(details)}
+                  onPress={(data, details = null) => {setdropOffAddress(details),
+                    console.log(details)}
                      }
-                  value={pickUpAddress}
-                  onFail={(error) => console.error(error)} 
+                  value={dropOffAddress}
+                  onFail={(error) => console.error(error)}
                   query={{
                     key: GOOGLE_MAP_API,
                     language: 'en', // language of the results
                   }}
                 />
 
-
-
               <View style={styles.btnContainer}>
-          <TouchableOpacity onPress={() => navigation.navigate('ErrandPost4', {image: image, selectedweight:  selectedweight,selectedquantity: selectedquantity, postHeading: postHeading, description: description, pickUpAddress: pickUpAddress})} 
+          <TouchableOpacity onPress={() => navigation.navigate('ErrandPost3', {image: image, selectedweight:  selectedweight,selectedquantity: selectedquantity, postHeading: postHeading, description: description, pickUpAddress: pickUpAddress, dropOffAddress: dropOffAddress})} 
           style={styles.button} >
               <Text style={styles.btnText}>Next</Text>
             </TouchableOpacity>
           </View>
           </View>
-          // </SafeAreaView>
+          // </ScrollView>
     )
 }
 
@@ -82,4 +81,5 @@ btnText: {
   paddingVertical: 10,
   paddingHorizontal: 50,
 },
+
 })

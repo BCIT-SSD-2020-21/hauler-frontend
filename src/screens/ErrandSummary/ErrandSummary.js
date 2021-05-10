@@ -1,117 +1,130 @@
-import React, {useContext} from 'react'
-import { Text, View, TextInput, Image } from 'react-native'
+import React, { useContext, useState, useRef } from 'react'
+import { Text, View, Image, Dimensions } from 'react-native'
 import { StyleSheet } from 'react-native';
 import { ScrollView, TouchableOpacity } from 'react-native-gesture-handler';
 import { Context } from '../../context/ContextProvider';
 import { postItem } from '../../../network';
+import MapView from 'react-native-maps';
+import MapViewDirections from 'react-native-maps-directions';
+import { GOOGLE_MAP_API } from '@env';
 
 export default function ErrandSummary({ navigation, route }) {
-
-    const{ image, selectedweight, selectedquantity, postHeading, description, contactPerson, phoneNumber, specialInstructions, zipCode, province, city, streetAddress, sliderValue, dropOffCity, dropOffContactPerson, dropOffPhoneNumber, dropOffProvince, dropOffSpecialInstructions, dropOffStreetAddress, dropOffZipCode} = route.params;
+    const { width, height } = Dimensions.get('window');
+    const mapView = useRef();
+    const { image, selectedweight, selectedquantity, postHeading, description, pickUpAddress, dropOffAddress, pickContactPerson, pickUpPhoneNumber, pickUpSpecialInstructions, dropOffContactPerson, dropOffPhoneNumber, dropOffSpecialInstructions, sliderValue } = route.params;
 
     const service = "Errands"
-
     const { currentUser } = useContext(Context)
 
+    const pickUpAddressLat = pickUpAddress.geometry.location.lat
+    const pickUpAddressLng = pickUpAddress.geometry.location.lng
+    const dropOffAddressLat = dropOffAddress.geometry.location.lat
+    const dropOffAddressLng = dropOffAddress.geometry.location.lng
+
+    const [distance, setDistance] = useState('')
+    const [duration, setDuration] = useState('')
+    const [coordinates, setCoordinates] = useState([
+        {
+            latitude: pickUpAddressLat,
+            longitude: pickUpAddressLng,
+        },
+        {
+            latitude: dropOffAddressLat,
+            longitude: dropOffAddressLng,
+        }
+    ])
     return (
         <ScrollView>
-        <View style={styles.container}>
-        <Text style={styles.screenHeading}> Errand Summary </Text>
-        <View style={styles.view}>
-          <Text style={styles.text1} >Post Heading: </Text><Text style={styles.text2}>{postHeading}</Text></View>
+            <View style={styles.container}>
+                <Text> Errand Summary </Text>
+                <Text style={styles.inputLine1} >Post Heading: {postHeading}</Text>
+                <Text style={styles.inputLine1} >Post Description: {description}</Text>
+                <Text style={styles.inputLine1} >Item Weigth: {selectedweight}</Text>
+                <Text style={styles.inputLine1} >Number of Items: {selectedquantity}</Text>
+                <Text style={{ fontSize: 20, fontWeight: 'bold' }} >Pick Up Details: </Text>
+                <Text style={styles.inputLine1} >Contact Person: {pickContactPerson}</Text>
+                <Text style={styles.inputLine1} >Phone Number: {pickUpPhoneNumber}</Text>
+                <Text style={styles.inputLine2} >Street Address: {pickUpAddress.formatted_address}</Text>
+                <Text style={styles.inputLine2} >Special Instructions: {pickUpSpecialInstructions}</Text>
+                <Text style={{ fontSize: 20, fontWeight: 'bold' }} > Drop Off Details: </Text>
+                <Text style={styles.inputLine1} >Contact Person: {dropOffContactPerson}</Text>
+                <Text style={styles.inputLine1} >Phone Number: {dropOffPhoneNumber}</Text>
+                <Text style={styles.inputLine2} >Street Address: {dropOffAddress.formatted_address}</Text>
+                <Text style={styles.inputLine2} >Special Instructions: {dropOffSpecialInstructions}</Text>
+                <View style={styles.imageContainer}>
+                    <Image style={styles.imageDisplay} source={{ uri: image }} />
+                </View>
+                <Text style={styles.inputLine1}>Quoted Price: {sliderValue}</Text>
+                <View style={styles.containerMap}>
+                    <Text>Total Distanse: {distance} km</Text>
+                    <Text>Duration: {duration} min</Text>
+                    <MapView
+                        style={styles.map}
+                        ref={mapView}
+                    >
+                        {coordinates.map((coordinate, index) => 
+                        <MapView.Marker key={`coordinate_${index}`} coordinate={coordinate} 
+                        />
+                        )}
+                        <MapViewDirections
+                            apikey={GOOGLE_MAP_API}
+                            origin={coordinates[0]}
+                            waypoints={coordinates}
+                            destination={coordinates[coordinates.length - 1]}
+                            strokeWidth={3}
+                            strokeColor='#DE0303'
+                            optimizeWaypoints={true}
+                            onReady={result => {
+                                setDistance(result.distance)
+                                setDuration(result.duration)
 
-          <View style={styles.view}>
-          <Text style={styles.text1} >Post Description: </Text><Text style={styles.text2}>{description}</Text></View>
-
-          <View style={styles.view}>
-          <Text style={styles.text1} >Item Weigth:</Text><Text style={styles.text2}>{selectedweight}</Text></View>
-
-          <View style={styles.view}>
-          <Text style={styles.text1} >Number of Items: </Text><Text style={styles.text2}>{selectedquantity}</Text></View>
-
-          <Text style={{fontSize: 20, fontWeight: 'bold', paddingTop: 20, marginLeft: 25}} >Pick Up Details: </Text>
-
-          <View style={styles.view}>
-          <Text style={styles.text1} >Contact Person: </Text><Text style={styles.text2}>{contactPerson}</Text></View>
-
-          <View style={styles.view}>
-          <Text style={styles.text1} >Phone Number: </Text><Text style={styles.text2}>{phoneNumber}</Text></View>
-
-          <View style={styles.view}>
-          <Text style={styles.text1} >Street Address: </Text><Text style={styles.text2}>{streetAddress}</Text></View>
-
-          <View style={styles.view}>
-          <Text style={styles.text1} >City: </Text><Text style={styles.text2}>{city}</Text></View>
-
-          <View style={styles.view}>
-          <Text style={styles.text1} >Province: </Text><Text style={styles.text2}>{province}</Text></View>
-
-          <View style={styles.view}>
-          <Text style={styles.text1} >Zip Code: </Text><Text style={styles.text2}>{zipCode}</Text></View>
-
-          <View style={styles.view}>
-          <Text style={styles.text1} >Special Instructions: </Text><Text style={styles.text2}>{specialInstructions}</Text></View>
-
-
-          <Text style={{fontSize: 20, fontWeight: 'bold', paddingTop: 20, marginLeft: 25}} > Drop Off Details: </Text>
-          
-          <View style={styles.view}>
-          <Text style={styles.text1} >Contact Person: </Text><Text style={styles.text2}>{dropOffContactPerson}</Text></View>
-
-          <View style={styles.view}>
-          <Text style={styles.text1} >Phone Number: </Text><Text style={styles.text2}>{dropOffPhoneNumber}</Text></View>
-
-          <View style={styles.view}>
-          <Text style={styles.text1} >Street Address: </Text><Text style={styles.text2}>{dropOffStreetAddress}</Text></View>
-
-          <View style={styles.view}>
-          <Text style={styles.text1} >City: </Text><Text style={styles.text2}>{dropOffCity}</Text></View>
-
-          <View style={styles.view}>
-          <Text style={styles.text1} >Province: </Text><Text style={styles.text2}>{dropOffProvince}</Text></View>
-
-          <View style={styles.view}>
-          <Text style={styles.text1} >Zip Code: </Text><Text style={styles.text2}>{dropOffZipCode}</Text></View>
-
-          <View style={styles.view}>
-          <Text style={styles.text1} >Special Instructions: </Text><Text style={styles.text2}>{dropOffSpecialInstructions}</Text></View>
-
-          <View style={styles.imageContainer}>
-              <Image style={styles.imageDisplay} source={{uri:image}}/>
-          </View>
-
-          <View style={styles.view}>
-          <Text style={styles.text1} >Quoted Price: </Text><Text style={styles.text2}>{sliderValue}</Text></View>
-          <View>
-          <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('ErrandPost1')}><Text style={styles.buttonTitle}> Edit </Text></TouchableOpacity>
-          </View> 
-
-          <View>
-          <TouchableOpacity style={styles.button}><Text style={styles.buttonTitle} onPress={async () => { await postItem(
-                currentUser.uid,
-                image,
-                service,
-                postHeading,
-                description,
-                selectedweight,
-                selectedquantity,
-                contactPerson,
-                phoneNumber,
-                streetAddress,
-                city,
-                province,
-                zipCode,
-                specialInstructions,
-                sliderValue,
-                dropOffContactPerson,
-                dropOffPhoneNumber,
-                dropOffStreetAddress,
-                dropOffCity,
-                dropOffProvince,
-                dropOffZipCode,
-                dropOffSpecialInstructions);navigation.navigate('Confirmation')}}> Post the Job </Text></TouchableOpacity>
-          </View>
-        </View>
+                                mapView.current.fitToCoordinates(result.coordinates, {
+                                    edgePadding: {
+                                        right: (width / 20),
+                                        bottom: (height / 20),
+                                        left: (width / 20),
+                                        top: (height / 20),
+                                    }
+                                }
+                                );
+                            }}
+                            onError={(errorMessage) => {
+                                console.log(`Error: ${errorMessage}`);
+                            }}
+                        />
+                    </MapView>
+                </View>
+                <View style={styles.btnContainer}>
+                    <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('ErrandPost1')}><Text style={styles.btnText}> Edit </Text></TouchableOpacity>
+                </View>
+                <View style={styles.btnContainer}>
+                    <TouchableOpacity style={styles.button}><Text style={styles.btnText} onPress={async () => {
+                        await postItem(
+                            currentUser.uid,
+                            service,
+                            image,
+                            selectedweight,
+                            selectedquantity,
+                            postHeading,
+                            description,
+                            pickUpAddress.formatted_address,
+                            pickUpAddress.vicinity,
+                            pickUpAddressLat,
+                            pickUpAddressLng,
+                            pickContactPerson,
+                            pickUpPhoneNumber,
+                            pickUpSpecialInstructions,
+                            dropOffAddress.formatted_address,
+                            dropOffAddress.vicinity,
+                            dropOffAddressLat,
+                            dropOffAddressLng,
+                            dropOffContactPerson,
+                            dropOffPhoneNumber,
+                            dropOffSpecialInstructions,
+                            sliderValue); navigation.navigate('Confirmation')
+                    }}> Post the Job </Text></TouchableOpacity>
+                </View>
+            </View>
         </ScrollView>
     )
 }
@@ -126,18 +139,18 @@ const styles = StyleSheet.create({
         fontSize: 30,
         fontWeight: '500',
         marginLeft: 20
-      },
-      imageContainer:{
+    },
+    imageContainer: {
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
         marginTop: 20
     },
-    imageDisplay:{
+    imageDisplay: {
         width: 150,
         height: 150,
         margin: 5,
-        resizeMode: 'contain', 
+        resizeMode: 'contain',
     },
     button: {
         backgroundColor: '#0177FC',
@@ -159,7 +172,7 @@ const styles = StyleSheet.create({
         marginLeft: 25,
         fontWeight: 'bold',
         marginTop: 20
-      },
+    },
     text2: {
         color: 'black',
         marginLeft: 20,
@@ -167,7 +180,14 @@ const styles = StyleSheet.create({
         marginTop: 20,
         position: 'relative'
     },
-    view: {
-        flexDirection: 'row'
-    }
+    containerMap: {
+        flex: 1,
+        backgroundColor: '#fff',
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    map: {
+        width: Dimensions.get('window').width,
+        height: 400,
+    },
 })

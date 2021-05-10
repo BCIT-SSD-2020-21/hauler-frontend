@@ -42,10 +42,11 @@ export default function ErrandPost1({ navigation }) {
     
       const pickImageAlbum = async () => {
         let result = await ImagePicker.launchImageLibraryAsync({
-          mediaTypes: ImagePicker.MediaTypeOptions.All,
+          mediaTypes: ImagePicker.MediaTypeOptions.Images,
           allowsEditing: true,
           aspect: [1, 1],
           quality: 1,
+          base64: true,
           //allowsMultipleSelection: true,
         });
     
