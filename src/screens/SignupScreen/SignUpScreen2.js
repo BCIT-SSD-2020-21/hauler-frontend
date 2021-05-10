@@ -3,6 +3,7 @@ import { Text, TextInput, TouchableOpacity, View, ScrollView } from 'react-nativ
 import { Context } from '../../context/ContextProvider'
 import { StyleSheet } from 'react-native';
 import { signUp } from '../../../network';
+import CreditCardDisplay from 'react-native-credit-card-display';
 
 
 export default function SignUpScreen2({ navigation, route }) {
@@ -13,6 +14,9 @@ export default function SignUpScreen2({ navigation, route }) {
     const [loading, setLoading] = useState('')
     const [expiryDate, setExpiryDate] = useState('')
     const [cvv, setCvv] = useState('')
+    const [cardHolderName, setCardHolderName] = useState('')
+    const number = creditCardNumber
+    const cvc = cvv
     const { image, firstName, lastName, email, password, confirmPassword, contactNumber, province, city, streetAddress, unitNumber, dateOfBirth} = route.params;
 
     const onSignUpClicked = async () => {
@@ -60,10 +64,19 @@ export default function SignUpScreen2({ navigation, route }) {
                     <Text style={styles.text1}> Add Your Card Details </Text>
 
                     <View style={styles.details}>
+                    <Text style={styles.text}> Card Holder Name : </Text>
+                    <TextInput
+                        style={styles.input}
+                        placeholderTextColor="#C0C0C0"
+                        onChangeText={(name) => { setError(""); setCardHolderName(name) }}
+                        value={cardHolderName}
+                    />
                     <Text style={styles.text}> Card Number : </Text>
                     <TextInput
                         style={styles.input}
                         placeholderTextColor="#C0C0C0"
+                        keyboardType='numeric'
+                        maxLength={16}
                         onChangeText={(number) => { setError(""); setCreditCardNumber(number) }}
                         value={creditCardNumber}
                     />
@@ -72,6 +85,8 @@ export default function SignUpScreen2({ navigation, route }) {
                     <TextInput
                         style={styles.input}
                         placeholderTextColor="#C0C0C0"
+                        keyboardType='numeric'
+                        maxLength={4}
                         onChangeText={(date) => { setError(""); setExpiryDate(date) }}
                         value={expiryDate}
                     />
@@ -81,9 +96,24 @@ export default function SignUpScreen2({ navigation, route }) {
                         style={styles.input}
                         placeholderTextColor="#C0C0C0"
                         secureTextEntry
+                        keyboardType='numeric'
+                        maxLength={4}
                         onChangeText={(cvv) => { setError(""); setCvv(cvv) }}
                         value={cvv}
                     />
+                    <View style={styles.card}>
+                    <CreditCardDisplay
+                        number={number}
+                        cvc={cvc}
+                        expiration="00/00"
+                        name="XXXXXXXXXXXXXXXXXXX"
+                        since="XXXX"
+                        height = {200}
+                        width = {350}
+                        flipped = {false}
+                        fontSize = {18}
+                    />
+                    </View>
                     </View>
 
                     <TouchableOpacity
@@ -113,7 +143,6 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         alignItems: 'center',
-        marginVertical: 20,
     },
     input: {
         height: 25,
@@ -178,5 +207,10 @@ const styles = StyleSheet.create({
     },
     details: {
         marginTop: 50
+    },
+    card: {
+        alignItems: 'center',
+        marginTop: 10,
+        marginLeft: 0.5
     }
 })
