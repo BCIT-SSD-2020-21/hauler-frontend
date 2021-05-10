@@ -42,7 +42,7 @@ export async function signUp(
 //======================================To get user's posts ==========================================//
 export async function getAllPosts(uid) {
   try {
-    const res = await axios.get(`${url}/api/user/${uid}`);
+    const res = await axios.get(`${url}/api/posts/user/${uid}`);
     return res.data;
   } catch (err) {
     console.log(err);
@@ -157,3 +157,4 @@ export async function postJunkItem(
   console.log('user post created');
   return res
 }
+
