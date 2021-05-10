@@ -5,14 +5,12 @@ import { TouchableOpacity } from 'react-native-gesture-handler';
 import { GooglePlacesAutocomplete, GooglePlacesDetailsQuery  } from 'react-native-google-places-autocomplete';
 import Constants from 'expo-constants';
 import {GOOGLE_MAP_API} from '@env';
-// import MapView from 'react-native-maps';
 
 import SelectPickUpProvince from '../../components/SelectPickUpProvince/SelectPickUpProvince';
 
 export default function ErrandPost2({ navigation, route }) {
 
     const [pickUpAddress, setPickUpAddress] = useState('')
-    // const [pickUpCoords, setpickUpCoords] = useState('')
 
     const {image, selectedweight, selectedquantity, postHeading, description} = route.params;
 
@@ -24,8 +22,7 @@ export default function ErrandPost2({ navigation, route }) {
                   placeholder="Full Address"
                   minLength={2}
                   fetchDetails= {true}
-                  onPress={(data, details = null) => {setPickUpAddress(details),
-                    console.log(details)}
+                  onPress={(data, details) => {setPickUpAddress(details)}
                      }
                   value={pickUpAddress}
                   onFail={(error) => console.error(error)} 
@@ -85,5 +82,4 @@ btnText: {
   paddingVertical: 10,
   paddingHorizontal: 50,
 },
-
 })
