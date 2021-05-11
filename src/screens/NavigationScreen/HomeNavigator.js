@@ -2,10 +2,10 @@ import React from 'react';
 import MenuIcon from './MenuIcon';
 import { createStackNavigator } from '@react-navigation/stack';
 import Signin from '../SigninScreen/Signin';
-import Home from '../HomeScreen/Home';
+import MyPostList from '../MyPostListScreen/MyPostList';
 import Signup from '../SignupScreen/Signup';
 import ServiceProviderScreen from '../ServiceProviderScreen/ServiceProviderScreen';
-import JobStatus from '../../screens/JobStatus/JobStatus';
+import JobOffers from '../JobOffers/JobOffers';
 import AddJunkNavigator from '../NavigationScreen/AddJunkNavigator';
 //import ServiceScreenNavigator from '../NavigationScreen/ServiceScreenNavigator';
 import ServiceProviderNavigator from './ServiceProviderNavigator';
@@ -16,7 +16,7 @@ const HomeStack = createStackNavigator();
 const HomeNavigator = () => {
     return (
         <HomeStack.Navigator
-            initialRouteName='Signin'
+            initialRouteName='MyPostList'
             screenOptions={{
                 headerShown: true,
                 title: 'Hauler',
@@ -42,11 +42,11 @@ const HomeNavigator = () => {
                 options={{ headerShown: false }}
             />
             <HomeStack.Screen
-                name='Home'
-                component={Home}
+                name='MyPostList'
+                component={MyPostList}
                 options={{ headerRight: () => <MenuIcon /> }}
             />
-            <HomeStack.Screen name='JobStatus' component={JobStatus} options={{ headerRight: () => <MenuIcon /> }} />
+            <HomeStack.Screen name='JobOffers' component={JobOffers} options={{ headerRight: () => <MenuIcon /> }} />
             <HomeStack.Screen name='AddJunkNavigator' component={AddJunkNavigator} options={{ headerRight: () => <MenuIcon /> }} />
 
         </HomeStack.Navigator>

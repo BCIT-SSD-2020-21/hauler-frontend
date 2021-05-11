@@ -9,7 +9,7 @@ export default function ErrandPost1({ navigation }) {
 
     const[selectedweight, setSelectedWeight] = useState('')
     const[selectedquantity, setSelectedQuantity] = useState(1)
-    const[image, setImage] = useState(null);
+    const[image, setImage] = useState('');
     const [postHeading, setPostHeading] = useState('')
     const [description, setDescription] = useState('')
 
@@ -97,7 +97,9 @@ export default function ErrandPost1({ navigation }) {
             </View>
 
             <View>
+              <Text>
             {image && <Image source={{ uri: image }} style={styles.imageDisplay} />}
+            </Text>
             </View>
 
             <View>
