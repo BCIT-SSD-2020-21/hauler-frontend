@@ -184,3 +184,13 @@ export async function getPostsByIdAndService(uid, service) {
     console.log(err);
   }
 }
+
+//============================= To get service provider profile ====================================//
+export async function getOneServiceProvider(uid) {
+  try {
+    const res = await axios.get(`${url}/api/service-providers/${uid}`);
+    return res.data;
+  } catch (err) {
+    console.log(err);
+  }
+}

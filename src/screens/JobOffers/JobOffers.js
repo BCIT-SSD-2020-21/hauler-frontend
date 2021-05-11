@@ -1,16 +1,34 @@
-import React from 'react';
-import { Text, View , Image, StyleSheet} from 'react-native';
+import React, {useEffect, useState} from 'react';
+import { Text, View, Image, StyleSheet } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { Card, Button } from 'react-native-elements'
 import ServiceProviderCard from '../../components/ServiceProviderCard/ServiceProviderCard';
+import {getOneServiceProvider} from '../../../network'
 
 export default function JobOffers({ navigation, route }) {
     const { post } = route.params;
 
-    return(
+    const[serviceProviders, setServiceProviders] = useState('')
+
+    useEffect(() => {
+            (async () => {
+                const serviceProvidersIds = [post.response.slice(1).map(a => { return a.serviceProviderId })]
+
+                const serviceProviders = await Promise.all(serviceProvidersIds.map(async (a) => {
+                    if (!!a) {
+                        return await getOneServiceProvider(a);
+                    } else { return null }
+                }))
+                console.log(serviceProviders)
+                setServiceProviders(serviceProviders)
+            })()
+    }, [])
+
+    return (
         <View style={styles.container}>
-            <ServiceProviderCard 
-            post={post}/>
+            <ServiceProviderCard
+                post={post}
+                serviceProviders={serviceProviders} />
         </View>
     )
 }

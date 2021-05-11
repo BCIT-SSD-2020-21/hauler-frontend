@@ -2,8 +2,9 @@ import React from 'react';
 import { StyleSheet, View, Text, Image, TouchableOpacity } from 'react-native';
 import { Card, Badge, Button } from 'react-native-elements';
 import { FlatList } from 'react-native-gesture-handler';
+import { Avatar } from 'react-native-elements';
 
-export default function ServiceProviderCard({ post }) {
+export default function ServiceProviderCard({ post, serviceProviders }) {
     return (
         <View style={styles.container}>
             <FlatList
@@ -14,7 +15,20 @@ export default function ServiceProviderCard({ post }) {
                         item &&
                         <View style={styles.cardContainer}>
                             <Card containerStyle={{ borderRadius: 10, padding: 10 }}>
-                                <Text>{item.serviceProviderResponseSchema[item.serviceProviderResponseSchema.length-1].serviceProviderActionPrice}</Text>
+                            <View style={styles.avatar}>
+                            <Avatar
+                            rounded
+                                title='name'
+                                size='large'
+                                source={{
+                                    uri:
+                                    serviceProviders[index] && serviceProviders[index].profilePicUrl,
+                                }}
+                            />
+                        </View>
+                                <Text>{serviceProviders[index] && serviceProviders[index].firstName} {serviceProviders[index] && serviceProviders[index].lastName}</Text>
+                                <Text>{serviceProviders[index] && serviceProviders[index].vehicleType[0].vehicle}</Text>
+                                <Text>{item.serviceProviderResponseSchema[item.serviceProviderResponseSchema.length-1] && item.serviceProviderResponseSchema[item.serviceProviderResponseSchema.length-1].serviceProviderActionPrice}</Text>
                                 <Text>{item.responseStatus}</Text>
                             </Card>
                         </View>
@@ -35,6 +49,9 @@ const styles = StyleSheet.create({
         alignSelf: 'center',
         position: 'relative',
         marginTop: 5,
+    },
+    avatar: {
+       
     },
 })
 
