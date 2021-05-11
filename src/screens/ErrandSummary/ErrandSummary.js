@@ -51,9 +51,12 @@ export default function ErrandSummary({ navigation, route }) {
                 <Text style={styles.inputLine1} >Phone Number: {dropOffPhoneNumber}</Text>
                 <Text style={styles.inputLine2} >Street Address: {dropOffAddress.formatted_address}</Text>
                 <Text style={styles.inputLine2} >Special Instructions: {dropOffSpecialInstructions}</Text>
+                <Text>
+                {image &&
                 <View style={styles.imageContainer}>
                     <Image style={styles.imageDisplay} source={{ uri: image }} />
                 </View>
+                }</Text>
                 <Text style={styles.inputLine1}>Quoted Price: {sliderValue}</Text>
                 <View style={styles.containerMap}>
                     <Text>Total Distanse: {distance} km</Text>
@@ -77,7 +80,6 @@ export default function ErrandSummary({ navigation, route }) {
                             onReady={result => {
                                 setDistance(result.distance)
                                 setDuration(result.duration)
-
                                 mapView.current.fitToCoordinates(result.coordinates, {
                                     edgePadding: {
                                         right: (width / 20),
@@ -102,12 +104,13 @@ export default function ErrandSummary({ navigation, route }) {
                         await postItem(
                             currentUser.uid,
                             service,
-                            image,
-                            selectedweight,
-                            selectedquantity,
                             postHeading,
                             description,
-                            pickUpAddress.formatted_address,
+                            selectedweight,
+                            selectedquantity,
+                             image,
+                             sliderValue,
+                             pickUpAddress.formatted_address,
                             pickUpAddress.vicinity,
                             pickUpAddressLat,
                             pickUpAddressLng,
@@ -121,7 +124,8 @@ export default function ErrandSummary({ navigation, route }) {
                             dropOffContactPerson,
                             dropOffPhoneNumber,
                             dropOffSpecialInstructions,
-                            sliderValue); navigation.navigate('Confirmation')
+                            distance
+                            ); navigation.navigate('Confirmation')
                     }}> Post the Job </Text></TouchableOpacity>
                 </View>
             </View>
@@ -187,7 +191,8 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     map: {
-        width: Dimensions.get('window').width,
-        height: 400,
+        width: Dimensions.get('window').width - 30,
+        height: 300,
+        borderRadius: 20,
     },
 })

@@ -54,11 +54,12 @@ export async function getAllPosts(uid) {
 export async function postItem(
   uid,
   service,
-  image,
-  selectedweight,
-  selectedquantity,
   postHeading,
   description,
+  selectedweight,
+  selectedquantity,
+   image,
+   sliderValue,
   pickUpAddress,
   pickUpCity,
   pickUpAddressLat,
@@ -73,8 +74,10 @@ export async function postItem(
   dropOffContactPerson,
   dropOffPhoneNumber,
   dropOffSpecialInstructions,
-  sliderValue
-) {
+  distance
+) 
+{
+  try{
   const res = await axios.post(`${url}/api/posts`, {
     userId: uid,
     service: service,
@@ -82,7 +85,7 @@ export async function postItem(
     postDescription: description,
     loadWeight: selectedweight,
     numberOfItems: selectedquantity,
-    imageUrl: image,
+    imageUrl: "https://cdn.apartmenttherapy.info/image/upload/v1558596110/at/archive/e06c0d4c7d9800f5d664133bf5185b850372f018.jpg",
     price: sliderValue,
     pickUpAddress: pickUpAddress,
     pickUpCity: pickUpCity,
@@ -98,9 +101,13 @@ export async function postItem(
     dropOffContactPerson: dropOffContactPerson,
     dropOffContactNumber: dropOffPhoneNumber,
     dropOffSpecialInstruction: dropOffSpecialInstructions,
+    distance:distance
   });
   console.log('user post created');
   return res
+}catch(err){
+  console.log(err)
+}
 }
 
 //==================================== To post Junk service details ===================================//
@@ -156,4 +163,24 @@ export async function postJunkItem(
   });
   console.log('user post created');
   return res
+}
+
+//=============================== To get post by uid and service ====================================//
+export async function getPostsByIdAndLocation(uid, location) {
+  try {
+    const res = await axios.get(`${url}/api/posts/user/location/${uid}/${location}`);
+    return res.data;
+  } catch (err) {
+    console.log(err);
+  }
+}
+
+//=============================== To get post by uid and location ===================================//
+export async function getPostsByIdAndService(uid, service) {
+  try {
+    const res = await axios.get(`${url}/api/posts/user/service/${uid}/${service}`);
+    return res.data;
+  } catch (err) {
+    console.log(err);
+  }
 }
