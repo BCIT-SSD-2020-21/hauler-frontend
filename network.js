@@ -157,3 +157,13 @@ export async function postJunkItem(
   console.log('user post created');
   return res
 }
+
+//=================================Get one User ===========================================================//
+// export async function getOneUser(uid) {
+//   try {
+//     const res = await axios.get(`${url}/api/users/${uid}`);
+//     return res.data;
+//   } catch (err) {
+//     console.log(err);
+//   }
+// }

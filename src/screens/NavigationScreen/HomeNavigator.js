@@ -16,7 +16,7 @@ const HomeStack = createStackNavigator();
 const HomeNavigator = () => {
     return (
         <HomeStack.Navigator
-            initialRouteName='Home'
+            initialRouteName='Signin'
             screenOptions={{
                 headerShown: true,
                 title: 'Hauler',
