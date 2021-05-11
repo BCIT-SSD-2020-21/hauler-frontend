@@ -4,10 +4,13 @@ import { TouchableOpacity } from 'react-native-gesture-handler';
 import { Card, Button } from 'react-native-elements'
 import ServiceProviderCard from '../../components/ServiceProviderCard/ServiceProviderCard';
 
-export default function JobOffers({ navigation }) {
+export default function JobOffers({ navigation, route }) {
+    const { post } = route.params;
+
     return(
         <View style={styles.container}>
-            <ServiceProviderCard />
+            <ServiceProviderCard 
+            post={post}/>
         </View>
     )
 }

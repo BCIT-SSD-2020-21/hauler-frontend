@@ -57,7 +57,7 @@ export default function PostsList({ posts, onActiveImagePress, onOffersPress, on
                                                         <View style={styles.statusButton}>
                                                             <Button
                                                                 buttonStyle={{ borderRadius: 10, backgroundColor: '#0077FC', width: 100 }}
-                                                                onPress={() => onOffersPress({ postId: item._id })}
+                                                                onPress={() => onOffersPress({ post: item })}
                                                                 title='See Offers'
                                                             />
                                                             <Text style={[styles.cardText, styles.statusText]}>{item.status}</Text>
