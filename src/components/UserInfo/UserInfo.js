@@ -4,15 +4,51 @@ import { StyleSheet } from 'react-native';
 
 export default function UserInfo({ firstName, lastName, province, city, streetAddress,
     unitNumber, setCity, setStreetAddress, setUnitNumber, profilePicUrl, dateOfBirth, setDob, contactNumber, setContactNumber, setProvince, setFirstName, setLastName, setProfilePicUrl, setError }) {
+
+        const [image, setImage] = useState(null)
+
+    useEffect(() => {
+        (async () => {
+            if(Platform.OS !=='web'){
+                const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
+                if(status !== 'granted'){
+                    alert('Sorry!! We need camera roll permission to make this work.');
+                }
+            }
+        })();
+    }, []);
+
+    const pickImageAlbum = async () => {
+        let result = await ImagePicker.launchImageLibraryAsync({
+            mediaTypes: ImagePicker.MediaTypeOptions.Images,
+            allowsEditing: true,
+            aspect:[1,1],
+            quality: 1,
+        });
+        console.log(result);
+        if(!result.cancelled){
+            setImage(result.uri)
+        }
+    };
+    
     return (
         <View>
-            <TextInput
-                style={styles.input}
-                placeholder='profilePicUrl'
-                placeholderTextColor='#C0C0C0'
-                onChangeText={(profilePic) => { setError(""); setProfilePicUrl(profilePic) }}
-                value={profilePicUrl}
-            />
+            <View style={styles.avatarView}>
+                            <TouchableOpacity onPress={() => pickImageAlbum()}>
+                                <Avatar
+                                size={125}
+                                rounded 
+                                source={{uri: image}}
+                                backgroundColor='lightgrey'
+                            
+                                />
+                                <View style={styles.evilIcon}>
+                                <FontAwesome name="user-circle-o" size={38} color="white" />
+                                <View style={styles.icon1}>
+                                <FontAwesome name="user-circle" size={40} color="#1177FC" /></View>
+                                </View>
+                            </TouchableOpacity>
+                        </View>
             <TextInput
                 style={styles.input}
                 placeholder='First Name'
@@ -84,6 +120,21 @@ const styles = StyleSheet.create({
         marginVertical: '1%',
         marginHorizontal: '2%',
         paddingLeft: 16
+    },
+    avatarView: {
+        marginLeft: 25,
+        marginRight: 200,
+        marginTop: 40,
+        flexDirection: 'row'
+    },
+    evilIcon: {
+        flexDirection:'row',
+        marginTop: -30,
+        marginLeft: 10
+    },
+    icon1:{
+        marginLeft: -39,
+        marginTop: 0.4
     }
 })
 
