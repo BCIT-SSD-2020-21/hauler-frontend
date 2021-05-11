@@ -3,18 +3,25 @@ import { Text, View, Image, StyleSheet } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { Card, Button } from 'react-native-elements'
 import ServiceProviderCard from '../../components/ServiceProviderCard/ServiceProviderCard';
-import {getOneServiceProvider} from '../../../network'
+import {getOneServiceProvider, getOnePost} from '../../../network'
 
 export default function JobOffers({ navigation, route }) {
-    const { post } = route.params;
+    const { postId } = route.params;
 
+    const [post, setPost] = useState('')
     const[serviceProviders, setServiceProviders] = useState('')
+
+    const onStatusDetailsPress =() =>{
+        console.log("On status details press")
+    }
 
     useEffect(() => {
             (async () => {
-                const serviceProvidersIds = [post.response.slice(1).map(a => { return a.serviceProviderId })]
-
-                const serviceProviders = await Promise.all(serviceProvidersIds.map(async (a) => {
+                const newPost = await getOnePost(postId)
+                setPost(newPost)
+                const serviceProvidersIds = [newPost.response.slice(1).map(a => { return a.serviceProviderId })]
+                console.log(serviceProvidersIds[0])
+                const serviceProviders = await Promise.all( serviceProvidersIds[0].map(async (a) => {
                     if (!!a) {
                         return await getOneServiceProvider(a);
                     } else { return null }
@@ -25,10 +32,12 @@ export default function JobOffers({ navigation, route }) {
     }, [])
 
     return (
-        <View style={styles.container}>
+        <View style={styles.container}>     
             <ServiceProviderCard
                 post={post}
-                serviceProviders={serviceProviders} />
+                serviceProviders={serviceProviders}
+                onStatusDetailsPress={onStatusDetailsPress}
+                 />
         </View>
     )
 }
@@ -39,10 +48,7 @@ const styles = StyleSheet.create({
         alignItems: 'center'
     },
     text: {
-        textAlign: 'center',
-        marginTop: 30,
-        fontSize: 30,
-        fontWeight: 'bold'
+       width: '100%'
     },
     btnContainer: {
         display: 'flex',

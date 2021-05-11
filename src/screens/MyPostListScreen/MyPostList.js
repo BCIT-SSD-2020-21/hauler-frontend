@@ -34,7 +34,7 @@ export default function MyPostList({ navigation }) {
     }
 
     const onOffersPress = async (value) => {
-        navigation.navigate('JobOffers', {post: value.post})
+        navigation.navigate('JobOffers', {postId: value.postId})
     }
 
     useEffect(() => {

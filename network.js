@@ -9,7 +9,7 @@ export async function signUp(
   firstName,
   lastName,
   profilePicUrl,
-  // dateOfBirth,
+  dateOfBirth,
   province,
   city,
   streetAddress,
@@ -17,14 +17,14 @@ export async function signUp(
   email,
   contactNumber,
   creditCardNumber,
-  // expiryDate,
+  expiryDate,
   cvv) {
   const res = await axios.post(`${url}/api/users`, {
     uid: uid,
     firstName: firstName,
     lastName: lastName,
-    profilePicUrl: profilePicUrl,
-    // dateOfBirth:"01/01/2000",
+    // profilePicUrl: profilePicUrl,
+    dateOfBirth:dateOfBirth,
     province: province,
     city: city,
     streetAddress: streetAddress,
@@ -32,7 +32,7 @@ export async function signUp(
     email: email,
     contactNumber: contactNumber,
     creditCardNumber: creditCardNumber,
-    // expiryDate:expiryDate,
+    expiryDate:expiryDate,
     cvv: cvv
   });
   console.log('user created');
@@ -189,6 +189,16 @@ export async function getPostsByIdAndService(uid, service) {
 export async function getOneServiceProvider(uid) {
   try {
     const res = await axios.get(`${url}/api/service-providers/${uid}`);
+    return res.data;
+  } catch (err) {
+    console.log(err);
+  }
+}
+
+//======================== To get single post by postId =============================================//
+export async function getOnePost(postId) {
+  try {
+    const res = await axios.get(`${url}/api/posts/one/${postId}`);
     return res.data;
   } catch (err) {
     console.log(err);
