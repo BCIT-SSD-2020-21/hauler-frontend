@@ -7,7 +7,7 @@ import { Context } from '../../context/ContextProvider'
 import { useIsFocused } from "@react-navigation/native";
 import { getAllPosts, getPostsByIdAndLocation, getPostsByIdAndService } from '../../../network';
 
-export default function Home({ navigation }) {
+export default function MyPostList({ navigation }) {
     const { currentUser } = useContext(Context)
     const isFocused = useIsFocused();
 
@@ -34,7 +34,7 @@ export default function Home({ navigation }) {
     }
 
     const onOffersPress = async (value) => {
-        console.log("Offers pressed")
+        navigation.navigate('JobOffers', {postId: value.postId})
     }
 
     useEffect(() => {

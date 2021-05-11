@@ -31,9 +31,9 @@ export default function SignUpScreen2({ navigation, route }) {
             const currentUid = response.user.uid
             await signUp(
                 currentUid,
-                image,
                 firstName,
                 lastName,
+                image,
                 dateOfBirth,
                 province,
                 city,
@@ -43,9 +43,7 @@ export default function SignUpScreen2({ navigation, route }) {
                 contactNumber,
                 creditCardNumber,
                 expiryDate,
-                cvv,
-                password,
-                confirmPassword
+                cvv
             )
             navigation.navigate('ServiceProviderNavigator')
         } catch (err) {
