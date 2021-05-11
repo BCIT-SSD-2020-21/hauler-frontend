@@ -5,7 +5,7 @@ import SearchByLocation from '../../components/SearchByLocation/SearchByLocation
 import PostsList from '../../components/PostList/PostList'
 import { Context } from '../../context/ContextProvider'
 import { useIsFocused } from "@react-navigation/native";
-import { getAllPosts } from '../../../network';
+import { getAllPosts, getPostsByIdAndLocation, getPostsByIdAndService } from '../../../network';
 
 export default function Home({ navigation }) {
     const { currentUser } = useContext(Context)
@@ -16,11 +16,13 @@ export default function Home({ navigation }) {
     const [posts, setPosts] = useState('')
 
     const searchService = async (value) => {
-       console.log("search pressed")
+        const posts = await getPostsByIdAndService(currentUser && currentUser.uid, value.service)
+        setPosts(posts)
     }
 
     const searchLocation = async (value) => {
-        console.log("location pressed")
+        const posts = await getPostsByIdAndLocation(currentUser && currentUser.uid, value.location)
+        setPosts(posts)
     }
     
     const onActiveImagePress = async (value) => {
@@ -39,7 +41,6 @@ export default function Home({ navigation }) {
         currentUser &&
             (async () => {
                 const posts = await getAllPosts(currentUser.uid)
-                console.log(posts)
                 setPosts(posts)
             })()
     }, [isFocused])

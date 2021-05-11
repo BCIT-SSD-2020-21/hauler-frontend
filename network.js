@@ -158,3 +158,22 @@ export async function postJunkItem(
   return res
 }
 
+//=============================== To get post by uid and service ====================================//
+export async function getPostsByIdAndLocation(uid, location) {
+  try {
+    const res = await axios.get(`${url}/api/posts/user/location/${uid}/${location}`);
+    return res.data;
+  } catch (err) {
+    console.log(err);
+  }
+}
+
+//=============================== To get post by uid and location ===================================//
+export async function getPostsByIdAndService(uid, service) {
+  try {
+    const res = await axios.get(`${url}/api/posts/user/service/${uid}/${service}`);
+    return res.data;
+  } catch (err) {
+    console.log(err);
+  }
+}
