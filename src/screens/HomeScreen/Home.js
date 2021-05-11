@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext } from 'react';
 import { StyleSheet, View } from 'react-native';
 import SearchByService from '../../components/SearchByService/SearchByService';
 import SearchByLocation from '../../components/SearchByLocation/SearchByLocation';
+import PostsList from '../../components/PostList/PostList'
 import { Context } from '../../context/ContextProvider'
 import { useIsFocused } from "@react-navigation/native";
 import { getAllPosts } from '../../../network';
@@ -20,6 +21,18 @@ export default function Home({ navigation }) {
 
     const searchLocation = async (value) => {
         console.log("location pressed")
+    }
+    
+    const onActiveImagePress = async (value) => {
+        console.log("Active post image pressed")
+    }
+
+    const onAcceptedDetails = async (value) => {
+        console.log("In Progress post image pressed")
+    }
+
+    const onOffersPress = async (value) => {
+        console.log("Offers pressed")
     }
 
     useEffect(() => {
@@ -42,6 +55,12 @@ return (
                 service={service}
                 setService={setService}
                 searchService={searchService}
+            />
+            <PostsList
+                posts={posts}
+                onActiveImagePress={onActiveImagePress}
+                onAcceptedDetails={onAcceptedDetails}
+                onOffersPress={onOffersPress}
             />
         </View>
     )
