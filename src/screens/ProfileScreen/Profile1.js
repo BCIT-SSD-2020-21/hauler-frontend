@@ -146,6 +146,12 @@ export default function Profile1({ navigation }) {
                                 {userInformation.unitNumber}, {userInformation.streetAddress}, {userInformation.city}, {userInformation.province}
                             </Text>
                         </View>
+                        <View style={styles.infoContainer}>
+                            <FontAwesome style={styles.infoIcon} name='credit-card' size={24} color='black' />
+                            <Text style={styles.userInfo}>
+                                {userInformation.cardNumber} {userInformation.expiryDate}
+                            </Text>
+                        </View>
 
                         <Modal
                             animationType='slide'
