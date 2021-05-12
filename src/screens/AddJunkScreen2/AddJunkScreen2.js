@@ -25,6 +25,9 @@ export default function AddJunkScreen2({ navigation, route }) {
             fontSize: 15,
             flex: 1,
           },
+          listView: {
+            paddingHorizontal: 20,
+          },
         }}
         placeholder="Full Address"
         minLength={2}

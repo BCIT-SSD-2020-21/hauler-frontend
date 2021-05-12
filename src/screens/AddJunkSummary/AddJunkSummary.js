@@ -60,27 +60,11 @@ export default function AddJunkSummary({ navigation, route }) {
 
 const styles = StyleSheet.create({
     container: {
+        backgroundColor: 'white',
         flex: 1,
         width: '100%',
         height: '100%',
-        marginVertical: 20
-    },
-    screenHeading: {
-        fontSize: 30,
-        fontWeight: '500',
-        marginLeft: 20
-    },
-    imageContainer: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        marginTop: 20
-    },
-    imageDisplay: {
-        width: 150,
-        height: 150,
-        margin: 5,
-        resizeMode: 'contain',
+        paddingVertical: 10
     },
     button: {
         backgroundColor: '#0177FC',
@@ -96,19 +80,6 @@ const styles = StyleSheet.create({
         color: 'white',
         fontSize: 16,
         fontWeight: "bold"
-    },
-    text1: {
-        color: '#BFBFBF',
-        marginLeft: 25,
-        fontWeight: 'bold',
-        marginTop: 20
-    },
-    text2: {
-        color: 'black',
-        marginLeft: 20,
-        fontWeight: 'bold',
-        marginTop: 20,
-        position: 'relative'
     },
     view: {
         flexDirection: 'row'
