@@ -43,7 +43,8 @@ export default function JobOffers({ navigation, route }) {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        alignItems: 'center'
+        alignItems: 'center',
+        backgroundColor: 'white'
     },
     text: {
        width: '100%'

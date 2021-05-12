@@ -16,6 +16,12 @@ export default function ServiceProviderCard({ post, serviceProviders, onStatusDe
                         item &&
                         <View style={styles.cardContainer}>
                             <Card containerStyle={{ borderRadius: 10, padding: 10 }}>
+                                <Badge
+                                    badgeStyle={{ display: item.notificationOnUser }}
+                                    status="success"
+                                    value={item.serviceProviderResponseSchema[item.serviceProviderResponseSchema.length - 1] && item.serviceProviderResponseSchema[item.serviceProviderResponseSchema.length - 1].serviceProviderResponse}
+                                    containerStyle={{ position: 'absolute', top: -20, left: -30 }}
+                                />
                                 <View style={styles.cardContent}>
                                     <Avatar
                                         rounded
@@ -41,11 +47,11 @@ export default function ServiceProviderCard({ post, serviceProviders, onStatusDe
                                     <Text style={styles.price}>$ {item.serviceProviderResponseSchema[item.serviceProviderResponseSchema.length - 1] && item.serviceProviderResponseSchema[item.serviceProviderResponseSchema.length - 1].serviceProviderActionPrice}</Text>
                                 </View>
                                 <View style={styles.button}>
-                                <Button
-                                    buttonStyle={{ borderRadius: 10, backgroundColor: '#0077FC', width: 100 }}
-                                    onPress={() => onStatusDetailsPress({ serviceProviderId: item.serviceProviderId, postId: post._id })}
-                                    title={item.responseStatus}
-                                />
+                                    <Button
+                                        buttonStyle={{ borderRadius: 10, backgroundColor: '#0077FC', width: 100 }}
+                                        onPress={() => onStatusDetailsPress({ serviceProviderId: item.serviceProviderId, postId: post._id })}
+                                        title={item.responseStatus}
+                                    />
                                 </View>
                             </Card>
                         </View>
@@ -82,7 +88,7 @@ const styles = StyleSheet.create({
         width: '20%',
         textAlign: 'right',
     },
-    button:{
+    button: {
         alignSelf: 'flex-end'
     }
 
