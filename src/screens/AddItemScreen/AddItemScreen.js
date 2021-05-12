@@ -112,7 +112,7 @@ export default function AddItemScreen({ navigation }) {
 const styles = StyleSheet.create({
     container: {
         display: 'flex',
-        height: '100%',
+        height: 600,
         width: '100%',
         backgroundColor: 'white',
     },
@@ -126,19 +126,6 @@ const styles = StyleSheet.create({
       width: '90%',
       borderBottomWidth: 1.0,
       borderColor: '#BFBFBF',
-    },
-    inputLine2: {
-        height: 100,
-        width: '90%',
-        borderRadius: 5,
-        overflow: 'hidden',
-        marginTop: 10,
-        marginBottom: 10,
-        marginLeft: 20,
-        marginRight: 30,
-        paddingLeft: 16,
-        borderWidth: 1.0,
-        borderColor: '#BFBFBF'
     },
     button: {
       backgroundColor: '#0177FC',

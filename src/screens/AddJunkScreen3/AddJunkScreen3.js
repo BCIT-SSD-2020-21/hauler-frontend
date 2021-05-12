@@ -1,117 +1,102 @@
-import React, {useContext} from 'react'
-import { ScrollView, TouchableOpacity, Text, View, Image,StyleSheet, Platform } from 'react-native'
-import { postJunkItem } from '../../../network';
-import { Context } from '../../context/ContextProvider';
+import React, { useState, setState } from 'react'
+import { Text, View, ScrollView, TextInput, SafeAreaView, Picker } from 'react-native'
+import { StyleSheet } from 'react-native';
+import { TouchableOpacity } from 'react-native-gesture-handler';
+import Slider from '@react-native-community/slider';
+import SelectDropOffProvince from '../../components/SelectDropOffProvince/SelectDropOffProvince';
 
 export default function AddJunkScreen3({ navigation, route }) {
 
-    const {image,selectedweight,selectedquantity, postHeading, description, city, province, zipCode, specialInstructions, contactPerson, phoneNumber, streetAddress, sliderValue} = route.params;
-
-    const service = "Junk Removal"
-    const { currentUser } = useContext(Context)
+    const [pickContactPerson, setPickContactPerson] = useState('')
+    const [pickUpPhoneNumber, setPickUpPhoneNumber] = useState('')
+    const [pickUpSpecialInstructions, setPickUpSpecialInstructions] = useState('')
+    const [sliderValue, setSliderValue] = useState(50);
+    const { image, selectedweight, selectedquantity, postHeading, description, pickUpAddress } = route.params;
 
     return (
         <ScrollView>
-        <View style={styles.container}>
-        <Text style={styles.screenHeading}> Junk Summary </Text>
-        <View style={styles.view}>
-          <Text style={styles.text1} >Post Heading: </Text><Text style={styles.text2}>{postHeading}</Text></View>
+            <View style={styles.container}>
 
-          <View style={styles.view}>
-          <Text style={styles.text1} >Post Description: </Text><Text style={styles.text2}>{description}</Text></View>
+                <Text style={styles.text}>Pick up contact person</Text>
+                <TextInput style={styles.inputLine1}
+                    onChangeText={(contactPerson) => { setPickContactPerson(contactPerson) }}
+                    value={pickContactPerson}
+                />
 
-          <View style={styles.view}>
-          <Text style={styles.text1} >Item Weigth:</Text><Text style={styles.text2}>{selectedweight}</Text></View>
+                <Text style={styles.text}>Pick up contact number</Text>
+                <TextInput style={styles.inputLine1}
+                    onChangeText={(phoneNumber) => { setPickUpPhoneNumber(phoneNumber) }}
+                    value={pickUpPhoneNumber}
+                />
 
-          <View style={styles.view}>
-          <Text style={styles.text1} >Number of Items: </Text><Text style={styles.text2}>{selectedquantity}</Text></View>
+                <Text style={styles.text}>Pick up instructions</Text>
+                <TextInput style={styles.inputLine1}
+                    multiline
+                    onChangeText={(specialInstructions) => setPickUpSpecialInstructions(specialInstructions)}
+                    value={pickUpSpecialInstructions}
+                />
 
-          <Text style={{fontSize: 20, fontWeight: 'bold', paddingTop: 20, marginLeft: 25}} >Pick Up Details: </Text>
 
-          <View style={styles.view}>
-          <Text style={styles.text1} >Contact Person: </Text><Text style={styles.text2}>{contactPerson}</Text></View>
-
-          <View style={styles.view}>
-          <Text style={styles.text1} >Phone Number: </Text><Text style={styles.text2}>{phoneNumber}</Text></View>
-
-          <View style={styles.view}>
-          <Text style={styles.text1} >Street Address: </Text><Text style={styles.text2}>{streetAddress}</Text></View>
-
-          <View style={styles.view}>
-          <Text style={styles.text1} >City: </Text><Text style={styles.text2}>{city}</Text></View>
-
-          <View style={styles.view}>
-          <Text style={styles.text1} >Province: </Text><Text style={styles.text2}>{province}</Text></View>
-
-          <View style={styles.view}>
-          <Text style={styles.text1} >Zip Code: </Text><Text style={styles.text2}>{zipCode}</Text></View>
-
-          <View style={styles.view}>
-          <Text style={styles.text1} >Special Instructions: </Text><Text style={styles.text2}>{specialInstructions}</Text></View>
-
-          <View style={styles.imageContainer}>
-            {image && <Image source={{ uri: image }} style={styles.imageDisplay} />}
-          </View>
-
-          <View style={styles.view}>
-          <Text style={styles.text1} >Quoted Price: </Text><Text style={styles.text2}>{sliderValue}</Text></View>
-          <View>
-          <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('AddItemScreen')}><Text style={styles.buttonTitle}> Edit </Text></TouchableOpacity>
-          </View> 
-          <View >
-          <TouchableOpacity style={styles.button}><Text style={styles.buttonTitle} 
-          onPress={async () => { await postJunkItem(
-            currentUser.uid,
-            service,
-            Platform.OS === "android" ? image.replace("file:///", "file://") : image.replace("file://", ""),
-            selectedweight,
-            selectedquantity,
-            postHeading,
-            description,
-            city,
-            province,
-            zipCode,
-            specialInstructions,
-            contactPerson,
-            phoneNumber,
-            streetAddress,
-            sliderValue); navigation.navigate('Confirmation')}}> Post the Job </Text></TouchableOpacity>
-          </View>
-        </View>
+                <SafeAreaView style={{ flex: 1 }}>
+                    <View style={styles.containerSlider}>
+                        {/*Text to show slider value*/}
+                        <Text style={{ color: 'black' }}>
+                            Your Price Value : $ {sliderValue}
+                        </Text>
+                        {/*Slider with max, min, step and initial value*/}
+                        <Slider
+                            maximumValue={1000}
+                            minimumValue={50}
+                            minimumTrackTintColor="#307ecc"
+                            maximumTrackTintColor="#000000"
+                            step={1}
+                            value={sliderValue}
+                            onValueChange={
+                                (sliderValue) => setSliderValue(sliderValue)
+                            }
+                        />
+                    </View>
+                </SafeAreaView>
+                <TouchableOpacity onPress={() => navigation.navigate('AddJunkSummary', { image: image, selectedweight: selectedweight, selectedquantity: selectedquantity, postHeading: postHeading, description: description, pickUpAddress: pickUpAddress, dropOffAddress: dropOffAddress, pickContactPerson: pickContactPerson, pickUpPhoneNumber: pickUpPhoneNumber, pickUpSpecialInstructions: pickUpSpecialInstructions, pickUpSpecialInstructions: pickUpSpecialInstructions, dropOffContactPerson: dropOffContactPerson, dropOffPhoneNumber: dropOffPhoneNumber, dropOffSpecialInstructions: dropOffSpecialInstructions, sliderValue: sliderValue })}
+                    style={styles.button}>
+                    <Text style={styles.buttonTitle}>Submit</Text>
+                </TouchableOpacity>
+            </View>
         </ScrollView>
     )
 }
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
-        //alignItems: 'center',
-        marginVertical: 20
+        display: 'flex',
+        height: 600,
+        width: '100%',
+        backgroundColor: 'white',
     },
-    screenHeading: {
-        fontSize: 30,
-        fontWeight: '500',
-        marginLeft: 20
-      },
-    imageContainer:{
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
+    inputLine1: {
+        overflow: 'hidden',
+        marginTop: 10,
+        marginBottom: 10,
+        marginLeft: 20,
+        marginRight: 30,
+        paddingLeft: 16,
+        width: '90%',
+        borderBottomWidth: 1.0,
+        borderColor: '#BFBFBF',
+    },
+    text: {
+        color: '#BFBFBF',
+        marginLeft: 25,
+        fontWeight: 'bold',
         marginTop: 20
-    },
-    imageDisplay:{
-        width: 150,
-        height: 150,
-        margin: 5,
-        resizeMode: 'contain', 
     },
     button: {
         backgroundColor: '#0177FC',
-        marginLeft: 30,
-        marginRight: 30,
-        marginTop: 20,
+        alignSelf: 'center',
+        marginVertical: 10,
+        width: '90%',
         height: 48,
-        borderRadius: 20,
+        borderRadius: 10,
         alignItems: "center",
         justifyContent: 'center'
     },
@@ -120,20 +105,16 @@ const styles = StyleSheet.create({
         fontSize: 16,
         fontWeight: "bold"
     },
-    text1: {
+    text: {
         color: '#BFBFBF',
         marginLeft: 25,
         fontWeight: 'bold',
         marginTop: 20
-      },
-      text2: {
-        color: 'black',
-        marginLeft: 20,
-        fontWeight: 'bold',
-        marginTop: 20,
-        position: 'relative'
     },
-    view: {
-        flexDirection: 'row'
-    }
+    containerSlider: {
+        flex: 1,
+        padding: 20,
+        justifyContent: 'center',
+      
+    },
 })
