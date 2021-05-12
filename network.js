@@ -49,7 +49,7 @@ export async function getAllPosts(uid) {
   }
 }
 
-//==================================== To post Moving and errands service details ===================================//
+//========================== To post Moving and errands service details =============================//
 
 export async function postItem(
   uid,
@@ -195,11 +195,57 @@ export async function getOneServiceProvider(uid) {
   }
 }
 
-//======================== To get single post by postId =============================================//
+//=============================== To get single post by postId ====================================//
 export async function getOnePost(postId) {
   try {
     const res = await axios.get(`${url}/api/posts/one/${postId}`);
     return res.data;
+  } catch (err) {
+    console.log(err);
+  }
+}
+
+//====================== get response by get Response By ServiseProviderId ==========================//
+export async function getResponseByServiseProviderId(uid, postId) {
+  try {
+    const res = await axios.get(`${url}/api/posts/response/service-provider/${uid}/${postId}`);
+    return res.data;
+  } catch (err) {
+    console.log(err);
+  }
+}
+
+//===================================== Post user Response =========================================//
+export async function addUserResponse(
+  postId,
+  serviceProviderId,
+  responseStatus,
+  serviceProviderActionButtons,
+  userResponse,
+  userResponsePrice,
+  userActionButtons
+) {
+  const res = await axios.post(`${url}/api/posts/response/user`, {
+    postId: postId,
+    serviceProviderId: serviceProviderId,
+    responseStatus: responseStatus,
+    serviceProviderActionButtons: serviceProviderActionButtons,
+    userResponse: userResponse,
+    userResponsePrice: userResponsePrice,
+    userActionButtons: userActionButtons
+  });
+  console.log('response sent');
+  return res
+}
+
+//=============================== To change post visibility =====================================================//
+export async function updatePostVisibility(postId, actionPrice) {
+  try {
+    const res = await axios.post(`${url}/api/posts/one/${postId}`,{
+      price: actionPrice
+    });
+    console.log('Hide post');
+    return res
   } catch (err) {
     console.log(err);
   }
