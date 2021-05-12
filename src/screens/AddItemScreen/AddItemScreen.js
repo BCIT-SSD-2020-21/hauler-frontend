@@ -3,7 +3,7 @@ import { Text, View, TextInput, ScrollView, Image,  Platform, TouchableOpacity} 
 import { StyleSheet } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
 import SelectWeight from '../../components/SelectWeight/SelectWeight';
-import { AntDesign } from '@expo/vector-icons';
+import { Ionicons } from '@expo/vector-icons';
 
 export default function AddItemScreen({ navigation }) {
 
@@ -59,16 +59,15 @@ export default function AddItemScreen({ navigation }) {
     return (
         <ScrollView>
         <View style={styles.container}>
-            <Text style={styles.screenHeading}> Add Item </Text>
-
-            <Text style={styles.text}> Post Heading : </Text>
+            <Text style={styles.text}> Post Heading  </Text>
             <TextInput style={styles.inputLine1} 
             onChangeText={(postHeading) => {setPostHeading(postHeading)}} 
             value={postHeading}
             />
 
-            <Text style={styles.text}> Post Description : </Text>
-            <TextInput style={styles.inputLine2} 
+            <Text style={styles.text}> Post Description </Text>
+            <TextInput style={styles.inputLine1} 
+            multiline
             onChangeText={(description) => {setDescription(description)}} 
             value={description}
             />
@@ -79,22 +78,22 @@ export default function AddItemScreen({ navigation }) {
             />
 
             <View style={styles.view}>
-            <Text style={styles.text}> Number of Items : </Text> 
+            <Text style={styles.text}> Number of Items  </Text> 
               <TouchableOpacity activeOpacity={0.5} disabled={disable}  onPress={() => onMinusPress()} style={styles.TouchableOpacityStyle}>
-                <AntDesign name="minuscircle" size={30} color="black" /></TouchableOpacity>
+              <Ionicons name="remove-circle-outline" size={24} color="#0177FC" /></TouchableOpacity>
                 <Text style={styles.numberDisplay}> {selectedquantity} </Text>
               <TouchableOpacity activeOpacity={0.5}  onPress={() => onPlusPress()} style={styles.TouchableOpacityStyle}>
-                <AntDesign name="pluscircle" size={30} color="black" />
+              <Ionicons name="add-circle-outline" size={24} color="#0177FC" />
             </TouchableOpacity>
             
             </View>
             
             <TouchableOpacity style={styles.button} onPress={() => pickImageAlbum() }><Text style={styles.buttonTitle}>Upload Image</Text></TouchableOpacity>
-            </View>
+            
             <View>
             {image && <Image source={{ uri: image }} style={styles.imageDisplay} />}
             </View>
-            <View> 
+            <View > 
                 <TouchableOpacity 
                 onPress={() => navigation.navigate('AddJunkScreen2',
                 {image: image,
@@ -105,23 +104,19 @@ export default function AddItemScreen({ navigation }) {
                 )} style={styles.button}>
                 <Text style={styles.buttonTitle}>Next</Text></TouchableOpacity>
            </View>
+           </View>
         </ScrollView>
     )
 }
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
-        //alignItems: 'center',
-        marginVertical: 20
-    },
-    screenHeading: {
-      fontSize: 40,
-      fontWeight: '500',
-      marginLeft: 20
+        display: 'flex',
+        height: '100%',
+        width: '100%',
+        backgroundColor: 'white',
     },
     inputLine1: {
-      height: 25,
       overflow: 'hidden',
       marginTop: 10,
       marginBottom: 10,
@@ -147,11 +142,11 @@ const styles = StyleSheet.create({
     },
     button: {
       backgroundColor: '#0177FC',
-      marginLeft: 30,
-      marginRight: 30,
-      marginTop: 20,
+      alignSelf: 'center',
+      marginVertical: 10,
+      width: '90%',
       height: 48,
-      borderRadius: 20,
+      borderRadius: 10,
       alignItems: "center",
       justifyContent: 'center'
   },
@@ -198,7 +193,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         marginTop: 5,
-        marginLeft: 20
+        marginLeft: 10
       },
       view: {
         flexDirection: 'row',
@@ -206,9 +201,9 @@ const styles = StyleSheet.create({
     },
     numberDisplay: {
       color: 'black',
-      fontSize: 27,
-      fontWeight: 'bold',
-      marginTop: 8,
-      marginLeft: 20
-    }
+      fontSize: 20,
+      paddingTop: 15,
+      marginLeft: 10
+    },
+    
 })
