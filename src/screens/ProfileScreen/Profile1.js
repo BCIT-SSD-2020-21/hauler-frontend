@@ -1,8 +1,9 @@
 import React, { useState, useContext, useEffect } from 'react';
-import { StyleSheet, Text, TouchableOpacity, View, ScrollView, Modal, FlatList } from 'react-native';
+import { StyleSheet, Text, TouchableOpacity, View, ScrollView, Modal, FlatList, TextInput } from 'react-native';
 import { Avatar } from 'react-native-elements';
 import { FontAwesome } from '@expo/vector-icons';
-import UserInfo from '../../components/UserInfo/UserInfo';
+import UserInfo1 from '../../components/UserInfo/UserInfo1';
+import UserInfo2 from '../../components/UserInfo/UserInfo2';
 import { Context } from '../../context/ContextProvider';
 import { getOneUser } from '../../../network';
 
@@ -20,6 +21,12 @@ export default function Profile1({ navigation }) {
     const [contactNumber, setContactNumber] = useState('')
      const [firstName, setFirstName] = useState('')
     const [lastName, setLastName] = useState('')
+    const [creditCardNumber, setCreditCardNumber] = useState('')
+    const [expiryDate, setExpiryDate] = useState('')
+    const [cvv, setCvv] = useState('')
+    const [cardHolderName, setCardHolderName] = useState('')
+    const [password, setPassword] = useState('')
+    const [newPassword, setNewPassword] = useState('')
      const [error, setError] = useState('')
      const [loading, setLoading] = useState('')
      const [reload, setReload] = useState(true)
@@ -54,38 +61,49 @@ export default function Profile1({ navigation }) {
      const onEditClicked = async () => {
          setModalVisible(true)
      }
-    // const onEditSubmitted = async () => {
-    //     await updateOneServiceProvider(
-    //         currentUser.uid,
-    //         firstName,
-    //         lastName,
-    //         profilePicUrl,
-    //         dateOfBirth,
-    //         province,
-    //         city,
-    //         streetAddress,
-    //         unitNumber,
-    //         contactNumber
-    //     )
-    //     setReload(!reload)
-    //     setModalVisible(!modalVisible)
-    // }
+    const onEditSubmitted = async () => {
+        await updateOneServiceProvider(
+            currentUser.uid,
+            firstName,
+            lastName,
+            profilePicUrl,
+            dateOfBirth,
+            province,
+            city,
+            streetAddress,
+            unitNumber,
+            contactNumber,
+            creditCardNumber,
+            expiryDate,
+            cvv,
+            cardHolderName,
+            newPassword
+            
+        )
+        setReload(!reload)
+        setModalVisible(!modalVisible)
+    }
 
     useEffect(() => {
         currentUser &&
             (async () => {
                 const profile = await getOneUser(currentUser.uid)
                 setUserInformation(profile)
-                console.log(profile)
-                // setCity(profile.city)
-                // setStreetAddress(profile.streetAddress)
-                // setUnitNumber(profile.unitNumber)
-                // setDob(profile.dateOfBirth)
-                // setContactNumber(profile.contactNumber)
-                // setProvince(profile.province)
-                 //setFirstName(profile.firstName)
-                // setLastName(profile.lastName)
-                // setProfilePicUrl(profile.profilePicUrl)
+                setCity(profile.city)
+                setStreetAddress(profile.streetAddress)
+                setUnitNumber(profile.unitNumber)
+                setDob(profile.dateOfBirth)
+                setContactNumber(profile.contactNumber)
+                setProvince(profile.province)
+                 setFirstName(profile.firstName)
+                setLastName(profile.lastName)
+                setProfilePicUrl(profile.profilePicUrl)
+                setCreditCardNumber(profile.creditCardNumber)
+                setExpiryDate(profile.expiryDate)
+                setCvv(profile.cvv)
+                setCardHolderName(profile.cardHolderName)
+                setPassword(profile.password)
+                setNewPassword(profile.newPassword)
             })()
     }, [reload])
 
@@ -165,7 +183,7 @@ export default function Profile1({ navigation }) {
                             }}
                         >
                             <ScrollView style={styles.modalContainer}>
-                                {/* <UserInfo
+                                <UserInfo1
                                     firstName={firstName}
                                     lastName={lastName}
                                     province={province}
@@ -185,7 +203,32 @@ export default function Profile1({ navigation }) {
                                     setLastName={setLastName}
                                     setProfilePicUrl={setProfilePicUrl}
                                     setError={setError}
-                                /> */}
+                                />
+                                <UserInfo2 
+                                    creditCardNumber={creditCardNumber}
+                                    expiryDate={expiryDate}
+                                    cvv={cvv}
+                                    cardHolderName={cardHolderName}
+                                    setCreditCardNumber={setCreditCardNumber}
+                                    setExpiryDate={setExpiryDate}
+                                    setCvv={setCvv}
+                                    setCardHolderName={setCardHolderName}
+                                />
+                                <TextInput
+                                    style={styles.input}
+                                    placeholder='Password'
+                                    placeholderTextColor='#C0C0C0'
+                                    onChangeText={(password) => { setError(""); setPassword(password) }}
+                                    value={password}
+                                />
+                                <TextInput
+                                    style={styles.input}
+                                    placeholder='New Password'
+                                    placeholderTextColor='#C0C0C0'
+                                    onChangeText={(newPassword) => { setError(""); setNewPassword(newPassword) }}
+                                    value={newPassword}
+                                />
+
                                 <View style={styles.buttonContainer}>
                                     <TouchableOpacity
                                         style={[styles.buttons, styles.logOutButton]}
@@ -288,6 +331,17 @@ const styles = StyleSheet.create({
         color: 'white',
         fontSize: 16,
         fontWeight: "bold"
+    },
+    input: {
+        borderColor: 'black',
+        borderWidth: 1,
+        height: 48,
+        borderRadius: 5,
+        overflow: 'hidden',
+        backgroundColor: 'white',
+        marginVertical: '1%',
+        marginHorizontal: '2%',
+        paddingLeft: 16
     },
 })
 
