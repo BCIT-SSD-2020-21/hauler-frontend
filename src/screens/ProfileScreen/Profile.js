@@ -2,11 +2,24 @@ import React, { useState, useContext } from 'react'
 import { Text, TouchableOpacity, View, Image } from 'react-native'
 import { Context } from '../../context/ContextProvider'
 import { StyleSheet } from 'react-native';
+import Signup from '../SignupScreen/Signup'
+import SignUpScreen2 from '../SignupScreen/SignUpScreen2'
 
 export default function Profile({ navigation }) {
     const { signout, currentUser } = useContext(Context)
     const [error, setError] = useState('')
     const [loading, setLoading] = useState('')
+    const [firstName, setFirstName] = useState('')
+    const [lastName, setLastName] = useState('')
+    const [dateOfBirth, setDob] = useState('')
+    const [province, setProvince] = useState('')
+    const [city, setCity] = useState('')
+    const [streetAddress, setStreetAddress] = useState('')
+    const [unitNumber, setUnitNumber] = useState('')
+    const [contactNumber, setContactNumber] = useState('')
+    const [image, setImage] = useState(null)
+    const [creditCardNumber, setCreditCardNumber] = useState('')
+    const [expiryDate, setExpiryDate] = useState('')
 
     const onSignOutClicked = async () => {
         try {
@@ -30,6 +43,9 @@ export default function Profile({ navigation }) {
                 <Text style={styles.userEmail}>
                     Current user : {currentUser && currentUser.email}
                 </Text>
+                <View>
+                    
+                </View>
                 <TouchableOpacity
                     disabled={loading}
                     style={styles.button}
