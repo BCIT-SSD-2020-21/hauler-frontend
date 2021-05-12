@@ -1,9 +1,6 @@
-import 'react-native-gesture-handler';
 import React from 'react';
-import { 
-  NavigationScreen
-} from './src/screens'
-import { NavigationContainer, StackActions } from '@react-navigation/native';
+import  NavigationScreen from './src/screens/NavigationScreen/NavigationScreen'
+import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import {AuthProvider } from './src/context/ContextProvider';
