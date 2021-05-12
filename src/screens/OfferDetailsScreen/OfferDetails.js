@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { StyleSheet, Modal, View, Text, TouchableOpacity } from 'react-native';
-import { getOnePost, getResponseByServiseProviderId } from '../../../network';
+import { addUserResponse, getOnePost, getResponseByServiseProviderId, updatePostVisibility } from '../../../network';
 import OfferInfo from '../../components/OfferInfo/OfferInfo'
 
 export default function OfferDetails({ navigation, route }) {
@@ -24,14 +24,29 @@ export default function OfferDetails({ navigation, route }) {
        console.log("decline clicked")
     }
     const onAccept = async () => {
-        console.log("accept clicked")
+        await addUserResponse(
+            postId,
+            serviceProviderId,
+            'Accepted',
+            true,
+            'Accepted',
+            actionPrice,
+            true
+            );
+            setReset(!reset);
+        await updatePostVisibility(postId, actionPrice);
+        console.log("Offer Accepted")
+        // navigation.navigate('JobConfirmation', { posts: post, actionPrice: actionPrice })
     }
 
     useEffect(() => {
         (async () => {
             const newResponse = await getResponseByServiseProviderId(serviceProviderId, postId )
             setResponse(newResponse[0]);
+            console.log(newResponse[0])
             setActionPrice(newResponse[0].serviceProviderResponseSchema.length > 0 && newResponse[0].serviceProviderResponseSchema[newResponse[0].serviceProviderResponseSchema.length - 1].serviceProviderActionPrice)
+            console.log(newResponse[0].serviceProviderResponseSchema.length > 0 && newResponse[0].serviceProviderResponseSchema[newResponse[0].serviceProviderResponseSchema.length - 1].serviceProviderActionPrice)
+
             const newPost = await getOnePost(postId)
             setPost(newPost)
         })()
