@@ -250,3 +250,12 @@ export async function updatePostVisibility(postId, actionPrice) {
     console.log(err);
   }
 }
+//===================================To Get One User ======================================================//
+export async function getOneUser(uid) {
+  try{
+    const res = await axios.get(`${url}/api/users/${uid}`);
+    return res.data
+  }catch (err) {
+    console.log(err);
+  }
+}
