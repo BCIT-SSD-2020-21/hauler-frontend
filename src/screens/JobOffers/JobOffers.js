@@ -11,8 +11,8 @@ export default function JobOffers({ navigation, route }) {
     const [post, setPost] = useState('')
     const[serviceProviders, setServiceProviders] = useState('')
 
-    const onStatusDetailsPress =() =>{
-        console.log("On status details press")
+    const onStatusDetailsPress =(value) =>{
+        navigation.navigate('OfferDetails', { serviceProviderId: value.serviceProviderId, postId: value.postId })
     }
 
     useEffect(() => {
@@ -20,13 +20,11 @@ export default function JobOffers({ navigation, route }) {
                 const newPost = await getOnePost(postId)
                 setPost(newPost)
                 const serviceProvidersIds = [newPost.response.slice(1).map(a => { return a.serviceProviderId })]
-                console.log(serviceProvidersIds[0])
                 const serviceProviders = await Promise.all( serviceProvidersIds[0].map(async (a) => {
                     if (!!a) {
                         return await getOneServiceProvider(a);
                     } else { return null }
                 }))
-                console.log(serviceProviders)
                 setServiceProviders(serviceProviders)
             })()
     }, [])
@@ -45,7 +43,8 @@ export default function JobOffers({ navigation, route }) {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        alignItems: 'center'
+        alignItems: 'center',
+        backgroundColor: 'white'
     },
     text: {
        width: '100%'
