@@ -57,7 +57,7 @@ export default function AddJunkScreen3({ navigation, route }) {
                         />
                     </View>
                 </SafeAreaView>
-                <TouchableOpacity onPress={() => navigation.navigate('AddJunkSummary', { image: image, selectedweight: selectedweight, selectedquantity: selectedquantity, postHeading: postHeading, description: description, pickUpAddress: pickUpAddress, dropOffAddress: dropOffAddress, pickContactPerson: pickContactPerson, pickUpPhoneNumber: pickUpPhoneNumber, pickUpSpecialInstructions: pickUpSpecialInstructions, pickUpSpecialInstructions: pickUpSpecialInstructions, dropOffContactPerson: dropOffContactPerson, dropOffPhoneNumber: dropOffPhoneNumber, dropOffSpecialInstructions: dropOffSpecialInstructions, sliderValue: sliderValue })}
+                <TouchableOpacity onPress={() => navigation.navigate('AddJunkSummary', { image: image, selectedweight: selectedweight, selectedquantity: selectedquantity, postHeading: postHeading, description: description, pickUpAddress: pickUpAddress, pickContactPerson: pickContactPerson, pickUpPhoneNumber: pickUpPhoneNumber, pickUpSpecialInstructions: pickUpSpecialInstructions, sliderValue: sliderValue })}
                     style={styles.button}>
                     <Text style={styles.buttonTitle}>Submit</Text>
                 </TouchableOpacity>
