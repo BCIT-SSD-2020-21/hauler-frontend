@@ -11,8 +11,8 @@ export default function JobOffers({ navigation, route }) {
     const [post, setPost] = useState('')
     const[serviceProviders, setServiceProviders] = useState('')
 
-    const onStatusDetailsPress =() =>{
-        console.log("On status details press")
+    const onStatusDetailsPress =(value) =>{
+        navigation.navigate('OfferDetails', { serviceProviderId: value.serviceProviderId, postId: value.postId })
     }
 
     useEffect(() => {

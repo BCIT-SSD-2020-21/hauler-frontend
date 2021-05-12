@@ -10,6 +10,7 @@ import AddJunkNavigator from '../NavigationScreen/AddJunkNavigator';
 //import ServiceScreenNavigator from '../NavigationScreen/ServiceScreenNavigator';
 import ServiceProviderNavigator from './ServiceProviderNavigator';
 import SignUpScreen2 from '../SignupScreen/SignUpScreen2'
+import OfferDetails from '../OfferDetailsScreen/OfferDetails';
 
 const HomeStack = createStackNavigator();
 
@@ -47,6 +48,7 @@ const HomeNavigator = () => {
                 options={{ headerRight: () => <MenuIcon /> }}
             />
             <HomeStack.Screen name='JobOffers' component={JobOffers} options={{ headerRight: () => <MenuIcon /> }} />
+            <HomeStack.Screen name='OfferDetails' component={OfferDetails} options={{ headerRight: () => <MenuIcon /> }} />
             <HomeStack.Screen name='AddJunkNavigator' component={AddJunkNavigator} options={{ headerRight: () => <MenuIcon /> }} />
 
         </HomeStack.Navigator>
