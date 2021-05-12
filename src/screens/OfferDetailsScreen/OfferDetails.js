@@ -31,7 +31,16 @@ export default function OfferDetails({ navigation, route }) {
     }
 
     const onDeclineConfirmed = async () => {
-       console.log("decline clicked")
+        await addUserResponse(
+            postId,
+            serviceProviderId,
+            'Declined',
+            true,
+            'Declined',
+            actionPrice,
+            true);
+            setReset(!reset);
+        setModalVisible(!modalVisible)
     }
     const onAccept = async () => {
         await addUserResponse(
