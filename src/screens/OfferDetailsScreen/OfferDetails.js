@@ -14,7 +14,17 @@ export default function OfferDetails({ navigation, route }) {
     const [actionPrice, setActionPrice] = useState('')
 
     const onSendOffer = async () => {
-        console.log("send offer clicked")
+        await addUserResponse(
+            postId,
+            serviceProviderId,
+            'Negotiating',
+            false,
+            'Offer',
+            offer,
+            true)
+        setReset(!reset);
+        // navigation.navigate('OfferConfirmation')
+        console.log("Offer sent")
     }
     const onDecline = () => {
         setModalVisible(true)
@@ -43,10 +53,7 @@ export default function OfferDetails({ navigation, route }) {
         (async () => {
             const newResponse = await getResponseByServiseProviderId(serviceProviderId, postId )
             setResponse(newResponse[0]);
-            console.log(newResponse[0])
             setActionPrice(newResponse[0].serviceProviderResponseSchema.length > 0 && newResponse[0].serviceProviderResponseSchema[newResponse[0].serviceProviderResponseSchema.length - 1].serviceProviderActionPrice)
-            console.log(newResponse[0].serviceProviderResponseSchema.length > 0 && newResponse[0].serviceProviderResponseSchema[newResponse[0].serviceProviderResponseSchema.length - 1].serviceProviderActionPrice)
-
             const newPost = await getOnePost(postId)
             setPost(newPost)
         })()
