@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { StyleSheet, Modal, View, Text, TouchableOpacity } from 'react-native';
-import { getOnePost, getResponseByServiseProviderId } from '../../../network'
+import { getOnePost, getResponseByServiseProviderId } from '../../../network';
+import OfferInfo from '../../components/OfferInfo/OfferInfo'
 
 export default function OfferDetails({ navigation, route }) {
     const { serviceProviderId, postId } = route.params;
@@ -30,9 +31,7 @@ export default function OfferDetails({ navigation, route }) {
         (async () => {
             const newResponse = await getResponseByServiseProviderId(serviceProviderId, postId )
             setResponse(newResponse[0]);
-            console.log(newResponse[0])
             setActionPrice(newResponse[0].serviceProviderResponseSchema.length > 0 && newResponse[0].serviceProviderResponseSchema[newResponse[0].serviceProviderResponseSchema.length - 1].serviceProviderActionPrice)
-            console.log(newResponse[0].serviceProviderResponseSchema.length > 0 && newResponse[0].serviceProviderResponseSchema[newResponse[0].serviceProviderResponseSchema.length - 1].serviceProviderActionPrice)
             const newPost = await getOnePost(postId)
             setPost(newPost)
         })()
@@ -66,6 +65,14 @@ export default function OfferDetails({ navigation, route }) {
                     </View>
                 </View>
             </Modal>
+            <OfferInfo
+                response={response}
+                setOffer={setOffer}
+                onSendOffer={onSendOffer}
+                offer={offer}
+                onDecline={onDecline}
+                onAccept={onAccept}
+            />
         </>
     )
 }
