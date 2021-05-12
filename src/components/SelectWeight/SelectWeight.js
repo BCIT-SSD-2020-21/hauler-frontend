@@ -8,17 +8,23 @@ export default function SelectWeight({ selectedweight, setSelectedWeight }) {
         <View style={styles.search}>
             <RNPickerSelect
                 value={selectedweight}
-                useNativeAndroidPickerStyle={false}
+                useNativeAndroidPickerStyle={true}
                 style={{
-                    inputAndroid: {
+                    inputIOS: {
                         fontSize: 14,
                         paddingHorizontal: 10,
                         paddingVertical: 8,
                         color: 'black'
                     },
+                    inputAndroid: {
+                        fontSize: 14,
+                        paddingHorizontal: 10,
+                        paddingVertical: 16,
+                        color: 'black'
+                    },
                 }}
                 onValueChange={(value) => setSelectedWeight(value)}
-                placeholder={{ label: "Search the Weight", value: null }}
+                placeholder={{ label: "Select Weight", value: null }}
                 items={[
                     { label: 'Light 0-20Kgs', value: 'Light 0-20Kgs' },
                     { label: 'Medium 20-50Kgs', value: 'Medium 20-50Kgs' },
@@ -32,12 +38,11 @@ export default function SelectWeight({ selectedweight, setSelectedWeight }) {
 const styles = StyleSheet.create({
     search: {
         width: '90%',
-        borderWidth: 1,
-        borderColor: 'black',
-        borderRadius: 5,
+        borderRadius: 10,
+        backgroundColor: '#F5F5F5',
         marginVertical: 5,
-        borderColor: '#BFBFBF',
-        marginLeft: 20
+        alignSelf: 'center',
+        marginTop: 20
     }
 })
 

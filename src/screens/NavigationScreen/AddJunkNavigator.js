@@ -5,6 +5,7 @@ import AddJunkScreen3 from '../AddJunkScreen3/AddJunkScreen3'
 import MenuIcon from './MenuIcon';
 import AddItemScreen from '../AddItemScreen/AddItemScreen';
 import Confirmation from '../ConfirmationScreen/Confirmation';
+import AddJunkSummary from '../AddJunkSummary/AddJunkSummary';
 
 const JunkScreenStack = createStackNavigator()
 export default function JunkScreenNavigator() {
@@ -16,6 +17,7 @@ export default function JunkScreenNavigator() {
             <JunkScreenStack.Screen name='AddItemScreen' component={AddItemScreen} options={{ headerRight: () => <MenuIcon /> }} />
             <JunkScreenStack.Screen name='AddJunkScreen2' component={AddJunkScreen2} options={{ headerRight: () => <MenuIcon /> }} />
             <JunkScreenStack.Screen name='AddJunkScreen3' component={AddJunkScreen3} options={{ headerRight: () => <MenuIcon /> }} />
+            <JunkScreenStack.Screen name='AddJunkSummary' component={AddJunkSummary} options={{ headerRight: () => <MenuIcon /> }} />
             <JunkScreenStack.Screen name='Confirmation' component={Confirmation} options={{ headerTitle: 'Confirmation Screen', headerRight: () => <MenuIcon /> }} />
         </JunkScreenStack.Navigator>
     )
