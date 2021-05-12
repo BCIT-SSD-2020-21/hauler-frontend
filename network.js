@@ -49,7 +49,7 @@ export async function getAllPosts(uid) {
   }
 }
 
-//==================================== To post Moving and errands service details ===================================//
+//========================== To post Moving and errands service details =============================//
 
 export async function postItem(
   uid,
@@ -195,10 +195,20 @@ export async function getOneServiceProvider(uid) {
   }
 }
 
-//======================== To get single post by postId =============================================//
+//=============================== To get single post by postId ====================================//
 export async function getOnePost(postId) {
   try {
     const res = await axios.get(`${url}/api/posts/one/${postId}`);
+    return res.data;
+  } catch (err) {
+    console.log(err);
+  }
+}
+
+//====================== get response by get Response By ServiseProviderId ==========================//
+export async function getResponseByServiseProviderId(uid, postId) {
+  try {
+    const res = await axios.get(`${url}/api/posts/response/service-provider/${uid}/${postId}`);
     return res.data;
   } catch (err) {
     console.log(err);

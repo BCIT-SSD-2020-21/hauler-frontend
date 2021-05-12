@@ -20,13 +20,11 @@ export default function JobOffers({ navigation, route }) {
                 const newPost = await getOnePost(postId)
                 setPost(newPost)
                 const serviceProvidersIds = [newPost.response.slice(1).map(a => { return a.serviceProviderId })]
-                console.log(serviceProvidersIds[0])
                 const serviceProviders = await Promise.all( serviceProvidersIds[0].map(async (a) => {
                     if (!!a) {
                         return await getOneServiceProvider(a);
                     } else { return null }
                 }))
-                console.log(serviceProviders)
                 setServiceProviders(serviceProviders)
             })()
     }, [])
