@@ -259,3 +259,45 @@ export async function getOneUser(uid) {
     console.log(err);
   }
 }
+
+//======================================= To Update User Information ======================================//
+export async function updateOneUser(
+  uid,
+  firstName,
+  lastName,
+  profilePicUrl,
+  dateOfBirth,
+  province,
+  city,
+  streetAddress,
+  unitNumber,
+  contactNumber,
+  creditCardNumber,
+  expiryDate,
+  cvv,
+  cardHolderName,
+  newPassword
+){
+  try{
+    const res = await axios.post(`${url}/api/users/${uid}`, {
+      firstName: firstName,
+      lastName: lastName,
+      profilePicUrl: "https://techcommunity.microsoft.com/t5/image/serverpage/image-id/217078i525F6A9EF292601F/image-size/large?v=v2&px=999",
+      dateOfBirth: dateOfBirth,
+      province: province,
+      city: city,
+      streetAddress: streetAddress,
+      unitNumber: unitNumber,
+      contactNumber: contactNumber,
+      creditCardNumber: creditCardNumber,
+      expiryDate: expiryDate,
+      cvv: cvv,
+      cardHolderName: cardHolderName,
+      newPassword: newPassword
+
+    });
+    return res.data;
+  }catch (err) {
+    console.log(err);
+  }
+}
