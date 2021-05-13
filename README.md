@@ -5,8 +5,8 @@
 <i>The software enables self-employed participants to profit from junk removal, small moving and/or courier/errand services.</i>
 
 <strong>Project Goal</strong>
-<br></br>
-<i>The aim for the team is to achieve a working model through which a user is able to create a post for the required services and a service provider is able to accpet a job. </i>
+
+<i>The aim for the team is to achieve fucntional mobile applications (User and Service Provider) through which a user is able to create a post for the required services and a service provider is able to accpet a job. </i>
 
 ### Product description
 
@@ -16,27 +16,27 @@
 
 <strong> Mainly 3 services will be provided </strong>
 
-* Hauler Moving Services
-* Hauler Junk Removal Services
-* Hauler Courier Services
+- Hauler Junk Removal Services
+- Hauler Moving Services
+- Hauler Errands Services
 
 ### Essential Feature List
 
 #### Core Features
 -   Create two separate mobile applications <strong>User & Service Provider</strong>.
 
-##### User App
-- Is able to create a profile on the application.
-- Is able to create a post for all three services.
-- Is able to accept/negotiate and decline any offer provided by the service provider.
-- Is able to search a list of service providers in their geographical location.
-- Is able to save a list of jobs created by them
+    ##### User App
+    - Is able to create a profile on the application.
+    - Is able to create a post for all three services.
+    - Is able to accept/negotiate and decline any offer provided by the service provider.
+    - Is able to search a list of service providers in their geographical location.
+    - Is able to save a list of jobs created by them
 
-##### Service Provider App
-- Is able to create a profile on the application.
-- Is able to search a relevant post for all the services listed in their geographical area.
-- Is able to accept or submit a counter offer for a job listed by the user.
-- Is able to accept/negotiate and decline an offer by the user.
+    ##### Service Provider App
+    - Is able to create a profile on the application.
+    - Is able to search a relevant post for all the services listed in their geographical area.
+    - Is able to accept or submit a counter offer for a job listed by the user.
+    - Is able to accept/negotiate and decline an offer by the user.
 
 ### Nice to have
 - User is able to submit a review for the service provider
@@ -45,7 +45,7 @@
     - Is able to perform CRUD operations for a user and service provider
     - Is able to delete a post from the database
     - Is able to generate reports for a relevant
-- Integration with QuickBooks for invoicing, order summary and payment summary.
+- Integration with QuickBooks for invoicing, order summary and payment methods.
 - Live tracking of services and routing.
 
 -----------------------------------------------------------------------------------------------------------------------------------------------
@@ -76,15 +76,9 @@
 - Clone the repo
 - npm install or yarn install
 - npm start or yarn start
-- add .env file to the root folder
-    - REACT_APP_FIREBASE_API_KEY = ""
-    - REACT_APP_FIREBASE_AUTH_DOMAIN = ""
-    - REACT_APP_FIREBASE_PROJECT_ID = ""
-    - REACT_APP_FIREBASE_STORAGE_BUCKET = ""
-    - REACT_APP_FIREBASE_MESSAGING_SENDER_ID = ""
-    - REACT_APP_FIREBASE_APP_ID = ""
-    - NETWORK_URL=
-
+- add .env file to the root folder (Sample for .env file created in the repo for refernce)
+    - Create and add API keys for FireBase Authentication (API, Auth Domain, Project Id, Storage Bucket, Messaging Sender ID and App ID)
+    - Add this Heroku link to the NETWORK_URL= 
 
 -----------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -96,12 +90,79 @@
 
 ## User App Prototype
 
-<img src="/planning/supportingDocs/UserApp.gif" width="350" alt="UCD">
+<img src="/planning/supportingDocs/UserApp.gif" width="350" alt="UserApp">
 
-## Participants in the team
-#### Mandeep Dhillon
-#### Kulveer Brar
-#### Owen Ow
-#### Abhishek Pundir
+<strong> Click here for the protoype for the backend <link> </link> </strong> 
+
+-----------------------------------------------------------------------------------------------------------------------------------------------
+
+## Endpoints from MongoDb database
+
+### `GET`
+
+Get all posts from the database
+
+#### `api/posts/all`
+
+Sample Response:
+
+  {
+        "price": 50,
+        "totalOffers": 0,
+        "show": true,
+        "status": "Active",
+        "_id": "609c476ae1b76d8070f4fdee",
+        "userId": "xt9Kw94VkMehXbZ4hwl63Z6iSAD2",
+        "service": "Junk",
+        "postHeading": "junk post 1",
+        "postDescription": "this is junk post",
+        "loadWeight": "Light 0-20Kgs",
+        "numberOfItems": 2,
+        "loadImages": [
+            {
+                "imageUrl": "https://cdn.apartmenttherapy.info/image/upload/v1558596110/at/archive/e06c0d4c7d9800f5d664133bf5185b850372f018.jpg",
+                "_id": "609c476ae1b76d8070f4fdef"
+            }
+        ],
+        "pickUpAddress": "14269 64a Ave, Surrey, BC V3W, Canada",
+        "pickUpCity": "Surrey",
+        "pickUpAddressLat": 49.1208289,
+        "pickUpAddressLng": -122.827293,
+        "pickUpContactPerson": "person",
+        "pickUpContactNumber": "123456",
+        "pickUpSpecialInstruction": "instructions",
+        "response": [
+            {
+                "notificationOnServiceProvider": "none",
+                "notificationOnUser": "none",
+                "serviceProviderActionButtons": false,
+                "userActionButtons": false,
+                "_id": "609c476ae1b76d8070f4fdf0",
+                "serviceProviderResponseSchema": [
+                    {
+                        "_id": "609c476ae1b76d8070f4fdf1",
+                        "timeStamp": "2021-05-12T21:23:54.576Z"
+                    }
+                ],
+                "userResponseSchema": [
+                    {
+                        "_id": "609c476ae1b76d8070f4fdf2",
+                        "timeStamp": "2021-05-12T21:23:54.583Z"
+                    }
+                ]
+            }
+        ],
+        "timeStamp": "2021-05-12T21:23:54.584Z",
+        "__v": 0
+    }
+
+
+
+## An industry project by: 
+
+- Kulveer Brar
+- Abhishek Pundir
+- Mandeep Dhillon
+- Owen Ow
 
 
