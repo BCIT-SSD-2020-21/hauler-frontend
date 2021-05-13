@@ -5,6 +5,7 @@
 <i>The software enables self-employed participants to profit from junk removal, small moving and/or courier/errand services.</i>
 
 <strong>Project Goal</strong>
+<br></br>
 <i>The aim for the team is to achieve a working model through which a user is able to create a post for the required services and a service provider is able to accpet a job. </i>
 
 ### Product description
@@ -89,7 +90,7 @@
 
 ## Use Case Diagram
 
-<img src="/planning/supportingDocs/UCD.png" width="250" alt="UCD">
+<img src="/planning/supportingDocs/UCD.png" width="1000" alt="UCD">
 
 ## Participants in the team
 #### Mandeep Dhillon
