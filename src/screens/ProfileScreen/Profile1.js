@@ -193,7 +193,7 @@ export default function Profile1({ navigation }) {
 
                                 <View style={styles.buttonContainer}>
                                     <TouchableOpacity
-                                        style={[styles.buttons, styles.logOutButton]}
+                                        style={[styles.buttons, styles.editButton]}
                                         onPress={() => onEditSubmitted()}>
                                         <Text style={styles.buttonTitle}>Submit</Text>
                                     </TouchableOpacity>
@@ -277,17 +277,17 @@ const styles = StyleSheet.create({
     },
     buttons: {
 
-        width: '50%',
+        width: '48%',
         height: 48,
         borderRadius: 5,
         alignItems: 'center',
         justifyContent: 'center'
     },
     editButton: {
-        backgroundColor: '#16B3D5',
+        backgroundColor: '#0177FC',
     },
     logOutButton: {
-        backgroundColor: '#F68347',
+        backgroundColor: '#9F9E9E',
     },
     buttonTitle: {
         color: 'white',
