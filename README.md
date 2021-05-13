@@ -105,7 +105,7 @@ Get all posts from the database
 #### `api/posts/all`
 
 Sample Response:
-
+`
 {
   {
         "price": 50,
@@ -156,7 +156,7 @@ Sample Response:
         "timeStamp": "2021-05-12T21:23:54.584Z",
         "__v": 0
     }
-}
+} `
 
 
 ## An industry project by: 
