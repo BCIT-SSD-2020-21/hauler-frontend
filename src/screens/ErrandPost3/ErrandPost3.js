@@ -1,154 +1,94 @@
-import React, { useState, setState } from 'react'
-import { Text, View, ScrollView, TextInput, SafeAreaView, Picker } from 'react-native'
+import React, { useState } from 'react'
+import { Text, View, ScrollView, TextInput, SafeAreaView, Picker, Dimensions} from 'react-native'
 import { StyleSheet } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
-import Slider from '@react-native-community/slider';
-import SelectDropOffProvince from '../../components/SelectDropOffProvince/SelectDropOffProvince';
+import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
+import Constants from 'expo-constants';
+import {GOOGLE_MAP_API} from '@env';
+// import MapView from 'react-native-maps';
+
 
 export default function ErrandPost3({ navigation, route }) {
 
-    const [pickContactPerson, setPickContactPerson] = useState('')
-    const [pickUpPhoneNumber, setPickUpPhoneNumber] = useState('')
-    const [pickUpSpecialInstructions, setPickUpSpecialInstructions] = useState('')
-    const [dropOffContactPerson, setDropOffContactPerson] = useState('')
-    const [dropOffPhoneNumber, setDropOffPhoneNumber] = useState('')
-    const [dropOffSpecialInstructions, setDropOffSpecialInstructions] = useState('')
-    const [sliderValue, setSliderValue] = useState(50);
-    const { image, selectedweight, selectedquantity, postHeading, description, pickUpAddress,dropOffAddress } = route.params;
+    const [dropOffAddress, setdropOffAddress] = useState('')
 
-    return (
-        <ScrollView>
+    const {image, selectedweight, selectedquantity, postHeading, description, pickUpAddress, service} = route.params;
+
+   return (
+    //  <ScrollView keyboardShouldPersistTaps={'handled'}>
         <View style={styles.container}>
-
-          <Text> ERRAND </Text>
-          <Text> PICK UP DETAILS </Text>
-
-          <TextInput style={styles.inputLine1} placeholder='Contact Person' 
-            onChangeText={(contactPerson) => {setPickContactPerson(contactPerson)}}
-            value={pickContactPerson}
-          />
-
-          <TextInput style={styles.inputLine1} placeholder='Phone Number' 
-            onChangeText={(phoneNumber) => {setPickUpPhoneNumber(phoneNumber)}}
-            value={pickUpPhoneNumber}
-          />
-
-          <TextInput style={styles.inputLine2} placeholder='Special Instructions' 
-            onChangeText={(specialInstructions) => setPickUpSpecialInstructions(specialInstructions)}
-            value={pickUpSpecialInstructions}
-          />
-
-          <Text> DROP OFF DETAILS </Text>
-
-          <TextInput style={styles.inputLine1} placeholder='Contact Person' 
-            onChangeText={(contactPerson) => {setDropOffContactPerson(contactPerson)}}
-            value={dropOffContactPerson}
-          />
-
-          <TextInput style={styles.inputLine1} placeholder='Phone Number' 
-            onChangeText={(phoneNumber) => {setDropOffPhoneNumber(phoneNumber)}}
-            value={dropOffPhoneNumber}
-          />
-
-          <Text style={styles.text}> Special Instructions : </Text>
-          <TextInput style={styles.inputLine2}  
-            onChangeText={(specialInstructions) => setDropOffSpecialInstructions(specialInstructions)}
-            value={dropOffSpecialInstructions}
-          />
-
-          <SafeAreaView style={{flex: 1}}>
-            <View style={styles.containerSlider}>
-                {/*Text to show slider value*/}
-                <Text style={{color: 'black'}}>
-                    Your Price Value : $ {sliderValue}
-                </Text>
-                {/*Slider with max, min, step and initial value*/}
-                <Slider
-                maximumValue={1000}
-                minimumValue={50}
-                minimumTrackTintColor="#307ecc"
-                maximumTrackTintColor="#000000"
-                step={1}
-                value={sliderValue}
-                onValueChange={
-                    (sliderValue) => setSliderValue(sliderValue)
-                }
+          <Text>Enter your drop off location</Text>
+              <GooglePlacesAutocomplete
+                  placeholder="Full Address"
+                  minLength={2}
+                  fetchDetails= {true}
+                  onPress={(data, details = null) => {setdropOffAddress(details),
+                    console.log(details)}
+                     }
+                  value={dropOffAddress}
+                  onFail={(error) => console.error(error)}
+                  query={{
+                    key: GOOGLE_MAP_API,
+                    language: 'en', // language of the results
+                  }}
                 />
-            </View>
-          </SafeAreaView>
-       
-         <View style={styles.btnContainer}>
-          <TouchableOpacity onPress={() => navigation.navigate('ErrandSummary', {image: image, selectedweight: selectedweight, selectedquantity: selectedquantity, postHeading: postHeading, description: description,pickUpAddress:pickUpAddress, dropOffAddress:dropOffAddress, pickContactPerson: pickContactPerson, pickUpPhoneNumber: pickUpPhoneNumber, pickUpSpecialInstructions: pickUpSpecialInstructions, pickUpSpecialInstructions: pickUpSpecialInstructions, dropOffContactPerson: dropOffContactPerson, dropOffPhoneNumber: dropOffPhoneNumber, dropOffSpecialInstructions: dropOffSpecialInstructions, sliderValue: sliderValue })} 
-          style={styles.button}>
-            <Text style={styles.buttonTitle}>Submit</Text>
-          </TouchableOpacity>
+
+              <View style={styles.btnContainer}>
+          <TouchableOpacity onPress={() => navigation.navigate('ErrandPost4', {
+            image: image, 
+            selectedweight:  selectedweight,
+            selectedquantity: selectedquantity, 
+            postHeading: postHeading, 
+            description: description, 
+            pickUpAddress: pickUpAddress, 
+            dropOffAddress: dropOffAddress,
+            service: service
+          })} 
+          style={styles.button} >
+              <Text style={styles.btnText}>Next</Text>
+            </TouchableOpacity>
           </View>
-        </View>
-        </ScrollView>
+          </View>
+          // </ScrollView>
     )
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    //alignItems: 'center',
-    marginVertical: 20
+    padding: 20,
+    paddingTop: Constants.statusBarHeight + 10,
+    backgroundColor: '#ecf0f1',
   },
-  screenHeading: {
-    fontSize: 30,
-    fontWeight: '500',
-    marginLeft: 20
-  },
+
   inputLine1: {
-    height: 25,
+    height: 40,
+    width: '100%',
+    borderRadius: 5,
     overflow: 'hidden',
+    backgroundColor: 'white',
     marginTop: 10,
     marginBottom: 10,
-    marginLeft: 20,
+    marginLeft: 30,
     marginRight: 30,
-    paddingLeft: 16,
-    width: '90%',
-    borderBottomWidth: 1.0,
-    borderColor: '#BFBFBF',
-  },
-  inputLine2: {
-      height: 100,
-      width: '90%',
-      borderRadius: 5,
-      overflow: 'hidden',
-      marginTop: 10,
-      marginBottom: 10,
-      marginLeft: 20,
-      marginRight: 30,
-      paddingLeft: 16,
-      borderWidth: 1.0,
-      borderColor: '#BFBFBF'
-  },
+    paddingLeft: 16
+},
+btnContainer: {
+  display: 'flex',
+  flexDirection: 'row',
+  justifyContent: 'space-around',
+  marginTop: 30,
+},
 button: {
   backgroundColor: '#0177FC',
-  marginLeft: 30,
-  marginRight: 30,
-  marginTop: 20,
-  height: 48,
-  borderRadius: 20,
-  alignItems: "center",
-  justifyContent: 'center'
+  borderRadius: 10,
+  display: 'flex',
 },
-buttonTitle: {
+btnText: {
   color: 'white',
-  fontSize: 16,
-  fontWeight: "bold"
+  fontSize: 20,
+  paddingVertical: 10,
+  paddingHorizontal: 50,
 },
-text: {
-  color: '#BFBFBF',
-  marginLeft: 25,
-  fontWeight: 'bold',
-  marginTop: 20
-},
-containerSlider: {
-  flex: 1,
-  padding: 20,
-  justifyContent: 'center',
-  backgroundColor: '#ecf0f1',
-},
+
 })

@@ -1,23 +1,20 @@
 import React, { useState } from 'react'
-import { Text, View, ScrollView, TextInput, SafeAreaView, Picker, Dimensions} from 'react-native'
+import { Text, View} from 'react-native'
 import { StyleSheet } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { GooglePlacesAutocomplete, GooglePlacesDetailsQuery  } from 'react-native-google-places-autocomplete';
 import Constants from 'expo-constants';
 import {GOOGLE_MAP_API} from '@env';
 
-import SelectPickUpProvince from '../../components/SelectPickUpProvince/SelectPickUpProvince';
-
 export default function ErrandPost2({ navigation, route }) {
 
     const [pickUpAddress, setPickUpAddress] = useState('')
 
-    const {image, selectedweight, selectedquantity, postHeading, description} = route.params;
+    const {image, selectedweight, selectedquantity, postHeading, description, service} = route.params;
 
    return (
         // <SafeAreaView forceInset = {{top: 'always'}}>
         <View style={styles.container}>
-          <Text>Enter your pick up location</Text>
               <GooglePlacesAutocomplete
                   placeholder="Full Address"
                   minLength={2}
@@ -35,7 +32,15 @@ export default function ErrandPost2({ navigation, route }) {
 
 
               <View style={styles.btnContainer}>
-          <TouchableOpacity onPress={() => navigation.navigate('ErrandPost4', {image: image, selectedweight:  selectedweight,selectedquantity: selectedquantity, postHeading: postHeading, description: description, pickUpAddress: pickUpAddress})} 
+          <TouchableOpacity onPress={() => navigation.navigate('ErrandPost4', {
+            image: image, 
+            selectedweight:  selectedweight,
+            selectedquantity: selectedquantity, 
+            postHeading: postHeading, 
+            description: description, 
+            pickUpAddress: pickUpAddress,
+            service: service
+          })} 
           style={styles.button} >
               <Text style={styles.btnText}>Next</Text>
             </TouchableOpacity>
