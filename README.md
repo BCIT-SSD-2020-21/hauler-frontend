@@ -92,6 +92,12 @@
 
 <img src="/planning/supportingDocs/UCD.png" width="1000" alt="UCD">
 
+-----------------------------------------------------------------------------------------------------------------------------------------------
+
+## User App Prototype
+
+<img src="/planning/supportingDocs/UserApp.gif" width="1000" alt="UCD">
+
 ## Participants in the team
 #### Mandeep Dhillon
 #### Kulveer Brar
