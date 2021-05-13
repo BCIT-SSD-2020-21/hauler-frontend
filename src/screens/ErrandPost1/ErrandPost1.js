@@ -7,6 +7,7 @@ import { AntDesign } from '@expo/vector-icons';
 
 export default function ErrandPost1({ navigation }) {
 
+  const {service} = route.params;
     const[selectedweight, setSelectedWeight] = useState('')
     const[selectedquantity, setSelectedQuantity] = useState(1)
     const[image, setImage] = useState('');
@@ -103,7 +104,14 @@ export default function ErrandPost1({ navigation }) {
             </View>
 
             <View>
-                <TouchableOpacity onPress={() => navigation.navigate('ErrandPost2', {selectedweight: selectedweight, image: image, selectedquantity: selectedquantity, postHeading: postHeading, description: description})} style={styles.button}><Text style={styles.buttonTitle}>Next</Text></TouchableOpacity>
+                <TouchableOpacity onPress={() => navigation.navigate('ErrandPost2', {
+                  selectedweight: selectedweight, 
+                  image: image, 
+                  selectedquantity: selectedquantity, 
+                  postHeading: postHeading, 
+                  description: description,
+                  service=service
+                  })} style={styles.button}><Text style={styles.buttonTitle}>Next</Text></TouchableOpacity>
             </View>
             </View>
         </ScrollView>

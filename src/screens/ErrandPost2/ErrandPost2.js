@@ -12,7 +12,7 @@ export default function ErrandPost2({ navigation, route }) {
 
     const [pickUpAddress, setPickUpAddress] = useState('')
 
-    const {image, selectedweight, selectedquantity, postHeading, description} = route.params;
+    const {image, selectedweight, selectedquantity, postHeading, description, service} = route.params;
 
    return (
         // <SafeAreaView forceInset = {{top: 'always'}}>
@@ -35,7 +35,15 @@ export default function ErrandPost2({ navigation, route }) {
 
 
               <View style={styles.btnContainer}>
-          <TouchableOpacity onPress={() => navigation.navigate('ErrandPost4', {image: image, selectedweight:  selectedweight,selectedquantity: selectedquantity, postHeading: postHeading, description: description, pickUpAddress: pickUpAddress})} 
+          <TouchableOpacity onPress={() => navigation.navigate('ErrandPost4', {
+            image: image, 
+            selectedweight:  selectedweight,
+            selectedquantity: selectedquantity, 
+            postHeading: postHeading, 
+            description: description, 
+            pickUpAddress: pickUpAddress,
+            service: service
+          })} 
           style={styles.button} >
               <Text style={styles.btnText}>Next</Text>
             </TouchableOpacity>

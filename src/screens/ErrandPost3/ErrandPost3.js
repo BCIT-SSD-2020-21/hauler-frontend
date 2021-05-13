@@ -14,7 +14,7 @@ export default function ErrandPost3({ navigation, route }) {
     const [dropOffPhoneNumber, setDropOffPhoneNumber] = useState('')
     const [dropOffSpecialInstructions, setDropOffSpecialInstructions] = useState('')
     const [sliderValue, setSliderValue] = useState(50);
-    const { image, selectedweight, selectedquantity, postHeading, description, pickUpAddress,dropOffAddress } = route.params;
+    const { image, selectedweight, selectedquantity, postHeading, description, pickUpAddress, service } = route.params;
 
     return (
         <ScrollView>
@@ -78,7 +78,23 @@ export default function ErrandPost3({ navigation, route }) {
           </SafeAreaView>
        
          <View style={styles.btnContainer}>
-          <TouchableOpacity onPress={() => navigation.navigate('ErrandSummary', {image: image, selectedweight: selectedweight, selectedquantity: selectedquantity, postHeading: postHeading, description: description,pickUpAddress:pickUpAddress, dropOffAddress:dropOffAddress, pickContactPerson: pickContactPerson, pickUpPhoneNumber: pickUpPhoneNumber, pickUpSpecialInstructions: pickUpSpecialInstructions, pickUpSpecialInstructions: pickUpSpecialInstructions, dropOffContactPerson: dropOffContactPerson, dropOffPhoneNumber: dropOffPhoneNumber, dropOffSpecialInstructions: dropOffSpecialInstructions, sliderValue: sliderValue })} 
+          <TouchableOpacity onPress={() => navigation.navigate('ErrandSummary', {
+            image: image, 
+            selectedweight: selectedweight, 
+            selectedquantity: selectedquantity, 
+            postHeading: postHeading, 
+            description: description,
+            pickUpAddress:pickUpAddress, 
+            dropOffAddress:dropOffAddress, 
+            pickContactPerson: pickContactPerson, 
+            pickUpPhoneNumber: pickUpPhoneNumber, 
+            pickUpSpecialInstructions: pickUpSpecialInstructions, 
+            pickUpSpecialInstructions: pickUpSpecialInstructions, 
+            dropOffContactPerson: dropOffContactPerson, 
+            dropOffPhoneNumber: dropOffPhoneNumber, 
+            dropOffSpecialInstructions: dropOffSpecialInstructions, 
+            sliderValue: sliderValue,
+            service: service })} 
           style={styles.button}>
             <Text style={styles.buttonTitle}>Submit</Text>
           </TouchableOpacity>

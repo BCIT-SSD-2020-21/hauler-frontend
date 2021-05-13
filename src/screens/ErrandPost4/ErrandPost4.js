@@ -12,7 +12,7 @@ export default function ErrandPost2({ navigation, route }) {
 
     const [dropOffAddress, setdropOffAddress] = useState('')
 
-    const {image, selectedweight, selectedquantity, postHeading, description, pickUpAddress} = route.params;
+    const {image, selectedweight, selectedquantity, postHeading, description, pickUpAddress, service} = route.params;
 
    return (
     //  <ScrollView keyboardShouldPersistTaps={'handled'}>
@@ -34,7 +34,16 @@ export default function ErrandPost2({ navigation, route }) {
                 />
 
               <View style={styles.btnContainer}>
-          <TouchableOpacity onPress={() => navigation.navigate('ErrandPost3', {image: image, selectedweight:  selectedweight,selectedquantity: selectedquantity, postHeading: postHeading, description: description, pickUpAddress: pickUpAddress, dropOffAddress: dropOffAddress})} 
+          <TouchableOpacity onPress={() => navigation.navigate('ErrandPost3', {
+            image: image, 
+            selectedweight:  selectedweight,
+            selectedquantity: selectedquantity, 
+            postHeading: postHeading, 
+            description: description, 
+            pickUpAddress: pickUpAddress, 
+            dropOffAddress: dropOffAddress,
+            service: service
+          })} 
           style={styles.button} >
               <Text style={styles.btnText}>Next</Text>
             </TouchableOpacity>
