@@ -52,7 +52,7 @@ export default function PostInfo({ image, selectedweight, selectedquantity, post
                     <View style={styles.infoContainer}>
                         <Text style={styles.infoKey}>Drop Off Address</Text>
                         <Text style={styles.infoValue}>
-                            {dropOffAddress}
+                            {dropOffAddress.formatted_address}
                         </Text>
                     </View>
                     <Text>

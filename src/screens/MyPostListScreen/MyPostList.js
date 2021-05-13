@@ -26,7 +26,7 @@ export default function MyPostList({ navigation }) {
     }
     
     const onActiveImagePress = async (value) => {
-        console.log("Active post image pressed")
+        navigation.navigate('PostDetails', {postId: value.postId})
     }
 
     const onAcceptedDetails = async (value) => {
