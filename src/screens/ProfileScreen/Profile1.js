@@ -232,7 +232,8 @@ const styles = StyleSheet.create({
         flex: 1,
         alignItems: 'center',
         marginVertical: 20,
-        width: '100%'
+        width: '100%',
+        backgroundColor: 'white'
     },
     buttonContainer: {
         flexDirection: 'row',
@@ -287,7 +288,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#0177FC',
     },
     logOutButton: {
-        backgroundColor: '#9F9E9E',
+        backgroundColor: '#E0E0E0',
     },
     buttonTitle: {
         color: 'white',
