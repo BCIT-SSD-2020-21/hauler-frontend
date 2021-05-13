@@ -219,9 +219,7 @@ export async function updateOneUser(
   contactNumber,
   creditCardNumber,
   expiryDate,
-  cvv,
-  cardHolderName,
-  newPassword
+  cvv
 ){
   try{
     const res = await axios.post(`${url}/api/users/${uid}`, {
@@ -236,10 +234,7 @@ export async function updateOneUser(
       contactNumber: contactNumber,
       creditCardNumber: creditCardNumber,
       expiryDate: expiryDate,
-      cvv: cvv,
-      cardHolderName: cardHolderName,
-      newPassword: newPassword
-
+      cvv: cvv
     });
     return res.data;
   }catch (err) {
