@@ -1,8 +1,8 @@
 import React from 'react'
 import {StyleSheet, Text, View, TextInput } from 'react-native'
 
-export default function UserInfo2 ({ creditCardNumber, expiryDate, cvv, cardHolderName, setCreditCardNumber, setExpiryDate,
-    setCvv, setCardHolderName}) {
+export default function UserInfo2 ({ creditCardNumber, expiryDate, cvv, setCreditCardNumber, setExpiryDate,
+    setCvv, setError}) {
     return (
         <View>
             <TextInput
@@ -25,13 +25,6 @@ export default function UserInfo2 ({ creditCardNumber, expiryDate, cvv, cardHold
                 placeholderTextColor='#C0C0C0'
                 onChangeText={(cvv) => { setError(""); setCvv(cvv) }}
                 value={cvv}
-            />
-            <TextInput
-                style={styles.input}
-                placeholder='Card Holder Name'
-                placeholderTextColor='#C0C0C0'
-                onChangeText={(name) => { setError(""); setCardHolderName(name) }}
-                value={cardHolderName}
             />
         </View>
     )

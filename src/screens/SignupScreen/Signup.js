@@ -32,6 +32,7 @@ export default function Signup({ navigation }) {
         })();
     }, []);
 
+    //===============================function for the image display from phone gallery =======================//
     const pickImageAlbum = async () => {
         let result = await ImagePicker.launchImageLibraryAsync({
             mediaTypes: ImagePicker.MediaTypeOptions.Images,
@@ -65,15 +66,11 @@ export default function Signup({ navigation }) {
                                 <View style={styles.icon1}>
                                 <FontAwesome name="user-circle" size={40} color="#1177FC" /></View>
                                 </View>
-                            {/* {image && <Avatar
-                                size={125}
-                                rounded 
-                                source={{uri: image}}
-                            />} */}
                             </TouchableOpacity>
                         </View>
                     <Text > {error && alert(error)}</Text>
 
+ {/*================================== Text Input fields for user================================================= */}
                     <Text style={styles.text}> First Name : </Text>
                     <TextInput
                         style={styles.input}
