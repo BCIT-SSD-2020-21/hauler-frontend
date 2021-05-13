@@ -5,7 +5,7 @@ import { FontAwesome } from '@expo/vector-icons';
 import UserInfo1 from '../../components/UserInfo/UserInfo1';
 import UserInfo2 from '../../components/UserInfo/UserInfo2';
 import { Context } from '../../context/ContextProvider';
-import { getOneUser } from '../../../network';
+import { getOneUser, updateOneUser } from '../../../network';
 
 export default function Profile1({ navigation }) {
     const { signout, currentUser } = useContext(Context)
@@ -24,27 +24,10 @@ export default function Profile1({ navigation }) {
     const [creditCardNumber, setCreditCardNumber] = useState('')
     const [expiryDate, setExpiryDate] = useState('')
     const [cvv, setCvv] = useState('')
-    const [cardHolderName, setCardHolderName] = useState('')
-    const [password, setPassword] = useState('')
-    const [newPassword, setNewPassword] = useState('')
      const [error, setError] = useState('')
      const [loading, setLoading] = useState('')
      const [reload, setReload] = useState(true)
 
-    // const userInformation = {
-    //     firstName : "Abhishek",
-    //     lastName : "Pundir",
-    //     email : "apundir@my.bcit.ca",
-    //     dateOfBirth:" 01/02/03",
-    //     streetAddress : "123 Abc",
-    //     unitNumber:"1",
-    //     city : "Surrey",
-    //     province:"BC",
-    //     contactNumber:"12345667",
-    //     cardNumber : "1234567890123456",
-    //     expiryDate : "01/23",
-    //     profilePicUrl : "https://techcommunity.microsoft.com/t5/image/serverpage/image-id/217078i525F6A9EF292601F/image-size/large?v=v2&px=999"
-    // }
 
     const onSignOutClicked = async () => {
         try {
@@ -62,7 +45,7 @@ export default function Profile1({ navigation }) {
          setModalVisible(true)
      }
     const onEditSubmitted = async () => {
-        await updateOneServiceProvider(
+        await updateOneUser(
             currentUser.uid,
             firstName,
             lastName,
@@ -75,10 +58,7 @@ export default function Profile1({ navigation }) {
             contactNumber,
             creditCardNumber,
             expiryDate,
-            cvv,
-            cardHolderName,
-            newPassword
-            
+            cvv   
         )
         setReload(!reload)
         setModalVisible(!modalVisible)
@@ -101,9 +81,6 @@ export default function Profile1({ navigation }) {
                 setCreditCardNumber(profile.creditCardNumber)
                 setExpiryDate(profile.expiryDate)
                 setCvv(profile.cvv)
-                setCardHolderName(profile.cardHolderName)
-                setPassword(profile.password)
-                setNewPassword(profile.newPassword)
             })()
     }, [reload])
 
@@ -208,25 +185,10 @@ export default function Profile1({ navigation }) {
                                     creditCardNumber={creditCardNumber}
                                     expiryDate={expiryDate}
                                     cvv={cvv}
-                                    cardHolderName={cardHolderName}
                                     setCreditCardNumber={setCreditCardNumber}
                                     setExpiryDate={setExpiryDate}
                                     setCvv={setCvv}
-                                    setCardHolderName={setCardHolderName}
-                                />
-                                <TextInput
-                                    style={styles.input}
-                                    placeholder='Password'
-                                    placeholderTextColor='#C0C0C0'
-                                    onChangeText={(password) => { setError(""); setPassword(password) }}
-                                    value={password}
-                                />
-                                <TextInput
-                                    style={styles.input}
-                                    placeholder='New Password'
-                                    placeholderTextColor='#C0C0C0'
-                                    onChangeText={(newPassword) => { setError(""); setNewPassword(newPassword) }}
-                                    value={newPassword}
+                                    setError={setError}
                                 />
 
                                 <View style={styles.buttonContainer}>
