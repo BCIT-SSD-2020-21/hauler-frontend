@@ -98,7 +98,6 @@
 
 ## Endpoints from MongoDb database
 
-<<<<<<< HEAD
 ### `GET` - for all posts
 
  ##### `api/posts/all`
@@ -139,67 +138,6 @@
 .get('/response/service-provider/:serviceProviderId/:postId', postController.getResponseByServiseProviderId)
 
 
-=======
-### `GET`
-
-Get all posts from the database
-
-#### `api/posts/all`
-
-Sample Response:
-        `
-        {
-          {
-                "price": 50,
-                "totalOffers": 0,
-                "show": true,
-                "status": "Active",
-                "_id": "609c476ae1b76d8070f4fdee",
-                "userId": "xt9Kw94VkMehXbZ4hwl63Z6iSAD2",
-                "service": "Junk",
-                "postHeading": "junk post 1",
-                "postDescription": "this is junk post",
-                "loadWeight": "Light 0-20Kgs",
-                "numberOfItems": 2,
-                "loadImages": [
-                    {
-                        "imageUrl": "https://cdn.apartmenttherapy.info/image/upload/v1558596110/at/archive/e06c0d4c7d9800f5d664133bf5185b850372f018.jpg",
-                        "_id": "609c476ae1b76d8070f4fdef"
-                    }
-                ],
-                "pickUpAddress": "14269 64a Ave, Surrey, BC V3W, Canada",
-                "pickUpCity": "Surrey",
-                "pickUpAddressLat": 49.1208289,
-                "pickUpAddressLng": -122.827293,
-                "pickUpContactPerson": "person",
-                "pickUpContactNumber": "123456",
-                "pickUpSpecialInstruction": "instructions",
-                "response": [
-                    {
-                        "notificationOnServiceProvider": "none",
-                        "notificationOnUser": "none",
-                        "serviceProviderActionButtons": false,
-                        "userActionButtons": false,
-                        "_id": "609c476ae1b76d8070f4fdf0",
-                        "serviceProviderResponseSchema": [
-                            {
-                                "_id": "609c476ae1b76d8070f4fdf1",
-                                "timeStamp": "2021-05-12T21:23:54.576Z"
-                            }
-                        ],
-                        "userResponseSchema": [
-                            {
-                                "_id": "609c476ae1b76d8070f4fdf2",
-                                "timeStamp": "2021-05-12T21:23:54.583Z"
-                            }
-                        ]
-                    }
-                ],
-                "timeStamp": "2021-05-12T21:23:54.584Z",
-                "__v": 0
-            }
-        } `
->>>>>>> 48f44c245d8008b63324d6be53532686ac843c37
 
 
 ## An industry project by: 
