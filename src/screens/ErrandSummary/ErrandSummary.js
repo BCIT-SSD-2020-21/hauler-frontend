@@ -1,6 +1,5 @@
 import React, { useContext, useState, useRef } from 'react'
-import { Text, View, Image, Dimensions } from 'react-native'
-import { StyleSheet } from 'react-native';
+import { Text, View, Image, Dimensions, StyleSheet } from 'react-native'
 import { ScrollView, TouchableOpacity } from 'react-native-gesture-handler';
 import { Context } from '../../context/ContextProvider';
 import { postItem } from '../../../network';
@@ -11,7 +10,9 @@ import { GOOGLE_MAP_API } from '@env';
 export default function ErrandSummary({ navigation, route }) {
     const { width, height } = Dimensions.get('window');
     const mapView = useRef();
-    const { image, selectedweight, selectedquantity, postHeading, description, pickUpAddress, dropOffAddress, pickContactPerson, pickUpPhoneNumber, pickUpSpecialInstructions, dropOffContactPerson, dropOffPhoneNumber, dropOffSpecialInstructions, sliderValue, service } = route.params;
+    const { image, selectedweight, selectedquantity, postHeading, description, pickUpAddress, 
+        dropOffAddress, pickContactPerson, pickUpPhoneNumber, pickUpSpecialInstructions, 
+        dropOffContactPerson, dropOffPhoneNumber, dropOffSpecialInstructions, sliderValue, service } = route.params;
 
     const { currentUser } = useContext(Context)
 
@@ -99,7 +100,7 @@ export default function ErrandSummary({ navigation, route }) {
                     <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('ErrandPost1')}><Text style={styles.btnText}> Edit </Text></TouchableOpacity>
                 </View>
                 <View style={styles.btnContainer}>
-                    <TouchableOpacity style={styles.button}><Text style={styles.btnText} onPress={async () => {
+                    <TouchableOpacity style={styles.button} onPress={async () => {
                         await postItem(
                             currentUser.uid,
                             service,
@@ -125,7 +126,7 @@ export default function ErrandSummary({ navigation, route }) {
                             dropOffSpecialInstructions,
                             distance
                         ); navigation.navigate('Confirmation')
-                    }}> Post the Job </Text></TouchableOpacity>
+                    }}><Text style={styles.btnText}> Post the Job </Text></TouchableOpacity>
                 </View>
             </View>
         </ScrollView>

@@ -1,12 +1,10 @@
 import React, { useState } from 'react'
-import { Text, View, ScrollView, TextInput, SafeAreaView, Picker, Dimensions} from 'react-native'
+import { Text, View} from 'react-native'
 import { StyleSheet } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { GooglePlacesAutocomplete, GooglePlacesDetailsQuery  } from 'react-native-google-places-autocomplete';
 import Constants from 'expo-constants';
 import {GOOGLE_MAP_API} from '@env';
-
-import SelectPickUpProvince from '../../components/SelectPickUpProvince/SelectPickUpProvince';
 
 export default function ErrandPost2({ navigation, route }) {
 
@@ -17,7 +15,6 @@ export default function ErrandPost2({ navigation, route }) {
    return (
         // <SafeAreaView forceInset = {{top: 'always'}}>
         <View style={styles.container}>
-          <Text>Enter your pick up location</Text>
               <GooglePlacesAutocomplete
                   placeholder="Full Address"
                   minLength={2}

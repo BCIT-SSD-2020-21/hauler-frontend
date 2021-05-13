@@ -5,9 +5,9 @@ import * as ImagePicker from 'expo-image-picker';
 import SelectWeight from '../../components/SelectWeight/SelectWeight'
 import { AntDesign } from '@expo/vector-icons';
 
-export default function ErrandPost1({ navigation }) {
+export default function ErrandPost1({ navigation, route }) {
 
-  const {service} = route.params;
+  const { service} = route.params;
     const[selectedweight, setSelectedWeight] = useState('')
     const[selectedquantity, setSelectedQuantity] = useState(1)
     const[image, setImage] = useState('');
@@ -91,7 +91,7 @@ export default function ErrandPost1({ navigation }) {
             
             </View>
 
-            <View>
+            <View style={styles.buttonContainer}>
                 <TouchableOpacity style={styles.button}><Text style={styles.buttonTitle}
                 onPress={() => pickImageAlbum() } >Upload Image</Text>
                 </TouchableOpacity>
@@ -110,7 +110,7 @@ export default function ErrandPost1({ navigation }) {
                   selectedquantity: selectedquantity, 
                   postHeading: postHeading, 
                   description: description,
-                  service=service
+                  service:service
                   })} style={styles.button}><Text style={styles.buttonTitle}>Next</Text></TouchableOpacity>
             </View>
             </View>
@@ -219,5 +219,8 @@ const styles = StyleSheet.create({
       fontWeight: 'bold',
       marginTop: 8,
       marginLeft: 20
+    },
+    buttonContainer:{
+      display: 'none'
     }
 })

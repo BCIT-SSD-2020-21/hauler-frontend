@@ -49,7 +49,7 @@ export async function getAllPosts(uid) {
   }
 }
 
-//========================== To post Moving and errands service details =============================//
+//==================================== To add new post ===============================================//
 
 export async function postItem(
   uid,
