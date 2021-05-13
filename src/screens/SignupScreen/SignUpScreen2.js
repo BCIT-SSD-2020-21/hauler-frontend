@@ -203,7 +203,7 @@ const styles = StyleSheet.create({
         fontSize: 30,
         fontWeight: '100',
         marginLeft: 20,
-        marginTop: 100 
+        marginTop: 60 
     },
     details: {
         marginTop: 50
