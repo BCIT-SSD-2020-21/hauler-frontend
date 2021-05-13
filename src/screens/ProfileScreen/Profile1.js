@@ -1,43 +1,33 @@
 import React, { useState, useContext, useEffect } from 'react';
-import { StyleSheet, Text, TouchableOpacity, View, ScrollView, Modal, FlatList } from 'react-native';
+import { StyleSheet, Text, TouchableOpacity, View, ScrollView, Modal, FlatList, TextInput } from 'react-native';
 import { Avatar } from 'react-native-elements';
 import { FontAwesome } from '@expo/vector-icons';
-import UserInfo from '../../components/UserInfo/UserInfo';
+import UserInfo1 from '../../components/UserInfo/UserInfo1';
+import UserInfo2 from '../../components/UserInfo/UserInfo2';
 import { Context } from '../../context/ContextProvider';
-import { getOneUser } from '../../../network';
+import { getOneUser, updateOneUser } from '../../../network';
 
 export default function Profile1({ navigation }) {
     const { signout, currentUser } = useContext(Context)
 
-    // const [serviceProvider, setServiceProvider] = useState('')
+     const [userInformation, setUserInformation] = useState('')
      const [modalVisible, setModalVisible] = useState(false)
-    // const [profilePicUrl, setProfilePicUrl] = useState('')
-    // const [dateOfBirth, setDob] = useState()
-    // const [province, setProvince] = useState('')
-    // const [city, setCity] = useState('')
-    // const [streetAddress, setStreetAddress] = useState('')
-    // const [unitNumber, setUnitNumber] = useState('')
-    // const [contactNumber, setContactNumber] = useState('')
-    // const [firstName, setFirstName] = useState('')
-    // const [lastName, setLastName] = useState('')
+    const [profilePicUrl, setProfilePicUrl] = useState('')
+    const [dateOfBirth, setDob] = useState()
+    const [province, setProvince] = useState('')
+    const [city, setCity] = useState('')
+    const [streetAddress, setStreetAddress] = useState('')
+    const [unitNumber, setUnitNumber] = useState('')
+    const [contactNumber, setContactNumber] = useState('')
+     const [firstName, setFirstName] = useState('')
+    const [lastName, setLastName] = useState('')
+    const [creditCardNumber, setCreditCardNumber] = useState('')
+    const [expiryDate, setExpiryDate] = useState('')
+    const [cvv, setCvv] = useState('')
      const [error, setError] = useState('')
      const [loading, setLoading] = useState('')
-    // const [reload, setReload] = useState(true)
+     const [reload, setReload] = useState(true)
 
-    const userInformation = {
-        firstName : "Abhishek",
-        lastName : "Pundir",
-        email : "apundir@my.bcit.ca",
-        dateOfBirth:" 01/02/03",
-        streetAddress : "123 Abc",
-        unitNumber:"1",
-        city : "Surrey",
-        province:"BC",
-        contactNumber:"12345667",
-        cardNumber : "1234567890123456",
-        expiryDate : "01/23",
-        profilePicUrl : "https://techcommunity.microsoft.com/t5/image/serverpage/image-id/217078i525F6A9EF292601F/image-size/large?v=v2&px=999"
-    }
 
     const onSignOutClicked = async () => {
         try {
@@ -54,39 +44,45 @@ export default function Profile1({ navigation }) {
      const onEditClicked = async () => {
          setModalVisible(true)
      }
-    // const onEditSubmitted = async () => {
-    //     await updateOneServiceProvider(
-    //         currentUser.uid,
-    //         firstName,
-    //         lastName,
-    //         profilePicUrl,
-    //         dateOfBirth,
-    //         province,
-    //         city,
-    //         streetAddress,
-    //         unitNumber,
-    //         contactNumber
-    //     )
-    //     setReload(!reload)
-    //     setModalVisible(!modalVisible)
-    // }
+    const onEditSubmitted = async () => {
+        await updateOneUser(
+            currentUser.uid,
+            firstName,
+            lastName,
+            profilePicUrl,
+            dateOfBirth,
+            province,
+            city,
+            streetAddress,
+            unitNumber,
+            contactNumber,
+            creditCardNumber,
+            expiryDate,
+            cvv   
+        )
+        setReload(!reload)
+        setModalVisible(!modalVisible)
+    }
 
-    // useEffect(() => {
-    //     currentUser &&
-    //         (async () => {
-    //             const profile = await getOneUser(currentUser.uid)
-    //             setServiceProvider(profile)
-    //             setCity(profile.city)
-    //             setStreetAddress(profile.streetAddress)
-    //             setUnitNumber(profile.unitNumber)
-    //             setDob(profile.dateOfBirth)
-    //             setContactNumber(profile.contactNumber)
-    //             setProvince(profile.province)
-    //             setFirstName(profile.firstName)
-    //             setLastName(profile.lastName)
-    //             setProfilePicUrl(profile.profilePicUrl)
-    //         })()
-    // }, [reload])
+    useEffect(() => {
+        currentUser &&
+            (async () => {
+                const profile = await getOneUser(currentUser.uid)
+                setUserInformation(profile)
+                setCity(profile.city)
+                setStreetAddress(profile.streetAddress)
+                setUnitNumber(profile.unitNumber)
+                setDob(profile.dateOfBirth)
+                setContactNumber(profile.contactNumber)
+                setProvince(profile.province)
+                 setFirstName(profile.firstName)
+                setLastName(profile.lastName)
+                setProfilePicUrl(profile.profilePicUrl)
+                setCreditCardNumber(profile.creditCardNumber)
+                setExpiryDate(profile.expiryDate)
+                setCvv(profile.cvv)
+            })()
+    }, [reload])
 
     return (
         <ScrollView>
@@ -164,7 +160,7 @@ export default function Profile1({ navigation }) {
                             }}
                         >
                             <ScrollView style={styles.modalContainer}>
-                                {/* <UserInfo
+                                <UserInfo1
                                     firstName={firstName}
                                     lastName={lastName}
                                     province={province}
@@ -184,7 +180,17 @@ export default function Profile1({ navigation }) {
                                     setLastName={setLastName}
                                     setProfilePicUrl={setProfilePicUrl}
                                     setError={setError}
-                                /> */}
+                                />
+                                <UserInfo2 
+                                    creditCardNumber={creditCardNumber}
+                                    expiryDate={expiryDate}
+                                    cvv={cvv}
+                                    setCreditCardNumber={setCreditCardNumber}
+                                    setExpiryDate={setExpiryDate}
+                                    setCvv={setCvv}
+                                    setError={setError}
+                                />
+
                                 <View style={styles.buttonContainer}>
                                     <TouchableOpacity
                                         style={[styles.buttons, styles.logOutButton]}
@@ -287,6 +293,17 @@ const styles = StyleSheet.create({
         color: 'white',
         fontSize: 16,
         fontWeight: "bold"
+    },
+    input: {
+        borderColor: 'black',
+        borderWidth: 1,
+        height: 48,
+        borderRadius: 5,
+        overflow: 'hidden',
+        backgroundColor: 'white',
+        marginVertical: '1%',
+        marginHorizontal: '2%',
+        paddingLeft: 16
     },
 })
 

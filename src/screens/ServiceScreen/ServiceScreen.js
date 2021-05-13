@@ -11,10 +11,10 @@ export default function ServiceScreen({ navigation }) {
             <TouchableOpacity onPress={() => navigation.navigate('AddJunkNavigator')} style={styles.button}>
                 <Text style={styles.btnText}>JUNK REMOVAL</Text>
             </TouchableOpacity>
-            <TouchableOpacity onPress={() => navigation.navigate('MovingNavigator')} style={styles.button}>
+            <TouchableOpacity onPress={() => navigation.navigate('ErrandNavigator',{ screen: 'ErrandPost1',  params: { service: "Moving" }})} style={styles.button}>
                 <Text style={styles.btnText}>MOVING</Text>
             </TouchableOpacity>
-            <TouchableOpacity onPress={() => navigation.navigate('ErrandNavigator')} style={styles.button}>
+            <TouchableOpacity onPress={() => navigation.navigate('ErrandNavigator', { screen: 'ErrandPost1', params: { service: "Errand" }})} style={styles.button}>
                 <Text style={styles.btnText}>ERRAND</Text>
             </TouchableOpacity>
             </View>

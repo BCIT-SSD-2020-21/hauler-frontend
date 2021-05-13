@@ -5,8 +5,9 @@ import * as ImagePicker from 'expo-image-picker';
 import SelectWeight from '../../components/SelectWeight/SelectWeight'
 import { AntDesign } from '@expo/vector-icons';
 
-export default function ErrandPost1({ navigation }) {
+export default function ErrandPost1({ navigation, route }) {
 
+  const { service} = route.params;
     const[selectedweight, setSelectedWeight] = useState('')
     const[selectedquantity, setSelectedQuantity] = useState(1)
     const[image, setImage] = useState('');
@@ -90,7 +91,7 @@ export default function ErrandPost1({ navigation }) {
             
             </View>
 
-            <View>
+            <View style={styles.buttonContainer}>
                 <TouchableOpacity style={styles.button}><Text style={styles.buttonTitle}
                 onPress={() => pickImageAlbum() } >Upload Image</Text>
                 </TouchableOpacity>
@@ -103,7 +104,14 @@ export default function ErrandPost1({ navigation }) {
             </View>
 
             <View>
-                <TouchableOpacity onPress={() => navigation.navigate('ErrandPost2', {selectedweight: selectedweight, image: image, selectedquantity: selectedquantity, postHeading: postHeading, description: description})} style={styles.button}><Text style={styles.buttonTitle}>Next</Text></TouchableOpacity>
+                <TouchableOpacity onPress={() => navigation.navigate('ErrandPost2', {
+                  selectedweight: selectedweight, 
+                  image: image, 
+                  selectedquantity: selectedquantity, 
+                  postHeading: postHeading, 
+                  description: description,
+                  service:service
+                  })} style={styles.button}><Text style={styles.buttonTitle}>Next</Text></TouchableOpacity>
             </View>
             </View>
         </ScrollView>
@@ -211,5 +219,8 @@ const styles = StyleSheet.create({
       fontWeight: 'bold',
       marginTop: 8,
       marginLeft: 20
+    },
+    buttonContainer:{
+      display: 'none'
     }
 })

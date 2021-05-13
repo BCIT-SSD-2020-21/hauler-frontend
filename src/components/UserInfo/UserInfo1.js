@@ -1,6 +1,9 @@
-import React from 'react';
-import { TextInput, View, Picker } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { TextInput, View, Picker, TouchableOpacity} from 'react-native';
 import { StyleSheet } from 'react-native';
+import { Avatar } from 'react-native-elements';
+import * as ImagePicker from 'expo-image-picker';
+import { FontAwesome } from '@expo/vector-icons';
 
 export default function UserInfo1({ firstName, lastName, province, city, streetAddress,
     unitNumber, setCity, setStreetAddress, setUnitNumber, dateOfBirth, setDob, contactNumber, setContactNumber, setProvince, setFirstName, setLastName, setError }) {
@@ -17,7 +20,7 @@ export default function UserInfo1({ firstName, lastName, province, city, streetA
             }
         })();
     }, []);
-
+//==================================== Gallery Image Display functionality ====================================//
     const pickImageAlbum = async () => {
         let result = await ImagePicker.launchImageLibraryAsync({
             mediaTypes: ImagePicker.MediaTypeOptions.Images,
