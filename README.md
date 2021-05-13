@@ -96,7 +96,7 @@
 
 ## User App Prototype
 
-<img src="/planning/supportingDocs/UserApp.gif" width="1000" alt="UCD">
+<img src="/planning/supportingDocs/UserApp.gif" width="500" alt="UCD">
 
 ## Participants in the team
 #### Mandeep Dhillon
