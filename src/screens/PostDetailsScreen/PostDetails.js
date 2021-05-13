@@ -1,9 +1,9 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { StyleSheet, View, Text, ScrollView, TouchableOpacity } from 'react-native';
-import {  getOnePost, getOneServiceProvider } from '../../../network';
+import { deleteOnePost, getOnePost, getOneServiceProvider } from '../../../network';
 import { Context } from '../../context/ContextProvider';
 import PostInfo from '../../components/PostInfo/PostInfo';
-import { Card,Avatar, Button } from 'react-native-elements';
+import { Card, Avatar, Button } from 'react-native-elements';
 import { FontAwesome } from '@expo/vector-icons';
 import { Feather } from '@expo/vector-icons';
 
@@ -20,11 +20,16 @@ export default function PostDetails({ navigation, route }) {
         console.log("Edit clicked")
     }
 
-    const onDeletePress = () =>{
-        console.log("Delete clicked")
+    const onDeletePress = async () => {
+        setError('')
+        res = await deleteOnePost(postId)
+        if (res === "Post deleted") {
+            navigation.navigate("MyPostList")
+        } else (
+            setError(res)
+        )
     }
-
-    const onCallPress = () =>{
+    const onCallPress = () => {
         console.log("call pressed")
     }
 
@@ -33,9 +38,9 @@ export default function PostDetails({ navigation, route }) {
             setError('')
             const post = await getOnePost(postId)
             setPosts(post)
-            if(post.status==="In Progress"){
-               const res= await getOneServiceProvider(post.acceptedServiceProvider)
-               setServiceProvider(res)
+            if (post.status === "In Progress") {
+                const res = await getOneServiceProvider(post.acceptedServiceProvider)
+                setServiceProvider(res)
             }
         })()
     }, [])
@@ -43,81 +48,81 @@ export default function PostDetails({ navigation, route }) {
     return (
         <ScrollView>
             <View style={styles.container}>
-            {posts && serviceProvider ?
-                        <View>
-                            <Text style={styles.title}>Service Provider Info</Text>
+                {posts && serviceProvider ?
+                    <View>
+                        <Text style={styles.title}>Service Provider Info</Text>
                         <Card containerStyle={{ borderRadius: 10, padding: 10, marginBottom: 10 }}>
-                                <View style={styles.cardContent}>
-                                    <Avatar
-                                        rounded
-                                        title='name'
-                                        size='large'
-                                        source={{
-                                            uri:
+                            <View style={styles.cardContent}>
+                                <Avatar
+                                    rounded
+                                    title='name'
+                                    size='large'
+                                    source={{
+                                        uri:
                                             serviceProvider.profilePicUrl,
-                                        }}
-                                    />
-                                    <View style={styles.infoContainer}>
-                                        <Text>{ serviceProvider.firstName} {serviceProvider.lastName}</Text>
-                                        <Text>{ serviceProvider.vehicleType[0].vehicle}</Text>
-                                        <Text>
-                                            {[...Array(serviceProvider.stars)].map((e, i) =>
-                                                <View key={i}>
-                                                    <FontAwesome name='star' size={18} color='#FCC742' />
-                                                </View>
-                                            )
-                                            }
-                                        </Text>
-                                    </View>
-                                    <View style={styles.phoneButton}>
+                                    }}
+                                />
+                                <View style={styles.infoContainer}>
+                                    <Text>{serviceProvider.firstName} {serviceProvider.lastName}</Text>
+                                    <Text>{serviceProvider.vehicleType[0].vehicle}</Text>
+                                    <Text>
+                                        {[...Array(serviceProvider.stars)].map((e, i) =>
+                                            <View key={i}>
+                                                <FontAwesome name='star' size={18} color='#FCC742' />
+                                            </View>
+                                        )
+                                        }
+                                    </Text>
+                                </View>
+                                <View style={styles.phoneButton}>
                                     <Button
-                                        buttonStyle={{ borderRadius: 10, backgroundColor: 'white'}}
+                                        buttonStyle={{ borderRadius: 10, backgroundColor: 'white' }}
                                         onPress={() => onCallPress()}
-                                        title= {<Text style={styles.iconStyle}><Feather name='phone' size={24} color='white' /></Text>}
+                                        title={<Text style={styles.iconStyle}><Feather name='phone' size={24} color='white' /></Text>}
                                     />
                                 </View>
-                                </View>
-                                
-                            </Card></View>:<View></View>}
-                <Text style={styles.postinfo}> 
-                    {posts &&
-                <PostInfo
-                image='' 
-                selectedweight={posts.loadWeight} 
-                selectedquantity={posts.numberOfItems} 
-                postHeading={posts.postHeading} 
-                description={posts.postDescription} 
-                pickUpAddress={posts.pickUpAddress} 
-                pickContactPerson= {posts.pickUpContactPerson} 
-                pickUpPhoneNumber= {posts.pickUpContactNumber}
-                pickUpSpecialInstructions={posts.pickUpSpecialInstruction}
-                sliderValue= {posts.price} 
-                dropOffAddress= {posts.dropOffAddress && posts.dropOffAddress}
-                dropOffContactPerson = {posts.dropOffContactPerson && posts.dropOffContactPerson}
-                dropOffContactNumber= {posts.dropOffContactNumber && posts.dropOffContactNumber}
-                dropOffSpecialInstruction={posts.dropOffSpecialInstruction && posts.dropOffSpecialInstruction}
-                distance={posts.distance && posts.distance}
-                /> 
-                    }
-                    </Text>
-                    {posts && posts.status === "Active" ? 
-                        <View style={styles.buttonContainer}>
-                            <TouchableOpacity
-                                style={[styles.button, styles.acceptButton]}
-                                onPress={() => onEditPressed()}>
-                                <Text style={styles.buttonTitle}>EDIT POST</Text>
-                            </TouchableOpacity>
-                            <TouchableOpacity
-                                style={[styles.button, styles.declineButton]}
-                                onPress={() => onDeletePress()}>
-                                <Text style={styles.buttonTitle}>DELETE POST</Text>
-                            </TouchableOpacity>
                             </View>
-                        : <View></View>
-              
-            }
-                
-                <Text > {error && alert(error)}</Text> 
+
+                        </Card></View> : <View></View>}
+                <Text style={styles.postinfo}>
+                    {posts &&
+                        <PostInfo
+                            image=''
+                            selectedweight={posts.loadWeight}
+                            selectedquantity={posts.numberOfItems}
+                            postHeading={posts.postHeading}
+                            description={posts.postDescription}
+                            pickUpAddress={posts.pickUpAddress}
+                            pickContactPerson={posts.pickUpContactPerson}
+                            pickUpPhoneNumber={posts.pickUpContactNumber}
+                            pickUpSpecialInstructions={posts.pickUpSpecialInstruction}
+                            sliderValue={posts.price}
+                            dropOffAddress={posts.dropOffAddress && posts.dropOffAddress}
+                            dropOffContactPerson={posts.dropOffContactPerson && posts.dropOffContactPerson}
+                            dropOffContactNumber={posts.dropOffContactNumber && posts.dropOffContactNumber}
+                            dropOffSpecialInstruction={posts.dropOffSpecialInstruction && posts.dropOffSpecialInstruction}
+                            distance={posts.distance && posts.distance}
+                        />
+                    }
+                </Text>
+                {posts && posts.status === "Active" ?
+                    <View style={styles.buttonContainer}>
+                        <TouchableOpacity
+                            style={[styles.button, styles.acceptButton]}
+                            onPress={() => onEditPressed()}>
+                            <Text style={styles.buttonTitle}>EDIT POST</Text>
+                        </TouchableOpacity>
+                        <TouchableOpacity
+                            style={[styles.button, styles.declineButton]}
+                            onPress={() => onDeletePress()}>
+                            <Text style={styles.buttonTitle}>DELETE POST</Text>
+                        </TouchableOpacity>
+                    </View>
+                    : <View></View>
+
+                }
+
+                <Text > {error && alert(error)}</Text>
             </View>
         </ScrollView>
     )
@@ -149,13 +154,13 @@ const styles = StyleSheet.create({
         width: '46%',
         marginHorizontal: '2%',
     },
-    offerButton:{
+    offerButton: {
         backgroundColor: '#E0E0E0',
-    }, 
-    acceptButton:{
+    },
+    acceptButton: {
         backgroundColor: '#0077FC',
     },
-    declineButton:{
+    declineButton: {
         backgroundColor: '#DE0303',
     },
     buttonTitle: {
@@ -163,10 +168,10 @@ const styles = StyleSheet.create({
         fontSize: 16,
         fontWeight: "bold"
     },
-    offerButtonTitle:{
+    offerButtonTitle: {
         color: 'black'
     },
-    title:{
+    title: {
         marginHorizontal: 10,
         color: '#A9A9A9',
         width: 140,
@@ -185,10 +190,10 @@ const styles = StyleSheet.create({
     iconStyle: {
         backgroundColor: '#0077FC',
         borderRadius: 50,
-        padding: 10 ,
+        padding: 10,
         overflow: 'hidden'
     },
-    phoneButton:{
+    phoneButton: {
         marginLeft: '6%'
     }
 })

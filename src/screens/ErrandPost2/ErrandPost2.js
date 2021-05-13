@@ -32,7 +32,7 @@ export default function ErrandPost2({ navigation, route }) {
 
 
               <View style={styles.btnContainer}>
-          <TouchableOpacity onPress={() => navigation.navigate('ErrandPost4', {
+          <TouchableOpacity onPress={() => navigation.navigate('ErrandPost3', {
             image: image, 
             selectedweight:  selectedweight,
             selectedquantity: selectedquantity, 
