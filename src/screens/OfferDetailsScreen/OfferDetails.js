@@ -53,7 +53,7 @@ export default function OfferDetails({ navigation, route }) {
             true
             );
             setReset(!reset);
-        await updatePostVisibility(postId, actionPrice);
+        await updatePostVisibility(postId, actionPrice, serviceProviderId);
         console.log("Offer Accepted")
         // navigation.navigate('JobConfirmation', { posts: post, actionPrice: actionPrice })
     }

@@ -1,9 +1,10 @@
 import React from 'react';
-import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
+import { StyleSheet, View, Text, TouchableOpacity, ScrollView} from 'react-native';
 import { Feather } from '@expo/vector-icons';
-import { MaterialCommunityIcons } from '@expo/vector-icons';
 
-export default function PostInfo({ image, selectedweight, selectedquantity, postHeading, description, pickUpAddress, pickContactPerson, pickUpPhoneNumber, pickUpSpecialInstructions, sliderValue, dropOffAddress }) {
+export default function PostInfo({ image, selectedweight, selectedquantity, postHeading, description, pickUpAddress, 
+    pickContactPerson, pickUpPhoneNumber, pickUpSpecialInstructions, sliderValue, dropOffAddress, dropOffContactPerson,
+     dropOffContactNumber, dropOffSpecialInstruction, distance}) {
 
     return (
         <View style={styles.container}>
@@ -76,25 +77,26 @@ export default function PostInfo({ image, selectedweight, selectedquantity, post
                         <Text style={styles.infoValue}>{dropOffSpecialInstruction}</Text>
                     </View>
                     <View style={styles.infoContainer}>
-                        <Text style={styles.infoKey}>Distance </Text>
-                        <Text style={styles.infoValue1}>{distance} km </Text>
-                        <TouchableOpacity onPress={() => onMapsPress()}><Text style={styles.iconStyle}><MaterialCommunityIcons name='map-marker-multiple-outline' size={24} color='white' /></Text></TouchableOpacity>
+                        <Text style={styles.infoKey}>Distance</Text>
+                        <Text style={styles.infoValue}>{distance} km </Text>
                     </View>
                 </View>
             }
             </Text>
             <View style={styles.infoContainer}>
-                            <Text style={styles.infoKey}>Price</Text>
-                            <Text style={styles.infoValue1}>{sliderValue}  </Text>
-                            <Text style={styles.iconStyle}><Feather name='phone' size={24} color='white' /></Text>
-                        </View>
+                <Text style={styles.infoKey}>Price</Text>
+                <Text style={styles.infoValue}>{sliderValue}</Text>
+            </View>
+            
         </View>
     )
 }
 
 const styles = StyleSheet.create({
     container: {
-        marginHorizontal: 20
+        paddingHorizontal: 10,
+        paddingTop: 0,
+        marginTop:0
     },
     infoContainer: {
         flexDirection: 'row',
