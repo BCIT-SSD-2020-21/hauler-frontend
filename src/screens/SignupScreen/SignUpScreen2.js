@@ -99,6 +99,8 @@ export default function SignUpScreen2({ navigation, route }) {
                         onChangeText={(cvv) => { setError(""); setCvv(cvv) }}
                         value={cvv}
                     />
+
+{/*==========================================functionality to display and validate the card type======================= */}
                     <View style={styles.card}>
                     <CreditCardDisplay
                         number={number}

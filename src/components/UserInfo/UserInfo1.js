@@ -20,7 +20,7 @@ export default function UserInfo1({ firstName, lastName, province, city, streetA
             }
         })();
     }, []);
-
+//==================================== Gallery Image Display functionality ====================================//
     const pickImageAlbum = async () => {
         let result = await ImagePicker.launchImageLibraryAsync({
             mediaTypes: ImagePicker.MediaTypeOptions.Images,
