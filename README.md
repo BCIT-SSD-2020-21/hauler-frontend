@@ -106,6 +106,7 @@ Get all posts from the database
 
 Sample Response:
 
+{
   {
         "price": 50,
         "totalOffers": 0,
@@ -155,7 +156,7 @@ Sample Response:
         "timeStamp": "2021-05-12T21:23:54.584Z",
         "__v": 0
     }
-
+}
 
 
 ## An industry project by: 
