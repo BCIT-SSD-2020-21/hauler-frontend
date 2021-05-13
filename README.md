@@ -79,6 +79,7 @@
 - add .env file to the root folder (Sample for .env file created in the repo for refernce)
     - Create and add API keys for FireBase Authentication (API, Auth Domain, Project Id, Storage Bucket, Messaging Sender ID and App ID)
     - Add this Heroku link to the NETWORK_URL= 
+    - Create an account with GCP and get GOOGLE_MAP_API with enabling (Places API, Directions API)
 
 -----------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -92,53 +93,9 @@
 
 <img src="/planning/supportingDocs/UserApp.gif" width="350" alt="UserApp">
 
-<strong> Click here for the protoype for the backend <link> </link> </strong> 
+<strong> Click here for the protoype of the Service Provider <link>https://github.com/BCIT-SSD-2020-21/hauler-service-provider/blob/main/planning/supportingDocs/ServiceProviderApp.gif </link> </strong> 
 
 -----------------------------------------------------------------------------------------------------------------------------------------------
-
-## Endpoints from MongoDb database
-
-### `GET` - for all posts
-
- ##### `api/posts/all`
- ##### `api/posts/location/:location`
- ##### `api/posts/service/:service`
- ##### `api/posts//one/:postId`
-
-.get('/',postController.getAll)
-
-<hr/>
-
-### `POST` - for all posts
-
- ##### `api/` - create post
- ##### `api/:postId`
- ##### `api/one/:postId`
-
-<hr/>
-
-### `POST` - for all responses
-
-
-.post('/response/service-provider', postController.addServiceProviserResponse);
-.post('/response/user', postController.addUserResponse) 
-
-
-.delete ('/', postController.deleteAll)
-.delete('/:postId', postController.deleteOnePost);
-.delete('/response/:responseId', postController.deleteResponse) 
-
-.get('/user/:uid', postController.getPostsByUid)
-.get('/user/location/:uid/:location', postController.getPostsByIdAndLocation)
-.get('/user/service/:uid/:service', postController.getPostsByIdAndService)
-
-.get('/serviceprovider/:serviceProviderId', postController.getPostsByServiceProviderId)
-.get('/serviceprovider/location/:serviceProviderId/:location', postController.getPostsByServiceProviderIdAndLocation)
-.get('/serviceprovider/service/:serviceProviderId/:service', postController.getPostsByServiceProviderAndService)
-.get('/response/service-provider/:serviceProviderId/:postId', postController.getResponseByServiseProviderId)
-
-
-
 
 ## An industry project by: 
 
