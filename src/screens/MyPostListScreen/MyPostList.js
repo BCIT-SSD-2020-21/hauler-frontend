@@ -30,7 +30,7 @@ export default function MyPostList({ navigation }) {
     }
 
     const onAcceptedDetails = async (value) => {
-        console.log("In Progress post image pressed")
+        navigation.navigate('PostDetails', {postId: value.postId})
     }
 
     const onOffersPress = async (value) => {
