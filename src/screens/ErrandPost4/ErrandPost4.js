@@ -27,7 +27,8 @@ export default function ErrandPost4({ navigation, route }) {
           />
 
           <Text style={styles.text}>Phone Number</Text>
-          <TextInput style={styles.inputLine1} 
+          <TextInput style={styles.inputLine1}
+            keyboardType='numeric' 
             onChangeText={(phoneNumber) => {setPickUpPhoneNumber(phoneNumber)}}
             value={pickUpPhoneNumber}
           />
@@ -47,7 +48,8 @@ export default function ErrandPost4({ navigation, route }) {
           />
 
           <Text style={styles.text}>Contact Number</Text>
-          <TextInput style={styles.inputLine1} 
+          <TextInput style={styles.inputLine1}
+            keyboardType='numeric' 
             onChangeText={(phoneNumber) => {setDropOffPhoneNumber(phoneNumber)}}
             value={dropOffPhoneNumber}
           />
