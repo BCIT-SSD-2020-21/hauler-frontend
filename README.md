@@ -1,47 +1,100 @@
-# Hauler-Mobile App Frontend
-### In this Industry Project we will be building the Mobile-App for Hauler under which there will be 3 services provided to the customer:
+# Hauler
+
+## Overview
+
+<i>The software enables self-employed participants to profit from junk removal, small moving and/or courier/errand services.</i>
+
+<strong>Project Goal</strong>
+<i>The aim for the team is to achieve a working model through which a user is able to create a post for the required services and a service provider is able to accpet a job. </i>
+
+### Product description
+
+- In the software, the dispatching technology uses a Geographical location component that will ensure that users and service providers are connected in the same regional space.  
+- The application will allow users to post open contracts for services that they require to be completed.  
+- The service providers would be able to accept the contract or decline and in turn allowing another service provider to take the contract.
+
+<strong> Mainly 3 services will be provided </strong>
+
 * Hauler Moving Services
 * Hauler Junk Removal Services
 * Hauler Courier Services
-### There will 2 User Interfaces, one for the User and other will be for the Service Provider.
----
-## Tech-Stack will be using:
-* React-Native for Front-end mobile
-* MongoDB for Backend Database
-* Firebase for User/Service Provider Authentication
-* Node.js, Express for Backend 
----
+
+### Essential Feature List
+
+#### Core Features
+-   Create two separate mobile applications <strong>User & Service Provider</strong>.
+
+##### User App
+- Is able to create a profile on the application.
+- Is able to create a post for all three services.
+- Is able to accept/negotiate and decline any offer provided by the service provider.
+- Is able to search a list of service providers in their geographical location.
+- Is able to save a list of jobs created by them
+
+##### Service Provider App
+- Is able to create a profile on the application.
+- Is able to search a relevant post for all the services listed in their geographical area.
+- Is able to accept or submit a counter offer for a job listed by the user.
+- Is able to accept/negotiate and decline an offer by the user.
+
+### Nice to have
+- User is able to submit a review for the service provider
+- An admin panel created for the company(Hauler) to execute the below fuctions
+    - Approve a service provider once relevant documents are verified.
+    - Is able to perform CRUD operations for a user and service provider
+    - Is able to delete a post from the database
+    - Is able to generate reports for a relevant
+- Integration with QuickBooks for invoicing, order summary and payment summary.
+- Live tracking of services and routing.
+
+-----------------------------------------------------------------------------------------------------------------------------------------------
+
+## Technical details
+
+### Tech-Stack used:
+- React-Native for Front-end mobile
+- MongoDB for Backend Database
+- Firebase for User/Service Provider Authentication
+- Node.js, Express for Backend 
+
+### Web Services
+- Mongo Atlas, hosting database
+- Heroku, hosting backend API
+- Firebase, hosting user (client, service provider & admin) authentication credentials
+
+
+### Installation instructions
+
+#### Prerequisites
+-   Node 12 LTS or higher
+-   Node Package Manager (NPM) or Yarn
+-   Android Emulator / iOS Simulator is installed
+-   Expo CLI (Install Globally)
+
+#### Installation
+- Clone the repo
+- npm install or yarn install
+- npm start or yarn start
+- add .env file to the root folder
+    - REACT_APP_FIREBASE_API_KEY = ""
+    - REACT_APP_FIREBASE_AUTH_DOMAIN = ""
+    - REACT_APP_FIREBASE_PROJECT_ID = ""
+    - REACT_APP_FIREBASE_STORAGE_BUCKET = ""
+    - REACT_APP_FIREBASE_MESSAGING_SENDER_ID = ""
+    - REACT_APP_FIREBASE_APP_ID = ""
+    - NETWORK_URL=
+
+
+-----------------------------------------------------------------------------------------------------------------------------------------------
+
+## Use Case Diagram
+
+<img src="/planning/supportingDocs/UCD.png" width="250" alt="UCD">
+
 ## Participants in the team
 #### Mandeep Dhillon
 #### Kulveer Brar
 #### Owen Ow
 #### Abhishek Pundir
----
-## Installing Dependencies
-* yarn add firebase
-* npm install @material-ui/core
-* npm install @material-ui/icons
-* npm install axios
-* npm install react-bootstrap bootstrap
-* npm install react-native-dotenv
-* npm install @react-navigation/native @react-navigation/stack
-* expo install react-native-reanimated react-native-gesture-handler react-native-screens react-native-safe-area-context @react-native-community/masked-view
-* npm install react-native-picker-select (for dropdown menu)
-* npm install @react-native-community/slider --save (for price slider option)
-* npm install react-native-elements 
-* expo install expo-image-picker (for camera and gallery images access from your phone)
-* expo install react-native-maps
-* npm install react-native-maps --save-exact
-* npm install react-native-google-places-autocomplete
-* yarn add react-native-google-autocomplete
-* npm install --save react-native-geocoding
-* npm install react-native-credit-card-display
-* npm install react-native-maps-directions
-* npm install react-native-credit-card-display (to validate the credit card number)
----
-### Wireframe for User
-Stored in wireframe folder on the root folder.
-
-### Building User Interface: Prototypes Images
 
 
