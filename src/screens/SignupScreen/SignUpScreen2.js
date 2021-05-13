@@ -162,19 +162,19 @@ const styles = StyleSheet.create({
     },
     button: {
         backgroundColor: '#0177FC',
-        marginLeft: 30,
-        marginRight: 30,
-        marginTop: 20,
+        alignSelf: 'center',
+        marginVertical: 10,
+        width: '90%',
         height: 48,
-        borderRadius: 20,
+        borderRadius: 10,
         alignItems: "center",
         justifyContent: 'center'
-    },
-    buttonTitle: {
+      },
+      buttonTitle: {
         color: 'white',
         fontSize: 16,
         fontWeight: "bold"
-    },
+      },
     option: {
         flex: 1,
         alignItems: "center",
