@@ -17,8 +17,23 @@ export default function ErrandPost3({ navigation, route }) {
    return (
     //  <ScrollView keyboardShouldPersistTaps={'handled'}>
         <View style={styles.container}>
-          <Text>Enter your drop off location</Text>
+          <Text style={styles.text}>Enter drop off location</Text>
               <GooglePlacesAutocomplete
+                styles={{
+                  textInput: {
+                    backgroundColor: "#F5F5F5",
+                    height: 44,
+                    borderRadius: 10,
+                    paddingVertical: 5,
+                    paddingHorizontal: 10,
+                    marginHorizontal: 20,
+                    fontSize: 15,
+                    flex: 1,
+                  },
+                  listView: {
+                    paddingHorizontal: 20,
+                  },
+                }}
                   placeholder="Full Address"
                   minLength={2}
                   fetchDetails= {true}
@@ -33,7 +48,6 @@ export default function ErrandPost3({ navigation, route }) {
                   }}
                 />
 
-              <View style={styles.btnContainer}>
           <TouchableOpacity onPress={() => navigation.navigate('ErrandPost4', {
             image: image, 
             selectedweight:  selectedweight,
@@ -45,9 +59,8 @@ export default function ErrandPost3({ navigation, route }) {
             service: service
           })} 
           style={styles.button} >
-              <Text style={styles.btnText}>Next</Text>
+              <Text style={styles.buttonTitle}>Next</Text>
             </TouchableOpacity>
-          </View>
           </View>
           // </ScrollView>
     )
@@ -56,39 +69,31 @@ export default function ErrandPost3({ navigation, route }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 20,
-    paddingTop: Constants.statusBarHeight + 10,
-    backgroundColor: '#ecf0f1',
-  },
-
-  inputLine1: {
-    height: 40,
+    height: '100%',
     width: '100%',
-    borderRadius: 5,
-    overflow: 'hidden',
     backgroundColor: 'white',
-    marginTop: 10,
-    marginBottom: 10,
-    marginLeft: 30,
-    marginRight: 30,
-    paddingLeft: 16
-},
-btnContainer: {
-  display: 'flex',
-  flexDirection: 'row',
-  justifyContent: 'space-around',
-  marginTop: 30,
-},
-button: {
-  backgroundColor: '#0177FC',
-  borderRadius: 10,
-  display: 'flex',
-},
-btnText: {
-  color: 'white',
-  fontSize: 20,
-  paddingVertical: 10,
-  paddingHorizontal: 50,
-},
+  },
+  text: {
+    color: '#BFBFBF',
+    marginLeft: 25,
+    fontWeight: 'bold',
+    marginTop: 20,
+    marginBottom: 10
+  },
+  buttonTitle: {
+    color: 'white',
+    fontSize: 16,
+    fontWeight: "bold"
+  },
+  button: {
+    backgroundColor: '#0177FC',
+    alignSelf: 'center',
+    marginVertical: 10,
+    width: '90%',
+    height: 48,
+    borderRadius: 10,
+    alignItems: "center",
+    justifyContent: 'center'
+  },
 
 })

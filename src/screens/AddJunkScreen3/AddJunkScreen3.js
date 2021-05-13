@@ -25,6 +25,7 @@ export default function AddJunkScreen3({ navigation, route }) {
 
                 <Text style={styles.text}>Pick up contact number</Text>
                 <TextInput style={styles.inputLine1}
+                    keyboardType='numeric'
                     onChangeText={(phoneNumber) => { setPickUpPhoneNumber(phoneNumber) }}
                     value={pickUpPhoneNumber}
                 />
