@@ -3,7 +3,7 @@ import { Text, View, TextInput, Picker, ScrollView, Image, Platform, TouchableOp
 import { StyleSheet } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
 import SelectWeight from '../../components/SelectWeight/SelectWeight'
-import { AntDesign } from '@expo/vector-icons';
+import { Ionicons } from '@expo/vector-icons';
 
 export default function ErrandPost1({ navigation, route }) {
 
@@ -61,7 +61,6 @@ export default function ErrandPost1({ navigation, route }) {
     return (
         <ScrollView>
             <View style={styles.container}>
-            <Text style={styles.screenHeading}> Add Item </Text>
 
             <Text style={styles.text}> Post Heading : </Text>
             <TextInput style={styles.inputLine1} 
@@ -70,7 +69,7 @@ export default function ErrandPost1({ navigation, route }) {
             />
 
             <Text style={styles.text}> Post Description : </Text>
-            <TextInput style={styles.inputLine2} 
+            <TextInput style={styles.inputLine1} 
                 onChangeText={(description) => {setDescription(description)}}
                 value={description}
             />
@@ -83,10 +82,10 @@ export default function ErrandPost1({ navigation, route }) {
             <View style={styles.view}>
             <Text style={styles.text}> Number of Items : </Text> 
               <TouchableOpacity activeOpacity={0.5} disabled={disable}  onPress={() => onMinusPress()} style={styles.TouchableOpacityStyle}>
-                <AntDesign name="minuscircle" size={30} color="black" /></TouchableOpacity>
+              <Ionicons name="remove-circle-outline" size={24} color="#0177FC" /></TouchableOpacity>
                 <Text style={styles.numberDisplay}> {selectedquantity} </Text>
               <TouchableOpacity activeOpacity={0.5}  onPress={() => onPlusPress()} style={styles.TouchableOpacityStyle}>
-                <AntDesign name="pluscircle" size={30} color="black" />
+              <Ionicons name="add-circle-outline" size={24} color="#0177FC" />
             </TouchableOpacity>
             
             </View>
@@ -103,7 +102,7 @@ export default function ErrandPost1({ navigation, route }) {
             </Text>
             </View>
 
-            <View>
+            <View style={styles.footerContainer}>
                 <TouchableOpacity onPress={() => navigation.navigate('ErrandPost2', {
                   selectedweight: selectedweight, 
                   image: image, 
@@ -119,108 +118,92 @@ export default function ErrandPost1({ navigation, route }) {
 }
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        //alignItems: 'center',
-        marginVertical: 20
-    },
-    screenHeading: {
-        fontSize: 40,
-        fontWeight: '500',
-        marginLeft: 20
-      },
-      inputLine1: {
-        height: 25,
-        overflow: 'hidden',
-        marginTop: 10,
-        marginBottom: 10,
-        marginLeft: 20,
-        marginRight: 30,
-        paddingLeft: 16,
-        width: '90%',
-        borderBottomWidth: 1.0,
-        borderColor: '#BFBFBF',
-      },
-      inputLine2: {
-          height: 100,
-          width: '90%',
-          borderRadius: 5,
-          overflow: 'hidden',
-          marginTop: 10,
-          marginBottom: 10,
-          marginLeft: 20,
-          marginRight: 30,
-          paddingLeft: 16,
-          borderWidth: 1.0,
-          borderColor: '#BFBFBF'
-      },
-      button: {
-        backgroundColor: '#0177FC',
-        marginLeft: 30,
-        marginRight: 30,
-        marginTop: 20,
-        height: 48,
-        borderRadius: 20,
-        alignItems: "center",
-        justifyContent: 'center'
-    },
-    buttonTitle: {
-        color: 'white',
-        fontSize: 16,
-        fontWeight: "bold"
-    },
-    imageContainer:{
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-    imageDisplay:{
-        width: 200,
-        height: 200,
-        marginLeft: 50,
-        marginTop: 5,
-        resizeMode: 'contain', 
-    },
-    imageRow: {
-        flexDirection: 'row',
-        flexWrap: 'wrap',
-      },
-    imageColumn: {
-        flexDirection: 'column',
-        alignItems: 'center',
-        width: '50%',
-    },
-    thumbnail: {
-        width: 100,
-        height: 100,
-        resizeMode: "contain"
-      },
-    text: {
-        color: '#BFBFBF',
-        marginLeft: 25,
-        fontWeight: 'bold',
-        marginTop: 20
-      },
-      TouchableOpacityStyle:{
-        width: 50,
-        height: 50,
-        alignItems: 'center',
-        justifyContent: 'center',
-        marginTop: 5,
-        marginLeft: 20
-      },
-      view: {
-        flexDirection: 'row',
-        marginTop: 25
-    },
-    numberDisplay: {
-      color: 'black',
-      fontSize: 27,
-      fontWeight: 'bold',
-      marginTop: 8,
-      marginLeft: 20
-    },
-    buttonContainer:{
-      display: 'none'
-    }
+  container: {
+    display: 'flex',
+    height: 600,
+    width: '100%',
+    backgroundColor: 'white',
+  },
+  inputLine1: {
+    overflow: 'hidden',
+    marginTop: 10,
+    marginBottom: 10,
+    marginLeft: 20,
+    marginRight: 30,
+    paddingLeft: 16,
+    width: '90%',
+    borderBottomWidth: 1.0,
+    borderColor: '#BFBFBF',
+  },
+  button: {
+    backgroundColor: '#0177FC',
+    alignSelf: 'center',
+    marginVertical: 10,
+    width: '90%',
+    height: 48,
+    borderRadius: 10,
+    alignItems: "center",
+    justifyContent: 'center'
+  },
+  buttonTitle: {
+    color: 'white',
+    fontSize: 16,
+    fontWeight: "bold"
+  },
+  imageContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  imageDisplay: {
+    width: 200,
+    height: 200,
+    marginLeft: 50,
+    marginTop: 5,
+    resizeMode: 'contain',
+  },
+  imageRow: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+  },
+  imageColumn: {
+    flexDirection: 'column',
+    alignItems: 'center',
+    width: '50%',
+  },
+  thumbnail: {
+    width: 100,
+    height: 100,
+    resizeMode: "contain"
+  },
+  text: {
+    color: '#BFBFBF',
+    marginLeft: 25,
+    fontWeight: 'bold',
+    marginTop: 20
+  },
+  TouchableOpacityStyle: {
+    width: 50,
+    height: 50,
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginTop: 5,
+    marginLeft: 10
+  },
+  view: {
+    flexDirection: 'row',
+    marginTop: 25
+  },
+  numberDisplay: {
+    color: 'black',
+    fontSize: 20,
+    paddingTop: 15,
+    marginLeft: 10
+  },
+  footerContainer:{
+    backgroundColor: 'white',
+    width: '100%',
+    position: 'absolute',
+    bottom: 0
+  },
 })

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { TextInput, View, Picker, TouchableOpacity} from 'react-native';
+import { TextInput, View, Picker, TouchableOpacity, Text} from 'react-native';
 import { StyleSheet } from 'react-native';
 import { Avatar } from 'react-native-elements';
 import * as ImagePicker from 'expo-image-picker';
@@ -35,7 +35,7 @@ export default function UserInfo1({ firstName, lastName, province, city, streetA
     };
 
     return (
-        <View>
+        <View style={styles.container}>
             <View style={styles.avatarView}>
                             <TouchableOpacity onPress={() => pickImageAlbum()}>
                                 <Avatar
@@ -52,13 +52,19 @@ export default function UserInfo1({ firstName, lastName, province, city, streetA
                                 </View>
                             </TouchableOpacity>
                         </View>
+
+            <View style={styles.infoContainer}>
+            <Text style={styles.infoKey}>First Name</Text>
             <TextInput
                 style={styles.input}
-                placeholder='First Name'
                 placeholderTextColor='#C0C0C0'
                 onChangeText={(fname) => { setError(""); setFirstName(fname) }}
                 value={firstName}
             />
+            </View>
+
+            <View style={styles.infoContainer}>
+            <Text style={styles.infoKey}>Last Name</Text>
             <TextInput
                 style={styles.input}
                 placeholder='Last Name'
@@ -66,68 +72,99 @@ export default function UserInfo1({ firstName, lastName, province, city, streetA
                 onChangeText={(lname) => { setError(""); setLastName(lname) }}
                 value={lastName}
             />
+            </View>
+
+            <View style={styles.infoContainer}>
+            <Text style={styles.infoKey}>Date Of Birth</Text>
             <TextInput
                 style={styles.input}
-                placeholder='Date of Birth'
                 placeholderTextColor='#C0C0C0'
                 onChangeText={(date) => { setError(""); setDob(date) }}
                 value={dateOfBirth}
             />
+            </View>
+
+            <View style={styles.infoContainer}>
+            <Text style={styles.infoKey}>Province</Text>
             <TextInput
                 style={styles.input}
-                placeholder='Province'
                 placeholderTextColor='#C0C0C0'
                 onChangeText={(province) => { setError(""); setProvince(province) }}
                 value={province}
             />
+            </View>
+
+            <View style={styles.infoContainer}>
+            <Text style={styles.infoKey}>City</Text>
             <TextInput
                 style={styles.input}
-                placeholder='City'
                 placeholderTextColor='#C0C0C0'
                 onChangeText={(city) => { setError(""); setCity(city) }}
                 value={city}
             />
+            </View>
+
+            <View style={styles.infoContainer}>
+            <Text style={styles.infoKey}>Street Address</Text>
             <TextInput
                 style={styles.input}
-                placeholder='StreetAddress'
                 placeholderTextColor='#C0C0C0'
                 onChangeText={(streetAddress) => { setError(""); setStreetAddress(streetAddress) }}
                 value={streetAddress}
             />
+            </View>
+
+            <View style={styles.infoContainer}>
+            <Text style={styles.infoKey}>Unit Number</Text>
             <TextInput
                 style={styles.input}
-                placeholder='Unit Number'
                 placeholderTextColor='#C0C0C0'
                 onChangeText={(unitNumber) => { setError(""); setUnitNumber(unitNumber) }}
                 value={unitNumber}
             />
+            </View>
+
+            <View style={styles.infoContainer}>
+            <Text style={styles.infoKey}>Contact Number</Text>
             <TextInput
                 style={styles.input}
-                placeholder='Contact Number'
                 placeholderTextColor='#C0C0C0'
                 onChangeText={(number) => { setError(""); setContactNumber(number) }}
                 value={contactNumber}
             />
+            </View>
         </View>
     )
 }
 
 const styles = StyleSheet.create({
+    container: {
+        marginHorizontal: 20
+    },
+    infoContainer: {
+        flexDirection: 'row',
+        marginVertical: 15
+    },
+    infoKey: {
+        color: '#A9A9A9',
+        width: 110,
+    },
     input: {
-        borderColor: 'black',
-        borderWidth: 1,
-        height: 48,
-        borderRadius: 5,
+        height: 18,
         overflow: 'hidden',
-        backgroundColor: 'white',
-        marginVertical: '1%',
-        marginHorizontal: '2%',
-        paddingLeft: 16
+        // marginTop: 5,
+        marginBottom: 10,
+        marginLeft: 10,
+        paddingLeft: 16,
+        width: '65%',
+        borderBottomWidth: 1.0,
+        borderColor: '#BFBFBF',
+        marginRight: 10
     },
     avatarView: {
-        marginLeft: 25,
+        marginLeft: 15,
         marginRight: 200,
-        marginTop: 40,
+        marginTop: 35,
         flexDirection: 'row'
     },
     evilIcon: {

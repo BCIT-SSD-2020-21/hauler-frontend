@@ -15,11 +15,11 @@ export default function ErrandScreenNavigator() {
             headerShown: true,
             title: 'Errand Service',
         }}>
-            <ErrandScreenStack.Screen name='ErrandPost1' component={ErrandPost1} options={{ headerTitle: 'User Moving Screen', headerRight: () => <MenuIcon /> }} />
-            <ErrandScreenStack.Screen name='ErrandPost2' component={ErrandPost2} options={{ headerTitle: 'User Moving Item Screen', headerRight: () => <MenuIcon /> }} />
-            <ErrandScreenStack.Screen name='ErrandPost3' component={ErrandPost3} options={{ headerTitle: 'User Moving Item Screen', headerRight: () => <MenuIcon /> }} />
-            <ErrandScreenStack.Screen name='ErrandPost4' component={ErrandPost4} options={{ headerTitle: 'User Moving Item Screen', headerRight: () => <MenuIcon /> }} />
-            <ErrandScreenStack.Screen name='ErrandSummary' component={ErrandSummary} options={{ headerTitle: 'User Moving Item Screen', headerRight: () => <MenuIcon /> }} />
+            <ErrandScreenStack.Screen name='ErrandPost1' component={ErrandPost1} options={{ headerRight: () => <MenuIcon /> }} />
+            <ErrandScreenStack.Screen name='ErrandPost2' component={ErrandPost2} options={{  headerRight: () => <MenuIcon /> }} />
+            <ErrandScreenStack.Screen name='ErrandPost3' component={ErrandPost3} options={{  headerRight: () => <MenuIcon /> }} />
+            <ErrandScreenStack.Screen name='ErrandPost4' component={ErrandPost4} options={{  headerRight: () => <MenuIcon /> }} />
+            <ErrandScreenStack.Screen name='ErrandSummary' component={ErrandSummary} options={{  headerRight: () => <MenuIcon /> }} />
             <ErrandScreenStack.Screen name='Confirmation' component={Confirmation} options={{ headerTitle: 'Confirmation Screen', headerRight: () => <MenuIcon /> }} />
         </ErrandScreenStack.Navigator>
     )

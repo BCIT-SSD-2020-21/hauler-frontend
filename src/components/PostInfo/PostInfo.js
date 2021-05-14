@@ -3,7 +3,7 @@ import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
 import { Feather } from '@expo/vector-icons';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 
-export default function PostInfo({ image, selectedweight, selectedquantity, postHeading, description, pickUpAddress, pickContactPerson, pickUpPhoneNumber, pickUpSpecialInstructions, sliderValue, dropOffAddress }) {
+export default function PostInfo({ image, selectedweight, selectedquantity, postHeading, description, pickUpAddress, pickContactPerson, pickUpPhoneNumber, pickUpSpecialInstructions, sliderValue, dropOffAddress, dropOffContactNumber, dropOffContactPerson, dropOffSpecialInstruction, duration, distance }) {
 
     return (
         <View style={styles.container}>
@@ -52,7 +52,7 @@ export default function PostInfo({ image, selectedweight, selectedquantity, post
                     <View style={styles.infoContainer}>
                         <Text style={styles.infoKey}>Drop Off Address</Text>
                         <Text style={styles.infoValue}>
-                            {dropOffAddress}
+                            {dropOffAddress.formatted_address}
                         </Text>
                     </View>
                     <Text>
@@ -79,6 +79,10 @@ export default function PostInfo({ image, selectedweight, selectedquantity, post
                         <Text style={styles.infoKey}>Distance </Text>
                         <Text style={styles.infoValue1}>{distance} km </Text>
                         <TouchableOpacity onPress={() => onMapsPress()}><Text style={styles.iconStyle}><MaterialCommunityIcons name='map-marker-multiple-outline' size={24} color='white' /></Text></TouchableOpacity>
+                    </View>
+                    <View style={styles.infoContainer}>
+                        <Text style={styles.infoKey}>Duration </Text>
+                        <Text style={styles.infoValue1}>{duration} mins</Text>
                     </View>
                 </View>
             }
