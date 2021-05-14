@@ -12,7 +12,7 @@ export default function Confirmation({ navigation }) {
                 <Text style={styles.text1}>Your job has been posted</Text>
             </View>
             <View style={styles.btnContainer}>
-                <TouchableOpacity onPress={() => navigation.navigate('Home')} style={styles.button}><Text style={styles.btnText}>Return To My Job List </Text></TouchableOpacity>
+                <TouchableOpacity onPress={() => navigation.navigate('Home', { screen: 'MyPostList'})} style={styles.button}><Text style={styles.btnText}>Return To My Job List </Text></TouchableOpacity>
             </View>
         </ScrollView>
     )

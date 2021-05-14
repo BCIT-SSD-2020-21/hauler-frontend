@@ -1,7 +1,6 @@
 import React from 'react'
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import HomeNavigator from './HomeNavigator';
-import Profile1 from '../ProfileScreen/Profile1'
 import ServiceScreenNavigator from './ServiceScreenNavigator';
 import ProfileNavigator from './ProfileNavigator';
 
@@ -9,7 +8,9 @@ const Drawer = createDrawerNavigator();
 
 export default function NavigationScreen() {
     return (
-        <Drawer.Navigator initialRouteName='ServiceScreen'>
+        <Drawer.Navigator 
+        initialRouteName='Home'
+        >
             <Drawer.Screen
                 name="Home"
                 component={HomeNavigator}

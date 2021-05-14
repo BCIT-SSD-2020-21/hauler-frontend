@@ -54,8 +54,7 @@ export default function OfferDetails({ navigation, route }) {
             );
             setReset(!reset);
         await updatePostVisibility(postId, actionPrice, serviceProviderId);
-        console.log("Offer Accepted")
-        // navigation.navigate('JobConfirmation', { posts: post, actionPrice: actionPrice })
+        navigation.navigate('PostDetails', { postId: postId,  })
     }
 
     useEffect(() => {

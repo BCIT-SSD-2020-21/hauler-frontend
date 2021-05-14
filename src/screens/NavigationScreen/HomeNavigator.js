@@ -46,22 +46,22 @@ const HomeNavigator = () => {
                     <HomeStack.Screen
                         name='MyPostList'
                         component={MyPostList}
-                        options={{ headerRight: () => <MenuIcon /> }}
+                        options={{headerTitle: 'My Posts', headerRight: () => <MenuIcon /> }}
                     />
                     <HomeStack.Screen
                         name='PostDetails'
                         component={PostDetails}
-                        options={{ headerRight: () => <MenuIcon /> }}
+                        options={{headerTitle: 'Details', headerRight: () => <MenuIcon /> }}
                     />
                     <HomeStack.Screen
                         name='JobOffers'
                         component={JobOffers}
-                        options={{ headerRight: () => <MenuIcon /> }}
+                        options={{headerTitle: 'Offers', headerRight: () => <MenuIcon /> }}
                     />
                     <HomeStack.Screen
                         name='OfferDetails'
                         component={OfferDetails}
-                        options={{ headerRight: () => <MenuIcon /> }}
+                        options={{headerTitle: 'Offers Details', headerRight: () => <MenuIcon /> }}
                     />
                     <HomeStack.Screen
                         name='AddJunkNavigator'
