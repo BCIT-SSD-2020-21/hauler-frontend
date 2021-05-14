@@ -1,9 +1,9 @@
-import React, { useState, setState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Text, View, ScrollView, TextInput, SafeAreaView, Picker } from 'react-native'
 import { StyleSheet } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import Slider from '@react-native-community/slider';
-import SelectDropOffProvince from '../../components/SelectDropOffProvince/SelectDropOffProvince';
+import {getOnePost} from '../../../network'
 
 export default function AddJunkScreen3({ navigation, route }) {
 
@@ -11,8 +11,20 @@ export default function AddJunkScreen3({ navigation, route }) {
     const [pickUpPhoneNumber, setPickUpPhoneNumber] = useState('')
     const [pickUpSpecialInstructions, setPickUpSpecialInstructions] = useState('')
     const [sliderValue, setSliderValue] = useState(50);
-    const { image, selectedweight, selectedquantity, postHeading, description, pickUpAddress } = route.params;
+    const { image, selectedweight, selectedquantity, postHeading, description, pickUpAddress, pickUpCity,
+        pickUpAddressLat, pickUpAddressLng, operation, postId } = route.params;
 
+    useEffect(() => {
+        (async () => {
+            if (operation === "edit") {
+                const post = await getOnePost(postId)
+                setPickContactPerson(post.pickUpContactPerson)
+                setPickUpPhoneNumber(post.pickUpContactNumber)
+                setPickUpSpecialInstructions(post.pickUpSpecialInstruction)
+                setSliderValue(post.price)
+            }
+        })()
+    }, [])
     return (
         <ScrollView>
             <View style={styles.container}>
@@ -57,7 +69,23 @@ export default function AddJunkScreen3({ navigation, route }) {
                         />
                     </View>
                 </SafeAreaView>
-                <TouchableOpacity onPress={() => navigation.navigate('AddJunkSummary', { image: image, selectedweight: selectedweight, selectedquantity: selectedquantity, postHeading: postHeading, description: description, pickUpAddress: pickUpAddress, pickContactPerson: pickContactPerson, pickUpPhoneNumber: pickUpPhoneNumber, pickUpSpecialInstructions: pickUpSpecialInstructions, sliderValue: sliderValue })}
+                <TouchableOpacity onPress={() => navigation.navigate('AddJunkSummary', {
+                    image: image,
+                    selectedweight: selectedweight,
+                    selectedquantity: selectedquantity,
+                    postHeading: postHeading,
+                    description: description,
+                    pickUpAddress: pickUpAddress,
+                    pickContactPerson: pickContactPerson,
+                    pickUpPhoneNumber: pickUpPhoneNumber,
+                    pickUpSpecialInstructions: pickUpSpecialInstructions,
+                    pickUpCity: pickUpCity,
+                    pickUpAddressLat: pickUpAddressLat,
+                    pickUpAddressLng: pickUpAddressLng,
+                    sliderValue: sliderValue,
+                    operation: operation,
+                    postId: postId,
+                })}
                     style={styles.button}>
                     <Text style={styles.buttonTitle}>Submit</Text>
                 </TouchableOpacity>
@@ -115,6 +143,6 @@ const styles = StyleSheet.create({
         flex: 1,
         padding: 20,
         justifyContent: 'center',
-      
+
     },
 })

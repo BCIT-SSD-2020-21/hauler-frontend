@@ -27,7 +27,7 @@ export default function PostInfo({ image, selectedweight, selectedquantity, post
             <View style={styles.infoContainer}>
                 <Text style={styles.infoKey}>Pick Up Address</Text>
                 <Text style={styles.infoValue}>
-                    {pickUpAddress.formatted_address}
+                    {pickUpAddress}
                 </Text>
             </View>
                     <View>

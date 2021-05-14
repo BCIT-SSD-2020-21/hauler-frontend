@@ -50,7 +50,6 @@ export async function getAllPosts(uid) {
 }
 
 //==================================== To add new post ===============================================//
-
 export async function postItem(
   uid,
   service,
@@ -243,10 +242,67 @@ export async function updateOneUser(
   }
 }
 
-//==================================To delete post ==================================================//
+//==================================== To delete post ===============================================//
 export async function deleteOnePost(postId) {
   try{
     const res = await axios.delete(`${url}/api/posts/${postId}`);
+    return res.data
+  }catch (err) {
+    console.log(err);
+  }
+}
+
+//==================================== To edit Post ==================================================//
+export async function updateOnePost(
+  postId,
+   // service,
+   postHeading,
+   postDescription,
+   loadWeight,
+   numberOfItems,
+   // imageUrl,
+   price,
+   pickUpAddress,
+   pickUpCity,
+   pickUpAddressLat,
+   pickUpAddressLng,
+   pickUpContactPerson,
+   pickUpContactNumber,
+   pickUpSpecialInstruction,
+   dropOffAddress,
+   dropOffCity,
+   dropOffAddressLat,
+   dropOffAddressLng,
+   dropOffContactPerson,
+   dropOffContactNumber,
+   dropOffSpecialInstruction,
+   distance
+  ) {
+  try{
+    const res = await axios.post(`${url}/api/posts/${postId}`,{
+      // service: service,
+      postHeading: postHeading,
+      postDescription: postDescription,
+      loadWeight: loadWeight,
+      numberOfItems: numberOfItems,
+      // imageUrl: imageUrl,
+      price: price,
+      pickUpAddress: pickUpAddress,
+      pickUpCity: pickUpCity,
+      pickUpAddressLat: pickUpAddressLat,
+      pickUpAddressLng: pickUpAddressLng,
+      pickUpContactPerson: pickUpContactPerson,
+      pickUpContactNumber: pickUpContactNumber,
+      pickUpSpecialInstruction: pickUpSpecialInstruction,
+      dropOffAddress: dropOffAddress,
+      dropOffCity: dropOffCity,
+      dropOffAddressLat: dropOffAddressLat,
+      dropOffAddressLng: dropOffAddressLng,
+      dropOffContactPerson: dropOffContactPerson,
+      dropOffContactNumber: dropOffContactNumber,
+      dropOffSpecialInstruction: dropOffSpecialInstruction,
+      distance:distance
+    });
     return res.data
   }catch (err) {
     console.log(err);

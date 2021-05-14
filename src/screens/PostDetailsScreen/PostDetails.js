@@ -17,7 +17,9 @@ export default function PostDetails({ navigation, route }) {
     const { postId } = route.params;
 
     const onEditPressed = () => {
-        console.log("Edit clicked")
+        if(posts.service === "Junk"){
+            navigation.navigate('AddJunkNavigator',{ screen: 'AddItemScreen',  params: { operation: "edit" , postId: posts._id}})
+        }
     }
 
     const onDeletePress = async () => {

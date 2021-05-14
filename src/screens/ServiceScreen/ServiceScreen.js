@@ -8,7 +8,7 @@ export default function ServiceScreen({ navigation }) {
         <View style = {styles.root}>
             
             <View style={styles.btnContainer}>
-            <TouchableOpacity onPress={() => navigation.navigate('AddJunkNavigator')} style={styles.button}>
+            <TouchableOpacity onPress={() => navigation.navigate('AddJunkNavigator',{ screen: 'AddItemScreen',  params: { operation: "create", postId: ""}})} style={styles.button}>
                 <Text style={styles.btnText}>JUNK REMOVAL</Text>
             </TouchableOpacity>
             <TouchableOpacity onPress={() => navigation.navigate('ErrandNavigator',{ screen: 'ErrandPost1',  params: { service: "Moving" }})} style={styles.button}>
