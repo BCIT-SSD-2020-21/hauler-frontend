@@ -115,6 +115,7 @@ const styles = StyleSheet.create({
         marginRight: 10,
         width: '65%',
         fontWeight: 'bold',
+        flexWrap: 'wrap'
     },
     infoValue1: {
         marginRight: 10,

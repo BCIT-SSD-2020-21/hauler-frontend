@@ -136,6 +136,7 @@ const styles = StyleSheet.create({
     width: '90%',
     borderBottomWidth: 1.0,
     borderColor: '#BFBFBF',
+    flexWrap: 'wrap'
   },
   inputLine2: {
       height: 100,
