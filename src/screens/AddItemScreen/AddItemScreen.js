@@ -4,8 +4,11 @@ import { StyleSheet } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
 import SelectWeight from '../../components/SelectWeight/SelectWeight';
 import { Ionicons } from '@expo/vector-icons';
+import {getOnePost} from '../../../network'
 
-export default function AddItemScreen({ navigation }) {
+export default function AddItemScreen({ navigation, route }) {
+
+  const { operation, postId } = route.params;
   const [selectedweight, setSelectedWeight] = useState('')
   const [selectedquantity, setSelectedQuantity] = useState(1)
   const [image, setImage] = useState(null);
@@ -31,6 +34,13 @@ export default function AddItemScreen({ navigation }) {
 
   useEffect(() => {
     (async () => {
+      if (operation === "edit"){
+        const post = await getOnePost(postId)
+        setSelectedWeight(post.loadWeight)
+        setSelectedQuantity(post.numberOfItems)
+        setPostHeading(post.postHeading)
+        setDescription(post.postDescription)
+      }
       if (Platform.OS !== 'web') {
         const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
         if (status !== 'granted') {
@@ -101,7 +111,9 @@ export default function AddItemScreen({ navigation }) {
                 selectedweight: selectedweight,
                 selectedquantity: selectedquantity,
                 postHeading: postHeading,
-                description: description
+                description: description,
+                operation: operation,
+                postId: postId
               }
             )} style={styles.button}>
             <Text style={styles.buttonTitle}>Next</Text></TouchableOpacity>
@@ -114,7 +126,7 @@ export default function AddItemScreen({ navigation }) {
 const styles = StyleSheet.create({
   container: {
     display: 'flex',
-    height: 600,
+    minHeight: 600,
     width: '100%',
     backgroundColor: 'white',
   },
@@ -194,7 +206,7 @@ const styles = StyleSheet.create({
     paddingTop: 15,
     marginLeft: 10
   },
-  footerContainer:{
+  footerContainer: {
     backgroundColor: 'white',
     width: '100%',
     position: 'absolute',

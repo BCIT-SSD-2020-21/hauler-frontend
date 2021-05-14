@@ -1,10 +1,46 @@
 import React from 'react';
-import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
+import { StyleSheet, View, Text, TouchableOpacity, ScrollView } from 'react-native';
 import { Feather } from '@expo/vector-icons';
-import { MaterialCommunityIcons } from '@expo/vector-icons';
 
-export default function PostInfo({ image, selectedweight, selectedquantity, postHeading, description, pickUpAddress, pickContactPerson, pickUpPhoneNumber, pickUpSpecialInstructions, sliderValue, dropOffAddress, dropOffContactNumber, dropOffContactPerson, dropOffSpecialInstruction, duration, distance }) {
+export default function PostInfo({ image, selectedweight, selectedquantity, postHeading, description, pickUpAddress, pickContactPerson, pickUpPhoneNumber, pickUpSpecialInstructions, sliderValue, dropOffAddress, dropOffContactNumber, dropOffContactPerson, dropOffSpecialInstruction, distance }) {
 
+    const destinationInfo = () => {
+       if(!!dropOffAddress){
+        return ( 
+            <View>
+                <View style={styles.infoContainer}>
+                    <Text style={styles.infoKey}>Drop Off Address</Text>
+                    <Text style={styles.infoValue}>
+                        {dropOffAddress}
+                    </Text>
+                </View>
+                <Text>
+                    <View>
+                        <View style={styles.infoContainer}>
+                            <Text style={styles.infoKey}>Drop Off Contact Name</Text>
+                            <Text style={styles.infoValue}>{dropOffContactPerson}</Text>
+                        </View>
+
+                        <View style={styles.infoContainer}>
+                            <Text style={styles.infoKey}>Drop Off Contact Number</Text>
+                            <Text style={styles.infoValue1}>{dropOffContactNumber}  </Text>
+                            <Text style={styles.iconStyle}><Feather name='phone' size={24} color='white' /></Text>
+                        </View>
+                    </View>
+
+                </Text>
+                <View style={styles.infoContainer}>
+                    <Text style={styles.infoKey}>Drop Off Instructions</Text>
+                    <Text style={styles.infoValue}>{dropOffSpecialInstruction}</Text>
+                </View>
+                <View style={styles.infoContainer}>
+                    <Text style={styles.infoKey}>Distance</Text>
+                    <Text style={styles.infoValue}>{distance} km </Text>
+                </View>
+            </View>
+        )}
+        return;
+    }
     return (
         <View style={styles.container}>
             <View style={styles.infoContainer}>
@@ -26,79 +62,40 @@ export default function PostInfo({ image, selectedweight, selectedquantity, post
             <View style={styles.infoContainer}>
                 <Text style={styles.infoKey}>Pick Up Address</Text>
                 <Text style={styles.infoValue}>
-                    {pickUpAddress.formatted_address}
+                    {pickUpAddress}
                 </Text>
             </View>
-                    <View>
-                        <View style={styles.infoContainer}>
-                            <Text style={styles.infoKey}>Pick Up Contact Name</Text>
-                            <Text style={styles.infoValue}>{pickContactPerson}</Text>
-                        </View>
+            <View>
+                <View style={styles.infoContainer}>
+                    <Text style={styles.infoKey}>Pick Up Contact Name</Text>
+                    <Text style={styles.infoValue}>{pickContactPerson}</Text>
+                </View>
 
-                        <View style={styles.infoContainer}>
-                            <Text style={styles.infoKey}>Pick Up Contact Number</Text>
-                            <Text style={styles.infoValue1}>{pickUpPhoneNumber}  </Text>
-                            <Text style={styles.iconStyle}><Feather name='phone' size={24} color='white' /></Text>
-                        </View>
-                    </View>
-            
+                <View style={styles.infoContainer}>
+                    <Text style={styles.infoKey}>Pick Up Contact Number</Text>
+                    <Text style={styles.infoValue1}>{pickUpPhoneNumber}  </Text>
+                    <Text style={styles.iconStyle}><Feather name='phone' size={24} color='white' /></Text>
+                </View>
+            </View>
+
             <View style={styles.infoContainer}>
                 <Text style={styles.infoKey}>Pick Up Instructions</Text>
                 <Text style={styles.infoValue}>{pickUpSpecialInstructions}</Text>
             </View>
-            <Text>
-            {dropOffAddress &&
-                <View>
-                    <View style={styles.infoContainer}>
-                        <Text style={styles.infoKey}>Drop Off Address</Text>
-                        <Text style={styles.infoValue}>
-                            {dropOffAddress.formatted_address}
-                        </Text>
-                    </View>
-                    <Text>
-                        
-                            <View>
-                                <View style={styles.infoContainer}>
-                                    <Text style={styles.infoKey}>Drop Off Contact Name</Text>
-                                    <Text style={styles.infoValue}>{dropOffContactPerson}</Text>
-                                </View>
-
-                                <View style={styles.infoContainer}>
-                                    <Text style={styles.infoKey}>Drop Off Contact Number</Text>
-                                    <Text style={styles.infoValue1}>{dropOffContactNumber}  </Text>
-                                    <Text style={styles.iconStyle}><Feather name='phone' size={24} color='white' /></Text>
-                                </View>
-                            </View>
-                    
-                    </Text>
-                    <View style={styles.infoContainer}>
-                        <Text style={styles.infoKey}>Drop Off Instructions</Text>
-                        <Text style={styles.infoValue}>{dropOffSpecialInstruction}</Text>
-                    </View>
-                    <View style={styles.infoContainer}>
-                        <Text style={styles.infoKey}>Distance </Text>
-                        <Text style={styles.infoValue1}>{distance} km </Text>
-                        <TouchableOpacity onPress={() => onMapsPress()}><Text style={styles.iconStyle}><MaterialCommunityIcons name='map-marker-multiple-outline' size={24} color='white' /></Text></TouchableOpacity>
-                    </View>
-                    <View style={styles.infoContainer}>
-                        <Text style={styles.infoKey}>Duration </Text>
-                        <Text style={styles.infoValue1}>{duration} mins</Text>
-                    </View>
-                </View>
-            }
-            </Text>
+            {destinationInfo()}
             <View style={styles.infoContainer}>
-                            <Text style={styles.infoKey}>Price</Text>
-                            <Text style={styles.infoValue1}>{sliderValue}  </Text>
-                            <Text style={styles.iconStyle}><Feather name='phone' size={24} color='white' /></Text>
-                        </View>
+                <Text style={styles.infoKey}>Price</Text>
+                <Text style={styles.infoValue}>{sliderValue}</Text>
+            </View>
+
         </View>
     )
 }
 
 const styles = StyleSheet.create({
     container: {
-        marginHorizontal: 20
+        paddingHorizontal: 10,   
+        paddingBottom: 40,
     },
     infoContainer: {
         flexDirection: 'row',
@@ -127,11 +124,7 @@ const styles = StyleSheet.create({
         padding: 5,
         overflow: 'hidden'
     },
-    modalContainer:{
-        width: '100%',
-        marginHorizontal: 16
-    },
-    buttons:{
+    buttons: {
         backgroundColor: '#0077FC',
         marginVertical: 10,
         height: 48,
@@ -139,7 +132,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         width: '90%',
-        
+
     },
     buttonTitle: {
         color: 'white',

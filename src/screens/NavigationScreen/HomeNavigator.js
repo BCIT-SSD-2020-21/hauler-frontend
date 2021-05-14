@@ -11,13 +11,15 @@ import AddJunkNavigator from '../NavigationScreen/AddJunkNavigator';
 import ServiceProviderNavigator from './ServiceProviderNavigator';
 import SignUpScreen2 from '../SignupScreen/SignUpScreen2'
 import OfferDetails from '../OfferDetailsScreen/OfferDetails';
+import PostDetails from '../PostDetailsScreen/PostDetails';
+import ErrandScreenNavigator from './ErrandNavigator';
 
 const HomeStack = createStackNavigator();
 
 const HomeNavigator = () => {
     return (
         <HomeStack.Navigator
-            initialRouteName='Signin'
+            initialRouteName='MyPostList'
             screenOptions={{
                 headerShown: true,
                 title: 'Hauler',
@@ -47,9 +49,15 @@ const HomeNavigator = () => {
                 component={MyPostList}
                 options={{ headerRight: () => <MenuIcon /> }}
             />
+             <HomeStack.Screen
+                name='PostDetails'
+                component={PostDetails}
+                options={{ headerRight: () => <MenuIcon /> }}
+            />
             <HomeStack.Screen name='JobOffers' component={JobOffers} options={{ headerRight: () => <MenuIcon /> }} />
             <HomeStack.Screen name='OfferDetails' component={OfferDetails} options={{ headerRight: () => <MenuIcon /> }} />
             <HomeStack.Screen name='AddJunkNavigator' component={AddJunkNavigator} options={{ headerRight: () => <MenuIcon /> }} />
+            <HomeStack.Screen name='ErrandNavigator' component={ErrandScreenNavigator} options={{ headerRight: () => <MenuIcon /> }} />
 
         </HomeStack.Navigator>
     );

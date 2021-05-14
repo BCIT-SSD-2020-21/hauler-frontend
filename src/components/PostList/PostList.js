@@ -24,7 +24,7 @@ export default function PostsList({ posts, onActiveImagePress, onOffersPress, on
                                     /> :
                                     <View></View>}
                                 <TouchableOpacity
-                                    onPress={() => { item.status === 'Active' ? onActiveImagePress({ postId: item._id }) : onAcceptedDetails({ posts: item }) }}
+                                    onPress={() => { item.status === 'Active' ? onActiveImagePress({ postId: item._id }) : onAcceptedDetails({ postId: item._id }) }}
                                 >
                                     <Image
                                         style={styles.cardImage} source={{ uri: item.loadImages[0].imageUrl }}

@@ -1,14 +1,30 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Text, View } from 'react-native'
 import { StyleSheet } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { GooglePlacesAutocomplete, GooglePlacesDetailsQuery } from 'react-native-google-places-autocomplete';
 import { GOOGLE_MAP_API } from '@env';
+import {getOnePost} from '../../../network'
 
 export default function AddJunkScreen2({ navigation, route }) {
 
-  const { image, selectedweight, selectedquantity, postHeading, description } = route.params;
+  const { image, selectedweight, selectedquantity, postHeading, description, operation, postId} = route.params;
   const [pickUpAddress, setPickUpAddress] = useState('')
+  const [pickUpCity, setPickUpCity] = useState('')
+  const [pickUpAddressLat, setPickUpAddressLat] = useState('')
+  const [pickUpAddressLng, setPickUpAddressLng] = useState('')
+
+  useEffect(() => {
+    (async () => {
+      if (operation === "edit"){
+        const post = await getOnePost(postId)
+        setPickUpAddress(post.pickUpAddress)
+        setPickUpCity(post.pickUpCity)
+        setPickUpAddressLat(post.pickUpAddressLat)
+        setPickUpAddressLng(post.pickUpAddressLng)
+      }
+    })()
+}, [])
 
   return (
     <View style={styles.container}>
@@ -32,7 +48,12 @@ export default function AddJunkScreen2({ navigation, route }) {
         placeholder="Full Address"
         minLength={2}
         fetchDetails={true}
-        onPress={(data, details) => { setPickUpAddress(details) }
+        onPress={(data, details) => { 
+          setPickUpAddress(details.formatted_address), 
+          setPickUpCity(details.vicinity),
+          setPickUpAddressLat(details.geometry.location.lat)
+          setPickUpAddressLng(details.geometry.location.lng)
+         }
         }
         value={pickUpAddress}
         onFail={(error) => console.error(error)}
@@ -47,7 +68,12 @@ export default function AddJunkScreen2({ navigation, route }) {
         selectedquantity: selectedquantity,
         postHeading: postHeading,
         description: description,
-        pickUpAddress: pickUpAddress
+        pickUpAddress: pickUpAddress,
+        operation: operation,
+        postId: postId,
+        pickUpCity:pickUpCity,
+        pickUpAddressLat: pickUpAddressLat,
+        pickUpAddressLng: pickUpAddressLng
       })}
         style={styles.button} >
         <Text style={styles.buttonTitle}>Next</Text>
