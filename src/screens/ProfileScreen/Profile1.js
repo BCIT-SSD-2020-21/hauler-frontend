@@ -96,7 +96,7 @@ export default function Profile1({ navigation }) {
                                 size='xlarge'
                                 source={{
                                     uri:
-                                        userInformation.profilePicUrl,
+                                        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTyhfiaF2hYu20trg3-d2lPSfFaY5W4LP8-wg&usqp=CAU'
                                 }}
                                 containerStyle={{ borderRadius: 30, overflow: 'hidden' }}
                             />
@@ -106,11 +106,11 @@ export default function Profile1({ navigation }) {
                             {userInformation.firstName}
                         </Text>
                         <View style={styles.headerContainer} >
-                            <FontAwesome name='star' size={20} color='#2EBCAC' />
-                            <FontAwesome name='star' size={20} color='#2EBCAC' />
-                            <FontAwesome name='star' size={20} color='#2EBCAC' />
-                            <FontAwesome name='star' size={20} color='#2EBCAC' />
-                            <FontAwesome name='star' size={20} color='#2EBCAC' />
+                            <FontAwesome name='star' size={20} color='#FCC742' />
+                            <FontAwesome name='star' size={20} color='#FCC742' />
+                            <FontAwesome name='star' size={20} color='#FCC742' />
+                            <FontAwesome name='star' size={20} color='#FCC742' />
+                            <FontAwesome name='star' size={20} color='#FCC742' />
                         </View>
                         <View style={styles.infoContainer}>
                             <FontAwesome style={styles.infoIcon} name='user' size={24} color='black' />
@@ -249,6 +249,7 @@ const styles = StyleSheet.create({
     },
     avatar: {
         alignItems: 'center'
+        
     },
     user: {
         textAlign: 'center',
