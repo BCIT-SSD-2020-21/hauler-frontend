@@ -3,6 +3,7 @@ import { Text, View, Image, Dimensions, StyleSheet } from 'react-native'
 import { ScrollView, TouchableOpacity } from 'react-native-gesture-handler';
 import { Context } from '../../context/ContextProvider';
 import { postItem } from '../../../network';
+import PostInfo from '../../components/PostInfo/PostInfo'
 import MapView from 'react-native-maps';
 import MapViewDirections from 'react-native-maps-directions';
 import { GOOGLE_MAP_API } from '@env';
@@ -36,31 +37,23 @@ export default function ErrandSummary({ navigation, route }) {
     return (
         <ScrollView>
             <View style={styles.container}>
-                <Text> Errand Summary </Text>
-                <Text style={styles.inputLine1} >Post Heading: {postHeading}</Text>
-                <Text style={styles.inputLine1} >Post Description: {description}</Text>
-                <Text style={styles.inputLine1} >Item Weigth: {selectedweight}</Text>
-                <Text style={styles.inputLine1} >Number of Items: {selectedquantity}</Text>
-                <Text style={{ fontSize: 20, fontWeight: 'bold' }} >Pick Up Details: </Text>
-                <Text style={styles.inputLine1} >Contact Person: {pickContactPerson}</Text>
-                <Text style={styles.inputLine1} >Phone Number: {pickUpPhoneNumber}</Text>
-                <Text style={styles.inputLine2} >Street Address: {pickUpAddress.formatted_address}</Text>
-                <Text style={styles.inputLine2} >Special Instructions: {pickUpSpecialInstructions}</Text>
-                <Text style={{ fontSize: 20, fontWeight: 'bold' }} > Drop Off Details: </Text>
-                <Text style={styles.inputLine1} >Contact Person: {dropOffContactPerson}</Text>
-                <Text style={styles.inputLine1} >Phone Number: {dropOffPhoneNumber}</Text>
-                <Text style={styles.inputLine2} >Street Address: {dropOffAddress.formatted_address}</Text>
-                <Text style={styles.inputLine2} >Special Instructions: {dropOffSpecialInstructions}</Text>
-                <Text>
-                    {image &&
-                        <View style={styles.imageContainer}>
-                            <Image style={styles.imageDisplay} source={{ uri: image }} />
-                        </View>
-                    }</Text>
-                <Text style={styles.inputLine1}>Quoted Price: {sliderValue}</Text>
-                <View style={styles.containerMap}>
-                    <Text>Total Distanse: {distance} km</Text>
-                    <Text>Duration: {duration} min</Text>
+                <PostInfo 
+                    postHeading={postHeading}
+                    description={description}
+                    selectedweight={selectedweight}
+                    selectedquantity={selectedquantity}
+                    pickUpAddress={pickUpAddress}
+                    image={image}
+                    pickContactPerson={pickContactPerson}
+                    pickUpPhoneNumber={pickUpPhoneNumber}
+                    pickUpSpecialInstructions={pickUpSpecialInstructions}
+                    dropOffAddress= {dropOffAddress}
+                    dropOffContactPerson={dropOffContactPerson}
+                    dropOffContactNumber={dropOffPhoneNumber}
+                    sliderValue={sliderValue}
+                    distance={distance}
+                    duration={duration}
+                 />
                     <MapView
                         style={styles.map}
                         ref={mapView}
@@ -96,10 +89,9 @@ export default function ErrandSummary({ navigation, route }) {
                         />
                     </MapView>
                 </View>
-                <View style={styles.btnContainer}>
-                    <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('ErrandPost1')}><Text style={styles.btnText}> Edit </Text></TouchableOpacity>
-                </View>
-                <View style={styles.btnContainer}>
+                    <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('ErrandPost1')}><Text style={styles.buttonTitle}> Edit </Text></TouchableOpacity>
+                    
+                    <View>
                     <TouchableOpacity style={styles.button} onPress={async () => {
                         await postItem(
                             currentUser.uid,
@@ -126,9 +118,8 @@ export default function ErrandSummary({ navigation, route }) {
                             dropOffSpecialInstructions,
                             distance
                         ); navigation.navigate('Confirmation')
-                    }}><Text style={styles.btnText}> Post the Job </Text></TouchableOpacity>
-                </View>
-            </View>
+                    }}><Text style={styles.buttonTitle}> Post the Job </Text></TouchableOpacity>
+                    </View>
         </ScrollView>
     )
 }
@@ -158,11 +149,11 @@ const styles = StyleSheet.create({
     },
     button: {
         backgroundColor: '#0177FC',
-        marginLeft: 30,
-        marginRight: 30,
-        marginTop: 20,
+        alignSelf: 'center',
+        marginVertical: 10,
+        width: '90%',
         height: 48,
-        borderRadius: 20,
+        borderRadius: 10,
         alignItems: "center",
         justifyContent: 'center'
     },

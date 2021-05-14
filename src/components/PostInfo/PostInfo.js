@@ -2,9 +2,7 @@ import React from 'react';
 import { StyleSheet, View, Text, TouchableOpacity, ScrollView} from 'react-native';
 import { Feather } from '@expo/vector-icons';
 
-export default function PostInfo({ image, selectedweight, selectedquantity, postHeading, description, pickUpAddress, 
-    pickContactPerson, pickUpPhoneNumber, pickUpSpecialInstructions, sliderValue, dropOffAddress, dropOffContactPerson,
-     dropOffContactNumber, dropOffSpecialInstruction, distance}) {
+export default function PostInfo({ image, selectedweight, selectedquantity, postHeading, description, pickUpAddress, pickContactPerson, pickUpPhoneNumber, pickUpSpecialInstructions, sliderValue, dropOffAddress, dropOffContactNumber, dropOffContactPerson, dropOffSpecialInstruction, duration, distance }) {
 
     return (
         <View style={styles.container}>
@@ -79,6 +77,10 @@ export default function PostInfo({ image, selectedweight, selectedquantity, post
                     <View style={styles.infoContainer}>
                         <Text style={styles.infoKey}>Distance</Text>
                         <Text style={styles.infoValue}>{distance} km </Text>
+                    </View>
+                    <View style={styles.infoContainer}>
+                        <Text style={styles.infoKey}>Duration </Text>
+                        <Text style={styles.infoValue1}>{duration} mins</Text>
                     </View>
                 </View>
             }

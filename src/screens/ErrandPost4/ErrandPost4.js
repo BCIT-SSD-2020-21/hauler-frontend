@@ -19,35 +19,43 @@ export default function ErrandPost4({ navigation, route }) {
         <ScrollView>
         <View style={styles.container}>
 
-          <TextInput style={styles.inputLine1} placeholder='Contact Person' 
+        <Text style={styles.pickup}>Pick Up Details</Text>
+        <Text style={styles.text}>Contact Person</Text>
+          <TextInput style={styles.inputLine1} 
             onChangeText={(contactPerson) => {setPickContactPerson(contactPerson)}}
             value={pickContactPerson}
           />
 
-          <TextInput style={styles.inputLine1} placeholder='Phone Number' 
+          <Text style={styles.text}>Phone Number</Text>
+          <TextInput style={styles.inputLine1}
+            keyboardType='numeric' 
             onChangeText={(phoneNumber) => {setPickUpPhoneNumber(phoneNumber)}}
             value={pickUpPhoneNumber}
           />
 
-          <TextInput style={styles.inputLine2} placeholder='Special Instructions' 
+          <Text style={styles.text}>Pick up instructions</Text>
+          <TextInput style={styles.inputLine1} 
             onChangeText={(specialInstructions) => setPickUpSpecialInstructions(specialInstructions)}
             value={pickUpSpecialInstructions}
           />
 
-          <Text> DROP OFF DETAILS </Text>
+          <Text style={styles.dropOff}> Drop Off Details </Text>
 
-          <TextInput style={styles.inputLine1} placeholder='Contact Person' 
+          <Text style={styles.text}>Contact Person</Text>
+          <TextInput style={styles.inputLine1} 
             onChangeText={(contactPerson) => {setDropOffContactPerson(contactPerson)}}
             value={dropOffContactPerson}
           />
 
-          <TextInput style={styles.inputLine1} placeholder='Phone Number' 
+          <Text style={styles.text}>Contact Number</Text>
+          <TextInput style={styles.inputLine1}
+            keyboardType='numeric' 
             onChangeText={(phoneNumber) => {setDropOffPhoneNumber(phoneNumber)}}
             value={dropOffPhoneNumber}
           />
 
           <Text style={styles.text}> Special Instructions : </Text>
-          <TextInput style={styles.inputLine2}  
+          <TextInput style={styles.inputLine1}  
             onChangeText={(specialInstructions) => setDropOffSpecialInstructions(specialInstructions)}
             value={dropOffSpecialInstructions}
           />
@@ -101,11 +109,17 @@ export default function ErrandPost4({ navigation, route }) {
 }
 
 const styles = StyleSheet.create({
+  // container: {
+  //   flex: 1,
+  //   //alignItems: 'center',
+  //   marginVertical: 20
+  // },
   container: {
-    flex: 1,
-    //alignItems: 'center',
-    marginVertical: 20
-  },
+    display: 'flex',
+    height: 900,
+    width: '100%',
+    backgroundColor: 'white',
+},
   screenHeading: {
     fontSize: 30,
     fontWeight: '500',
@@ -136,20 +150,20 @@ const styles = StyleSheet.create({
       borderWidth: 1.0,
       borderColor: '#BFBFBF'
   },
-button: {
-  backgroundColor: '#0177FC',
-  marginLeft: 30,
-  marginRight: 30,
-  marginTop: 20,
-  height: 48,
-  borderRadius: 20,
-  alignItems: "center",
-  justifyContent: 'center'
+  button: {
+    backgroundColor: '#0177FC',
+    alignSelf: 'center',
+    marginVertical: 10,
+    width: '90%',
+    height: 48,
+    borderRadius: 10,
+    alignItems: "center",
+    justifyContent: 'center'
 },
 buttonTitle: {
-  color: 'white',
-  fontSize: 16,
-  fontWeight: "bold"
+    color: 'white',
+    fontSize: 16,
+    fontWeight: "bold"
 },
 text: {
   color: '#BFBFBF',
@@ -161,6 +175,19 @@ containerSlider: {
   flex: 1,
   padding: 20,
   justifyContent: 'center',
-  backgroundColor: '#ecf0f1',
+
 },
+pickup: {
+  fontSize: 18,
+  color: 'black',
+  paddingLeft: 18,
+  fontWeight: 'bold'
+},
+dropOff: {
+  fontSize: 18,
+  color: 'black',
+  paddingLeft: 18,
+  paddingTop: 20,
+  fontWeight: 'bold' 
+}
 })
