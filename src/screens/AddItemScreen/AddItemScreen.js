@@ -100,7 +100,7 @@ export default function AddItemScreen({ navigation, route }) {
 
         <TouchableOpacity style={styles.button} onPress={() => pickImageAlbum()}><Text style={styles.buttonTitle}>Upload Image</Text></TouchableOpacity>
 
-        <View>
+        <View style= {styles.imageContainer}>
           {image && <Image source={{ uri: image }} style={styles.imageDisplay} />}
         </View>
         <View style={styles.footerContainer}>
@@ -164,8 +164,6 @@ const styles = StyleSheet.create({
   imageDisplay: {
     width: 200,
     height: 200,
-    marginLeft: 50,
-    marginTop: 5,
     resizeMode: 'contain',
   },
   imageRow: {
