@@ -1,22 +1,23 @@
 import React from 'react';
-import { Text, View, ScrollView, TextInput } from 'react-native'
+import { Text, View, ScrollView, TextInput, Image } from 'react-native'
 import { StyleSheet } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 
 export default function Confirmation({ navigation }) {
     return (
-        <ScrollView>
+        
             <View style={styles.container}>
                 <View style={styles.imageContainer}>
-                    <Image source={require('../../../assets/IMG-20210504-WA0000.jpg')} style={styles.imageDisplay}/>
+                    <Image source={require('../../../assets/pic1.png')} style={styles.imageDisplay}/>
                 </View>
+                <View style={styles.textContainer}>
                 <Text style={styles.text}>Successfully Posted !!</Text>
                 <Text style={styles.text}>Thank You!</Text>
                 <Text style={styles.text1}>Your job has been posted</Text>
-            </View>
+                </View>
             
                 <TouchableOpacity onPress={() => navigation.navigate('Home')} style={styles.button}><Text style={styles.buttonTitle}>Return To My Job List </Text></TouchableOpacity>
-        </ScrollView>
+                </View>
     )
 }
 
@@ -25,19 +26,19 @@ const styles = StyleSheet.create({
         backgroundColor: 'white',
         flex: 1,
         width: '100%',
-        height: '100%',
+        // height: 650,
         paddingVertical: 10
     },
     text: {
         fontWeight: 'bold',
         alignItems: 'center',
-        fontSize: 30,
+        fontSize: 28,
     },
     button: {
         backgroundColor: '#0177FC',
         marginLeft: 30,
         marginRight: 30,
-        marginTop: 20,
+        marginTop: 30,
         height: 48,
         borderRadius: 20,
         alignItems: "center",
@@ -49,15 +50,18 @@ const styles = StyleSheet.create({
         fontWeight: "bold"
     },
     imageContainer: {
-        flex: 1,
+        // flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
     },
     imageDisplay:{
         width: 200,
         height: 200,
-        marginLeft: 50,
-        marginTop: 5,
-        resizeMode: 'contain', 
+        resizeMode: 'contain',
+        marginTop: 50 
     },
+    textContainer: {
+        alignItems: 'center',
+        marginTop: 60
+    }
 })
