@@ -145,7 +145,6 @@ const styles = StyleSheet.create({
     width: '90%',
     borderBottomWidth: 1.0,
     borderColor: '#BFBFBF',
-    flexWrap: 'wrap'
   },
   button: {
     backgroundColor: '#0177FC',
