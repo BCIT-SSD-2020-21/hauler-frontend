@@ -45,7 +45,7 @@ export default function SignUpScreen2({ navigation, route }) {
                 expiryDate,
                 cvv
             )
-            navigation.navigate('ServiceProviderNavigator')
+            navigation.navigate('MyPostList')
         } catch (err) {
             setError(err.message)
         }
