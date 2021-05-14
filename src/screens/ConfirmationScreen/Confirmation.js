@@ -46,6 +46,9 @@ export default function Confirmation({ navigation, route }) {
             </View>
 
             <TouchableOpacity onPress={() => navigation.navigate('Home', { screen: 'MyPostList'})} style={styles.button}><Text style={styles.btnText}>Return To My Job List </Text></TouchableOpacity>
+
+            <TouchableOpacity onPress={() => navigation.navigate('Post A Job', { screen: 'Post A Job'})} style={styles.button}><Text style={styles.btnText}>Return To Posting a Job </Text></TouchableOpacity>
+
         </View>
     )
 }
@@ -84,8 +87,8 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     imageDisplay: {
-        width: 380,
-        height: 380,
+        width: 300,
+        height: 300,
         resizeMode: 'center',
         marginTop: 5,
     },
