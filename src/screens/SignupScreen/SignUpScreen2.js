@@ -31,9 +31,9 @@ export default function SignUpScreen2({ navigation, route }) {
             const currentUid = response.user.uid
             await signUp(
                 currentUid,
-                image,
                 firstName,
                 lastName,
+                image,
                 dateOfBirth,
                 province,
                 city,
@@ -43,11 +43,9 @@ export default function SignUpScreen2({ navigation, route }) {
                 contactNumber,
                 creditCardNumber,
                 expiryDate,
-                cvv,
-                password,
-                confirmPassword
+                cvv
             )
-            navigation.navigate('ServiceProviderNavigator')
+            navigation.navigate('MyPostList')
         } catch (err) {
             setError(err.message)
         }
@@ -101,6 +99,8 @@ export default function SignUpScreen2({ navigation, route }) {
                         onChangeText={(cvv) => { setError(""); setCvv(cvv) }}
                         value={cvv}
                     />
+
+{/*==========================================functionality to display and validate the card type======================= */}
                     <View style={styles.card}>
                     <CreditCardDisplay
                         number={number}
@@ -162,19 +162,19 @@ const styles = StyleSheet.create({
     },
     button: {
         backgroundColor: '#0177FC',
-        marginLeft: 30,
-        marginRight: 30,
-        marginTop: 20,
+        alignSelf: 'center',
+        marginVertical: 10,
+        width: '90%',
         height: 48,
-        borderRadius: 20,
+        borderRadius: 10,
         alignItems: "center",
         justifyContent: 'center'
-    },
-    buttonTitle: {
+      },
+      buttonTitle: {
         color: 'white',
         fontSize: 16,
         fontWeight: "bold"
-    },
+      },
     option: {
         flex: 1,
         alignItems: "center",
@@ -203,7 +203,7 @@ const styles = StyleSheet.create({
         fontSize: 30,
         fontWeight: '100',
         marginLeft: 20,
-        marginTop: 100 
+        marginTop: 60 
     },
     details: {
         marginTop: 50

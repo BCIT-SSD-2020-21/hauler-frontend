@@ -1,9 +1,9 @@
 import React, { useContext, useState, useRef } from 'react'
-import { Text, View, Image, Dimensions } from 'react-native'
-import { StyleSheet } from 'react-native';
+import { Text, View, Dimensions, StyleSheet } from 'react-native'
 import { ScrollView, TouchableOpacity } from 'react-native-gesture-handler';
 import { Context } from '../../context/ContextProvider';
-import { postItem } from '../../../network';
+import { postItem, updateOnePost } from '../../../network';
+import PostInfo from '../../components/PostInfo/PostInfo'
 import MapView from 'react-native-maps';
 import MapViewDirections from 'react-native-maps-directions';
 import { GOOGLE_MAP_API } from '@env';
@@ -11,16 +11,13 @@ import { GOOGLE_MAP_API } from '@env';
 export default function ErrandSummary({ navigation, route }) {
     const { width, height } = Dimensions.get('window');
     const mapView = useRef();
-    const { image, selectedweight, selectedquantity, postHeading, description, pickUpAddress, dropOffAddress, pickContactPerson, pickUpPhoneNumber, pickUpSpecialInstructions, dropOffContactPerson, dropOffPhoneNumber, dropOffSpecialInstructions, sliderValue } = route.params;
+    const { image, selectedweight, selectedquantity, postHeading, description, pickUpAddress,
+        dropOffAddress, pickContactPerson, pickUpPhoneNumber, pickUpSpecialInstructions,
+        dropOffContactPerson, dropOffPhoneNumber, dropOffSpecialInstructions, sliderValue, service, dropOffCity, dropOffAddressLat, dropOffAddressLng, operation, postId, pickUpCity, pickUpAddressLat, pickUpAddressLng } = route.params;
 
-    const service = "Errands"
     const { currentUser } = useContext(Context)
 
-    const pickUpAddressLat = pickUpAddress.geometry.location.lat
-    const pickUpAddressLng = pickUpAddress.geometry.location.lng
-    const dropOffAddressLat = dropOffAddress.geometry.location.lat
-    const dropOffAddressLng = dropOffAddress.geometry.location.lng
-
+    const [error, setError] = useState('')
     const [distance, setDistance] = useState('')
     const [duration, setDuration] = useState('')
     const [coordinates, setCoordinates] = useState([
@@ -33,98 +30,129 @@ export default function ErrandSummary({ navigation, route }) {
             longitude: dropOffAddressLng,
         }
     ])
+
     return (
         <ScrollView>
             <View style={styles.container}>
-                <Text> Errand Summary </Text>
-                <Text style={styles.inputLine1} >Post Heading: {postHeading}</Text>
-                <Text style={styles.inputLine1} >Post Description: {description}</Text>
-                <Text style={styles.inputLine1} >Item Weigth: {selectedweight}</Text>
-                <Text style={styles.inputLine1} >Number of Items: {selectedquantity}</Text>
-                <Text style={{ fontSize: 20, fontWeight: 'bold' }} >Pick Up Details: </Text>
-                <Text style={styles.inputLine1} >Contact Person: {pickContactPerson}</Text>
-                <Text style={styles.inputLine1} >Phone Number: {pickUpPhoneNumber}</Text>
-                <Text style={styles.inputLine2} >Street Address: {pickUpAddress.formatted_address}</Text>
-                <Text style={styles.inputLine2} >Special Instructions: {pickUpSpecialInstructions}</Text>
-                <Text style={{ fontSize: 20, fontWeight: 'bold' }} > Drop Off Details: </Text>
-                <Text style={styles.inputLine1} >Contact Person: {dropOffContactPerson}</Text>
-                <Text style={styles.inputLine1} >Phone Number: {dropOffPhoneNumber}</Text>
-                <Text style={styles.inputLine2} >Street Address: {dropOffAddress.formatted_address}</Text>
-                <Text style={styles.inputLine2} >Special Instructions: {dropOffSpecialInstructions}</Text>
-                <View style={styles.imageContainer}>
-                    <Image style={styles.imageDisplay} source={{ uri: image }} />
-                </View>
-                <Text style={styles.inputLine1}>Quoted Price: {sliderValue}</Text>
-                <View style={styles.containerMap}>
-                    <Text>Total Distanse: {distance} km</Text>
-                    <Text>Duration: {duration} min</Text>
-                    <MapView
-                        style={styles.map}
-                        ref={mapView}
-                    >
-                        {coordinates.map((coordinate, index) => 
-                        <MapView.Marker key={`coordinate_${index}`} coordinate={coordinate} 
+                <PostInfo
+                    postHeading={postHeading}
+                    description={description}
+                    selectedweight={selectedweight}
+                    selectedquantity={selectedquantity}
+                    pickUpAddress={pickUpAddress}
+                    image={image}
+                    pickContactPerson={pickContactPerson}
+                    pickUpPhoneNumber={pickUpPhoneNumber}
+                    pickUpSpecialInstructions={pickUpSpecialInstructions}
+                    dropOffAddress={dropOffAddress}
+                    dropOffContactPerson={dropOffContactPerson}
+                    dropOffContactNumber={dropOffPhoneNumber}
+                    dropOffSpecialInstruction={dropOffSpecialInstructions}
+                    sliderValue={sliderValue}
+                    distance={distance}
+                    duration={duration}
+                />
+                <MapView
+                    style={styles.map}
+                    ref={mapView}
+                >
+                    {coordinates.map((coordinate, index) =>
+                        <MapView.Marker key={`coordinate_${index}`} coordinate={coordinate}
                         />
-                        )}
-                        <MapViewDirections
-                            apikey={GOOGLE_MAP_API}
-                            origin={coordinates[0]}
-                            waypoints={coordinates}
-                            destination={coordinates[coordinates.length - 1]}
-                            strokeWidth={3}
-                            strokeColor='#DE0303'
-                            optimizeWaypoints={true}
-                            onReady={result => {
-                                setDistance(result.distance)
-                                setDuration(result.duration)
-
-                                mapView.current.fitToCoordinates(result.coordinates, {
-                                    edgePadding: {
-                                        right: (width / 20),
-                                        bottom: (height / 20),
-                                        left: (width / 20),
-                                        top: (height / 20),
-                                    }
+                    )}
+                    <MapViewDirections
+                        apikey={GOOGLE_MAP_API}
+                        origin={coordinates[0]}
+                        waypoints={coordinates}
+                        destination={coordinates[coordinates.length - 1]}
+                        strokeWidth={3}
+                        strokeColor='#DE0303'
+                        optimizeWaypoints={true}
+                        onReady={result => {
+                            setDistance(result.distance)
+                            setDuration(result.duration)
+                            mapView.current.fitToCoordinates(result.coordinates, {
+                                edgePadding: {
+                                    right: (width / 20),
+                                    bottom: (height / 20),
+                                    left: (width / 20),
+                                    top: (height / 20),
                                 }
-                                );
-                            }}
-                            onError={(errorMessage) => {
-                                console.log(`Error: ${errorMessage}`);
-                            }}
-                        />
-                    </MapView>
-                </View>
-                <View style={styles.btnContainer}>
-                    <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('ErrandPost1')}><Text style={styles.btnText}> Edit </Text></TouchableOpacity>
-                </View>
-                <View style={styles.btnContainer}>
-                    <TouchableOpacity style={styles.button}><Text style={styles.btnText} onPress={async () => {
+                            }
+                            );
+                        }}
+                        onError={(errorMessage) => {
+                            console.log(`Error: ${errorMessage}`);
+                        }}
+                    />
+                </MapView>
+                <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('ErrandPost1')}><Text style={styles.buttonTitle}> Edit </Text></TouchableOpacity>
+
+                {operation === "create" ?
+                    <TouchableOpacity style={styles.button} onPress={async () => {
                         await postItem(
                             currentUser.uid,
                             service,
-                            image,
-                            selectedweight,
-                            selectedquantity,
                             postHeading,
                             description,
-                            pickUpAddress.formatted_address,
-                            pickUpAddress.vicinity,
+                            selectedweight,
+                            selectedquantity,
+                            image,
+                            sliderValue,
+                            pickUpAddress,
+                            pickUpCity,
                             pickUpAddressLat,
                             pickUpAddressLng,
                             pickContactPerson,
                             pickUpPhoneNumber,
                             pickUpSpecialInstructions,
-                            dropOffAddress.formatted_address,
-                            dropOffAddress.vicinity,
+                            dropOffAddress,
+                            dropOffCity,
                             dropOffAddressLat,
                             dropOffAddressLng,
                             dropOffContactPerson,
                             dropOffPhoneNumber,
                             dropOffSpecialInstructions,
-                            sliderValue); navigation.navigate('Confirmation')
-                    }}> Post the Job </Text></TouchableOpacity>
-                </View>
+                            distance
+                        ); navigation.navigate('Confirmation', { confirm: 'Post' })
+                    }}><Text style={styles.buttonTitle}> Post the Job </Text></TouchableOpacity>
+                    :
+                    <TouchableOpacity style={styles.button}
+                        onPress={async () => {
+                            setError('')
+                           const res=  await updateOnePost(
+                                postId,
+                                // service,
+                                postHeading,
+                                description,
+                                selectedweight,
+                                selectedquantity,
+                                // imageUrl,
+                                sliderValue,
+                                pickUpAddress,
+                                pickUpCity,
+                                pickUpAddressLat,
+                                pickUpAddressLng,
+                                pickContactPerson,
+                                pickUpPhoneNumber,
+                                pickUpSpecialInstructions,
+                                dropOffAddress,
+                                dropOffCity,
+                                dropOffAddressLat,
+                                dropOffAddressLng,
+                                dropOffContactPerson,
+                                dropOffPhoneNumber,
+                                dropOffSpecialInstructions,
+                                distance,
+                            );
+                            if (res === 'Post updated') {
+                                navigation.navigate('Confirmation', { confirm: 'Edit' })
+                            } else {
+                                setError(res)
+                            }
+                        }}><Text style={styles.buttonTitle}>Submit Edited Post</Text></TouchableOpacity>}
             </View>
+            <Text > {error && alert(error)}</Text>
         </ScrollView>
     )
 }
@@ -132,8 +160,8 @@ export default function ErrandSummary({ navigation, route }) {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        //alignItems: 'center',
-        marginVertical: 20
+        minHeight: 600,
+        backgroundColor: 'white',
     },
     screenHeading: {
         fontSize: 30,
@@ -154,11 +182,11 @@ const styles = StyleSheet.create({
     },
     button: {
         backgroundColor: '#0177FC',
-        marginLeft: 30,
-        marginRight: 30,
-        marginTop: 20,
+        alignSelf: 'center',
+        marginVertical: 10,
+        width: '90%',
         height: 48,
-        borderRadius: 20,
+        borderRadius: 10,
         alignItems: "center",
         justifyContent: 'center'
     },
@@ -187,7 +215,10 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     map: {
-        width: Dimensions.get('window').width,
-        height: 400,
+        width: Dimensions.get('window').width - 40,
+        height: 300,
+        borderRadius: 20,
+        marginHorizontal: 20,
+        marginBottom: 20
     },
 })

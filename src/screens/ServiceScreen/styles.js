@@ -3,7 +3,8 @@ import { StyleSheet } from 'react-native';
 export default StyleSheet.create({
     root: {
         flex: 1,
-        //alignItems: 'center',
+        alignItems: 'center',
+        justifyContent: 'center',
         backgroundColor: 'white',
         
     },
@@ -19,20 +20,12 @@ export default StyleSheet.create({
         borderWidth: 1,
         fontWeight: 'bold'
     },
-    btnContainer: {
-        display: 'flex',
-        flexDirection: 'row',
-        justifyContent: 'space-around',
-        marginTop: 225,
-        marginLeft: 25,
-        flexDirection: 'column'
-    },
     button: {
         backgroundColor: '#1177FC',
-        borderRadius: 20,
+        borderRadius: 10,
         display: 'flex',
         margin: 10,
-        width: '85%'
+        width: '90%'
     },
     btnText: {
         color: 'white',

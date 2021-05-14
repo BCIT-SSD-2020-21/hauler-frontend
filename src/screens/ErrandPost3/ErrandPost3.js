@@ -1,154 +1,121 @@
-import React, { useState, setState } from 'react'
-import { Text, View, ScrollView, TextInput, SafeAreaView, Picker } from 'react-native'
+import React, { useState, useEffect } from 'react'
+import { Text, View} from 'react-native'
 import { StyleSheet } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
-import Slider from '@react-native-community/slider';
-import SelectDropOffProvince from '../../components/SelectDropOffProvince/SelectDropOffProvince';
+import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
+import { GOOGLE_MAP_API } from '@env';
+import {getOnePost} from '../../../network'
 
 export default function ErrandPost3({ navigation, route }) {
 
-    const [pickContactPerson, setPickContactPerson] = useState('')
-    const [pickUpPhoneNumber, setPickUpPhoneNumber] = useState('')
-    const [pickUpSpecialInstructions, setPickUpSpecialInstructions] = useState('')
-    const [dropOffContactPerson, setDropOffContactPerson] = useState('')
-    const [dropOffPhoneNumber, setDropOffPhoneNumber] = useState('')
-    const [dropOffSpecialInstructions, setDropOffSpecialInstructions] = useState('')
-    const [sliderValue, setSliderValue] = useState(50);
-    const { image, selectedweight, selectedquantity, postHeading, description, pickUpAddress,dropOffAddress } = route.params;
+  const [dropOffAddress, setdropOffAddress] = useState('')
+  const [dropOffCity, setDropOffCity] = useState('')
+  const [dropOffAddressLat, setDropOffAddressLat] = useState('')
+  const [dropOffAddressLng, setDropOffAddressLng] = useState('')
 
-    return (
-        <ScrollView>
-        <View style={styles.container}>
+  const { image, selectedweight, selectedquantity, postHeading, description, pickUpAddress, service, operation, postId, pickUpCity,pickUpAddressLat, pickUpAddressLng } = route.params;
 
-          <Text> ERRAND </Text>
-          <Text> PICK UP DETAILS </Text>
+  useEffect(() => {
+    (async () => {
+      if (operation === "edit") {
+        const post = await getOnePost(postId)
+        setdropOffAddress(post.dropOffAddress)
+        setDropOffCity(post.dropOffCity)
+        setDropOffAddressLat(post.dropOffAddressLat)
+        setDropOffAddressLng(post.dropOffAddressLng)
+      }
+    })()
+  }, [])
 
-          <TextInput style={styles.inputLine1} placeholder='Contact Person' 
-            onChangeText={(contactPerson) => {setPickContactPerson(contactPerson)}}
-            value={pickContactPerson}
-          />
-
-          <TextInput style={styles.inputLine1} placeholder='Phone Number' 
-            onChangeText={(phoneNumber) => {setPickUpPhoneNumber(phoneNumber)}}
-            value={pickUpPhoneNumber}
-          />
-
-          <TextInput style={styles.inputLine2} placeholder='Special Instructions' 
-            onChangeText={(specialInstructions) => setPickUpSpecialInstructions(specialInstructions)}
-            value={pickUpSpecialInstructions}
-          />
-
-          <Text> DROP OFF DETAILS </Text>
-
-          <TextInput style={styles.inputLine1} placeholder='Contact Person' 
-            onChangeText={(contactPerson) => {setDropOffContactPerson(contactPerson)}}
-            value={dropOffContactPerson}
-          />
-
-          <TextInput style={styles.inputLine1} placeholder='Phone Number' 
-            onChangeText={(phoneNumber) => {setDropOffPhoneNumber(phoneNumber)}}
-            value={dropOffPhoneNumber}
-          />
-
-          <Text style={styles.text}> Special Instructions : </Text>
-          <TextInput style={styles.inputLine2}  
-            onChangeText={(specialInstructions) => setDropOffSpecialInstructions(specialInstructions)}
-            value={dropOffSpecialInstructions}
-          />
-
-          <SafeAreaView style={{flex: 1}}>
-            <View style={styles.containerSlider}>
-                {/*Text to show slider value*/}
-                <Text style={{color: 'black'}}>
-                    Your Price Value : $ {sliderValue}
-                </Text>
-                {/*Slider with max, min, step and initial value*/}
-                <Slider
-                maximumValue={1000}
-                minimumValue={50}
-                minimumTrackTintColor="#307ecc"
-                maximumTrackTintColor="#000000"
-                step={1}
-                value={sliderValue}
-                onValueChange={
-                    (sliderValue) => setSliderValue(sliderValue)
-                }
-                />
-            </View>
-          </SafeAreaView>
-       
-         <View style={styles.btnContainer}>
-          <TouchableOpacity onPress={() => navigation.navigate('ErrandSummary', {image: image, selectedweight: selectedweight, selectedquantity: selectedquantity, postHeading: postHeading, description: description,pickUpAddress:pickUpAddress, dropOffAddress:dropOffAddress, pickContactPerson: pickContactPerson, pickUpPhoneNumber: pickUpPhoneNumber, pickUpSpecialInstructions: pickUpSpecialInstructions, pickUpSpecialInstructions: pickUpSpecialInstructions, dropOffContactPerson: dropOffContactPerson, dropOffPhoneNumber: dropOffPhoneNumber, dropOffSpecialInstructions: dropOffSpecialInstructions, sliderValue: sliderValue })} 
-          style={styles.button}>
-            <Text style={styles.buttonTitle}>Submit</Text>
-          </TouchableOpacity>
-          </View>
-        </View>
-        </ScrollView>
-    )
+  return (
+    <View style={styles.container}>
+      <Text style={styles.text}>Enter drop off location</Text>
+      <GooglePlacesAutocomplete
+        styles={{
+          textInput: {
+            backgroundColor: "#F5F5F5",
+            height: 44,
+            borderRadius: 10,
+            paddingVertical: 5,
+            paddingHorizontal: 10,
+            marginHorizontal: 20,
+            fontSize: 15,
+            flex: 1,
+          },
+          listView: {
+            paddingHorizontal: 20,
+          },
+        }}
+        placeholder={operation==="edit"? pickUpAddress : "Full Address"}
+        minLength={2}
+        fetchDetails={true}
+        onPress={(data, details) => { 
+          setdropOffAddress(details.formatted_address), 
+          setDropOffCity(details.vicinity),
+          setDropOffAddressLat(details.geometry.location.lat)
+          setDropOffAddressLng(details.geometry.location.lng)
+         }
+        }
+        value={dropOffAddress}
+        onFail={(error) => console.error(error)}
+        query={{
+          key: GOOGLE_MAP_API,
+          language: 'en', // language of the results
+        }}
+      />
+      <TouchableOpacity onPress={() => navigation.navigate('ErrandPost4', {
+        image: image,
+        selectedweight: selectedweight,
+        selectedquantity: selectedquantity,
+        postHeading: postHeading,
+        description: description,
+        pickUpAddress: pickUpAddress,
+        pickUpCity:pickUpCity,
+        pickUpAddressLat: pickUpAddressLat,
+        pickUpAddressLng: pickUpAddressLng,
+        dropOffAddress: dropOffAddress,
+        service: service,
+        dropOffCity:dropOffCity,
+        dropOffAddressLat: dropOffAddressLat,
+        dropOffAddressLng: dropOffAddressLng,
+        operation: operation,
+        postId: postId,
+      })}
+        style={styles.button} >
+        <Text style={styles.buttonTitle}>Next</Text>
+      </TouchableOpacity>
+    </View>
+  )
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    //alignItems: 'center',
-    marginVertical: 20
+    height: '100%',
+    width: '100%',
+    backgroundColor: 'white',
   },
-  screenHeading: {
-    fontSize: 30,
-    fontWeight: '500',
-    marginLeft: 20
+  text: {
+    color: '#BFBFBF',
+    marginLeft: 25,
+    fontWeight: 'bold',
+    marginTop: 20,
+    marginBottom: 10
   },
-  inputLine1: {
-    height: 25,
-    overflow: 'hidden',
-    marginTop: 10,
-    marginBottom: 10,
-    marginLeft: 20,
-    marginRight: 30,
-    paddingLeft: 16,
+  buttonTitle: {
+    color: 'white',
+    fontSize: 16,
+    fontWeight: "bold"
+  },
+  button: {
+    backgroundColor: '#0177FC',
+    alignSelf: 'center',
+    marginVertical: 10,
     width: '90%',
-    borderBottomWidth: 1.0,
-    borderColor: '#BFBFBF',
+    height: 48,
+    borderRadius: 10,
+    alignItems: "center",
+    justifyContent: 'center'
   },
-  inputLine2: {
-      height: 100,
-      width: '90%',
-      borderRadius: 5,
-      overflow: 'hidden',
-      marginTop: 10,
-      marginBottom: 10,
-      marginLeft: 20,
-      marginRight: 30,
-      paddingLeft: 16,
-      borderWidth: 1.0,
-      borderColor: '#BFBFBF'
-  },
-button: {
-  backgroundColor: '#0177FC',
-  marginLeft: 30,
-  marginRight: 30,
-  marginTop: 20,
-  height: 48,
-  borderRadius: 20,
-  alignItems: "center",
-  justifyContent: 'center'
-},
-buttonTitle: {
-  color: 'white',
-  fontSize: 16,
-  fontWeight: "bold"
-},
-text: {
-  color: '#BFBFBF',
-  marginLeft: 25,
-  fontWeight: 'bold',
-  marginTop: 20
-},
-containerSlider: {
-  flex: 1,
-  padding: 20,
-  justifyContent: 'center',
-  backgroundColor: '#ecf0f1',
-},
+
 })

@@ -1,85 +1,117 @@
-import React, { useState } from 'react'
-import { Text, View, ScrollView, TextInput, SafeAreaView, Picker, Dimensions} from 'react-native'
+import React, { useState, useEffect } from 'react'
+import { Text, View } from 'react-native'
 import { StyleSheet } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
-import { GooglePlacesAutocomplete, GooglePlacesDetailsQuery  } from 'react-native-google-places-autocomplete';
-import Constants from 'expo-constants';
-import {GOOGLE_MAP_API} from '@env';
-
-import SelectPickUpProvince from '../../components/SelectPickUpProvince/SelectPickUpProvince';
+import { GooglePlacesAutocomplete, GooglePlacesDetailsQuery } from 'react-native-google-places-autocomplete';
+import { GOOGLE_MAP_API } from '@env';
+import {getOnePost} from '../../../network'
 
 export default function ErrandPost2({ navigation, route }) {
 
-    const [pickUpAddress, setPickUpAddress] = useState('')
+  const [pickUpAddress, setPickUpAddress] = useState('')
+  const [pickUpCity, setPickUpCity] = useState('')
+  const [pickUpAddressLat, setPickUpAddressLat] = useState('')
+  const [pickUpAddressLng, setPickUpAddressLng] = useState('')
 
-    const {image, selectedweight, selectedquantity, postHeading, description} = route.params;
+  const { image, selectedweight, selectedquantity, postHeading, description, service, operation, postId } = route.params;
 
-   return (
-        // <SafeAreaView forceInset = {{top: 'always'}}>
-        <View style={styles.container}>
-          <Text>Enter your pick up location</Text>
-              <GooglePlacesAutocomplete
-                  placeholder="Full Address"
-                  minLength={2}
-                  fetchDetails= {true}
-                  onPress={(data, details) => {setPickUpAddress(details)}
-                     }
-                  value={pickUpAddress}
-                  onFail={(error) => console.error(error)} 
-                  query={{
-                    key: GOOGLE_MAP_API,
-                    language: 'en', // language of the results
-                  }}
-                />
+  useEffect(() => {
+    (async () => {
+      if (operation === "edit") {
+        const post = await getOnePost(postId)
+        setPickUpAddress(post.pickUpAddress)
+        setPickUpCity(post.pickUpCity)
+        setPickUpAddressLat(post.pickUpAddressLat)
+        setPickUpAddressLng(post.pickUpAddressLng)
+      }
+    })()
+  }, [])
 
+  return (
+    <View style={styles.container}>
+      <Text style={styles.text}> Enter pick up location </Text>
+      <GooglePlacesAutocomplete
+        styles={{
+          textInput: {
+            backgroundColor: "#F5F5F5",
+            height: 44,
+            borderRadius: 10,
+            paddingVertical: 5,
+            paddingHorizontal: 10,
+            marginHorizontal: 20,
+            fontSize: 15,
+            flex: 1,
+          },
+          listView: {
+            paddingHorizontal: 20,
+          },
+        }}
+        placeholder={operation==="edit"? pickUpAddress : "Full Address"}
+        minLength={2}
+        fetchDetails={true}
+        onPress={(data, details) => { 
+          setPickUpAddress(details.formatted_address), 
+          setPickUpCity(details.vicinity),
+          setPickUpAddressLat(details.geometry.location.lat)
+          setPickUpAddressLng(details.geometry.location.lng)
+         }
+        }
+        value={pickUpAddress}
+        onFail={(error) => console.error(error)}
+        query={{
+          key: GOOGLE_MAP_API,
+          language: 'en', // language of the results
+        }}
+      />
 
-
-              <View style={styles.btnContainer}>
-          <TouchableOpacity onPress={() => navigation.navigate('ErrandPost4', {image: image, selectedweight:  selectedweight,selectedquantity: selectedquantity, postHeading: postHeading, description: description, pickUpAddress: pickUpAddress})} 
-          style={styles.button} >
-              <Text style={styles.btnText}>Next</Text>
-            </TouchableOpacity>
-          </View>
-          </View>
-          // </SafeAreaView>
-    )
+      <TouchableOpacity onPress={() => navigation.navigate('ErrandPost3', {
+        image: image,
+        selectedweight: selectedweight,
+        selectedquantity: selectedquantity,
+        postHeading: postHeading,
+        description: description,
+        pickUpAddress: pickUpAddress,
+        service: service,
+        operation: operation,
+        postId: postId,
+        pickUpCity:pickUpCity,
+        pickUpAddressLat: pickUpAddressLat,
+        pickUpAddressLng: pickUpAddressLng
+      })}
+        style={styles.button} >
+        <Text style={styles.buttonTitle}>Next</Text>
+      </TouchableOpacity>
+    </View>
+  )
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 20,
-    paddingTop: Constants.statusBarHeight + 10,
-    backgroundColor: '#ecf0f1',
-  },
-
-  inputLine1: {
-    height: 40,
+    height: '100%',
     width: '100%',
-    borderRadius: 5,
-    overflow: 'hidden',
     backgroundColor: 'white',
-    marginTop: 10,
-    marginBottom: 10,
-    marginLeft: 30,
-    marginRight: 30,
-    paddingLeft: 16
-},
-btnContainer: {
-  display: 'flex',
-  flexDirection: 'row',
-  justifyContent: 'space-around',
-  marginTop: 30,
-},
-button: {
-  backgroundColor: '#0177FC',
-  borderRadius: 10,
-  display: 'flex',
-},
-btnText: {
-  color: 'white',
-  fontSize: 20,
-  paddingVertical: 10,
-  paddingHorizontal: 50,
-},
+  },
+  text: {
+    color: '#BFBFBF',
+    marginLeft: 25,
+    fontWeight: 'bold',
+    marginTop: 20,
+    marginBottom: 10
+  },
+  buttonTitle: {
+    color: 'white',
+    fontSize: 16,
+    fontWeight: "bold"
+  },
+  button: {
+    backgroundColor: '#0177FC',
+    alignSelf: 'center',
+    marginVertical: 10,
+    width: '90%',
+    height: 48,
+    borderRadius: 10,
+    alignItems: "center",
+    justifyContent: 'center'
+  },
 })

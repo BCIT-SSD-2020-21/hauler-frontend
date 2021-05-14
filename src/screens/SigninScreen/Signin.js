@@ -16,7 +16,7 @@ export default function Signin({ navigation }) {
             setError("")
             setLoading(true)
             await signin(email, password)
-            navigation.navigate('ServiceProviderNavigator')
+            navigation.navigate('MyPostList')
         } catch {
             setError("Failed to Login")
         }
@@ -30,7 +30,7 @@ export default function Signin({ navigation }) {
                         style={{ flex: 1, width: '100%' }}>
                         <Image source={require('../../../assets/haulerLogo.png')} style={styles.logo} />
                         <Text > {error && alert(error)}</Text>
-
+                    <View style={styles.display}>
                         <Text style={styles.text1}> Email : </Text>
                             <TextInput
                                 style={styles.input}
@@ -64,6 +64,7 @@ export default function Signin({ navigation }) {
                                 Current user : {currentUser && currentUser.email}
                             </Text>
                         </View>
+                        </View>
                     </View>
                 </View>
             </ScrollView>
@@ -76,10 +77,10 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     logo: {
-        width: 200,
-        height: 200,
+        width: 160,
+        height: 160,
         alignSelf: 'center',
-        marginTop: 150,
+        marginTop: 100,
     },
     input: {
         height: 25,
@@ -99,19 +100,19 @@ const styles = StyleSheet.create({
     },
     button: {
         backgroundColor: '#0177FC',
-        marginLeft: 38,
-        marginRight: 38,
-        marginTop: 20,
+        alignSelf: 'center',
+        marginVertical: 10,
+        width: '90%',
         height: 48,
-        borderRadius: 20,
+        borderRadius: 10,
         alignItems: "center",
         justifyContent: 'center'
-    },
-    buttonTitle: {
+      },
+      buttonTitle: {
         color: 'white',
         fontSize: 16,
         fontWeight: "bold"
-    },
+      },
     option: {
         flex: 1,
         alignItems: "center",
@@ -134,5 +135,8 @@ const styles = StyleSheet.create({
         color: '#BFBFBF',
         marginLeft: 35,
         marginTop: 20
+    },
+    display: {
+        paddingTop: 120
     }
 })
