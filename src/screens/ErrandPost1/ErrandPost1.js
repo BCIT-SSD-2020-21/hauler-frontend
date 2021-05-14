@@ -168,8 +168,6 @@ const styles = StyleSheet.create({
   imageDisplay: {
     width: 200,
     height: 200,
-    marginLeft: 50,
-    marginTop: 5,
     resizeMode: 'contain',
   },
   imageRow: {
