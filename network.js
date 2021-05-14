@@ -50,7 +50,6 @@ export async function getAllPosts(uid) {
 }
 
 //==================================== To add new post ===============================================//
-
 export async function postItem(
   uid,
   service,
@@ -183,11 +182,12 @@ export async function addUserResponse(
   return res
 }
 
-//=============================== To change post visibility =====================================================//
-export async function updatePostVisibility(postId, actionPrice) {
+//=============================== To change post visibility ==========================================//
+export async function updatePostVisibility(postId, actionPrice,serviceProviderId) {
   try {
     const res = await axios.post(`${url}/api/posts/one/${postId}`,{
-      price: actionPrice
+      price: actionPrice,
+      serviceProviderId:  serviceProviderId
     });
     console.log('Hide post');
     return res
@@ -195,7 +195,7 @@ export async function updatePostVisibility(postId, actionPrice) {
     console.log(err);
   }
 }
-//===================================To Get One User ======================================================//
+//===================================To Get One User =================================================//
 export async function getOneUser(uid) {
   try{
     const res = await axios.get(`${url}/api/users/${uid}`);
@@ -205,7 +205,7 @@ export async function getOneUser(uid) {
   }
 }
 
-//======================================= To Update User Information ======================================//
+//================================= To Update User Information ======================================//
 export async function updateOneUser(
   uid,
   firstName,
@@ -237,6 +237,73 @@ export async function updateOneUser(
       cvv: cvv
     });
     return res.data;
+  }catch (err) {
+    console.log(err);
+  }
+}
+
+//==================================== To delete post ===============================================//
+export async function deleteOnePost(postId) {
+  try{
+    const res = await axios.delete(`${url}/api/posts/${postId}`);
+    return res.data
+  }catch (err) {
+    console.log(err);
+  }
+}
+
+//==================================== To edit Post ==================================================//
+export async function updateOnePost(
+  postId,
+   // service,
+   postHeading,
+   postDescription,
+   loadWeight,
+   numberOfItems,
+   // imageUrl,
+   price,
+   pickUpAddress,
+   pickUpCity,
+   pickUpAddressLat,
+   pickUpAddressLng,
+   pickUpContactPerson,
+   pickUpContactNumber,
+   pickUpSpecialInstruction,
+   dropOffAddress,
+   dropOffCity,
+   dropOffAddressLat,
+   dropOffAddressLng,
+   dropOffContactPerson,
+   dropOffContactNumber,
+   dropOffSpecialInstruction,
+   distance
+  ) {
+  try{
+    const res = await axios.post(`${url}/api/posts/${postId}`,{
+      // service: service,
+      postHeading: postHeading,
+      postDescription: postDescription,
+      loadWeight: loadWeight,
+      numberOfItems: numberOfItems,
+      // imageUrl: imageUrl,
+      price: price,
+      pickUpAddress: pickUpAddress,
+      pickUpCity: pickUpCity,
+      pickUpAddressLat: pickUpAddressLat,
+      pickUpAddressLng: pickUpAddressLng,
+      pickUpContactPerson: pickUpContactPerson,
+      pickUpContactNumber: pickUpContactNumber,
+      pickUpSpecialInstruction: pickUpSpecialInstruction,
+      dropOffAddress: dropOffAddress,
+      dropOffCity: dropOffCity,
+      dropOffAddressLat: dropOffAddressLat,
+      dropOffAddressLng: dropOffAddressLng,
+      dropOffContactPerson: dropOffContactPerson,
+      dropOffContactNumber: dropOffContactNumber,
+      dropOffSpecialInstruction: dropOffSpecialInstruction,
+      distance:distance
+    });
+    return res.data
   }catch (err) {
     console.log(err);
   }
