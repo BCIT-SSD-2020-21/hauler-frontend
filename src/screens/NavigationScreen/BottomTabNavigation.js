@@ -2,8 +2,8 @@ import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { FontAwesome, MaterialIcons } from '@expo/vector-icons';
 import HomeNavigator from './HomeNavigator';
-import Profile1 from '../ProfileScreen/Profile1';
 import ServiceScreenNavigator from './ServiceScreenNavigator';
+import ProfileNavigator from './ProfileNavigator';
 
 const BottomTab = createBottomTabNavigator();
 
@@ -39,7 +39,7 @@ const BottomTabNavigation = () => {
             />
             <BottomTab.Screen
                 name='Profile'
-                component={Profile1}
+                component={ProfileNavigator}
                 options={{
                     tabBarIcon: () =>
                     <FontAwesome name="user" size={25} color="black" />
