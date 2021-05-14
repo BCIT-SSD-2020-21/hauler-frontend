@@ -114,7 +114,7 @@ export default function ErrandSummary({ navigation, route }) {
                             dropOffPhoneNumber,
                             dropOffSpecialInstructions,
                             distance
-                        ); navigation.navigate('Confirmation')
+                        ); navigation.navigate('Confirmation', { confirm: 'Post' })
                     }}><Text style={styles.buttonTitle}> Post the Job </Text></TouchableOpacity>
                     :
                     <TouchableOpacity style={styles.button}
@@ -146,7 +146,7 @@ export default function ErrandSummary({ navigation, route }) {
                                 distance,
                             );
                             if (res === 'Post updated') {
-                                navigation.navigate('Confirmation')
+                                navigation.navigate('Confirmation', { confirm: 'Edit' })
                             } else {
                                 setError(res)
                             }

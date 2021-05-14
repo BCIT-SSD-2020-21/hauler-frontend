@@ -23,7 +23,7 @@ export default function OfferDetails({ navigation, route }) {
             offer,
             true)
         setReset(!reset);
-        // navigation.navigate('OfferConfirmation')
+        navigation.navigate('Confirmation', { confirm: 'Offer' })
         console.log("Offer sent")
     }
     const onDecline = () => {

@@ -1,23 +1,42 @@
 import React from 'react';
-import { Text, View, ScrollView, TextInput, Image } from 'react-native'
+import { Text, View, Image } from 'react-native'
 import { StyleSheet } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 
-export default function Confirmation({ navigation }) {
-    return (
-        
-            <View style={styles.container}>
-                <View style={styles.imageContainer}>
-                    <Image source={require('../../../assets/Hauler.Mascot.png')} style={styles.imageDisplay}/>
-                </View>
-                <View style={styles.textContainer}>
+export default function Confirmation({ navigation, route }) {
+    const { confirm } = route.params;
+
+    const message = () => {
+        if (confirm === 'Post') {
+            return (
                 <Text style={styles.text}>Job Posted Successfully!!!</Text>
+            )
+        }
+        else if (confirm === 'Edit') {
+            return (
+                <Text style={styles.text}>Post Edited Successfully!!!</Text>
+            )
+        }
+        else {
+            return (
+                <Text style={styles.text}>Offer sent Successfully!!!</Text>
+            )
+        }
+    }
+
+    return (
+        <View style={styles.container}>
+            <View style={styles.imageContainer}>
+                <Image source={require('../../../assets/Hauler.Mascot.png')} style={styles.imageDisplay} />
+            </View>
+            <View style={styles.textContainer}>
+                {message()}
                 <Text style={styles.text}>Thank You!</Text>
-                
-                </View>
-            
-                <TouchableOpacity onPress={() => navigation.navigate('Home')} style={styles.button}><Text style={styles.buttonTitle}>Return To My Job List </Text></TouchableOpacity>
-                </View>
+
+            </View>
+
+            <TouchableOpacity onPress={() => navigation.navigate('Home', { screen: 'MyPostList'})} style={styles.button}><Text style={styles.btnText}>Return To My Job List </Text></TouchableOpacity>
+        </View>
     )
 }
 
@@ -54,7 +73,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
     },
-    imageDisplay:{
+    imageDisplay: {
         width: 380,
         height: 380,
         resizeMode: 'center',

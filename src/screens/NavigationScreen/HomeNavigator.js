@@ -11,6 +11,7 @@ import OfferDetails from '../OfferDetailsScreen/OfferDetails';
 import PostDetails from '../PostDetailsScreen/PostDetails';
 import ErrandScreenNavigator from './ErrandNavigator';
 import { Context } from '../../context/ContextProvider';
+import Confirmation from '../ConfirmationScreen/Confirmation';
 
 const HomeStack = createStackNavigator();
 
@@ -71,6 +72,11 @@ const HomeNavigator = () => {
                     <HomeStack.Screen
                         name='ErrandNavigator'
                         component={ErrandScreenNavigator}
+                        options={{ headerRight: () => <MenuIcon /> }}
+                    />
+                    <HomeStack.Screen
+                        name='Confirmation'
+                        component={Confirmation}
                         options={{ headerRight: () => <MenuIcon /> }}
                     />
                     </>

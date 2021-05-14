@@ -50,7 +50,7 @@ export default function AddJunkSummary({ navigation, route }) {
                                 pickContactPerson,
                                 pickUpPhoneNumber,
                                 pickUpSpecialInstructions,
-                            ); navigation.navigate('Confirmation')
+                            ); navigation.navigate('Confirmation', { confirm: 'Post' })
                         }}><Text style={styles.buttonTitle}>Post a Job</Text></TouchableOpacity> :
                     <TouchableOpacity style={styles.button}
                         onPress={async () => {
@@ -73,7 +73,7 @@ export default function AddJunkSummary({ navigation, route }) {
                                 pickUpSpecialInstructions,
                             );
                             if (res === 'Post updated') {
-                                navigation.navigate('Confirmation')
+                                navigation.navigate('Confirmation', { confirm: 'Edit' })
                             } else {
                                 setError(res)
                             }
