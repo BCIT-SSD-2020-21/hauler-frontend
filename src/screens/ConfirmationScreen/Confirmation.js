@@ -1,49 +1,66 @@
 import React from 'react';
-import { Text, View, ScrollView, TextInput } from 'react-native'
+import { Text, View, ScrollView, TextInput, Image } from 'react-native'
 import { StyleSheet } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 
 export default function Confirmation({ navigation }) {
     return (
-        <ScrollView>
+        
             <View style={styles.container}>
-                <Text style={styles.text}>Successfully Posted !!</Text>
+                <View style={styles.imageContainer}>
+                    <Image source={require('../../../assets/Hauler.Mascot.png')} style={styles.imageDisplay}/>
+                </View>
+                <View style={styles.textContainer}>
+                <Text style={styles.text}>Job Posted Successfully!!!</Text>
                 <Text style={styles.text}>Thank You!</Text>
-                <Text style={styles.text1}>Your job has been posted</Text>
-            </View>
-            <View style={styles.btnContainer}>
-                <TouchableOpacity onPress={() => navigation.navigate('Home')} style={styles.button}><Text style={styles.btnText}>Return To My Job List </Text></TouchableOpacity>
-            </View>
-        </ScrollView>
+                
+                </View>
+            
+                <TouchableOpacity onPress={() => navigation.navigate('Home')} style={styles.button}><Text style={styles.buttonTitle}>Return To My Job List </Text></TouchableOpacity>
+                </View>
     )
 }
 
 const styles = StyleSheet.create({
     container: {
+        backgroundColor: 'white',
         flex: 1,
-        alignItems: 'center',
-        marginTop: 150,
+        width: '100%',
+        // height: 650,
+        paddingVertical: 10
     },
     text: {
         fontWeight: 'bold',
         alignItems: 'center',
-        fontSize: 30,
-    },
-    btnContainer: {
-        display: 'flex',
-        flexDirection: 'row',
-        justifyContent: 'space-around',
-        marginTop: 30,
+        fontSize: 25,
     },
     button: {
         backgroundColor: '#0177FC',
-        borderRadius: 10,
-        display: 'flex',
+        marginLeft: 30,
+        marginRight: 30,
+        marginTop: 30,
+        height: 48,
+        borderRadius: 20,
+        alignItems: "center",
+        justifyContent: 'center'
     },
-    btnText: {
+    buttonTitle: {
         color: 'white',
-        fontSize: 20,
-        paddingVertical: 10,
-        paddingHorizontal: 50,
+        fontSize: 16,
+        fontWeight: "bold"
     },
+    imageContainer: {
+        // flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    imageDisplay:{
+        width: 380,
+        height: 380,
+        resizeMode: 'center',
+        marginTop: 5,
+    },
+    textContainer: {
+        alignItems: 'center',
+    }
 })
