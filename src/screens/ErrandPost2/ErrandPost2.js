@@ -1,9 +1,10 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Text, View } from 'react-native'
 import { StyleSheet } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { GooglePlacesAutocomplete, GooglePlacesDetailsQuery } from 'react-native-google-places-autocomplete';
 import { GOOGLE_MAP_API } from '@env';
+import {getOnePost} from '../../../network'
 
 export default function ErrandPost2({ navigation, route }) {
 

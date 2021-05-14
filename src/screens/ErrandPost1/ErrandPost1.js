@@ -4,6 +4,7 @@ import { StyleSheet } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
 import SelectWeight from '../../components/SelectWeight/SelectWeight'
 import { Ionicons } from '@expo/vector-icons';
+import { getOnePost } from '../../../network';
 
 export default function ErrandPost1({ navigation, route }) {
 
