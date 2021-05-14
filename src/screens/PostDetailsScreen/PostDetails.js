@@ -32,7 +32,7 @@ export default function PostDetails({ navigation, route }) {
         setError('')
         const res = await deleteOnePost(postId)
         if (res === "Post deleted") {
-            navigation.navigate("MyPostList")
+            navigation.navigate('Confirmation', { confirm: 'delete' })
         } else {
             setError(res)
         }
@@ -131,7 +131,12 @@ export default function PostDetails({ navigation, route }) {
                             <Text style={styles.buttonTitle}>DELETE POST</Text>
                         </TouchableOpacity>
                     </View>
-                    : <View></View>
+                    : <TouchableOpacity
+                    style={styles.listButton}
+                    onPress={() => navigation.navigate('MyPostList')}
+                    >
+                    <Text style={styles.buttonTitle}>My Post List</Text>
+                </TouchableOpacity>
 
                 }
 
@@ -203,4 +208,14 @@ const styles = StyleSheet.create({
     phoneButton: {
         marginLeft: '6%'
     },
+    listButton:{
+        backgroundColor: '#0077FC',
+        marginVertical: 10,
+        height: 48,
+        borderRadius: 10,
+        alignItems: 'center',
+        justifyContent: 'center',
+        width: '90%',
+        marginHorizontal: '5%',
+    }
 })

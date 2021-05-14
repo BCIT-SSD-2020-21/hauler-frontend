@@ -16,7 +16,7 @@ const ProfileNavigator = () => {
             <ProfileStack.Screen
                 name='Profile1'
                 component={Profile1}
-                options={{ headerRight: () => <MenuIcon /> }}
+                options={{headerTitle: 'Profile', headerRight: () => <MenuIcon /> }}
             />
         </ProfileStack.Navigator>
     );

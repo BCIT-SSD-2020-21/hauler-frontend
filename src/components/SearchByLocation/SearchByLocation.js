@@ -22,7 +22,7 @@ export default function SearchByLocation({ location, setLocation, searchLocation
                     inputAndroid: {
                         fontSize: 14,
                         paddingHorizontal: 10,
-                        paddingVertical: 8,
+                        paddingVertical: 20,
                         color: 'black',
                     },
                 }}

@@ -23,7 +23,7 @@ export default function OfferDetails({ navigation, route }) {
             offer,
             true)
         setReset(!reset);
-        // navigation.navigate('OfferConfirmation')
+        navigation.navigate('Confirmation', { confirm: 'Offer' })
         console.log("Offer sent")
     }
     const onDecline = () => {
@@ -41,6 +41,7 @@ export default function OfferDetails({ navigation, route }) {
             true);
             setReset(!reset);
         setModalVisible(!modalVisible)
+        navigation.navigate('Confirmation', { confirm: 'decline' })
     }
     const onAccept = async () => {
         await addUserResponse(
@@ -54,8 +55,7 @@ export default function OfferDetails({ navigation, route }) {
             );
             setReset(!reset);
         await updatePostVisibility(postId, actionPrice, serviceProviderId);
-        console.log("Offer Accepted")
-        // navigation.navigate('JobConfirmation', { posts: post, actionPrice: actionPrice })
+        navigation.navigate('PostDetails', { postId: postId,  })
     }
 
     useEffect(() => {
