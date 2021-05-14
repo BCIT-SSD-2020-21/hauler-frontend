@@ -8,12 +8,12 @@ export default function Confirmation({ navigation }) {
         
             <View style={styles.container}>
                 <View style={styles.imageContainer}>
-                    <Image source={require('../../../assets/pic1.png')} style={styles.imageDisplay}/>
+                    <Image source={require('../../../assets/Hauler.Mascot.png')} style={styles.imageDisplay}/>
                 </View>
                 <View style={styles.textContainer}>
-                <Text style={styles.text}>Successfully Posted !!</Text>
+                <Text style={styles.text}>Job Posted Successfully!!!</Text>
                 <Text style={styles.text}>Thank You!</Text>
-                <Text style={styles.text1}>Your job has been posted</Text>
+                
                 </View>
             
                 <TouchableOpacity onPress={() => navigation.navigate('Home')} style={styles.button}><Text style={styles.buttonTitle}>Return To My Job List </Text></TouchableOpacity>
@@ -32,7 +32,7 @@ const styles = StyleSheet.create({
     text: {
         fontWeight: 'bold',
         alignItems: 'center',
-        fontSize: 28,
+        fontSize: 25,
     },
     button: {
         backgroundColor: '#0177FC',
@@ -55,13 +55,12 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     imageDisplay:{
-        width: 200,
-        height: 200,
-        resizeMode: 'contain',
-        marginTop: 50 
+        width: 380,
+        height: 380,
+        resizeMode: 'center',
+        marginTop: 5,
     },
     textContainer: {
         alignItems: 'center',
-        marginTop: 60
     }
 })

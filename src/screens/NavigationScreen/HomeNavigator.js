@@ -19,7 +19,7 @@ const HomeStack = createStackNavigator();
 const HomeNavigator = () => {
     return (
         <HomeStack.Navigator
-            initialRouteName='MyPostList'
+            initialRouteName='Signin'
             screenOptions={{
                 headerShown: true,
                 title: 'Hauler',
