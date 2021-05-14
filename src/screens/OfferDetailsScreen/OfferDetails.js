@@ -41,6 +41,7 @@ export default function OfferDetails({ navigation, route }) {
             true);
             setReset(!reset);
         setModalVisible(!modalVisible)
+        navigation.navigate('Confirmation', { confirm: 'decline' })
     }
     const onAccept = async () => {
         await addUserResponse(

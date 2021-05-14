@@ -32,7 +32,7 @@ export default function PostDetails({ navigation, route }) {
         setError('')
         const res = await deleteOnePost(postId)
         if (res === "Post deleted") {
-            navigation.navigate("MyPostList")
+            navigation.navigate('Confirmation', { confirm: 'delete' })
         } else {
             setError(res)
         }

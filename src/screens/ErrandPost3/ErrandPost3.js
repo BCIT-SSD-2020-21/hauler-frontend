@@ -46,7 +46,7 @@ export default function ErrandPost3({ navigation, route }) {
             paddingHorizontal: 20,
           },
         }}
-        placeholder="Full Address"
+        placeholder={operation==="edit"? pickUpAddress : "Full Address"}
         minLength={2}
         fetchDetails={true}
         onPress={(data, details) => { 

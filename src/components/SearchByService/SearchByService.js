@@ -22,7 +22,7 @@ export default function SearchByService({ service, setService, searchService }) 
                     inputAndroid: {
                         fontSize: 14,
                         paddingHorizontal: 10,
-                        paddingVertical: 8,
+                        paddingVertical: 20,
                         color: 'black'
                     },
                 }}
@@ -43,6 +43,6 @@ const styles = StyleSheet.create({
         width: '90%',
         borderRadius: 10,
         backgroundColor: '#F5F5F5',
-        marginVertical: 5
+        marginVertical: 10
     }
 })

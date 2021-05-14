@@ -17,13 +17,23 @@ export default function Confirmation({ navigation, route }) {
                 <Text style={styles.text}>Post Edited Successfully!!!</Text>
             )
         }
+        else if (confirm === 'Offer') {
+            return (
+                <Text style={styles.text}>Offer Sent Successfully!!!</Text>
+            )
+        }
+        else if (confirm === 'delete') {
+            return (
+                <Text style={styles.text}>Post Deleted Successfully!!!</Text>
+            )
+        }
         else {
             return (
-                <Text style={styles.text}>Offer sent Successfully!!!</Text>
+                <Text style={styles.text}>Offer Declined!!!</Text>
             )
         }
     }
-
+    
     return (
         <View style={styles.container}>
             <View style={styles.imageContainer}>
@@ -59,11 +69,11 @@ const styles = StyleSheet.create({
         marginRight: 30,
         marginTop: 30,
         height: 48,
-        borderRadius: 20,
+        borderRadius: 10,
         alignItems: "center",
         justifyContent: 'center'
     },
-    buttonTitle: {
+    btnText: {
         color: 'white',
         fontSize: 16,
         fontWeight: "bold"

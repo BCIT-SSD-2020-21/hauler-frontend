@@ -67,12 +67,12 @@ const HomeNavigator = () => {
                     <HomeStack.Screen
                         name='AddJunkNavigator'
                         component={AddJunkNavigator}
-                        options={{ headerRight: () => <MenuIcon /> }}
+                        options={{ headerShown: false }}
                     />
                     <HomeStack.Screen
                         name='ErrandNavigator'
                         component={ErrandScreenNavigator}
-                        options={{ headerRight: () => <MenuIcon /> }}
+                        options={{ headerShown: false }}
                     />
                     <HomeStack.Screen
                         name='Confirmation'
