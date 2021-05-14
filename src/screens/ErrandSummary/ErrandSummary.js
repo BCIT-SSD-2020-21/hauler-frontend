@@ -160,8 +160,8 @@ export default function ErrandSummary({ navigation, route }) {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        //alignItems: 'center',
-        marginVertical: 20
+        minHeight: 600,
+        backgroundColor: 'white',
     },
     screenHeading: {
         fontSize: 30,
@@ -215,8 +215,10 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     map: {
-        width: Dimensions.get('window').width - 30,
+        width: Dimensions.get('window').width - 40,
         height: 300,
         borderRadius: 20,
+        marginHorizontal: 20,
+        marginBottom: 20
     },
 })

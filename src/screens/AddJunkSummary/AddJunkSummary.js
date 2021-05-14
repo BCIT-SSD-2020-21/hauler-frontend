@@ -89,7 +89,7 @@ const styles = StyleSheet.create({
         backgroundColor: 'white',
         flex: 1,
         width: '100%',
-        height: '100%',
+        minHeight: 600,
         paddingVertical: 10
     },
     button: {

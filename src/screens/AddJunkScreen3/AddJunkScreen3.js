@@ -98,7 +98,7 @@ export default function AddJunkScreen3({ navigation, route }) {
 const styles = StyleSheet.create({
     container: {
         display: 'flex',
-        height: 600,
+        minHeight: 600,
         width: '100%',
         backgroundColor: 'white',
     },

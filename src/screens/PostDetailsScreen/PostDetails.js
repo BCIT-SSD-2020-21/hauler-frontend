@@ -30,7 +30,7 @@ export default function PostDetails({ navigation, route }) {
 
     const onDeletePress = async () => {
         setError('')
-        res = await deleteOnePost(postId)
+        const res = await deleteOnePost(postId)
         if (res === "Post deleted") {
             navigation.navigate("MyPostList")
         } else {
@@ -53,6 +53,31 @@ export default function PostDetails({ navigation, route }) {
         })()
     }, [])
 
+    const postComponent = () => {
+        if (!! posts ){
+        return (
+            <PostInfo
+                image=''
+                selectedweight={posts.loadWeight}
+                selectedquantity={posts.numberOfItems}
+                postHeading={posts.postHeading}
+                description={posts.postDescription}
+                pickUpAddress={posts.pickUpAddress}
+                pickContactPerson={posts.pickUpContactPerson}
+                pickUpPhoneNumber={posts.pickUpContactNumber}
+                pickUpSpecialInstructions={posts.pickUpSpecialInstruction}
+                sliderValue={posts.price}
+                dropOffAddress={posts.dropOffAddress && posts.dropOffAddress}
+                dropOffContactPerson={posts.dropOffContactPerson && posts.dropOffContactPerson}
+                dropOffContactNumber={posts.dropOffContactNumber && posts.dropOffContactNumber}
+                dropOffSpecialInstruction={posts.dropOffSpecialInstruction && posts.dropOffSpecialInstruction}
+                distance={posts.distance && posts.distance}
+            />
+        )
+        }
+        return
+
+    }
     return (
         <ScrollView>
             <View style={styles.container}>
@@ -92,36 +117,16 @@ export default function PostDetails({ navigation, route }) {
                             </View>
 
                         </Card></View> : <View></View>}
-                <Text style={styles.postinfo}>
-                    {posts &&
-                        <PostInfo
-                            image=''
-                            selectedweight={posts.loadWeight}
-                            selectedquantity={posts.numberOfItems}
-                            postHeading={posts.postHeading}
-                            description={posts.postDescription}
-                            pickUpAddress={posts.pickUpAddress}
-                            pickContactPerson={posts.pickUpContactPerson}
-                            pickUpPhoneNumber={posts.pickUpContactNumber}
-                            pickUpSpecialInstructions={posts.pickUpSpecialInstruction}
-                            sliderValue={posts.price}
-                            dropOffAddress={posts.dropOffAddress && posts.dropOffAddress}
-                            dropOffContactPerson={posts.dropOffContactPerson && posts.dropOffContactPerson}
-                            dropOffContactNumber={posts.dropOffContactNumber && posts.dropOffContactNumber}
-                            dropOffSpecialInstruction={posts.dropOffSpecialInstruction && posts.dropOffSpecialInstruction}
-                            distance={posts.distance && posts.distance}
-                        />
-                    }
-                </Text>
+                {postComponent()}
                 {posts && posts.status === "Active" ?
                     <View style={styles.buttonContainer}>
                         <TouchableOpacity
-                            style={[styles.button, styles.acceptButton]}
+                            style={[styles.button, styles.editButton]}
                             onPress={() => onEditPressed()}>
                             <Text style={styles.buttonTitle}>EDIT POST</Text>
                         </TouchableOpacity>
                         <TouchableOpacity
-                            style={[styles.button, styles.declineButton]}
+                            style={[styles.button, styles.deleteButton]}
                             onPress={() => onDeletePress()}>
                             <Text style={styles.buttonTitle}>DELETE POST</Text>
                         </TouchableOpacity>
@@ -142,8 +147,8 @@ const styles = StyleSheet.create({
         flex: 1,
         paddingBottom: '2%',
         width: '100%',
-        height: '100%',
-        paddingVertical: 10
+        minHeight: 600,
+        paddingVertical: 10,
     },
     buttonContainer: {
         width: '100%',
@@ -162,22 +167,16 @@ const styles = StyleSheet.create({
         width: '46%',
         marginHorizontal: '2%',
     },
-    offerButton: {
-        backgroundColor: '#E0E0E0',
-    },
-    acceptButton: {
+    editButton: {
         backgroundColor: '#0077FC',
     },
-    declineButton: {
+    deleteButton: {
         backgroundColor: '#DE0303',
     },
     buttonTitle: {
         color: 'white',
         fontSize: 16,
         fontWeight: "bold"
-    },
-    offerButtonTitle: {
-        color: 'black'
     },
     title: {
         marginHorizontal: 10,
@@ -203,5 +202,5 @@ const styles = StyleSheet.create({
     },
     phoneButton: {
         marginLeft: '6%'
-    }
+    },
 })

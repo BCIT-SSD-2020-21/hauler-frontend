@@ -78,6 +78,7 @@ export default function ErrandPost1({ navigation, route }) {
 
         <Text style={styles.text}> Post Description : </Text>
         <TextInput style={styles.inputLine1}
+        multiline
           onChangeText={(description) => { setDescription(description) }}
           value={description}
         />
@@ -130,7 +131,7 @@ export default function ErrandPost1({ navigation, route }) {
 const styles = StyleSheet.create({
   container: {
     display: 'flex',
-    height: 600,
+    minHeight: 600,
     width: '100%',
     backgroundColor: 'white',
   },

@@ -48,6 +48,7 @@ export default function ErrandPost4({ navigation, route }) {
           />
           <Text style={styles.text}>Pick up instructions</Text>
           <TextInput style={styles.inputLine1} 
+          multiline
             onChangeText={(specialInstructions) => setPickUpSpecialInstructions(specialInstructions)}
             value={pickUpSpecialInstructions}
           />
@@ -64,7 +65,8 @@ export default function ErrandPost4({ navigation, route }) {
             value={dropOffPhoneNumber}
           />
           <Text style={styles.text}> Special Instructions : </Text>
-          <TextInput style={styles.inputLine1}  
+          <TextInput style={styles.inputLine1} 
+          multiline 
             onChangeText={(specialInstructions) => setDropOffSpecialInstructions(specialInstructions)}
             value={dropOffSpecialInstructions}
           />
@@ -131,7 +133,7 @@ const styles = StyleSheet.create({
   // },
   container: {
     display: 'flex',
-    height: 900,
+    minHeight: 600,
     width: '100%',
     backgroundColor: 'white',
 },
