@@ -89,6 +89,7 @@ export default function ErrandSummary({ navigation, route }) {
                         />
                     </MapView>
                 </View>
+                
                     <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('ErrandPost1')}><Text style={styles.buttonTitle}> Edit </Text></TouchableOpacity>
                     
                     <View>
@@ -128,7 +129,9 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         //alignItems: 'center',
-        marginVertical: 20
+        marginVertical: 20,
+        backgroundColor: 'white',
+        
     },
     screenHeading: {
         fontSize: 30,
@@ -182,8 +185,11 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     map: {
-        width: Dimensions.get('window').width - 30,
+        width: Dimensions.get('window').width,
         height: 300,
         borderRadius: 20,
+        marginTop: 20,
+        paddingLeft: 10,
+        paddingRight:10
     },
 })
