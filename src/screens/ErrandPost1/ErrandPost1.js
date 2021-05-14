@@ -11,7 +11,7 @@ export default function ErrandPost1({ navigation, route }) {
   const { service, operation, postId } = route.params;
   const [selectedweight, setSelectedWeight] = useState('')
   const [selectedquantity, setSelectedQuantity] = useState(1)
-  const [image, setImage] = useState('');
+  const [image, setImage] = useState(null);
   const [postHeading, setPostHeading] = useState('')
   const [description, setDescription] = useState('')
 
@@ -55,7 +55,7 @@ export default function ErrandPost1({ navigation, route }) {
       allowsEditing: true,
       aspect: [1, 1],
       quality: 1,
-      base64: true,
+      // base64: true,
       //allowsMultipleSelection: true,
     });
 
@@ -105,11 +105,10 @@ export default function ErrandPost1({ navigation, route }) {
           </TouchableOpacity>
         </View>
 
-        <View>
-          <Text>
+        <View style= {styles.imageContainer}>
             {image && <Image source={{ uri: image }} style={styles.imageDisplay} />}
-          </Text>
         </View>
+        
 
         <View style={styles.footerContainer}>
           <TouchableOpacity onPress={() => navigation.navigate('ErrandPost2', {
