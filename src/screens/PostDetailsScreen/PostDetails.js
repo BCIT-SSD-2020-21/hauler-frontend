@@ -17,8 +17,14 @@ export default function PostDetails({ navigation, route }) {
     const { postId } = route.params;
 
     const onEditPressed = () => {
-        if(posts.service === "Junk"){
-            navigation.navigate('AddJunkNavigator',{ screen: 'AddItemScreen',  params: { operation: "edit" , postId: posts._id}})
+        if (posts.service === "Junk") {
+            navigation.navigate('AddJunkNavigator', { screen: 'AddItemScreen', params: { operation: "edit", postId: posts._id } })
+        }
+        else if (posts.service === "Moving") {
+            navigation.navigate('ErrandNavigator', { screen: 'ErrandPost1', params: { service: "Moving", operation: "edit", postId: posts._id } })
+        }
+        else if (posts.service === "Errand") {
+            navigation.navigate('ErrandNavigator', { screen: 'ErrandPost1', params: { service: "Errand", operation: "edit", postId: posts._id } })
         }
     }
 
@@ -27,9 +33,9 @@ export default function PostDetails({ navigation, route }) {
         res = await deleteOnePost(postId)
         if (res === "Post deleted") {
             navigation.navigate("MyPostList")
-        } else (
+        } else {
             setError(res)
-        )
+        }
     }
     const onCallPress = () => {
         console.log("call pressed")

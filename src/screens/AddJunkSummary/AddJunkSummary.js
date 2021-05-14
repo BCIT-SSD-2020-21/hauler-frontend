@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { ScrollView, TouchableOpacity, Text, View, StyleSheet } from 'react-native'
 import { postItem, updateOnePost } from '../../../network';
 import PostInfo from '../../components/PostInfo/PostInfo';
@@ -11,6 +11,8 @@ export default function AddJunkSummary({ navigation, route }) {
 
     const service = "Junk"
     const { currentUser } = useContext(Context)
+
+    const [error, setError] = useState('')
 
     return (
         <ScrollView>
@@ -52,7 +54,8 @@ export default function AddJunkSummary({ navigation, route }) {
                         }}><Text style={styles.buttonTitle}>Post a Job</Text></TouchableOpacity> :
                     <TouchableOpacity style={styles.button}
                         onPress={async () => {
-                            await updateOnePost(
+                            setError('')
+                            const res = await updateOnePost(
                                 postId,
                                 // service,
                                 postHeading,
@@ -68,9 +71,15 @@ export default function AddJunkSummary({ navigation, route }) {
                                 pickContactPerson,
                                 pickUpPhoneNumber,
                                 pickUpSpecialInstructions,
-                            ); navigation.navigate('Confirmation')
+                            );
+                            if (res === 'Post updated') {
+                                navigation.navigate('Confirmation')
+                            } else {
+                                setError(res)
+                            }
                         }}><Text style={styles.buttonTitle}>Submit Edited Post</Text></TouchableOpacity>}
             </View>
+            <Text > {error && alert(error)}</Text>
         </ScrollView>
     )
 }

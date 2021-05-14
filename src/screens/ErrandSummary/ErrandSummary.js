@@ -17,6 +17,7 @@ export default function ErrandSummary({ navigation, route }) {
 
     const { currentUser } = useContext(Context)
 
+    const [error, setError] = useState('')
     const [distance, setDistance] = useState('')
     const [duration, setDuration] = useState('')
     const [coordinates, setCoordinates] = useState([
@@ -46,6 +47,7 @@ export default function ErrandSummary({ navigation, route }) {
                     dropOffAddress={dropOffAddress}
                     dropOffContactPerson={dropOffContactPerson}
                     dropOffContactNumber={dropOffPhoneNumber}
+                    dropOffSpecialInstruction={dropOffSpecialInstructions}
                     sliderValue={sliderValue}
                     distance={distance}
                     duration={duration}
@@ -117,7 +119,8 @@ export default function ErrandSummary({ navigation, route }) {
                     :
                     <TouchableOpacity style={styles.button}
                         onPress={async () => {
-                            await updateOnePost(
+                            setError('')
+                           const res=  await updateOnePost(
                                 postId,
                                 // service,
                                 postHeading,
@@ -141,9 +144,15 @@ export default function ErrandSummary({ navigation, route }) {
                                 dropOffPhoneNumber,
                                 dropOffSpecialInstructions,
                                 distance,
-                            ); navigation.navigate('Confirmation')
+                            );
+                            if (res === 'Post updated') {
+                                navigation.navigate('Confirmation')
+                            } else {
+                                setError(res)
+                            }
                         }}><Text style={styles.buttonTitle}>Submit Edited Post</Text></TouchableOpacity>}
             </View>
+            <Text > {error && alert(error)}</Text>
         </ScrollView>
     )
 }
