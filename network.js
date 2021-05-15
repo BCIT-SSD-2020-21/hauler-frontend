@@ -16,23 +16,26 @@ export async function signUp(
   unitNumber,
   email,
   contactNumber,
+  cardHolderName,
   creditCardNumber,
   expiryDate,
-  cvv) {
+  cvv
+) {
   const res = await axios.post(`${url}/api/users`, {
     uid: uid,
     firstName: firstName,
     lastName: lastName,
-    // profilePicUrl: profilePicUrl,
-    dateOfBirth:dateOfBirth,
+    profilePicUrl: "http://2019wcsg.ca/wp-content/uploads/2018/01/profile-placeholder.png",
+    dateOfBirth: dateOfBirth,
     province: province,
     city: city,
     streetAddress: streetAddress,
     unitNumber: unitNumber,
     email: email,
     contactNumber: contactNumber,
+    cardHolderName: cardHolderName,
     creditCardNumber: creditCardNumber,
-    expiryDate:expiryDate,
+    expiryDate: expiryDate,
     cvv: cvv
   });
   console.log('user created');
@@ -57,8 +60,8 @@ export async function postItem(
   description,
   selectedweight,
   selectedquantity,
-   image,
-   sliderValue,
+  image,
+  sliderValue,
   pickUpAddress,
   pickUpCity,
   pickUpAddressLat,
@@ -74,39 +77,38 @@ export async function postItem(
   dropOffPhoneNumber,
   dropOffSpecialInstructions,
   distance
-) 
-{
-  try{
-  const res = await axios.post(`${url}/api/posts`, {
-    userId: uid,
-    service: service,
-    postHeading: postHeading,
-    postDescription: description,
-    loadWeight: selectedweight,
-    numberOfItems: selectedquantity,
-    imageUrl: "https://cdn.apartmenttherapy.info/image/upload/v1558596110/at/archive/e06c0d4c7d9800f5d664133bf5185b850372f018.jpg",
-    price: sliderValue,
-    pickUpAddress: pickUpAddress,
-    pickUpCity: pickUpCity,
-    pickUpAddressLat: pickUpAddressLat,
-    pickUpAddressLng: pickUpAddressLng,
-    pickUpContactPerson: pickContactPerson,
-    pickUpContactNumber: pickUpPhoneNumber,
-    pickUpSpecialInstruction: pickUpSpecialInstructions,
-    dropOffAddress: dropOffAddress,
-    dropOffCity: dropOffCity,
-    dropOffAddressLat: dropOffAddressLat,
-    dropOffAddressLng: dropOffAddressLng,
-    dropOffContactPerson: dropOffContactPerson,
-    dropOffContactNumber: dropOffPhoneNumber,
-    dropOffSpecialInstruction: dropOffSpecialInstructions,
-    distance:distance
-  });
-  console.log('user post created');
-  return res
-}catch(err){
-  console.log(err)
-}
+) {
+  try {
+    const res = await axios.post(`${url}/api/posts`, {
+      userId: uid,
+      service: service,
+      postHeading: postHeading,
+      postDescription: description,
+      loadWeight: selectedweight,
+      numberOfItems: selectedquantity,
+      imageUrl: "https://cdn.apartmenttherapy.info/image/upload/v1558596110/at/archive/e06c0d4c7d9800f5d664133bf5185b850372f018.jpg",
+      price: sliderValue,
+      pickUpAddress: pickUpAddress,
+      pickUpCity: pickUpCity,
+      pickUpAddressLat: pickUpAddressLat,
+      pickUpAddressLng: pickUpAddressLng,
+      pickUpContactPerson: pickContactPerson,
+      pickUpContactNumber: pickUpPhoneNumber,
+      pickUpSpecialInstruction: pickUpSpecialInstructions,
+      dropOffAddress: dropOffAddress,
+      dropOffCity: dropOffCity,
+      dropOffAddressLat: dropOffAddressLat,
+      dropOffAddressLng: dropOffAddressLng,
+      dropOffContactPerson: dropOffContactPerson,
+      dropOffContactNumber: dropOffPhoneNumber,
+      dropOffSpecialInstruction: dropOffSpecialInstructions,
+      distance: distance
+    });
+    console.log('user post created');
+    return res
+  } catch (err) {
+    console.log(err)
+  }
 }
 
 //=============================== To get post by uid and service ====================================//
@@ -183,11 +185,11 @@ export async function addUserResponse(
 }
 
 //=============================== To change post visibility ==========================================//
-export async function updatePostVisibility(postId, actionPrice,serviceProviderId) {
+export async function updatePostVisibility(postId, actionPrice, serviceProviderId) {
   try {
-    const res = await axios.post(`${url}/api/posts/one/${postId}`,{
+    const res = await axios.post(`${url}/api/posts/one/${postId}`, {
       price: actionPrice,
-      serviceProviderId:  serviceProviderId
+      serviceProviderId: serviceProviderId
     });
     console.log('Hide post');
     return res
@@ -197,10 +199,10 @@ export async function updatePostVisibility(postId, actionPrice,serviceProviderId
 }
 //===================================To Get One User =================================================//
 export async function getOneUser(uid) {
-  try{
+  try {
     const res = await axios.get(`${url}/api/users/${uid}`);
     return res.data
-  }catch (err) {
+  } catch (err) {
     console.log(err);
   }
 }
@@ -220,8 +222,8 @@ export async function updateOneUser(
   creditCardNumber,
   expiryDate,
   cvv
-){
-  try{
+) {
+  try {
     const res = await axios.post(`${url}/api/users/${uid}`, {
       firstName: firstName,
       lastName: lastName,
@@ -237,17 +239,17 @@ export async function updateOneUser(
       cvv: cvv
     });
     return res.data;
-  }catch (err) {
+  } catch (err) {
     console.log(err);
   }
 }
 
 //==================================== To delete post ===============================================//
 export async function deleteOnePost(postId) {
-  try{
+  try {
     const res = await axios.delete(`${url}/api/posts/${postId}`);
     return res.data
-  }catch (err) {
+  } catch (err) {
     console.log(err);
   }
 }
@@ -255,31 +257,31 @@ export async function deleteOnePost(postId) {
 //==================================== To edit Post ==================================================//
 export async function updateOnePost(
   postId,
-   // service,
-   postHeading,
-   postDescription,
-   loadWeight,
-   numberOfItems,
-   // imageUrl,
-   price,
-   pickUpAddress,
-   pickUpCity,
-   pickUpAddressLat,
-   pickUpAddressLng,
-   pickUpContactPerson,
-   pickUpContactNumber,
-   pickUpSpecialInstruction,
-   dropOffAddress,
-   dropOffCity,
-   dropOffAddressLat,
-   dropOffAddressLng,
-   dropOffContactPerson,
-   dropOffContactNumber,
-   dropOffSpecialInstruction,
-   distance
-  ) {
-  try{
-    const res = await axios.post(`${url}/api/posts/${postId}`,{
+  // service,
+  postHeading,
+  postDescription,
+  loadWeight,
+  numberOfItems,
+  // imageUrl,
+  price,
+  pickUpAddress,
+  pickUpCity,
+  pickUpAddressLat,
+  pickUpAddressLng,
+  pickUpContactPerson,
+  pickUpContactNumber,
+  pickUpSpecialInstruction,
+  dropOffAddress,
+  dropOffCity,
+  dropOffAddressLat,
+  dropOffAddressLng,
+  dropOffContactPerson,
+  dropOffContactNumber,
+  dropOffSpecialInstruction,
+  distance
+) {
+  try {
+    const res = await axios.post(`${url}/api/posts/${postId}`, {
       // service: service,
       postHeading: postHeading,
       postDescription: postDescription,
@@ -301,10 +303,10 @@ export async function updateOnePost(
       dropOffContactPerson: dropOffContactPerson,
       dropOffContactNumber: dropOffContactNumber,
       dropOffSpecialInstruction: dropOffSpecialInstruction,
-      distance:distance
+      distance: distance
     });
     return res.data
-  }catch (err) {
+  } catch (err) {
     console.log(err);
   }
 }
