@@ -41,6 +41,7 @@ export default function SignUpScreen2({ navigation, route }) {
                 unitNumber,
                 email,
                 contactNumber,
+                cardHolderName,
                 creditCardNumber,
                 expiryDate,
                 cvv
